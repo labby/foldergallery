@@ -47,10 +47,14 @@ require_once (WB_PATH.'/modules/foldergallery_jq/scripts/backend.functions.php')
 //get the CSS
 echo '<link rel="stylesheet" type="text/css" href="'.WB_URL.'/modules/foldergallery_jq/scripts/jcrob/css/jquery.Jcrop.css" /> ';
 
-
 $cat_id = $_GET['cat_id'];
 
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
+	/**
+	 *	Get leptoken hash
+	 */
+	$leptoken = (isset($_GET['leptoken'])) ? "&leptoken=".$_GET['leptoken'] : "";
+	
 	$settings = getSettings($section_id);
 	$root_dir = $settings['root_dir']; //Chio
 	
@@ -121,7 +125,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 					<input type="hidden" id="w" name="w" />
 					<input type="hidden" id="h" name="h" />
 					<input style="width: 130px;" type="submit" value="'.$MOD_FOLDERGALLERY['EDIT_THUMB_BUTTON'].'" /><br />
-					<input style="width: 130px;" type="button" value="'.$TEXT['CANCEL'].'" onClick="parent.location=\''.WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'\'"/>
+					<input style="width: 130px;" type="button" value="'.$TEXT['CANCEL'].'" onClick="parent.location=\''.WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.$leptoken.'\'"/>
 				</form>
 			</div>';
 		}
