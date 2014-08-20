@@ -1,4 +1,4 @@
-#Foldergallery
+#Foldergallery jQ
 ## Description
 Foldergallery is a module for LEPTON-CMS. It's a imagegallery to handle many images
 in different categorie. Categories are based on the folderstructure on the server, so they are created
