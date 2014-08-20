@@ -8,3 +8,4 @@ automaticly if you sync the filesystem with the database in the foldergallery ba
 
 ### 1.2.3.0
 + Initial Version 1.2.3.0 for LEPTON-CMS 1.3.1
++ Add missing/missplaced jQuery files to the project.
