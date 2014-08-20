@@ -6,5 +6,5 @@ automaticly if you sync the filesystem with the databese in the foldergallery ba
 
 ## Changelog
 
-### 1.2.3.0 (Raymond Plügge, Dietrich Roland Pehlke, 20.08.2014)
+### 1.2.3.0
 + Initial Version 1.2.3.0 for LEPTON-CMS 1.3.1
