@@ -51,7 +51,6 @@ if(!file_exists(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php'
 require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
 require_once (WB_PATH.'/modules/foldergallery_jq/scripts/backend.functions.php');
 
-
 // Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
 // Falls noch keine Einstellungen gemacht wurden auf die Einstellungsseite umleiten
@@ -116,19 +115,21 @@ while($result = $query->fetchRow( MYSQL_ASSOC )){
 }
 
 function display_categories($parent_id, $section_id , $tiefe = 0) {
-	$padding = $tiefe*20;
+	
 	global $database;
 	global $url;
 	global $page_id;
+	
+	$padding = $tiefe*20;
+	
 	$list = "\n";
 	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE parent_id='.$parent_id.' AND section_id ='.$section_id.' ORDER BY `position` ASC;';
 	$query = $database->query($sql);
 	$zagl = $query->numRows();
 	
-	
 	$arrup = false;
 	$arrdown = true;
-	if ($zagl > 1) {}
+//	if ($zagl > 1) {}
 	
 	$counter = 0;	
 	while($result = $query->fetchRow( MYSQL_ASSOC )){
@@ -226,7 +227,6 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 	}	
 	return $list;
 }
-
 
 $url = array(
 	'edit'	=> WB_URL."/modules/foldergallery_jq/modify_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=",

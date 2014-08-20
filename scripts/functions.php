@@ -30,13 +30,12 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-
-function getSettings($section_id){
+function getSettings( &$section_id){
 	global $database;
-	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_settings WHERE '
+	$sql = 'SELECT * FROM `'.TABLE_PREFIX.'mod_foldergallery_jq_settings` WHERE '
 		. 'section_id = '.$section_id;
 	$query = $database->query($sql);
-	$result = $query->fetchRow();
+	$result = $query->fetchRow( MYSQL_ASSOC );
 	return $result;
 }
 
@@ -55,7 +54,7 @@ function getSettings($section_id){
  */
 function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positionX = 0, $positionY = 0, $positionW = 0, $positionH = 0 ){
 
-	//Von Chio eingef�gt:
+	//Von Chio eingefügt:
 	global $megapixel_limit;
 	if ($megapixel_limit < 2) {$megapixel_limit = 5;}
 	
