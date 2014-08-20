@@ -30,7 +30,6 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-require('../../config.php');
 if(defined('WB_PATH') == false) { exit("Cannot access this file directly");  }
 require(WB_PATH.'/modules/admin.php');
 	

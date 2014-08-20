@@ -29,7 +29,6 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-require('../../config.php');
 require(WB_PATH.'/modules/admin.php');
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
