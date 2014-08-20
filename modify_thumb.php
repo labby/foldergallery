@@ -105,8 +105,15 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 				var relWidth = \''.$width.'\';
 				var relHeight = \''.$height.'\';
 				var thumbSize = \''.$settings['thumb_size'].'\';
-				var settingsRatio = \''.$settings['ratio'].'\'
+				var settingsRatio = \''.$settings['ratio'].'\';
+				var WB_URL =\''.WB_URL.'\';
 			</script>
+<!-- Aldus begin -->
+<script src="'.WB_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-insert.js" type="text/javascript"></script>
+<script src="'.WB_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-include.js" type="text/javascript"></script>
+<!--[if lt IE 7]><script type="text/javascript" src="'.WB_URL.'/modules/foldergallery_jq/scripts/jqery/jquery-pngFix.js"></script><![endif]-->
+<script src="'.WB_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-plugins.js" type="text/javascript"></script>
+<!-- Aldus end -->
 			<h2>'.$MOD_FOLDERGALLERY['EDIT_THUMB'].'</h2>
 			<p>'.$MOD_FOLDERGALLERY['EDIT_THUMB_DESCRIPTION'].'</p>
 			<p>'.$full_file_link.'</p>
