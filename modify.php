@@ -71,6 +71,8 @@ echo '
 <script type="text/javascript">
 var theme_url = "'.THEME_URL.'";
 </script>
+<script src="'.WB_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-insert.js" type="text/javascript"></script>
+<script src="'.WB_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-include.js" type="text/javascript"></script>
 ';
 
 // Template
@@ -84,18 +86,18 @@ $t->clear_var('ListElement'); // Löschen, da dies über untenstehende Funktion 
 
 // Links im Template setzen
 $t->set_var(array(
-	'SETTINGS_ONCLICK' 		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq/modify_settings.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
-	'SYNC_ONKLICK'			=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq/sync.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
+	'SETTINGS_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq/modify_settings.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
+	'SYNC_ONKLICK'		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq/sync.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
 	'EDIT_PAGE'			=> $page_id,
-	'EDIT_SECTION'			=> $section_id,
+	'EDIT_SECTION'		=> $section_id,
 	'WB_URL'			=> WB_URL
 ));
 
 // Text im Template setzten
 $t->set_var(array(
-	'TITEL_BACKEND_STRING' 	=> $MOD_FOLDERGALLERY['TITEL_BACKEND'],
-	'TITEL_MODIFY' 			=> $MOD_FOLDERGALLERY['TITEL_MODIFY'],
-	'SETTINGS_STRING' 		=> $MOD_FOLDERGALLERY['SETTINGS'],
+	'TITEL_BACKEND_STRING'	=> $MOD_FOLDERGALLERY['TITEL_BACKEND'],
+	'TITEL_MODIFY'			=> $MOD_FOLDERGALLERY['TITEL_MODIFY'],
+	'SETTINGS_STRING'		=> $MOD_FOLDERGALLERY['SETTINGS'],
 	'FOLDER_IN_FS_STRING'	=> $MOD_FOLDERGALLERY['FOLDER_IN_FS'],
 	'CAT_TITLE_STRING'		=> $MOD_FOLDERGALLERY['CAT_TITLE'],
 	'ACTIONS_STRING'		=> $MOD_FOLDERGALLERY['ACTION'],
@@ -109,7 +111,7 @@ $t->pparse('output', 'modify');
 // Kategorien von der obersten Ebene aus DB hohlen
 $sql = "SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_jq_categories WHERE section_id=".$section_id." AND niveau=0;";
 $query = $database->query($sql);
-while($result = $query->fetchRow()){
+while($result = $query->fetchRow( MYSQL_ASSOC )){
 	$results[] = $result;
 }
 
@@ -129,7 +131,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 	if ($zagl > 1) {}
 	
 	$counter = 0;	
-	while($result = $query->fetchRow()){
+	while($result = $query->fetchRow( MYSQL_ASSOC )){
 		$counter ++;
 		if ($counter > 1) {$arrup = true;}
 		if ($counter == $zagl) {$arrdown = false;}
@@ -244,7 +246,6 @@ echo '<script type="text/javascript">
 	</ul>
 </div>
 ';
-
 
 // Schluss vom else Teil ganz oben!
 }

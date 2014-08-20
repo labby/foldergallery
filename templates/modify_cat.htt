@@ -4,8 +4,11 @@ This is a phplib-template for modify_cat.php
 -->
 <!-- END CommentDoc -->
 <script type="text/javascript">
-	var settingsRatio = 1
+	var settingsRatio = 1;
+	var WB_URL = '{WB_URL}';
 </script>
+<script src="{WB_URL}/modules/foldergallery_jq/scripts/jquery/jquery-insert.js" type="text/javascript"></script>
+<script src="{WB_URL}/modules/foldergallery_jq/scripts/jquery/jquery-include.js" type="text/javascript"></script>
 <h2>{MODIFY_CAT_TITLE}</h2><br />
 <h3>{MODIFY_CAT_STRING}</h3>
 <form action="{SAVE_CAT_LINK}" method="post">

@@ -136,12 +136,6 @@ if($query->numRows()){
 	$error['noimages'] = 1;
 }
 
-
-
-
-
-
-
 //Template
 $t = new Template(dirname(__FILE__).'/templates', 'remove');
 $t->set_file('modify_cat', 'modify_cat.htt');
@@ -173,7 +167,8 @@ $t->set_var(array(
 	// Section und Page ID
 	'SECTION_ID_VALUE'		=> $section_id,
 	'PAGE_ID_VALUE'			=> $page_id,
-	'CAT_ID_VALUE'			=> $cat_id
+	'CAT_ID_VALUE'			=> $cat_id,
+	'WB_URL'	=> WB_URL
 ));
 
 // Links parsen
@@ -201,12 +196,8 @@ foreach($bilder as $bild) {
 	$counter++;
 }
 
-
 $t->pparse('output', 'modify_cat');
 
 $admin->print_footer();
-
-
-
 
 ?>
