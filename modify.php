@@ -30,7 +30,6 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php 
 
-
 // check if backend.css file needs to be included into <body></body>
 if(!method_exists($admin, 'register_backend_modfiles') && file_exists(WB_PATH ."/modules/foldergallery_jq/backend.css")) {
 	echo '<style type="text/css">';
@@ -47,6 +46,15 @@ if(!file_exists(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php'
 	require_once(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
 }
 
+/**
+ *	Leptoken hash
+ *
+ */
+$leptoken = isset($_GET['leptoken'])
+	? "&leptoken=".$_GET['leptoken']
+	: ""
+	;
+	
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
 require_once (WB_PATH.'/modules/foldergallery_jq/scripts/backend.functions.php');
@@ -58,7 +66,7 @@ if($settings['root_dir'] == 'd41d8cd98f00b204e9800998ecf8427e') {
 	?>
 		<script language="javascript">
 			function Weiterleitung() {
-   				location.href= '<?php echo WB_URL; ?>/modules/foldergallery_jq/modify_settings.php?page_id=<?php echo $page_id; ?>&section_id=<?php echo $section_id; ?>';
+   				location.href= '<?php echo WB_URL; ?>/modules/foldergallery_jq/modify_settings.php?page_id=<?php echo $page_id; ?>&section_id=<?php echo $section_id.$leptoken; ?>';
 			}
 			window.setTimeout("Weiterleitung()", 2000); // in msecs 1000 => eine Sekunde
 		</script>

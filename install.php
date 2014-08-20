@@ -37,7 +37,7 @@ $database->query("DROP TABLE IF EXISTS `" .TABLE_PREFIX ."mod_foldergallery_jq_s
 $database->query("DROP TABLE IF EXISTS `" .TABLE_PREFIX ."mod_foldergallery_jq_files`");
 $database->query("DROP TABLE IF EXISTS `" .TABLE_PREFIX ."mod_foldergallery_jq_categories`");
 
-// create a new, clean module DB-table)
+// create a new, clean module DB-table
 
 $sql = 'CREATE TABLE `' .TABLE_PREFIX .'mod_foldergallery_jq_settings` ( '
 	. '`section_id` INT NOT NULL DEFAULT \'0\','

@@ -43,18 +43,18 @@ $module_guid		= 'c3621f10-9e20-49c3-a9b4-2e27b352386d';
 
 /**
  *  Pfad und URL zum Stammverzeichnis der Foldergallery
- *  Das Stammverzeichnis ist das h&ouml;chste Verzeichnis
+ *  Das Stammverzeichnis ist das höchste Verzeichnis
  *  auf welches die Foldergallery zugriff hat.
- *  Die Werte m&uuml;ssen auf das gleiche Verzeichnis zeigen.
- *  Diese Verzeichnisse kann man nat&uuml;rlich &auml;ndern!
- *  (z.B) f&uuml;r externe Ordner
+ *  Die Werte müssen auf das gleiche Verzeichnis zeigen.
+ *  Diese Verzeichnisse kann man natürlich ändern!
+ *  (z.B) für externe Ordner
 **/
 
 $path = WB_PATH.MEDIA_DIRECTORY; // alternativ: WB_PATH;
 $url = WB_URL.MEDIA_DIRECTORY; // alternativ: WB_URL.;
 $thumbdir = '/fg-thumbs';
 // Des gleiche wie oben, aber ohne Slash
-// Wird f&uuml;r die Suche ben&ouml;tigt
+// Wird für die Suche benötigt
 $thumbdir1 = 'fg-thumbs'; 
 $pages = substr(PAGES_DIRECTORY, 1);
 
