@@ -43,6 +43,7 @@ $leptoken = isset($_GET['leptoken'])
  *	Some 'shortcuts'
  */
 $mod_folder_path = dirname(__FILE__);
+$mod_folder_url = WB_URL.'/modules/foldergallery_jq';
 
 // check if backend.css file needs to be included into <body></body>
 if(!method_exists($admin, 'register_backend_modfiles') && file_exists($mod_folder_path ."/backend.css")) {
@@ -67,7 +68,7 @@ if($settings['root_dir'] == 'd41d8cd98f00b204e9800998ecf8427e') {
 	?>
 		<script language="javascript">
 			function Weiterleitung() {
-   				location.href= '<?php echo WB_URL; ?>/modules/foldergallery_jq/modify_settings.php?page_id=<?php echo $page_id; ?>&section_id=<?php echo $section_id.$leptoken; ?>';
+   				location.href= '<?php echo $mod_folder_url; ?>/modify_settings.php?page_id=<?php echo $page_id; ?>&section_id=<?php echo $section_id.$leptoken; ?>';
 			}
 			window.setTimeout("Weiterleitung()", 2000); // in msecs 1000 => eine Sekunde
 		</script>
@@ -79,8 +80,8 @@ echo '
 <script type="text/javascript">
 var theme_url = "'.THEME_URL.'";
 </script>
-<script src="'.WB_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-insert.js" type="text/javascript"></script>
-<script src="'.WB_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-include.js" type="text/javascript"></script>
+<script src="'.$mod_folder_url.'/scripts/jquery/jquery-insert.js" type="text/javascript"></script>
+<script src="'.$mod_folder_url.'/scripts/jquery/jquery-include.js" type="text/javascript"></script>
 ';
 
 // Template
@@ -94,8 +95,8 @@ $t->clear_var('ListElement'); // Löschen, da dies über untenstehende Funktion 
 
 // Links im Template setzen
 $t->set_var(array(
-	'SETTINGS_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq/modify_settings.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
-	'SYNC_ONKLICK'		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq/sync.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
+	'SETTINGS_ONCLICK'	=> 'javascript: window.location = \''.$mod_folder_url.'/modify_settings.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
+	'SYNC_ONKLICK'		=> 'javascript: window.location = \''.$mod_folder_url.'/sync.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',
 	'EDIT_PAGE'			=> $page_id,
 	'EDIT_SECTION'		=> $section_id,
 	'WB_URL'			=> WB_URL
