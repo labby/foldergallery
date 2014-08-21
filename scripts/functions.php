@@ -30,10 +30,16 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-function getSettings( &$section_id){
+/**
+ *	Getting the foldergallery-settings from the DB for a given section(-id).
+ *
+ *	@param	int		A valid section-id
+ *	@return	array	Assoc. array within the settings.
+ *
+ */
+function getSettings( &$section_id ){
 	global $database;
-	$sql = 'SELECT * FROM `'.TABLE_PREFIX.'mod_foldergallery_jq_settings` WHERE '
-		. 'section_id = '.$section_id;
+	$sql = 'SELECT * FROM `'.TABLE_PREFIX.'mod_foldergallery_jq_settings` WHERE `section_id` = '.$section_id;
 	$query = $database->query($sql);
 	$result = $query->fetchRow( MYSQL_ASSOC );
 	return $result;

@@ -45,7 +45,7 @@ $leptoken = isset($_GET['leptoken'])
 $mod_folder_path = dirname(__FILE__);
 $mod_folder_url = WB_URL.'/modules/foldergallery_jq';
 
-// check if backend.css file needs to be included into <body></body>
+// Check if backend.css file needs to be included into <body></body>
 if(!method_exists($admin, 'register_backend_modfiles') && file_exists($mod_folder_path ."/backend.css")) {
 	echo '<style type="text/css">';
 	include($mod_folder_path .'/backend.css');
