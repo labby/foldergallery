@@ -5,5 +5,5 @@ in different categories using various jQuery plugins. Categories are based on th
 automaticly if you sync the filesystem with the database in the foldergallery backend.
 
 ## Changelog
-Detailed Changelogs can be seen on
+Detailed Changelog can be seen on
 https://github.com/aldus/foldergallery_jq/commits/master
