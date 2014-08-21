@@ -30,22 +30,6 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php 
 
-// check if backend.css file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(WB_PATH ."/modules/foldergallery_jq/backend.css")) {
-	echo '<style type="text/css">';
-	include(WB_PATH .'/modules/foldergallery_jq/backend.css');
-	echo "\n</style>\n";
-}
-
-// check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
-	// no module language file exists for the language set by the user, include default module language file DE.php
-	require_once(WB_PATH .'/modules/foldergallery_jq/languages/DE.php');
-} else {
-	// a module language file exists for the language defined by the user, load it
-	require_once(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
-}
-
 /**
  *	Leptoken hash
  *
@@ -54,13 +38,30 @@ $leptoken = isset($_GET['leptoken'])
 	? "&leptoken=".$_GET['leptoken']
 	: ""
 	;
-	
+
+/**
+ *	Some 'shortcuts'
+ */
+$mod_folder_path = dirname(__FILE__);
+
+// check if backend.css file needs to be included into <body></body>
+if(!method_exists($admin, 'register_backend_modfiles') && file_exists($mod_folder_path ."/backend.css")) {
+	echo '<style type="text/css">';
+	include($mod_folder_path .'/backend.css');
+	echo "\n</style>\n";
+}
+
+// Check if module language file exists for the language set by the user (e.g. DE, EN)
+$lang_file = $mod_folder_path .'/languages/'.LANGUAGE .'.php';
+require_once( file_exists($lang_file) ? $lang_file : $mod_folder_path .'/languages/EN.php');
+
 // Files includen
-require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
-require_once (WB_PATH.'/modules/foldergallery_jq/scripts/backend.functions.php');
+require_once ($mod_folder_path.'/info.php');
+require_once ($mod_folder_path.'/scripts/backend.functions.php');
 
 // Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
+
 // Falls noch keine Einstellungen gemacht wurden auf die Einstellungsseite umleiten
 if($settings['root_dir'] == 'd41d8cd98f00b204e9800998ecf8427e') {
 	?>
@@ -83,7 +84,7 @@ var theme_url = "'.THEME_URL.'";
 ';
 
 // Template
-$t = new Template(dirname(__FILE__).'/templates', 'remove');
+$t = new Template($mod_folder_path.'/templates', 'remove');
 $t->halt_on_error = 'no';
 $t->set_file('modify', 'modify.htt');
 // clear the comment-block, if present
