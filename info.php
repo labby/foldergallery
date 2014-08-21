@@ -33,7 +33,7 @@ if (defined('WB_PATH')) {
 $module_directory	= 'foldergallery_jq';
 $module_name		= 'Foldergallery-jQuery';
 $module_function	= 'page';
-$module_version		= '1.2.3.0';
+$module_version		= '1.2.3';
 $module_platform	= '1.3.x';	
 $module_author		= 'J&uuml;rg Rast; schliffer; Bianka Martinovic; Chio; Pumpi; Aldus; erpe';
 $module_license		= 'GNU General Public License';
