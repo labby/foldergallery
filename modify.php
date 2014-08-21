@@ -124,6 +124,7 @@ while($result = $query->fetchRow( MYSQL_ASSOC )){
 	$results[] = $result;
 }
 
+if (!function_exists("display_categories")) {
 function display_categories($parent_id, $section_id , $tiefe = 0) {
 	
 	global $database;
@@ -236,6 +237,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 		}
 	}	
 	return $list;
+}
 }
 
 $url = array(
