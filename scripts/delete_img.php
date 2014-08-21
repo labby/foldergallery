@@ -92,10 +92,10 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 		
 		
 	} else {
-		$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+		$admin->print_error($MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 	}
 } else {
-	$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+	$admin->print_error($MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 }
 $admin->print_footer();
 ?>

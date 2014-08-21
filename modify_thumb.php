@@ -114,8 +114,8 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 <!--[if lt IE 7]><script type="text/javascript" src="'.WB_URL.'/modules/foldergallery_jq/scripts/jqery/jquery-pngFix.js"></script><![endif]-->
 <script src="'.WB_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-plugins.js" type="text/javascript"></script>
 <!-- Aldus end -->
-			<h2>'.$MOD_FOLDERGALLERY['EDIT_THUMB'].'</h2>
-			<p>'.$MOD_FOLDERGALLERY['EDIT_THUMB_DESCRIPTION'].'</p>
+			<h2>'.$MOD_FOLDERGALLERY_JQ['EDIT_THUMB'].'</h2>
+			<p>'.$MOD_FOLDERGALLERY_JQ['EDIT_THUMB_DESCRIPTION'].'</p>
 			<p>'.$full_file_link.'</p>
 			<div style="float: left; padding: 0 20px 0 20px;">
 				<img src="'.$full_file_link.'" id="cropbox" style="max-width: 500px; max-height: 500px;"/>
@@ -131,7 +131,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 					<input type="hidden" id="y" name="y" />
 					<input type="hidden" id="w" name="w" />
 					<input type="hidden" id="h" name="h" />
-					<input style="width: 130px;" type="submit" value="'.$MOD_FOLDERGALLERY['EDIT_THUMB_BUTTON'].'" /><br />
+					<input style="width: 130px;" type="submit" value="'.$MOD_FOLDERGALLERY_JQ['EDIT_THUMB_BUTTON'].'" /><br />
 					<input style="width: 130px;" type="button" value="'.$TEXT['CANCEL'].'" onClick="parent.location=\''.WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.$leptoken.'\'"/>
 				</form>
 			</div>';
@@ -139,7 +139,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 	}
 }
 else {
-	$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+	$admin->print_error($MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 }
 
 $admin->print_footer();

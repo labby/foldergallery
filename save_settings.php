@@ -116,7 +116,7 @@ if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view
 //var_export( $newSettings );
 //echo "</textarea>";
 //ENDE Debug
-echo "<center>".$MOD_FOLDERGALLERY['SAVE_SETTINGS']."</center><br />";
+echo "<center>".$MOD_FOLDERGALLERY_JQ['SAVE_SETTINGS']."</center><br />";
 $newSettings['section_id'] = $section_id;
 //die('hier3');
 $settingsTable = TABLE_PREFIX.'mod_foldergallery_jq_settings';

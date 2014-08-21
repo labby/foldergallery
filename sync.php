@@ -55,7 +55,7 @@ $flag = false;
 /* syncDB($galerie) ist kompletter updatealgorithmus */
 if(syncDB($settings)) {
 
-	echo "<center>".$MOD_FOLDERGALLERY['SYNC_DATABASE']."</center><br />";
+	echo "<center>".$MOD_FOLDERGALLERY_JQ['SYNC_DATABASE']."</center><br />";
 
 	// Wieder alle Angaben aus der DB holen um Sortierung festzulegen
 	$results = array();
@@ -178,7 +178,7 @@ if(syncDB($settings)) {
 
     }   // keine Kategorien vorhanden
     else {
-        $admin->print_error( $MOD_FOLDERGALLERY['NO_CATEGORIES'], WB_URL.'/modules/foldergallery_jq/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id );
+        $admin->print_error( $MOD_FOLDERGALLERY_JQ['NO_CATEGORIES'], WB_URL.'/modules/foldergallery_jq/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id );
     }
 
 }

@@ -81,7 +81,7 @@ if(isset($_POST['save'])) {
 	if($database->query($sql)){
 		$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
 	} else {
-		$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
+		$admin->print_error($MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
 	}
 }
 
