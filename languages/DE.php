@@ -31,13 +31,13 @@ if (defined('WB_PATH')) {
 // end include class.secure.php
 
 //Modul Description
-$module_description = 'Erstellen sie eine vollautomatische Bildergalerie mit Ordner als Kategorien';
+$module_description = 'Vollautomatische Bildergalerie mit Ordner als Kategorien erstellen';
 
 //Variables for the Frontend
 $MOD_FOLDERGALLERY_JQ['VIEW_TITLE']		= 'Bildergalerie';
 $MOD_FOLDERGALLERY_JQ['CATEGORIES_TITLE']	= 'Kategorien';
-$MOD_FOLDERGALLERY_JQ['BACK_STRING']		= 'Zur &Uuml;bersicht';
-$MOD_FOLDERGALLERY_JQ['FRONT_END_ERROR']	= 'Diese Kategorie existiert nicht oder enth&auml;lt keine Bilder und Unterkategorien!';
+$MOD_FOLDERGALLERY_JQ['BACK_STRING']		= 'Zur Übersicht';
+$MOD_FOLDERGALLERY_JQ['FRONT_END_ERROR']	= 'Diese Kategorie existiert nicht oder enthält keine Bilder und Unterkategorien!';
 $MOD_FOLDERGALLERY_JQ['PAGE']            = 'Seite';
 
 
@@ -54,10 +54,10 @@ $MOD_FOLDERGALLERY_JQ['CAT_DESCRIPTION']		= 'Kategoriebeschrieb:';
 $MOD_FOLDERGALLERY_JQ['MODIFY_IMG']			= 'Bilder bearbeiten:';
 $MOD_FOLDERGALLERY_JQ['IMAGE']					= 'Bild';
 $MOD_FOLDERGALLERY_JQ['IMAGE_NAME']			= 'Bildname';
-$MOD_FOLDERGALLERY_JQ['IMG_CAPTION']			= 'Bildbeschrieb';
+$MOD_FOLDERGALLERY_JQ['IMG_CAPTION']			= 'Bildbeschreibung';
 
 
-$MOD_FOLDERGALLERY_JQ['REDIRECT']  			= 'Sie m&uuml;ssen zuerst die Grundeinstellungen vornehmen.'
+$MOD_FOLDERGALLERY_JQ['REDIRECT']  			= 'Sie müssen zuerst die Grundeinstellungen vornehmen.'
 											. ' Sie werden in zwei Sekunden weitergeleitet! (Funktioniert nur wenn JavaScript aktiviert!';
 $MOD_FOLDERGALLERY_JQ['TITEL_BACKEND'] 			= 'Foldergallery Verwaltung';
 $MOD_FOLDERGALLERY_JQ['TITEL_MODIFY'] 			= 'Kategorien und Bilder bearbeiten:';
@@ -67,10 +67,10 @@ $MOD_FOLDERGALLERY_JQ['EXTENSIONS']			= 'Erlaubte Dateien';
 $MOD_FOLDERGALLERY_JQ['INVISIBLE']				= 'Unsichtbare Ordner';
 $MOD_FOLDERGALLERY_JQ['NEW_SCANN_INFO']			= 'Durch diese Aktion wurden erst die Datenbankeintr&auml;ge erstellt. Die Vorschaubilder werden automatisch beim ersten Aufruf der Kategorie erzeugt!';
 $MOD_FOLDERGALLERY_JQ['FOLDER_NAME']			= 'Ordnername im Dateisystem';
-$MOD_FOLDERGALLERY_JQ['DELETE']				= 'L&ouml;schen?';
+$MOD_FOLDERGALLERY_JQ['DELETE']				= 'Löschen?';
 $MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE']			= 'Keine Daten zum verarbeiten Erhalten!';
 $MOD_FOLDERGALLERY_JQ['DB_ERROR']				= 'Datenbank Fehler!';
-$MOD_FOLDERGALLERY_JQ['FS_ERROR']				= 'Fehler beim l&ouml;schen des Ordners!';
+$MOD_FOLDERGALLERY_JQ['FS_ERROR']				= 'Fehler beim löschen des Ordners!';
 $MOD_FOLDERGALLERY_JQ['NO_FILES_IN_CAT']			= 'Diese Kategorie enth&auml;lt keine Bilder!';
 $MOD_FOLDERGALLERY_JQ['SYNC']				= 'Datenbank mit Filesystem synchronisieren';
 $MOD_FOLDERGALLERY_JQ['EDIT_CSS']				= 'CSS bearbeiten';
@@ -88,12 +88,12 @@ $MOD_FOLDERGALLERY_JQ['CHANGING_INFO']			= 'Das ändern von <strong>Thumbnail Gr
 $MOD_FOLDERGALLERY_JQ['SYNC_DATABASE']			= 'Synchronisiere Dateisystem mit Datenbank...';
 $MOD_FOLDERGALLERY_JQ['SAVE_SETTINGS']			= 'Einstellungen werden gespeichert...';
 $MOD_FOLDERGALLERY_JQ['SORT_IMAGE']			= 'Bilder sortieren';
-$MOD_FOLDERGALLERY_JQ['BACK']					= 'Zur&uuml;ck';
+$MOD_FOLDERGALLERY_JQ['BACK']					= 'Zurück';
 $MOD_FOLDERGALLERY_JQ['REORDER_INFO_STRING']   = 'Der Erfolg der Neuanordnung wird hier angezeigt.';
 
 
 // Tooltips
-$MOD_FOLDERGALLERY_JQ['ROOT_FOLDER_STRING_TT']	= 'Dieser Ordner legt den Stammordner fest, in welchem rekursiv nach Bilder gesucht wird. Bitte nur beim installieren &auml;ndern, sonst gehen alle Infos zu den Bilder verloren!';
+$MOD_FOLDERGALLERY_JQ['ROOT_FOLDER_STRING_TT']	= 'Dieser Ordner legt den Stammordner fest, in welchem rekursiv nach Bilder gesucht wird. Bitte nur beim installieren ändern, sonst gehen alle Infos zu den Bilder verloren!';
 $MOD_FOLDERGALLERY_JQ['EXTENSIONS_STRING_TT']	= 'Legen sie hier die erlaubten Dateierweiterungen fest. Verwenden sie das Koma als Trennzeichen. Auf Gross-/Kleinschreibung wird nicht geachtet.';
 $MOD_FOLDERGALLERY_JQ['INVISIBLE_STRING_TT']	= 'Ordner die sie hier eintragen werden nicht durchsucht.';
 $MOD_FOLDERGALLERY_JQ['DELETE_TITLE_TT']		= 'Achtung, es werden ALLE Bilder und Unterkategorien mitsamt den Bilder vom Server gelöscht!';
