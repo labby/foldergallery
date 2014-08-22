@@ -10,7 +10,7 @@
  */
  
 $(document).ready(function() {
-	$.insert(WB_URL+'/modules/foldergallery_jq/scripts/jquery/jquery-ui.min.js');
+	$.insert(WB_URL+'/modules/lib_jquery/jquery-ui/ui/jquery-ui.min.js');
 	$.insert(WB_URL+'/modules/foldergallery_jq/scripts/jcrob/js/jquery.Jcrop.min.js');
 });
 
