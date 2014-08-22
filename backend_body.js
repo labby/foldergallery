@@ -18,7 +18,7 @@ $(document).ready(function(){
 	$(function() { 
 		$("#dragableTable ul").sortable({ opacity: 0.6, cursor: 'move', update: function() { 
 			var order = $(this).sortable("serialize") + '&action=updateRecordsListings&parent_id='+the_parent_id; 
-			$.post(WB_URL+"/modules/foldergallery_jq//reorderDND.php", order, function(theResponse){ 
+			$.post(WB_URL+"/modules/foldergallery_jq/reorderDND.php", order, function(theResponse){ 
 				$("#dragableResult").html(theResponse); 
 			}); 
 		} 
@@ -30,7 +30,7 @@ $(document).ready(function(){
 	$(function() { 
 		$("#dragableCategorie ul").sortable({ opacity: 0.6, cursor: 'move', update: function() { 
 			var order = $(this).sortable("serialize") + '&action=updateRecordsListings&parent_id='+the_parent_id; 
-			$.post(WB_URL+"/modules/foldergallery_jq//reorderCNC.php", order, function(theResponse){ 
+			$.post(WB_URL+"/modules/foldergallery_jq/reorderCNC.php", order, function(theResponse){ 
 				$("#dragableResult").html(theResponse); 
 			}); 
 		} 

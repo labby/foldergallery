@@ -176,13 +176,13 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					
 					// Aktionen Buttons
 					."<td width='20'>";					
-					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq//move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
 					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
 					}					
 					$list .= "</td>"
 					."<td width='20'>";
 					
-					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq//move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='aAbw&auml;rts verschieben'>"
+					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='aAbw&auml;rts verschieben'>"
 					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					
@@ -215,13 +215,13 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					.'<td width="30"><img src="'.WB_URL.'/modules/foldergallery_jq/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
 					// Aktionen Buttons
 					."<td width='20'>";					
-					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq//move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
 					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
 					}					
 					$list .= "</td>"
 					."<td width='20'>";
 					
-					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq//move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Abw&auml;rts verschieben'>"
+					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Abw&auml;rts verschieben'>"
 					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					

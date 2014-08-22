@@ -122,8 +122,8 @@ $t->set_var(array(
 // Links Parsen
 $t->set_var(array(
 	'CANCEL_ONCLICK'		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'\';',
-	'QUICK_ASC_ONCLICK'		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq//quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=ASC\';',
-	'QUICK_DESC_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq//quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=DESC\';'
+	'QUICK_ASC_ONCLICK'		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=ASC\';',
+	'QUICK_DESC_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=DESC\';'
 ));
 
 // JS Werte Parsen

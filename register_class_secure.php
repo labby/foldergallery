@@ -30,11 +30,11 @@ $files_to_register = array(
 	'/modules/foldergallery_jq/backend.functions.php',
 	'/modules/foldergallery_jq/delete_cat.php',
 	'/modules/foldergallery_jq/delete_img.php',
- 	'/modules/foldergallery_jq//move_down.php',
-  '/modules/foldergallery_jq//move_up.php',
-  '/modules/foldergallery_jq//quick_img_sort.php',
-  '/modules/foldergallery_jq//reorderCNC.php',
-  '/modules/foldergallery_jq//reorderDND.php'
+ 	'/modules/foldergallery_jq/move_down.php',
+  '/modules/foldergallery_jq/move_up.php',
+  '/modules/foldergallery_jq/quick_img_sort.php',
+  '/modules/foldergallery_jq/reorderCNC.php',
+  '/modules/foldergallery_jq/reorderDND.php'
 );
 
 $lepton_filemanager->register( $files_to_register );
