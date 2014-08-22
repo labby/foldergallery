@@ -3,8 +3,8 @@
 /**
  *  @module         foldergallery_jq
  *  @version        see info.php of this module
- *  @author         J&uuml;rg Rast; schliffer; Bianka Martinovic; Chio; Pumpi,Aldus; erpe
- *  @copyright      2004-2014 J&uuml;rg Rast; schliffer; Bianka Martinovic; Chio; Pumpi; Aldus; erpe 
+ *  @author         Jürg Rast; schliffer; Bianka Martinovic; Chio; Pumpi,Aldus; erpe
+ *  @copyright      2004-2014 Jürg Rast; schliffer; Bianka Martinovic; Chio; Pumpi; Aldus; erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -35,7 +35,7 @@ $module_name		= 'Foldergallery-jQuery';
 $module_function	= 'page';
 $module_version		= '1.2.4';
 $module_platform	= '1.3.x';	
-$module_author		= 'J&uuml;rg Rast; schliffer; Bianka Martinovic; Chio; Pumpi; Aldus; erpe';
+$module_author		= 'Jürg Rast; schliffer; Bianka Martinovic; Chio; Pumpi; Aldus; erpe';
 $module_license		= 'GNU General Public License';
 $module_description	= 'Bildergalerie anhand der Ordnerstruktur erstellen.';
 $module_home		= 'http://cms-lab.com/';
@@ -59,12 +59,12 @@ $thumbdir1 = 'fg-thumbs';
 $pages = substr(PAGES_DIRECTORY, 1);
 
 /**
- * Diese Zeilen nur &auml;ndern wenn du genau weisst was du tust! 
- * '.' und '..' d&uuml;rfen nicht entfernt werden!
- * Weitere invisibleFileNames k&ouml;nnen direkt im Backend der Foldergallery definiert werden.
+ * Diese Zeilen nur ändern wenn du genau weisst was du tust! 
+ * '.' und '..' dürfen nicht entfernt werden!
+ * Weitere invisibleFileNames können direkt im Backend der Foldergallery definiert werden.
  */
 
-//Alle Ordner ausschliessen, welche zum Core von WB gehoeren
+//Alle Ordner ausschliessen, welche zum Core von WB gehören
 $wbCoreFolders = array('account','admins','framework','include','languages','modules',$pages,'search','temp','templates');
 $invisibleFileNames = array('.', '..', $thumbdir1);
 
