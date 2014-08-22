@@ -57,7 +57,7 @@ require_once(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
 
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
-require_once (WB_PATH.'/modules/foldergallery_jq/scripts/backend.functions.php');
+require_once (WB_PATH.'/modules/foldergallery_jq/backend.functions.php');
 
 $settings = getSettings($section_id);
 $thumb_size = $settings['thumb_size']; //Chio
@@ -189,7 +189,7 @@ foreach($bilder as $bild) {
 		'EDIT_THUMB_SOURCE'	=> THEME_URL.'/images/resize_16.png',
 		'DELETE_IMG_SOURCE'	=> THEME_URL.'/images/delete_16.png',
 		'THUMB_EDIT_LINK'	=> WB_URL."/modules/foldergallery_jq/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],	
-		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery_jq/scripts/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
+		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery_jq/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
 		'COUNTER'			=> $counter
 	));
 	$t->parse('FILE_LOOP', 'file_loop', true);

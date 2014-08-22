@@ -58,7 +58,7 @@ require_once( file_exists($lang_file) ? $lang_file : $mod_folder_path .'/languag
 
 // Files includen
 require_once ($mod_folder_path.'/info.php');
-require_once ($mod_folder_path.'/scripts/backend.functions.php');
+require_once ($mod_folder_path.'/backend.functions.php');
 
 // Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
@@ -176,13 +176,13 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					
 					// Aktionen Buttons
 					."<td width='20'>";					
-					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq//move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
 					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
 					}					
 					$list .= "</td>"
 					."<td width='20'>";
 					
-					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='aAbw&auml;rts verschieben'>"
+					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq//move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='aAbw&auml;rts verschieben'>"
 					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					
@@ -190,7 +190,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					/* LÖSCHEN funktioniert ohnehin nicht wirklich, weil die Verzeichnisse beim Synchronisieren wieder auftauchen
 					
 					"<td width='20'>"
-					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery_jq/scripts/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
+					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery_jq/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
 					."<img src='".THEME_URL."/images/delete_16.png' border='0' alt='X'></a>"
 					// Ende Zeile mit allen Angaben
 					*/
@@ -215,13 +215,13 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					.'<td width="30"><img src="'.WB_URL.'/modules/foldergallery_jq/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
 					// Aktionen Buttons
 					."<td width='20'>";					
-					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq/scripts/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq//move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
 					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
 					}					
 					$list .= "</td>"
 					."<td width='20'>";
 					
-					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq/scripts/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Abw&auml;rts verschieben'>"
+					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq//move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Abw&auml;rts verschieben'>"
 					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					
@@ -229,7 +229,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					/* LÖSCHEN funktioniert ohnehin nicht wirklich, weil die Verzeichnisse beim Synchronisieren wieder auftauchen
 					
 					."<td width='20'>"
-					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery_jq/scripts/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
+					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery_jq/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
 					."<img src='".THEME_URL."/images/delete_16.png' border='0' alt='X'></a>"
 					// Ende Zeile mit allen Angaben
 					*/

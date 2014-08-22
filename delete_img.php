@@ -40,7 +40,7 @@ include(WB_PATH .'/modules/foldergallery_jq/backend.css');
 echo "\n</style>\n";
 }
 // check if backend.js file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(WB_PATH ."/modules/foldergallery_jq/backend.js")) {
+if(!method_exists($admin, 'register_backend_modfiles') && file_exists(WB_PATH ."/modules/foldergaller/backend.js")) {
 echo '<script type="text/javascript">';
 include(WB_PATH .'/modules/foldergallery_jq/backend.js');
 echo "</script>";
@@ -57,34 +57,45 @@ require_once(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
 
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
-require_once (WB_PATH.'/modules/foldergallery_jq/scripts/backend.functions.php');
-
-if(isset($_GET['page_id']) && is_numeric($_GET['page_id'])) {
-	$page_id = $_GET['page_id'];
-}
-
-if(isset($_GET['section_id']) && is_numeric($_GET['section_id'])){
-	$section_id = $_GET['section_id'];
-}
+require_once (WB_PATH.'/modules/foldergallery_jq/backend.functions.php');
 
 
 
-if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
+if(isset($_GET['id']) && is_numeric($_GET['id'])) {
+	$settings = getSettings($section_id);
+	$root_dir = $settings['root_dir']; //Chio
+
 	$cat_id = $_GET['cat_id'];
-	$sql = 'SELECT categorie, parent, has_child FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id='.$cat_id.';';
-	$query = $database->query($sql);
-	if($result = $query->fetchRow()){
-		// Dateien löschen
-		$settings = getSettings($section_id);
-		$delete_path = $path.$settings['root_dir'].$result['parent'].'/'.$result['categorie'];
-		//deleteFolder($delete_path);
-		// DB Einträge löschen
-		rek_db_delete($cat_id);
-		$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
-	} else {
-		$admin->print_error($MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
-	}
+	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE id='.$_GET['id'].';';
+	if($query = $database->query($sql)){
+		$result = $query->fetchRow();
+		$bildfilename = $result['file_name'];
+		$parent_id = $result['parent_id'];
+		//echo '<h2>'.$parent_id.'</h2>' ;
+		
+		$query2 = $database->query('SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id='.$parent_id.' LIMIT 1;');
+		$categorie = $query2->fetchRow();
+		$parent   = $categorie['parent'].'/'.$categorie['categorie'];
+		$folder = $root_dir.$parent;
+		$pathToFolder = $path.$folder.'/';	
 
+		
+		$pathToFile = $path.$folder.'/'.$bildfilename;	
+		$pathToThumb = $path.$folder.$thumbdir.'/thumb.'.$bildfilename;				
+		deleteFile($pathToFile);
+		deleteFile($pathToThumb);
+		
+		$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE id='.$_GET['id'];
+		$database->query($sql);
+			
+		$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+		
+		
+	} else {
+		$admin->print_error($MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+	}
+} else {
+	$admin->print_error($MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 }
 $admin->print_footer();
 ?>

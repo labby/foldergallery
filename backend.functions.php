@@ -30,7 +30,7 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-require_once (WB_PATH.'/modules/foldergallery_jq/scripts/functions.php');
+require_once (WB_PATH.'/modules/foldergallery_jq/functions.php');
 
 /**
  * Durchsucht einen Ordner rekursiv mit einigen Optionen

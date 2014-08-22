@@ -42,7 +42,7 @@ if(!file_exists(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php'
 }
 
 require_once(WB_PATH.'/modules/foldergallery_jq/info.php');
-require_once(WB_PATH.'/modules/foldergallery_jq/scripts/backend.functions.php');
+require_once(WB_PATH.'/modules/foldergallery_jq/backend.functions.php');
 
 $oldSettings = getSettings($section_id);
 $newSettings = array();

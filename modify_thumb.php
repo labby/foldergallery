@@ -42,7 +42,7 @@ require_once(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
 
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
-require_once (WB_PATH.'/modules/foldergallery_jq/scripts/backend.functions.php');
+require_once (WB_PATH.'/modules/foldergallery_jq/backend.functions.php');
 
 //get the CSS
 echo '<link rel="stylesheet" type="text/css" href="'.WB_URL.'/modules/foldergallery_jq/scripts/jcrob/css/jquery.Jcrop.css" /> ';

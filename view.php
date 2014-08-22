@@ -73,7 +73,7 @@ if((!function_exists('register_frontend_modfiles') || !defined('MOD_FRONTEND_JAV
 $generatethumbscounter = 0;
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
-require_once (WB_PATH.'/modules/foldergallery_jq/scripts/functions.php');
+require_once (WB_PATH.'/modules/foldergallery_jq/functions.php');
 
 // Foldergallery Einstellungen
 $settings = getSettings($section_id);

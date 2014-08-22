@@ -58,7 +58,7 @@ require_once(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
 
 // Files includen
 require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
-require_once (WB_PATH.'/modules/foldergallery_jq/scripts/backend.functions.php');
+require_once (WB_PATH.'/modules/foldergallery_jq/backend.functions.php');
 
 $settings = getSettings($section_id);
 $thumb_size = $settings['thumb_size']; //Chio
@@ -122,8 +122,8 @@ $t->set_var(array(
 // Links Parsen
 $t->set_var(array(
 	'CANCEL_ONCLICK'		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'\';',
-	'QUICK_ASC_ONCLICK'		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq/scripts/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=ASC\';',
-	'QUICK_DESC_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq/scripts/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=DESC\';'
+	'QUICK_ASC_ONCLICK'		=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq//quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=ASC\';',
+	'QUICK_DESC_ONCLICK'	=> 'javascript: window.location = \''.WB_URL.'/modules/foldergallery_jq//quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=DESC\';'
 ));
 
 // JS Werte Parsen
