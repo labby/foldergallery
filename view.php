@@ -155,7 +155,7 @@ while($ergebnis = $query->fetchRow()){
 if(count($ergebnisse) == 0) {
 	$error = true;
 } else {
-	// Dann k�nnen wir nun die Angaben f�r die Kategorien erstellen
+	// Dann können wir nun die Angaben für die Kategorien erstellen
 	$catpicstring = 'RAND()';
 	if ($catpic == 1)  $catpicstring = 'position';
 	if ($catpic == 2)  $catpicstring = 'position DESC';
@@ -251,7 +251,7 @@ if(count($bilder) != 0) {
 	
 }
 
-// Zur�ck Link
+// Zurück Link
 if($aktuelleKat){
 	$temp = explode('/', $aktuelleKat);
 	array_pop($temp);

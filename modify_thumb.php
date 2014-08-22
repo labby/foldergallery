@@ -60,13 +60,13 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 	
 	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE id='.$_GET['id'].';';
 	if($query = $database->query($sql)){
-		$result = $query->fetchRow();
+		$result = $query->fetchRow( MYSQL_ASSOC );
 		$bildfilename = $result['file_name'];
 		$parent_id = $result['parent_id'];
 		
+		$query2 = $database->query('SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id='.$parent_id.' LIMIT 1;');
+		$categorie = $query2->fetchRow( MYSQL_ASSOC );
 		
-			$query2 = $database->query('SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id='.$parent_id.' LIMIT 1;');
-			$categorie = $query2->fetchRow();
 		if ($categorie['parent'] != "-1") {
 			$parent   = $categorie['parent'].'/'.$categorie['categorie'];
 		}
@@ -78,7 +78,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 		
 		if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		{	
-			//Löscht das bisherige Thumbnail
+			// Löscht das bisherige Thumbnail
 			deleteFile($thumb_file);
 			
 			//Neues Thumb erstellen
@@ -89,7 +89,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 		else {
 			list($width, $height, $type, $attr) = getimagesize($full_file); //str_replace um auch Datein oder Ordner mit leerzeichen bearbeiten zu können.
 			
-			//erstellt ein passendes Vorschaufenster zum eingestellten Verhältniss
+			// erstellt ein passendes Vorschaufenster zum eingestellten Verhältniss
 			if ($settings['ratio'] > 1) {
 				$previewWidth = $settings['thumb_size'];
 				$previewHeight = $settings['thumb_size'] / $settings['ratio'];

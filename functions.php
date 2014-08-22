@@ -131,8 +131,8 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 			}
 			if ($width >= $height && $width > $thumb_size) {
 				//#########
-				//Thumbnail verarbeitung ver�ndert um einen Ausschnitt der Gr��e der $thumbnail_size
-				//zu erhalten um ein gleichm��iges erscheinungsbild im Frontend zu gew�hrleisten
+				//Thumbnail verarbeitung verändert um einen Ausschnitt der Größe der $thumbnail_size
+				//zu erhalten um ein gleichmäßiges erscheinungsbild im Frontend zu gewährleisten
 				//by Pumpi
 				//#########
 				//$smallwidth = $thumb_size;
