@@ -30,8 +30,6 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-require('../../../config.php');
-
 // Get id
 if(isset($_GET['page_id']) AND is_numeric($_GET['page_id'])) {
 	if(isset($_GET['id']) AND is_numeric($_GET['id'])) {

@@ -30,8 +30,6 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-require('../../../config.php');
-
 $error = null;
 
 if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {

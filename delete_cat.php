@@ -30,7 +30,6 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-require('../../../config.php');
 require(WB_PATH.'/modules/admin.php');
 
 // check if backend.css file needs to be included into <body></body>
