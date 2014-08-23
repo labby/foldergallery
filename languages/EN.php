@@ -40,56 +40,52 @@ $MOD_FOLDERGALLERY_JQ['BACK_STRING']		= 'Back to overview';
 $MOD_FOLDERGALLERY_JQ['FRONT_END_ERROR']	= 'This category does not exist or does not contain Images and/or Subcategories!';
 $MOD_FOLDERGALLERY_JQ['PAGE']            = 'Page';
 
-
 //Variables for the Backend
-$MOD_FOLDERGALLERY_JQ['PICS_PP'] = 'Images per page';
-$MOD_FOLDERGALLERY_JQ['LIGHTBOX'] = 'Lightbox';
+$MOD_FOLDERGALLERY_JQ['PICS_PP']	= 'Images per page';
+$MOD_FOLDERGALLERY_JQ['LIGHTBOX']	= 'Lightbox';
 
-$MOD_FOLDERGALLERY_JQ['MODIFY_CAT_TITLE']			= 'Modify categories and image details';
+$MOD_FOLDERGALLERY_JQ['MODIFY_CAT_TITLE']	= 'Modify categories and image details';
 $MOD_FOLDERGALLERY_JQ['MODIFY_CAT']			= 'Modify category details:';
-$MOD_FOLDERGALLERY_JQ['CAT_NAME']				= 'Category name/title:';
-$MOD_FOLDERGALLERY_JQ['CAT_DESCRIPTION']			= 'Category description:';
+$MOD_FOLDERGALLERY_JQ['CAT_NAME']			= 'Category name/title:';
+$MOD_FOLDERGALLERY_JQ['CAT_DESCRIPTION']	= 'Category description:';
 $MOD_FOLDERGALLERY_JQ['MODIFY_IMG']			= 'Modify images:';
-$MOD_FOLDERGALLERY_JQ['IMAGE']					= 'Image';
+$MOD_FOLDERGALLERY_JQ['IMAGE']				= 'Image';
 $MOD_FOLDERGALLERY_JQ['IMAGE_NAME']			= 'Image name';
-$MOD_FOLDERGALLERY_JQ['IMG_CAPTION']			= 'Image description';
-
+$MOD_FOLDERGALLERY_JQ['IMG_CAPTION']		= 'Image description';
 
 $MOD_FOLDERGALLERY_JQ['REDIRECT']  			= 'You will have to make some settings before using the Gallery.'
 											. ' You will be forwarded in 2 seconds. (If JavaScript is activated.)';
-$MOD_FOLDERGALLERY_JQ['TITEL_BACKEND'] 			= 'Foldergallery Admin';
-$MOD_FOLDERGALLERY_JQ['TITEL_MODIFY'] 			= 'Modify categories and images:';
-$MOD_FOLDERGALLERY_JQ['SETTINGS'] 				= 'Common settings';
-$MOD_FOLDERGALLERY_JQ['ROOT_DIR'] 				= 'Root directory';
+$MOD_FOLDERGALLERY_JQ['TITEL_BACKEND'] 		= 'Foldergallery Admin';
+$MOD_FOLDERGALLERY_JQ['TITEL_MODIFY'] 		= 'Modify categories and images:';
+$MOD_FOLDERGALLERY_JQ['SETTINGS'] 			= 'Common settings';
+$MOD_FOLDERGALLERY_JQ['ROOT_DIR'] 			= 'Root directory';
 $MOD_FOLDERGALLERY_JQ['EXTENSIONS']			= 'Allowed extensions';
-$MOD_FOLDERGALLERY_JQ['INVISIBLE']				= 'Hide folders';
-$MOD_FOLDERGALLERY_JQ['NEW_SCANN_INFO']			= 'This action has created the database entries. The thumbnails are created when the category is shown the first time.';
-$MOD_FOLDERGALLERY_JQ['FOLDER_NAME']			= 'Folder name';
+$MOD_FOLDERGALLERY_JQ['INVISIBLE']			= 'Hide folders';
+$MOD_FOLDERGALLERY_JQ['NEW_SCANN_INFO']		= 'This action has created the database entries. The thumbnails are created when the category is shown the first time.';
+$MOD_FOLDERGALLERY_JQ['FOLDER_NAME']		= 'Folder name';
 $MOD_FOLDERGALLERY_JQ['DELETE']				= 'Delete?';
-$MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE']			= 'No data!';
-$MOD_FOLDERGALLERY_JQ['DB_ERROR']				= 'Database error!';
-$MOD_FOLDERGALLERY_JQ['FS_ERROR']				= 'Unable to delete folder!';
-$MOD_FOLDERGALLERY_JQ['NO_FILES_IN_CAT']			= 'This category does not contain any images!';
+$MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE']		= 'No data!';
+$MOD_FOLDERGALLERY_JQ['DB_ERROR']			= 'Database error!';
+$MOD_FOLDERGALLERY_JQ['FS_ERROR']			= 'Unable to delete folder!';
+$MOD_FOLDERGALLERY_JQ['NO_FILES_IN_CAT']	= 'This category does not contain any images!';
 $MOD_FOLDERGALLERY_JQ['SYNC']				= 'Sync database with filesystem';
-$MOD_FOLDERGALLERY_JQ['EDIT_CSS']				= 'Edit CSS';
-$MOD_FOLDERGALLERY_JQ['FOLDER_IN_FS']			= 'Filesystem folder:';
-$MOD_FOLDERGALLERY_JQ['CAT_TITLE']				= 'Category title:';
+$MOD_FOLDERGALLERY_JQ['EDIT_CSS']			= 'Edit CSS';
+$MOD_FOLDERGALLERY_JQ['FOLDER_IN_FS']		= 'Filesystem folder:';
+$MOD_FOLDERGALLERY_JQ['CAT_TITLE']			= 'Category title:';
 $MOD_FOLDERGALLERY_JQ['ACTION']				= 'Actions:';
-$MOD_FOLDERGALLERY_JQ['NO_CATEGORIES'] 			= 'No categories (=Subfolders) found.<br /><br />The Gallery will work, anyway, but no categories are shown.';
-$MOD_FOLDERGALLERY_JQ['EDIT_THUMB'] 			= 'Edit thumbnail';
+$MOD_FOLDERGALLERY_JQ['NO_CATEGORIES'] 		= 'No categories (=Subfolders) found.<br /><br />The Gallery will work, anyway, but no categories are shown.';
+$MOD_FOLDERGALLERY_JQ['EDIT_THUMB'] 		= 'Edit thumbnail';
 $MOD_FOLDERGALLERY_JQ['EDIT_THUMB_DESCRIPTION']		= '<strong>Please select new image</strong>';
 $MOD_FOLDERGALLERY_JQ['EDIT_THUMB_BUTTON']			= 'Draw up thumbnail';
 $MOD_FOLDERGALLERY_JQ['THUMB_SIZE']			= 'Thumbnail size';
-$MOD_FOLDERGALLERY_JQ['THUMB_RATIO']			= 'Thumbnail ratio';
-$MOD_FOLDERGALLERY_JQ['THUMB_NOT_NEW']			= 'Dont recreat thumbnails';
-$MOD_FOLDERGALLERY_JQ['CHANGING_INFO']			= 'Changing <strong>thumb size</strong> or <strong>thumb ratio</strong> will delete (and recreate) all thumbs.';
-$MOD_FOLDERGALLERY_JQ['SYNC_DATABASE']			= 'Synchronize file system with database...';
-$MOD_FOLDERGALLERY_JQ['SAVE_SETTINGS']			= 'Settings are stored...';
+$MOD_FOLDERGALLERY_JQ['THUMB_RATIO']		= 'Thumbnail ratio';
+$MOD_FOLDERGALLERY_JQ['THUMB_NOT_NEW']		= 'Dont recreat thumbnails';
+$MOD_FOLDERGALLERY_JQ['CHANGING_INFO']		= 'Changing <strong>thumb size</strong> or <strong>thumb ratio</strong> will delete (and recreate) all thumbs.';
+$MOD_FOLDERGALLERY_JQ['SYNC_DATABASE']		= 'Synchronize file system with database...';
+$MOD_FOLDERGALLERY_JQ['SAVE_SETTINGS']		= 'Settings are stored...';
 $MOD_FOLDERGALLERY_JQ['SORT_IMAGE']			= 'Sort images';
-$MOD_FOLDERGALLERY_JQ['BACK']					= 'Back';
+$MOD_FOLDERGALLERY_JQ['BACK']				= 'Back';
 $MOD_FOLDERGALLERY_JQ['REORDER_INFO_STRING']   = 'Reorder result will be displayed here.';
-
-
 
 // Tooltips
 $MOD_FOLDERGALLERY_JQ['ROOT_FOLDER_STRING_TT']	= 'This is the basic (root) folder to scan for images recursively. '
