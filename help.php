@@ -31,7 +31,7 @@ if (defined('WB_PATH')) {
 // end include class.secure.php
 
 require(WB_PATH . '/modules/admin.php');
-require_once (WB_PATH.'/modules/foldergallery/info.php');
+require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
 if (!file_exists(WB_PATH . '/modules/foldergallery_jq/languages/' . LANGUAGE . '.php')) {
@@ -48,7 +48,6 @@ $t->set_file('help', 'help.htt');
 // clear the comment-block, if present
 $t->set_block('help', 'CommentDoc'); $t->clear_var('CommentDoc');
 
-
 $t->set_var(array(
     'TITLE'                 => $FG_HELP['TITLE'],
     'VERSION'               => $FG_HELP['VERSION'],
@@ -64,7 +63,6 @@ $t->set_var(array(
 ));
 
 $t->pparse('output', 'help');
-
 
 $admin->print_footer();
 ?>
