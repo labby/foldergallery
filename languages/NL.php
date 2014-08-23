@@ -86,6 +86,7 @@ $MOD_FOLDERGALLERY_JQ['SYNC_DATABASE']		= 'Synchroniseer bestanden met database.
 $MOD_FOLDERGALLERY_JQ['SAVE_SETTINGS']		= 'Veranderingen zijn opgeslagen...';
 $MOD_FOLDERGALLERY_JQ['BACK']				= 'Back';
 $MOD_FOLDERGALLERY_JQ['REORDER_INFO_STRING']   = 'Reorder result will be displayed here.';
+$MOD_FOLDERGALLERY_JQ['HELP_INFORMATION']      = 'Help / Info';
 
 
 // Tooltips
@@ -94,4 +95,20 @@ $MOD_FOLDERGALLERY_JQ['ROOT_FOLDER_STRING_TT']	= 'Dit is de hoofdmap (root) waar
 $MOD_FOLDERGALLERY_JQ['EXTENSIONS_STRING_TT']	= 'Definieer de extensies die je beschikbaar wilt maken. (Hoofdlettergevoelig.) Gebruik "," (komma) als scheidingsteken.';
 $MOD_FOLDERGALLERY_JQ['INVISIBLE_STRING_TT']	= 'Mappen die hier aangegeven worden zullen niet zichtbaar zijn in de gallery.';
 $MOD_FOLDERGALLERY_JQ['DELETE_TITLE_TT']		= 'Waarschuwing: Dit verwijderd alle categorie&euml;n en foto\'s! (De foto\'s zullen dus ook verwijderd worden!)';
+
+// Helppage
+$FG_HELP['TITLE']           = 'Foldergallery: Help- and Infopage';
+$FG_HELP['VERSION']         = 'Release-info';
+$FG_HELP['YOUR_VERSION']    = 'You are using Version %s.';
+$FG_HELP['NOUPDATES']       = 'There are no updates aviable at the moment!';
+$FG_HELP['UPDATE']          = 'Version %s is aviable, a update is recommeded.';
+$FG_HELP['VERSION_TEXT']    = 'You can find latest release on <a href="http://www.lepton-cms.org/english/addons/free-addons.php" target="_blank">LEPTON Homepage</a>'
+                            .' or on <a href="http://cms-lab.com/lab/en/modules/standard-modules/foldergallery-jquery.php" target="_blank" >CMS-LAB</a>';
+$FG_HELP['HOMEPAGE_TEXT']   = 'On <a href="https://github.com/aldus/foldergallery_jq" target="_blank">GITHUB</a> you can find the whole changelog, current development and older releases.';                  
+$FG_HELP['HELP_TITLE']      = 'Help and Support';
+$FG_HELP['HELP_TEXT']       = 'You get support on the <a href="http://forum.lepton-cms.org" target="_blank">LEPTON CMS Addons Forum</a>.';
+$FG_HELP['BUG_TITLE']       = 'Report a bug';
+$FG_HELP['BUG_TEXT']        = 'Bugs can ve reported on <a href="http://forum.lepton-cms.org/" target="_blank">LEPTON CMS Addons Forum</a> or directly on <a href="https://github.com/aldus/foldergallery_jq" target="_blank">GITHUB</a>';
+
+$FG_HELP['BACK_STRING']     = 'Back';
 ?>

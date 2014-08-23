@@ -26,6 +26,7 @@ $files_to_register = array(
 	'/modules/foldergallery_jq/save_files.php',
 	'/modules/foldergallery_jq/save_settings.php',
 	'/modules/foldergallery_jq/sync.php',
+	'/modules/foldergallery_jq/help.php',
 	'/modules/foldergallery_jq/backend.functions.php',
 	'/modules/foldergallery_jq/delete_cat.php',
 	'/modules/foldergallery_jq/delete_img.php',

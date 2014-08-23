@@ -21,6 +21,9 @@
 			<input value="{EDIT_CSS_STRING}" style="width: 100%" type="submit">
 		</form>
         </td>
+        <td width="33%">
+            <input type="button" value="{HELP_STRING}" class="FG_button" onclick="{HELP_ONCLICK}">
+        </td>		
     </tr>
 </table><h3>{TITEL_MODIFY}</h3>
 <!-- Tabellen Überschrift -->
