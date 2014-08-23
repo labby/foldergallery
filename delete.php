@@ -33,11 +33,11 @@ if (defined('WB_PATH')) {
 // Delete DB-Entries (messages and settings)
 $sql = 'SELECT `parent` FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$section_id.';';
 $query = $database->query($sql);
-while($cat = $query->fetchRow()) {
+while($cat = $query->fetchRow( MYSQL_ASSOC )) {
 	$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE parent_id='.$cat['parent'];
 	$database->query($sql);
 }	
 $database->query("DELETE FROM `".TABLE_PREFIX."mod_foldergallery_jq_settings` WHERE `page_id` = '$page_id' AND `section_id` = '$section_id'");
 $database->query("DELETE FROM `".TABLE_PREFIX."mod_foldergallery_jq_categories` WHERE `section_id` = '$section_id'");
 
-
+?>

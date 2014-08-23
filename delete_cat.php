@@ -66,13 +66,11 @@ if(isset($_GET['section_id']) && is_numeric($_GET['section_id'])){
 	$section_id = $_GET['section_id'];
 }
 
-
-
 if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
 	$cat_id = $_GET['cat_id'];
 	$sql = 'SELECT categorie, parent, has_child FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id='.$cat_id.';';
 	$query = $database->query($sql);
-	if($result = $query->fetchRow()){
+	if($result = $query->fetchRow( MYSQL_ASSOC )){
 		// Dateien löschen
 		$settings = getSettings($section_id);
 		$delete_path = $path.$settings['root_dir'].$result['parent'].'/'.$result['categorie'];

@@ -32,8 +32,8 @@ if (defined('WB_PATH')) {
 /*
  * Neuer Eintrag in der DB erstellen
  * $root_dir wird dabei auf 'd41d8cd98f00b204e9800998ecf8427e' gesetzt,
- * damit &uuml;berpr&uuml;ft werden kann, ob bereits ein Ordner festgelegt wurde
- * (f&uuml;r interessierte: Es ist der MD5-Hashwert einer leeren Zeichenkette) 
+ * damit überprüft werden kann, ob bereits ein Ordner festgelegt wurde
+ * (für interessierte: Es ist der MD5-Hashwert einer leeren Zeichenkette) 
  */
 $root_dir = 'd41d8cd98f00b204e9800998ecf8427e';
 $extensions = 'jpg,jpeg,gif,png';

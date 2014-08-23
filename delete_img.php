@@ -58,8 +58,6 @@ require_once(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
 require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
 require_once (WB_PATH.'/modules/foldergallery_jq/backend.functions.php');
 
-
-
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 	$settings = getSettings($section_id);
 	$root_dir = $settings['root_dir']; //Chio
@@ -67,7 +65,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 	$cat_id = $_GET['cat_id'];
 	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE id='.$_GET['id'].';';
 	if($query = $database->query($sql)){
-		$result = $query->fetchRow();
+		$result = $query->fetchRow( MYSQL_ASSOC );
 		$bildfilename = $result['file_name'];
 		$parent_id = $result['parent_id'];
 		//echo '<h2>'.$parent_id.'</h2>' ;
@@ -76,9 +74,8 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 		$categorie = $query2->fetchRow();
 		$parent   = $categorie['parent'].'/'.$categorie['categorie'];
 		$folder = $root_dir.$parent;
-		$pathToFolder = $path.$folder.'/';	
-
-		
+		$pathToFolder = $path.$folder.'/';
+				
 		$pathToFile = $path.$folder.'/'.$bildfilename;	
 		$pathToThumb = $path.$folder.$thumbdir.'/thumb.'.$bildfilename;				
 		deleteFile($pathToFile);
@@ -88,7 +85,6 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 		$database->query($sql);
 			
 		$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
-		
 		
 	} else {
 		$admin->print_error($MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
