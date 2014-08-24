@@ -108,7 +108,7 @@ $FG_HELP['HOMEPAGE_TEXT']   = 'On <a href="https://github.com/aldus/foldergaller
 $FG_HELP['HELP_TITLE']      = 'Help and Support';
 $FG_HELP['HELP_TEXT']       = 'You get support on the <a href="http://forum.lepton-cms.org" target="_blank">LEPTON CMS Addons Forum</a>.';
 $FG_HELP['BUG_TITLE']       = 'Report a bug';
-$FG_HELP['BUG_TEXT']        = 'Bugs can ve reported on <a href="http://forum.lepton-cms.org/" target="_blank">LEPTON CMS Addons Forum</a> or directly on <a href="https://github.com/aldus/foldergallery_jq" target="_blank">GITHUB</a>';
+$FG_HELP['BUG_TEXT']        = 'Bugs can be reported on <a href="http://forum.lepton-cms.org/" target="_blank">LEPTON CMS Addons Forum</a> or directly on <a href="https://github.com/aldus/foldergallery_jq" target="_blank">GITHUB</a>';
 
 $FG_HELP['BACK_STRING']     = 'Back';
 ?>
