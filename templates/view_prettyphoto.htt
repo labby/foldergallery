@@ -1,6 +1,6 @@
 <!-- Pretty Photo-->
-<link rel="stylesheet" href="{WB_URL}/modules/foldergallery_jq/scripts/prettyPhoto/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
-<script src="{WB_URL}/modules/foldergallery_jq/scripts/prettyPhoto/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="{LEPTON_URL}/modules/foldergallery_jq/scripts/prettyPhoto/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+<script src="{LEPTON_URL}/modules/foldergallery_jq/scripts/prettyPhoto/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript" charset="utf-8">
 	$(document).ready(function(){

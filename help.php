@@ -12,8 +12,8 @@
  */
  
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$oneback = "../";
 	$root = $oneback;
@@ -30,16 +30,16 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-require(WB_PATH . '/modules/admin.php');
-require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
+require(LEPTON_PATH . '/modules/admin.php');
+require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if (!file_exists(WB_PATH . '/modules/foldergallery_jq/languages/' . LANGUAGE . '.php')) {
+if (!file_exists(LEPTON_PATH . '/modules/foldergallery_jq/languages/' . LANGUAGE . '.php')) {
 // no module language file exists for the language set by the user, include default module language file EN.php
-    require_once(WB_PATH . '/modules/foldergallery_jq/languages/EN.php');
+    require_once(LEPTON_PATH . '/modules/foldergallery_jq/languages/EN.php');
 } else {
 // a module language file exists for the language defined by the user, load it
-    require_once(WB_PATH . '/modules/foldergallery_jq/languages/' . LANGUAGE . '.php');
+    require_once(LEPTON_PATH . '/modules/foldergallery_jq/languages/' . LANGUAGE . '.php');
 }
 
 //Template

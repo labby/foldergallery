@@ -12,8 +12,8 @@
  */
  
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$oneback = "../";
 	$root = $oneback;
@@ -43,7 +43,7 @@ $leptoken = isset($_GET['leptoken'])
  *	Some 'shortcuts'
  */
 $mod_folder_path = dirname(__FILE__);
-$mod_folder_url = WB_URL.'/modules/foldergallery_jq';
+$mod_folder_url = LEPTON_URL.'/modules/foldergallery_jq';
 
 // Check if backend.css file needs to be included into <body></body>
 if(!method_exists($admin, 'register_backend_modfiles') && file_exists($mod_folder_path ."/backend.css")) {
@@ -100,7 +100,7 @@ $t->set_var(array(
 	'HELP_ONCLICK'      => 'javascript: window.location = \''.$mod_folder_url.'/help.php?page_id='.$page_id.'&amp;section_id='.$section_id.'\';',	
 	'EDIT_PAGE'			=> $page_id,
 	'EDIT_SECTION'		=> $section_id,
-	'WB_URL'			=> WB_URL
+	'LEPTON_URL'			=> LEPTON_URL
 ));
 
 // Text im Template setzten
@@ -173,18 +173,18 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
 					
 					//Active:
-					.'<td width="30"><img src="'.WB_URL.'/modules/foldergallery_jq/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
+					.'<td width="30"><img src="'.LEPTON_URL.'/modules/foldergallery_jq/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
 					
 					
 					// Aktionen Buttons
 					."<td width='20'>";					
-					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					if ($arrup == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery_jq/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
 					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
 					}					
 					$list .= "</td>"
 					."<td width='20'>";
 					
-					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='aAbw&auml;rts verschieben'>"
+					if ($arrdown == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery_jq/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='aAbw&auml;rts verschieben'>"
 					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					
@@ -192,7 +192,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					/* LÖSCHEN funktioniert ohnehin nicht wirklich, weil die Verzeichnisse beim Synchronisieren wieder auftauchen
 					
 					"<td width='20'>"
-					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery_jq/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
+					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery_jq/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
 					."<img src='".THEME_URL."/images/delete_16.png' border='0' alt='X'></a>"
 					// Ende Zeile mit allen Angaben
 					*/
@@ -214,16 +214,16 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
 					
 					//Active:
-					.'<td width="30"><img src="'.WB_URL.'/modules/foldergallery_jq/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
+					.'<td width="30"><img src="'.LEPTON_URL.'/modules/foldergallery_jq/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
 					// Aktionen Buttons
 					."<td width='20'>";					
-					if ($arrup == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					if ($arrup == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery_jq/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
 					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
 					}					
 					$list .= "</td>"
 					."<td width='20'>";
 					
-					if ($arrdown == true) {$list .="<a href='".WB_URL."/modules/foldergallery_jq/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Abw&auml;rts verschieben'>"
+					if ($arrdown == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery_jq/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Abw&auml;rts verschieben'>"
 					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					
@@ -231,7 +231,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					/* LÖSCHEN funktioniert ohnehin nicht wirklich, weil die Verzeichnisse beim Synchronisieren wieder auftauchen
 					
 					."<td width='20'>"
-					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery_jq/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
+					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery_jq/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
 					."<img src='".THEME_URL."/images/delete_16.png' border='0' alt='X'></a>"
 					// Ende Zeile mit allen Angaben
 					*/
@@ -243,12 +243,12 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 }
 
 $url = array(
-	'edit'	=> WB_URL."/modules/foldergallery_jq/modify_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=",
+	'edit'	=> LEPTON_URL."/modules/foldergallery_jq/modify_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=",
 );
 
 echo '<script type="text/javascript">
 		var the_parent_id = "0";			
-		var WB_URL = "'.WB_URL.'";
+		var LEPTON_URL = "'.LEPTON_URL.'";
 	</script>
 <div style="display: block; width: 90%; height: 15px; padding: 5px;"><div id="dragableResult"> </div></div>
 	<ul>

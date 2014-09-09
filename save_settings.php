@@ -12,8 +12,8 @@
  */
  
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$oneback = "../";
 	$root = $oneback;
@@ -30,19 +30,19 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-require(WB_PATH.'/modules/admin.php');
+require(LEPTON_PATH.'/modules/admin.php');
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
+if(!file_exists(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
 	// no module language file exists for the language set by the user, include default module language file DE.php
-	require_once(WB_PATH .'/modules/foldergallery_jq/languages/DE.php');
+	require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/DE.php');
 } else {
 	// a module language file exists for the language defined by the user, load it
-	require_once(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
+	require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
 }
 
-require_once(WB_PATH.'/modules/foldergallery_jq/info.php');
-require_once(WB_PATH.'/modules/foldergallery_jq/backend.functions.php');
+require_once(LEPTON_PATH.'/modules/foldergallery_jq/info.php');
+require_once(LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
 
 $oldSettings = getSettings($section_id);
 $newSettings = array();
@@ -102,9 +102,9 @@ if (isset($_POST['ratio'])) {
 if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view_'.$_POST['lightbox'].'.htt' ) ) {
 	$newSettings['lightbox'] = $_POST['lightbox'];
 // ----- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 -----
-} elseif( isset($_POST['lightbox']) && file_exists( WB_PATH.'/modules/'.$_POST['lightbox'].'/foldergallery_template.htt' ) ) {
+} elseif( isset($_POST['lightbox']) && file_exists( LEPTON_PATH.'/modules/'.$_POST['lightbox'].'/foldergallery_template.htt' ) ) {
 	$newSettings['lightbox'] = $_POST['lightbox'];
-} elseif( isset($_POST['lightbox']) && file_exists( WB_PATH.'/modules/jqueryadmin/plugins/'.$_POST['lightbox'].'/foldergallery_template.htt' ) ) {
+} elseif( isset($_POST['lightbox']) && file_exists( LEPTON_PATH.'/modules/jqueryadmin/plugins/'.$_POST['lightbox'].'/foldergallery_template.htt' ) ) {
 	$newSettings['lightbox'] = $_POST['lightbox'];
 // ----- end jQueryAdmin / LibraryAdmin Integration -----
 } else {
@@ -170,7 +170,7 @@ if($oldSettings['root_dir'] != $newSettings['root_dir']){
     VALUES ( '$section_id', '-1', 'Root', '-1', 'Root', '1', '0', '0', '-1', '0', '', 'Root Description' );";
   $query = $database->query($sql);
   if($database->is_error()) {
-  	$admin->print_error($database->get_error(), WB_URL.'/modules/foldergallery_jq/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
+  	$admin->print_error($database->get_error(), LEPTON_URL.'/modules/foldergallery_jq/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
   }
 }
 
@@ -179,9 +179,9 @@ syncDB($newSettings);
 
 // Überprüfen ob ein Fehler aufgetreten ist, sonst Erfolg ausgeben
 if($database->is_error()) {
-	$admin->print_error($database->get_error(), WB_URL.'/modules/foldergallery_jq/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
+	$admin->print_error($database->get_error(), LEPTON_URL.'/modules/foldergallery_jq/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
 } else {
-	$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery_jq/sync.php?page_id='.$page_id.'&section_id='.$section_id);
+	$admin->print_success($TEXT['SUCCESS'], LEPTON_URL.'/modules/foldergallery_jq/sync.php?page_id='.$page_id.'&section_id='.$section_id);
 }
 
 // Print admin footer

@@ -12,8 +12,8 @@
  */
  
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$oneback = "../";
 	$root = $oneback;
@@ -71,7 +71,7 @@ if($error != null) {
 }
 
 // Create new admin object and print admin header
-require_once(WB_PATH.'/framework/class.admin.php');
+require_once(LEPTON_PATH.'/framework/class.admin.php');
 $admin = new admin('Pages', 'pages_settings');
 
 
@@ -92,10 +92,10 @@ if($query->numRows()) {
 
 if($database->query($sql)){
 	$admin->print_success($MESSAGE['PAGES']['REORDERED'],
-	WB_URL.'/modules/foldergallery_jq/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+	LEPTON_URL.'/modules/foldergallery_jq/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 } else {
 	$admin->print_error($TEXT['ERROR'],
-	WB_URL.'/modules/foldergallery_jq/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+	LEPTON_URL.'/modules/foldergallery_jq/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 }
 
 // Print admin footer

@@ -12,8 +12,8 @@
  */
  
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$oneback = "../";
 	$root = $oneback;
@@ -32,42 +32,42 @@ if (defined('WB_PATH')) {
 
 // Admin Backend erstellen
 
-require(WB_PATH.'/modules/admin.php');
+require(LEPTON_PATH.'/modules/admin.php');
 	
 // check if backend.css file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(WB_PATH ."/modules/foldergallery_jq/backend.css")) {
+if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergallery_jq/backend.css")) {
 echo '<style type="text/css">';
-include(WB_PATH .'/modules/foldergallery_jq/backend.css');
+include(LEPTON_PATH .'/modules/foldergallery_jq/backend.css');
 echo "\n</style>\n";
 }
 // check if backend.js file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(WB_PATH ."/modules/foldergallery_jq/backend.js")) {
+if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergallery_jq/backend.js")) {
 echo '<script type="text/javascript">';
-include(WB_PATH .'/modules/foldergallery_jq/backend.js');
+include(LEPTON_PATH .'/modules/foldergallery_jq/backend.js');
 echo "</script>";
 }
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
+if(!file_exists(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
 // no module language file exists for the language set by the user, include default module language file DE.php
-require_once(WB_PATH .'/modules/foldergallery_jq/languages/DE.php');
+require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/DE.php');
 } else {
 // a module language file exists for the language defined by the user, load it
-require_once(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
+require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
 }
 
 // Files includen
-require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
-require_once (WB_PATH.'/modules/foldergallery_jq/backend.functions.php');
+require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
+require_once (LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
 
 // --- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 ---
 $jqa_lightboxes = array();
-if ( file_exists( WB_PATH.'/modules/libraryadmin/foldergallery_include.php' ) ) {
-    include_once WB_PATH.'/modules/libraryadmin/foldergallery_include.php';
+if ( file_exists( LEPTON_PATH.'/modules/libraryadmin/foldergallery_include.php' ) ) {
+    include_once LEPTON_PATH.'/modules/libraryadmin/foldergallery_include.php';
     $jqa_lightboxes = get_lightboxes();
 }
-elseif ( file_exists( WB_PATH.'/modules/jqueryadmin/foldergallery_include.php' ) ) {
-    include_once WB_PATH.'/modules/jqueryadmin/foldergallery_include.php';
+elseif ( file_exists( LEPTON_PATH.'/modules/jqueryadmin/foldergallery_include.php' ) ) {
+    include_once LEPTON_PATH.'/modules/jqueryadmin/foldergallery_include.php';
     $jqa_lightboxes = get_lightboxes();
 }
 // --- end jQueryAdmin / LibraryAdmin Integration ---
@@ -164,7 +164,7 @@ $t->set_var(array(
 // Links einsetzen
 $t->set_var(array(
 	'CANCEL_ONCLICK' 		=> 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';',
-	'MODIFY_SETTINGS_LINK'	=> WB_URL.'/modules/foldergallery_jq/save_settings.php?page_id='.$page_id.'&section_id='.$section_id
+	'MODIFY_SETTINGS_LINK'	=> LEPTON_URL.'/modules/foldergallery_jq/save_settings.php?page_id='.$page_id.'&section_id='.$section_id
 ));
 
 //Tooltips einsetzen

@@ -12,8 +12,8 @@
  */
  
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$oneback = "../";
 	$root = $oneback;
@@ -30,34 +30,34 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-if(defined('WB_PATH') == false) { exit("Cannot access this file directly");  }
-require(WB_PATH.'/modules/admin.php');
+if(defined('LEPTON_PATH') == false) { exit("Cannot access this file directly");  }
+require(LEPTON_PATH.'/modules/admin.php');
 	
 // check if backend.css file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(WB_PATH ."/modules/foldergallery_jq/backend.css")) {
+if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergallery_jq/backend.css")) {
 echo '<style type="text/css">';
-include(WB_PATH .'/modules/foldergallery_jq/backend.css');
+include(LEPTON_PATH .'/modules/foldergallery_jq/backend.css');
 echo "\n</style>\n";
 }
 // check if backend.js file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(WB_PATH ."/modules/foldergallery_jq/backend.js")) {
+if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergallery_jq/backend.js")) {
 echo '<script type="text/javascript">';
-include(WB_PATH .'/modules/foldergallery_jq/backend.js');
+include(LEPTON_PATH .'/modules/foldergallery_jq/backend.js');
 echo "</script>";
 }
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
+if(!file_exists(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
 // no module language file exists for the language set by the user, include default module language file DE.php
-require_once(WB_PATH .'/modules/foldergallery_jq/languages/DE.php');
+require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/DE.php');
 } else {
 // a module language file exists for the language defined by the user, load it
-require_once(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
+require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
 }
 
 // Files includen
-require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
-require_once (WB_PATH.'/modules/foldergallery_jq/backend.functions.php');
+require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
+require_once (LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
 
 $settings = getSettings($section_id);
 $thumb_size = $settings['thumb_size']; //Chio
@@ -81,7 +81,7 @@ $categorie = $query->fetchRow();
 if ( is_array( $categorie ) ) {
     if ( $categorie['parent'] != -1 ) {
         $cat_path = $path.$settings['root_dir'].$categorie['parent'].'/'.$categorie['categorie'];
-		$cat_path = str_replace(WB_PATH, '', $cat_path);
+		$cat_path = str_replace(LEPTON_PATH, '', $cat_path);
         $parent   = $categorie['parent'].'/'.$categorie['categorie'];
     }
     else {
@@ -168,13 +168,13 @@ $t->set_var(array(
 	'SECTION_ID_VALUE'		=> $section_id,
 	'PAGE_ID_VALUE'			=> $page_id,
 	'CAT_ID_VALUE'			=> $cat_id,
-	'WB_URL'	=> WB_URL
+	'LEPTON_URL'	=> LEPTON_URL
 ));
 
 // Links parsen
 $t->set_var(array(
-	'SAVE_CAT_LINK'			=> WB_URL.'/modules/foldergallery_jq/save_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
-	'SAVE_FILES_LINK'		=> WB_URL.'/modules/foldergallery_jq/save_files.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
+	'SAVE_CAT_LINK'			=> LEPTON_URL.'/modules/foldergallery_jq/save_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
+	'SAVE_FILES_LINK'		=> LEPTON_URL.'/modules/foldergallery_jq/save_files.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
 	'CANCEL_ONCLICK'		=> 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';'
 ));
 
@@ -188,8 +188,8 @@ foreach($bilder as $bild) {
 		'CAPTION_VALUE'		=> $bild['caption'],
 		'EDIT_THUMB_SOURCE'	=> THEME_URL.'/images/resize_16.png',
 		'DELETE_IMG_SOURCE'	=> THEME_URL.'/images/delete_16.png',
-		'THUMB_EDIT_LINK'	=> WB_URL."/modules/foldergallery_jq/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],	
-		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".WB_URL."/modules/foldergallery_jq/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
+		'THUMB_EDIT_LINK'	=> LEPTON_URL."/modules/foldergallery_jq/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],	
+		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery_jq/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
 		'COUNTER'			=> $counter
 	));
 	$t->parse('FILE_LOOP', 'file_loop', true);

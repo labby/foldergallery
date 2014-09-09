@@ -12,8 +12,8 @@
  */
  
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$oneback = "../";
 	$root = $oneback;
@@ -30,34 +30,34 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-if(defined('WB_PATH') == false) { exit("Cannot access this file directly");  }
-require(WB_PATH.'/modules/admin.php');
+if(defined('LEPTON_PATH') == false) { exit("Cannot access this file directly");  }
+require(LEPTON_PATH.'/modules/admin.php');
 	
 // check if backend.css file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(WB_PATH ."/modules/foldergallery_jq/backend.css")) {
+if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergallery_jq/backend.css")) {
 echo '<style type="text/css">';
-include(WB_PATH .'/modules/foldergallery_jq/backend.css');
+include(LEPTON_PATH .'/modules/foldergallery_jq/backend.css');
 echo "\n</style>\n";
 }
 // check if backend.js file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(WB_PATH ."/modules/foldergaller/backend.js")) {
+if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergaller/backend.js")) {
 echo '<script type="text/javascript">';
-include(WB_PATH .'/modules/foldergallery_jq/backend.js');
+include(LEPTON_PATH .'/modules/foldergallery_jq/backend.js');
 echo "</script>";
 }
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
+if(!file_exists(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
 // no module language file exists for the language set by the user, include default module language file DE.php
-require_once(WB_PATH .'/modules/foldergallery_jq/languages/DE.php');
+require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/DE.php');
 } else {
 // a module language file exists for the language defined by the user, load it
-require_once(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
+require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
 }
 
 // Files includen
-require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
-require_once (WB_PATH.'/modules/foldergallery_jq/backend.functions.php');
+require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
+require_once (LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
 
 
 
@@ -76,7 +76,7 @@ if(!isset($_POST['save']) && !is_string($_POST['save'])) {
 	}
 	
 	if(!isset($_POST['id'])) {
-		$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+		$admin->print_success($TEXT['SUCCESS'], LEPTON_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 		$admin->print_footer();
 		die();
 	}
@@ -134,7 +134,7 @@ if(!isset($_POST['save']) && !is_string($_POST['save'])) {
 	}
 	
 }
-$admin->print_success($TEXT['SUCCESS'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+$admin->print_success($TEXT['SUCCESS'], LEPTON_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 
 $admin->print_footer();
 ?>

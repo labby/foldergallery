@@ -11,8 +11,8 @@
  */
  
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$oneback = "../";
 	$root = $oneback;
@@ -29,23 +29,23 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-require(WB_PATH.'/modules/admin.php');
+require(LEPTON_PATH.'/modules/admin.php');
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
+if(!file_exists(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
 // no module language file exists for the language set by the user, include default module language file DE.php
-require_once(WB_PATH .'/modules/foldergallery_jq/languages/DE.php');
+require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/DE.php');
 } else {
 // a module language file exists for the language defined by the user, load it
-require_once(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
+require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
 }
 
 // Files includen
-require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
-require_once (WB_PATH.'/modules/foldergallery_jq/backend.functions.php');
+require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
+require_once (LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
 
 //get the CSS
-echo '<link rel="stylesheet" type="text/css" href="'.WB_URL.'/modules/foldergallery_jq/scripts/jcrob/css/jquery.Jcrop.css" /> ';
+echo '<link rel="stylesheet" type="text/css" href="'.LEPTON_URL.'/modules/foldergallery_jq/scripts/jcrob/css/jquery.Jcrop.css" /> ';
 
 $cat_id = $_GET['cat_id'];
 
@@ -83,7 +83,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 			
 			//Neues Thumb erstellen
 			if (generateThumb($full_file, $thumb_file, $settings['thumb_size'], 1, $settings['ratio'], $_POST['x'], $_POST['y'], $_POST['w'], $_POST['h'])) {
-				$admin->print_success('Thumb erfolgreich geändert', WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+				$admin->print_success('Thumb erfolgreich geändert', LEPTON_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 			}
 		}
 		else {
@@ -106,13 +106,13 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 				var relHeight = \''.$height.'\';
 				var thumbSize = \''.$settings['thumb_size'].'\';
 				var settingsRatio = \''.$settings['ratio'].'\';
-				var WB_URL =\''.WB_URL.'\';
+				var LEPTON_URL =\''.LEPTON_URL.'\';
 			</script>
 <!-- Aldus begin -->
-<script src="'.WB_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-insert.js" type="text/javascript"></script>
-<script src="'.WB_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-include.js" type="text/javascript"></script>
-<!--[if lt IE 7]><script type="text/javascript" src="'.WB_URL.'/modules/foldergallery_jq/scripts/jqery/jquery-pngFix.js"></script><![endif]-->
-<script src="'.WB_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-plugins.js" type="text/javascript"></script>
+<script src="'.LEPTON_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-insert.js" type="text/javascript"></script>
+<script src="'.LEPTON_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-include.js" type="text/javascript"></script>
+<!--[if lt IE 7]><script type="text/javascript" src="'.LEPTON_URL.'/modules/foldergallery_jq/scripts/jqery/jquery-pngFix.js"></script><![endif]-->
+<script src="'.LEPTON_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-plugins.js" type="text/javascript"></script>
 <!-- Aldus end -->
 			<h2>'.$MOD_FOLDERGALLERY_JQ['EDIT_THUMB'].'</h2>
 			<p>'.$MOD_FOLDERGALLERY_JQ['EDIT_THUMB_DESCRIPTION'].'</p>
@@ -126,20 +126,20 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 				</div>
 				<br />
 				<!-- This is the form that our event handler fills -->
-				<form action="'.WB_URL.'/modules/foldergallery_jq/modify_thumb.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&id='.$_GET['id'].'" method="post" onsubmit="return checkCoords();">
+				<form action="'.LEPTON_URL.'/modules/foldergallery_jq/modify_thumb.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&id='.$_GET['id'].'" method="post" onsubmit="return checkCoords();">
 					<input type="hidden" id="x" name="x" />
 					<input type="hidden" id="y" name="y" />
 					<input type="hidden" id="w" name="w" />
 					<input type="hidden" id="h" name="h" />
 					<input style="width: 130px;" type="submit" value="'.$MOD_FOLDERGALLERY_JQ['EDIT_THUMB_BUTTON'].'" /><br />
-					<input style="width: 130px;" type="button" value="'.$TEXT['CANCEL'].'" onClick="parent.location=\''.WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.$leptoken.'\'"/>
+					<input style="width: 130px;" type="button" value="'.$TEXT['CANCEL'].'" onClick="parent.location=\''.LEPTON_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.$leptoken.'\'"/>
 				</form>
 			</div>';
 		}
 	}
 }
 else {
-	$admin->print_error($MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE'], WB_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+	$admin->print_error($MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE'], LEPTON_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 }
 
 $admin->print_footer();

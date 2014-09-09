@@ -12,8 +12,8 @@
  */
  
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$oneback = "../";
 	$root = $oneback;
@@ -50,8 +50,8 @@ $module_guid		= 'c3621f10-9e20-49c3-a9b4-2e27b352386d';
  *  (z.B) für externe Ordner
 **/
 
-$path = WB_PATH.MEDIA_DIRECTORY; // alternativ: WB_PATH;
-$url = WB_URL.MEDIA_DIRECTORY; // alternativ: WB_URL.;
+$path = LEPTON_PATH.MEDIA_DIRECTORY; // alternativ: LEPTON_PATH;
+$url = LEPTON_URL.MEDIA_DIRECTORY; // alternativ: LEPTON_URL.;
 $thumbdir = '/fg-thumbs';
 // Des gleiche wie oben, aber ohne Slash
 // Wird für die Suche benötigt

@@ -12,8 +12,8 @@
  */
  
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$oneback = "../";
 	$root = $oneback;
@@ -30,7 +30,7 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-if(defined('WB_PATH') == false) { exit("Cannot access this file directly");  }
+if(defined('LEPTON_PATH') == false) { exit("Cannot access this file directly");  }
 
 // First we prevent direct access and check for variables
 if(!isset($_POST['action']) OR !isset($_POST['recordsArray'])) {
@@ -39,7 +39,7 @@ if(!isset($_POST['action']) OR !isset($_POST['recordsArray'])) {
 } else {
  
  	// check if user has permissions to access the  module
-	require_once(WB_PATH.'/framework/class.admin.php');
+	require_once(LEPTON_PATH.'/framework/class.admin.php');
 	$admin = new admin('Modules', 'module_view', false, false);
 	if (!($admin->is_authenticated() && $admin->get_permission('foldergallery', 'module'))) 
 		die(header('Location: ../../index.php'));
@@ -61,7 +61,7 @@ if(!isset($_POST['action']) OR !isset($_POST['recordsArray'])) {
 			$listingCounter ++;
 		}
 	 
-		echo '<img src="'.WB_URL.'/modules/jsadmin/images/success.gif" style="vertical-align:middle;"/> <span style="font-size: 80%">Sucessfully reorderd</span>';
+		echo '<img src="'.LEPTON_URL.'/modules/jsadmin/images/success.gif" style="vertical-align:middle;"/> <span style="font-size: 80%">Sucessfully reorderd</span>';
 
 	}
 } // this ends else statement from the top of the page

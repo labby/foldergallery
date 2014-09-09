@@ -1,11 +1,11 @@
-<script type="text/javascript" src="{WB_URL}/modules/foldergallery_jq/scripts/highslide/highslide-full.packed.js"></script>
+<script type="text/javascript" src="{LEPTON_URL}/modules/foldergallery_jq/scripts/highslide/highslide-full.packed.js"></script>
 <!--[if lt IE 7]>
-<script type="text/javascript">loadjscssfile("{WB_URL}/modules/foldergallery_jq/scripts/highslide/highslide-ie6.css", "css")</script>
+<script type="text/javascript">loadjscssfile("{LEPTON_URL}/modules/foldergallery_jq/scripts/highslide/highslide-ie6.css", "css")</script>
 <![endif]-->
 
-<script type="text/javascript">loadjscssfile("{WB_URL}/modules/foldergallery_jq/scripts/highslide/highslide.css", "css")</script>
+<script type="text/javascript">loadjscssfile("{LEPTON_URL}/modules/foldergallery_jq/scripts/highslide/highslide.css", "css")</script>
 <script type="text/javascript">
-	hs.graphicsDir = '{WB_URL}/modules/foldergallery_jq/scripts/highslide/graphics/';
+	hs.graphicsDir = '{LEPTON_URL}/modules/foldergallery_jq/scripts/highslide/graphics/';
 	hs.showCredits = false;
 	hs.align = 'center';
 	hs.transitions = ['expand', 'crossfade'];

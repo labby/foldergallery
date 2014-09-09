@@ -12,8 +12,8 @@
  */
  
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$oneback = "../";
 	$root = $oneback;
@@ -30,7 +30,7 @@ if (defined('WB_PATH')) {
 }
 // end include class.secure.php
 
-require_once (WB_PATH.'/modules/foldergallery_jq/functions.php');
+require_once (LEPTON_PATH.'/modules/foldergallery_jq/functions.php');
 
 /**
  * Durchsucht einen Ordner rekursiv mit einigen Optionen
@@ -243,7 +243,7 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 			$parent = implode('/', $einzelteile);
 			$parent = $searchCategorie.$parent;			
 			$fileLink = $url.$galerie['root_dir'].$parent."/".$fileName; 
-			$fileLink = str_replace(WB_URL, '', $fileLink);
+			$fileLink = str_replace(LEPTON_URL, '', $fileLink);
 		
 			$files[] = array (
 				'file_name'=>$fileName,

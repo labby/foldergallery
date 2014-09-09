@@ -12,7 +12,7 @@
             <input type="button" value="{SYNC_STRING}" onclick="{SYNC_ONKLICK}" style="width: 100%"/>
         </td>
         <td width="33%" align="right">
-        	<form name="edit_module_file" action="{WB_URL}/modules/edit_module_files.php?page_id={EDIT_PAGE}" method="post" style="margin: 0pt;">
+        	<form name="edit_module_file" action="{LEPTON_URL}/modules/edit_module_files.php?page_id={EDIT_PAGE}" method="post" style="margin: 0pt;">
 			<input name="page_id" value="{EDIT_PAGE}" type="hidden">
 			<input name="section_id" value="{EDIT_SECTION}" type="hidden">
 			<input name="mod_dir" value="foldergallery_jq" type="hidden">

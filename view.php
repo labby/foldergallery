@@ -12,8 +12,8 @@
  */
  
 // include class.secure.php to protect this file and the whole CMS!
-if (defined('WB_PATH')) {	
-	include(WB_PATH.'/framework/class.secure.php'); 
+if (defined('LEPTON_PATH')) {	
+	include(LEPTON_PATH.'/framework/class.secure.php'); 
 } else {
 	$oneback = "../";
 	$root = $oneback;
@@ -49,31 +49,31 @@ if (defined('WB_PATH')) {
 */
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
+if(!file_exists(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
 	// no module language file exists for the language set by the user, include default module language file DE.php
-	require_once(WB_PATH .'/modules/foldergallery_jq/languages/DE.php');
+	require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/DE.php');
 } else {
 	// a module language file exists for the language defined by the user, load it
-	require_once(WB_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
+	require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
 }
 
 // check if frontend.css file needs to be included into the <body></body> of view.php
 if((!function_exists('register_frontend_modfiles') || !defined('MOD_FRONTEND_CSS_REGISTERED')) && 
-	file_exists(WB_PATH .'/modules/foldergallery_jq/frontend.css')) {
+	file_exists(LEPTON_PATH .'/modules/foldergallery_jq/frontend.css')) {
 	echo '<style type="text/css">';
-  include(WB_PATH .'/modules/foldergallery_jq/frontend.css');
+  include(LEPTON_PATH .'/modules/foldergallery_jq/frontend.css');
   echo "\n</style>\n";
 } 
 // check if frontend.js file needs to be included into the <body></body> of view.php
 if((!function_exists('register_frontend_modfiles') || !defined('MOD_FRONTEND_JAVASCRIPT_REGISTERED')) && 
-	file_exists(WB_PATH .'/modules/foldergallery_jq/frontend.js')) {
-	echo '<script type="text/javascript" src="'.WB_URL.'/modules/foldergallery_jq/frontend.js"></script>';
+	file_exists(LEPTON_PATH .'/modules/foldergallery_jq/frontend.js')) {
+	echo '<script type="text/javascript" src="'.LEPTON_URL.'/modules/foldergallery_jq/frontend.js"></script>';
 } 
 
 $generatethumbscounter = 0;
 // Files includen
-require_once (WB_PATH.'/modules/foldergallery_jq/info.php');
-require_once (WB_PATH.'/modules/foldergallery_jq/functions.php');
+require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
+require_once (LEPTON_PATH.'/modules/foldergallery_jq/functions.php');
 
 // Foldergallery Einstellungen
 $settings = getSettings($section_id);
@@ -86,7 +86,7 @@ $ratio = $settings['ratio']; //Pumpi
 // Link zur Seite
 $query_pages = $database->query("SELECT link FROM ".TABLE_PREFIX."pages WHERE page_id = '$page_id' LIMIT 1");
 $page = $query_pages->fetchRow();
-$link = WB_URL.PAGES_DIRECTORY.$page['link'].PAGE_EXTENSION;
+$link = LEPTON_URL.PAGES_DIRECTORY.$page['link'].PAGE_EXTENSION;
 
 $ergebnisse = array(); // Da drin werden dann alle Ergebnisse aus der DB gespeichert
 $unterKats = array(); // Hier rein kommen die Unterkategorien der aktuellen Kategorie
@@ -98,8 +98,8 @@ $title = PAGE_TITLE;
  *	load current jQuery
  */
 echo "
-<script src=\"". WB_URL. "/modules/lib_jquery/jquery-core/jquery-core.min.js\" type=\"text/javascript\"></script>
-<script src=\"". WB_URL. "/modules/lib_jquery/jquery-core/jquery-migrate.min.js\" type=\"text/javascript\"></script>
+<script src=\"". LEPTON_URL. "/modules/lib_jquery/jquery-core/jquery-core.min.js\" type=\"text/javascript\"></script>
+<script src=\"". LEPTON_URL. "/modules/lib_jquery/jquery-core/jquery-migrate.min.js\" type=\"text/javascript\"></script>
 ";
 
 // Wo sind wir?
@@ -200,19 +200,19 @@ if(count($ergebnisse) == 0) {
 		$urlToFolder = $url.$folder.'/';		
 		$urlToThumb = $url.$folder.$thumbdir.'/';
 		
-		$unterKats[$i]['thumb'] = $urlToThumb.$bildfilename;     //WB_URL.$bildLinks['thumb_link'];
+		$unterKats[$i]['thumb'] = $urlToThumb.$bildfilename;     //LEPTON_URL.$bildLinks['thumb_link'];
 		// Eventuell wird die Gallerie zum ersten mal betrachtet
 		// Es gibt also noch kein Thumb. Also pr?fen und erstellen
 		
 		
 		if ($bildfilename == '') { //Leer oder ein Ordner
-		 	$unterKats[$i]['thumb'] = WB_URL.'/modules/foldergallery_jq/images/folder.jpg';
+		 	$unterKats[$i]['thumb'] = LEPTON_URL.'/modules/foldergallery_jq/images/folder.jpg';
 		 } else {
 			$thumb = $pathToThumb.$bildfilename;
 			if(!is_file($thumb)){
 				$file = $pathToFolder.$bildfilename;				
 				$terg = generateThumb($file, $thumb, $thumb_size, 0, $ratio);
-				if ($terg < 0) $unterKats[$i]['thumb'] = WB_URL.'/modules/foldergallery_jq/images/broken'.$terg.'.jpg';
+				if ($terg < 0) $unterKats[$i]['thumb'] = LEPTON_URL.'/modules/foldergallery_jq/images/broken'.$terg.'.jpg';
 			}
 		}
 		//Chio ENDE
@@ -274,17 +274,17 @@ if (file_exists(dirname(__FILE__).'/templates/view_'.$settings['lightbox'].'.htt
 // --- end added by WebBird, 29.07.2010 ---
 }
 // ----- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 -----
-elseif( file_exists( WB_PATH.'/modules/'.$settings['lightbox'].'/foldergallery_template.htt' ) )
+elseif( file_exists( LEPTON_PATH.'/modules/'.$settings['lightbox'].'/foldergallery_template.htt' ) )
 {
   $viewTemplate = 'foldergallery_template.htt';
-	$t = new Template(WB_PATH.'/modules/'.$settings['lightbox'], 'remove');
+	$t = new Template(LEPTON_PATH.'/modules/'.$settings['lightbox'], 'remove');
 	$parts = split( '/', $settings['lightbox'] );
 	echo "[[LibInclude?lib=".$parts[0]."&amp;plugin=".$parts[2]."]]";
 }
-elseif( file_exists( WB_PATH.'/modules/jqueryadmin/plugins/'.$settings['lightbox'].'/foldergallery_template.htt' ) )
+elseif( file_exists( LEPTON_PATH.'/modules/jqueryadmin/plugins/'.$settings['lightbox'].'/foldergallery_template.htt' ) )
 {
   $viewTemplate = 'foldergallery_template.htt';
-	$t = new Template(WB_PATH.'/modules/jqueryadmin/plugins/'.$settings['lightbox'], 'remove');
+	$t = new Template(LEPTON_PATH.'/modules/jqueryadmin/plugins/'.$settings['lightbox'], 'remove');
 	echo "[[jQueryInclude?plugin=".$settings['lightbox']."]]";
 }
 // --- end added by WebBird, 29.07.2010 ---
@@ -404,7 +404,7 @@ if($bilder){
 		if(!is_file($thumb)){			
 			$file = $pathToFolder.$bildfilename;
 			$terg = generateThumb($file, $thumb, $thumb_size, 0, $ratio);
-			if ($terg < 0) $tumburl = WB_URL.'/modules/foldergallery_jq/images/broken'.$terg.'.jpg';
+			if ($terg < 0) $tumburl = LEPTON_URL.'/modules/foldergallery_jq/images/broken'.$terg.'.jpg';
 		}
 
 		if ($settings['lightbox'] != 'contentFlow') $timeadd = '?t='.time();
@@ -456,7 +456,7 @@ if ( isset( $_GET['cat'] ) ) {
 
 }
 
-$t->set_var( 'WB_URL', WB_URL );
+$t->set_var( 'LEPTON_URL', LEPTON_URL );
 
 //überschreibt die fest eingestellte Größe von ul.categories li a auf die Thumbgrößenwerte
 $catWidth = $settings['thumb_size'] + 10;

@@ -14,7 +14,7 @@ This is a phplib-template for modify_cat_sort.php
 
 <script type="text/javascript">
 	var the_parent_id = {PARENT_ID_VALUE};
-	var WB_URL = "{WB_URL_VALUE}";
+	var LEPTON_URL = "{LEPTON_URL_VALUE}";
 </script>
 
 <div id="dragableTable">

@@ -1,6 +1,6 @@
 <!-- Jquery Lightbox-->
-<link href="{WB_URL}/modules/foldergallery_jq/scripts/pirobox/css_pirobox/demo5/style.css" class="piro_style" media="screen" title="white" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="{WB_URL}/modules/foldergallery_jq/scripts/pirobox/js/pirobox.js"></script>
+<link href="{LEPTON_URL}/modules/foldergallery_jq/scripts/pirobox/css_pirobox/demo5/style.css" class="piro_style" media="screen" title="white" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{LEPTON_URL}/modules/foldergallery_jq/scripts/pirobox/js/pirobox.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
