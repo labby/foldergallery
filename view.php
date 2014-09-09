@@ -49,20 +49,15 @@ if (defined('LEPTON_PATH')) {
 */
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
-	// no module language file exists for the language set by the user, include default module language file DE.php
-	require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/DE.php');
-} else {
-	// a module language file exists for the language defined by the user, load it
-	require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
-}
+$lang_file = dirname(__FILE__)."/languages/".LANGUAGE .".php";
+require_once( file_exists($lang_file) ? $lang_file : dirname(__FILE__)."/languages/EN.php" ); 
 
 // check if frontend.css file needs to be included into the <body></body> of view.php
 if((!function_exists('register_frontend_modfiles') || !defined('MOD_FRONTEND_CSS_REGISTERED')) && 
 	file_exists(LEPTON_PATH .'/modules/foldergallery_jq/frontend.css')) {
 	echo '<style type="text/css">';
-  include(LEPTON_PATH .'/modules/foldergallery_jq/frontend.css');
-  echo "\n</style>\n";
+		include(LEPTON_PATH .'/modules/foldergallery_jq/frontend.css');
+	echo "\n</style>\n";
 } 
 // check if frontend.js file needs to be included into the <body></body> of view.php
 if((!function_exists('register_frontend_modfiles') || !defined('MOD_FRONTEND_JAVASCRIPT_REGISTERED')) && 
@@ -107,24 +102,11 @@ $aktuelleKat = (isset($_GET['cat']) && is_string($_GET['cat'])) ?
 				$_GET['cat'] : '';
 $aktuelleKat = htmlspecialchars($aktuelleKat);
 
-//Funktioniert das hier ?berhaupt?:
-// Seitentitel
-/*
-$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$section_id.' AND parent="-1" LIMIT 1';
-$query = $database->query($sql);
-if ( $query->numRows() > 0 ) {
-    $root = $query->fetchRow();
-    if ( strcasecmp( $root['cat_name'], 'Root' ) ) {
-        $title = $root['cat_name'];
-    }
-}
-*/
-
-//Die id der aktuellen Kategorie herausfinden:
+// Die id der aktuellen Kategorie herausfinden:
 $aktuelleKat_id = 0;
 $sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$section_id.' AND is_empty=0 AND active=1 ORDER BY position DESC';
 $query = $database->query($sql);
-while($ergebnis = $query->fetchRow()){
+while($ergebnis = $query->fetchRow( MYSQL_ASSOC )){
 	$p = $ergebnis['parent'].'/'.$ergebnis['categorie'] ;
 	if ($ergebnis['parent'] == '-1') {$p = '';}
 	if ($p == $aktuelleKat) {
@@ -133,10 +115,7 @@ while($ergebnis = $query->fetchRow()){
 	}
 }
 
-//echo '<h1>'.$aktuelleKat_id.'</h1>';
-
-
-//Falls nichts angezeigt wird, wird die Root Kategorie angezeigt
+//	Falls nichts angezeigt wird, wird die Root Kategorie angezeigt
 if(!$aktuelleKat){
 	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$section_id.' AND parent="" AND is_empty=0 AND active=1 ORDER BY position ASC';
 } else {
@@ -150,7 +129,6 @@ while($ergebnis = $query->fetchRow()){
 	// Es gibt also folgende Kategorien mit Inhalt in dieser Kategorie
 	$ergebnisse[] = $ergebnis;	
 }
-
 
 if(count($ergebnisse) == 0) {
 	$error = true;
@@ -191,7 +169,7 @@ if(count($ergebnisse) == 0) {
 				$folder = $root_dir.$catneu;
 				
 				if ($ergebnisseneu['active'] == 0) {$bildfilename = '';}
-				//echo '<br>Neu: '.$folder;
+
 			}
 		}
 		
@@ -202,10 +180,10 @@ if(count($ergebnisse) == 0) {
 		
 		$unterKats[$i]['thumb'] = $urlToThumb.$bildfilename;     //LEPTON_URL.$bildLinks['thumb_link'];
 		// Eventuell wird die Gallerie zum ersten mal betrachtet
-		// Es gibt also noch kein Thumb. Also pr?fen und erstellen
+		// Es gibt also noch kein Thumb. Also prüfen und erstellen
 		
 		
-		if ($bildfilename == '') { //Leer oder ein Ordner
+		if ($bildfilename == '') { // Leer oder ein Ordner
 		 	$unterKats[$i]['thumb'] = LEPTON_URL.'/modules/foldergallery_jq/images/folder.jpg';
 		 } else {
 			$thumb = $pathToThumb.$bildfilename;
@@ -215,10 +193,9 @@ if(count($ergebnisse) == 0) {
 				if ($terg < 0) $unterKats[$i]['thumb'] = LEPTON_URL.'/modules/foldergallery_jq/images/broken'.$terg.'.jpg';
 			}
 		}
-		//Chio ENDE
+		// Chio ENDE
 	}
 }
-
 
 // Gibt es Bilder in dieser Kategorie
 $sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE parent_id="'.$aktuelleKat_id.'" ORDER BY position ASC;';
