@@ -33,13 +33,13 @@ if (defined('LEPTON_PATH')) {
 $module_directory	= 'foldergallery_jq';
 $module_name		= 'Foldergallery-jQuery';
 $module_function	= 'page';
-$module_version		= '1.2.6';
-$module_platform	= '1.3.x';	
+$module_version		= '2.0.0';
+$module_platform	= '2.0.x';
 $module_author		= 'Jürg Rast; schliffer; Bianka Martinovic; Chio; Pumpi; Aldus; erpe';
 $module_license		= 'GNU General Public License';
 $module_description	= 'Bildergalerie anhand der Ordnerstruktur erstellen.';
 $module_home		= 'http://cms-lab.com/';
-$module_guid		= 'c3621f10-9e20-49c3-a9b4-2e27b352386d';
+$module_guid		= 'c362eb43-878d-492f-906f-57a07da6d0f6';
 
 /**
  *  Pfad und URL zum Stammverzeichnis der Foldergallery
