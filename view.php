@@ -263,7 +263,8 @@ if($aktuelleKat){
 	$back_link = '#';
 }
 
-
+//initialize phplib template engine (needed for LEPTON_2series)
+if (!class_exists("Template")) require_once(LEPTON_PATH."/include/phplib/template.inc");
 
 // Template
 if (file_exists(dirname(__FILE__).'/templates/view_'.$settings['lightbox'].'.htt')) {
