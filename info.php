@@ -30,7 +30,7 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-$module_directory	= 'foldergallery_jq_2';
+$module_directory	= 'foldergallery_jq';
 $module_name		= 'Foldergallery-jQuery';
 $module_function	= 'page';
 $module_version		= '2.0.0';
