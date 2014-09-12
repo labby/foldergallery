@@ -33,13 +33,8 @@ if (defined('LEPTON_PATH')) {
 require(LEPTON_PATH.'/modules/admin.php');
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
-	// no module language file exists for the language set by the user, include default module language file DE.php
-	require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/DE.php');
-} else {
-	// a module language file exists for the language defined by the user, load it
-	require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
-}
+$lang_file = dirname(__FILE__)."/languages/".LANGUAGE .".php";
+require_once( file_exists($lang_file) ? $lang_file : dirname(__FILE__)."/languages/EN.php" ); 
 
 require_once(LEPTON_PATH.'/modules/foldergallery_jq/info.php');
 require_once(LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
@@ -47,9 +42,7 @@ require_once(LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
 $oldSettings = getSettings($section_id);
 $newSettings = array();
 
-
-
-//Daten aus $_post auswerten und validieren
+//	Daten aus $_post auswerten und validieren
 if (isset($_POST['root_dir'])) {
     $newSettings['root_dir'] = $_POST['root_dir'];
 } else {
@@ -111,42 +104,45 @@ if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view
 	$newSettings['lightbox'] = '';
 }
 
-//Debuganzeige die ab 1.1 auskommentiert wird
-//echo "<textarea cols=\"100\" rows=\"20\" style=\"width: 100%;\">";
-//var_export( $newSettings );
-//echo "</textarea>";
-//ENDE Debug
 echo "<center>".$MOD_FOLDERGALLERY_JQ['SAVE_SETTINGS']."</center><br />";
 $newSettings['section_id'] = $section_id;
-//die('hier3');
+
 $settingsTable = TABLE_PREFIX.'mod_foldergallery_jq_settings';
+
 // SQL eintragen
-$database->query("
-	UPDATE `".$settingsTable."` 
-	SET `root_dir` = '".$newSettings['root_dir']."', 
-	`extensions` = '".$newSettings['extensions']."', 
-	`invisible` = '".$newSettings['invisible']."',
-	`pics_pp` = '".$newSettings['pics_pp']."',
-	`thumb_size` = '".$newSettings['thumb_size']."',
-	`ratio` = '".$newSettings['ratio']."',
-	`catpic` = '".$newSettings['catpic']."',
-	`lightbox` = '".$newSettings['lightbox']."'
-	WHERE `section_id` = '".$section_id."'"
+$fields = array(
+	'root_dir'		=> $newSettings['root_dir'], 
+	'extensions'	=> $newSettings['extensions'], 
+	'invisible'		=> $newSettings['invisible'],
+	'pics_pp'		=> $newSettings['pics_pp'],
+	'thumb_size'	=> $newSettings['thumb_size'],
+	'ratio'			=> $newSettings['ratio'],
+	'catpic'		=> $newSettings['catpic'],
+	'lightbox'		=> $newSettings['lightbox']
+);
+
+$database->build_and_execute(
+	'update',
+	$settingsTable,
+	$fields,
+	"`section_id` = '".$section_id."'"
 );
 
 if(($oldSettings['thumb_size'] != $newSettings['thumb_size'] || $oldSettings['ratio'] != $newSettings['ratio']) && !isset($_POST['noNew'])){
 	// Ok, thumb_size hat gewechselt, also alte Thumbs löschen
 	$sql = 'SELECT `parent`, `categorie` FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$oldSettings['section_id'].';';
-	$query = $database->query($sql);
-	while($link = $query->fetchRow()) {
+	$all_data = array();
+	$database->prepare_and_execute( $sql, true, $all_data );
+	
+	foreach($all_data as $link) {
 		$pathToFolder = $path.$oldSettings['root_dir'].$link['parent'].'/'.$link['categorie'].$thumbdir;
 		echo '<center><br/>Delete: '.$pathToFolder.'</center>';
 		deleteFolder($pathToFolder);
 	}
+	
 	$pathToFolder = $path.$oldSettings['root_dir'].$thumbdir;
 	echo '<center><br/>Delete: '.$pathToFolder.'</center><br />';
 	deleteFolder($pathToFolder);
-	
 }	
 
 ///Chio verändert: Orig: // Ok, Ordner hat gewechselt, also alte Thumbs löschen

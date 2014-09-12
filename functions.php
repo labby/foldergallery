@@ -33,15 +33,15 @@ if (defined('LEPTON_PATH')) {
 /**
  *	Getting the foldergallery-settings from the DB for a given section(-id).
  *
- *	@param	int		A valid section-id
+ *	@param	int		A valid section-id. Pass by reference.
  *	@return	array	Assoc. array within the settings.
  *
  */
 function getSettings( &$section_id ){
 	global $database;
 	$sql = 'SELECT * FROM `'.TABLE_PREFIX.'mod_foldergallery_jq_settings` WHERE `section_id` = '.$section_id;
-	$query = $database->query($sql);
-	$result = $query->fetchRow( MYSQL_ASSOC );
+	$result = array();
+	$database->prepare_and_execute( $sql, true, $result, false);
 	return $result;
 }
 
