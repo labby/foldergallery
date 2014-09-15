@@ -132,7 +132,7 @@ if(($oldSettings['thumb_size'] != $newSettings['thumb_size'] || $oldSettings['ra
 	// Ok, thumb_size hat gewechselt, also alte Thumbs löschen
 	$sql = 'SELECT `parent`, `categorie` FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$oldSettings['section_id'].';';
 	$all_data = array();
-	$database->prepare_and_execute( $sql, true, $all_data );
+	$database->execute_query( $sql, true, $all_data );
 	
 	foreach($all_data as $link) {
 		$pathToFolder = $path.$oldSettings['root_dir'].$link['parent'].'/'.$link['categorie'].$thumbdir;
