@@ -41,7 +41,7 @@ function getSettings( &$section_id ){
 	global $database;
 	$sql = 'SELECT * FROM `'.TABLE_PREFIX.'mod_foldergallery_jq_settings` WHERE `section_id` = '.$section_id;
 	$result = array();
-	$database->prepare_and_execute( $sql, true, $result, false);
+	$database->execute_query( $sql, true, $result, false);
 	return $result;
 }
 
