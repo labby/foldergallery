@@ -33,8 +33,8 @@ if (defined('LEPTON_PATH')) {
 $module_directory	= 'foldergallery_jq';
 $module_name		= 'Foldergallery-jQuery';
 $module_function	= 'page';
-$module_version		= '2.0.0';
-$module_platform	= '2.0.x';
+$module_version		= '2.0.1';
+$module_platform	= '2.x';
 $module_author		= 'Jürg Rast; schliffer; Bianka Martinovic; Chio; Pumpi; Aldus; erpe';
 $module_license		= 'GNU General Public License';
 $module_description	= 'Bildergalerie anhand der Ordnerstruktur erstellen.';
