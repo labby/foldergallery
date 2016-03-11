@@ -9,11 +9,6 @@
  * 
  */
  
-$(document).ready(function() {
-	$.insert(LEPTON_URL+'/modules/lib_jquery/jquery-ui/ui/jquery-ui.min.js');
-	$.insert(LEPTON_URL+'/modules/foldergallery_jq/scripts/jcrob/js/jquery.Jcrop.min.js');
-});
-
 $(document).ready(function(){ 
 	$(function() { 
 		$("#dragableTable ul").sortable({ opacity: 0.6, cursor: 'move', update: function() { 

@@ -45,7 +45,7 @@ if(!isset($_POST['action']) OR !isset($_POST['recordsArray'])) {
 		die(header('Location: ../../index.php'));
 	
 	// Sanitized variables
-	$action = $admin->add_slashes($_POST['action']);
+	$action = addslashes($_POST['action']);
 	$updateRecordsArray = isset($_POST['recordsArray']) ? $_POST['recordsArray'] : array();
 
  
