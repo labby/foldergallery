@@ -65,7 +65,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 	$cat_id = $_GET['cat_id'];
 	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE id='.$_GET['id'].';';
 	if($query = $database->query($sql)){
-		$result = $query->fetchRow( MYSQL_ASSOC );
+		$result = $query->fetchRow( );
 		$bildfilename = $result['file_name'];
 		$parent_id = $result['parent_id'];
 		//echo '<h2>'.$parent_id.'</h2>' ;

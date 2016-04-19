@@ -33,7 +33,7 @@ if (defined('LEPTON_PATH')) {
 // Delete DB-Entries (messages and settings)
 $sql = 'SELECT `parent` FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$section_id.';';
 $query = $database->query($sql);
-while($cat = $query->fetchRow( MYSQL_ASSOC )) {
+while($cat = $query->fetchRow( )) {
 	$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE parent_id='.$cat['parent'];
 	$database->query($sql);
 }	

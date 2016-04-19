@@ -106,7 +106,7 @@ $aktuelleKat = htmlspecialchars($aktuelleKat);
 $aktuelleKat_id = 0;
 $sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$section_id.' AND is_empty=0 AND active=1 ORDER BY position DESC';
 $query = $database->query($sql);
-while($ergebnis = $query->fetchRow( MYSQL_ASSOC )){
+while($ergebnis = $query->fetchRow( )){
 	$p = $ergebnis['parent'].'/'.$ergebnis['categorie'] ;
 	if ($ergebnis['parent'] == '-1') {$p = '';}
 	if ($p == $aktuelleKat) {

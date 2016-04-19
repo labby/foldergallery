@@ -60,12 +60,12 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 	
 	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE id='.$_GET['id'].';';
 	if($query = $database->query($sql)){
-		$result = $query->fetchRow( MYSQL_ASSOC );
+		$result = $query->fetchRow( );
 		$bildfilename = $result['file_name'];
 		$parent_id = $result['parent_id'];
 		
 		$query2 = $database->query('SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id='.$parent_id.' LIMIT 1;');
-		$categorie = $query2->fetchRow( MYSQL_ASSOC );
+		$categorie = $query2->fetchRow( );
 		
 		if ($categorie['parent'] != "-1") {
 			$parent   = $categorie['parent'].'/'.$categorie['categorie'];

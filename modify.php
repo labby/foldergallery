@@ -122,7 +122,7 @@ $t->pparse('output', 'modify');
 // Kategorien von der obersten Ebene aus DB hohlen
 $sql = "SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_jq_categories WHERE section_id=".$section_id." AND niveau=0;";
 $query = $database->query($sql);
-while($result = $query->fetchRow( MYSQL_ASSOC )){
+while($result = $query->fetchRow( )){
 	$results[] = $result;
 }
 
@@ -145,7 +145,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 //	if ($zagl > 1) {}
 	
 	$counter = 0;	
-	while($result = $query->fetchRow( MYSQL_ASSOC )){
+	while($result = $query->fetchRow( )){
 		$counter ++;
 		if ($counter > 1) {$arrup = true;}
 		if ($counter == $zagl) {$arrdown = false;}
