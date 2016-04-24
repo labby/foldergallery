@@ -11,7 +11,7 @@ http://forum.lepton-cms.org/
 
 ## Download
 Current installable release can be downloaded on
-http://cms-lab.com/lab/en/modules/standard-modules/foldergallery-jquery.php
+http://www.lepton-cms.com/lepador/modules/foldergallery-2.php
 
 ## Changelog
 Detailed Changelog can be seen on
