@@ -88,7 +88,7 @@ $MOD_FOLDERGALLERY_JQ['BACK']				= 'Back';
 $MOD_FOLDERGALLERY_JQ['REORDER_INFO_STRING']   = 'Reorder result will be displayed here.';
 $MOD_FOLDERGALLERY_JQ['HELP_INFORMATION']      = 'Help / Info';
 
-
+$MOD_FOLDERGALLERY_JQ['Ration_square']      = 'square';
 // Tooltips
 $MOD_FOLDERGALLERY_JQ['ROOT_FOLDER_STRING_TT']	= 'Dit is de hoofdmap (root) waar gezocht wordt naar foto\'s en mappen. '
                                             . ' Verander deze map niet meer! Alle instellingen en gegevens van de foto\'s zullen verloren gaan!';

@@ -90,7 +90,7 @@ $MOD_FOLDERGALLERY_JQ['BACK']				= 'Back';
 $MOD_FOLDERGALLERY_JQ['REORDER_INFO_STRING']   = 'Reorder result will be displayed here.';
 $MOD_FOLDERGALLERY_JQ['HELP_INFORMATION']      = 'Help / Info';
 
-
+$MOD_FOLDERGALLERY_JQ['Ration_square']      = 'square';
 // Tooltips
 $MOD_FOLDERGALLERY_JQ['ROOT_FOLDER_STRING_TT']	= 'Rotmappen f&ouml;r att s&ouml;ka efter bilder rekursivt.'
                                             . 'Om rotmappen &Auml;ndras vid ett senare tillf&auml;lle f&ouml;rloras alla bildinst&auml;llningar!';

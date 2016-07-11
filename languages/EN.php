@@ -88,6 +88,8 @@ $MOD_FOLDERGALLERY_JQ['BACK']				= 'Back';
 $MOD_FOLDERGALLERY_JQ['REORDER_INFO_STRING']   = 'Reorder result will be displayed here.';
 $MOD_FOLDERGALLERY_JQ['HELP_INFORMATION']      = 'Help / Info';
 
+$MOD_FOLDERGALLERY_JQ['Ration_square']      = 'square';
+
 // Tooltips
 $MOD_FOLDERGALLERY_JQ['ROOT_FOLDER_STRING_TT']	= 'This is the basic (root) folder to scan for images recursively. '
                                             . ' Please do not change this folder later, or all image settings will be lost!';

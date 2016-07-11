@@ -88,6 +88,8 @@ $MOD_FOLDERGALLERY_JQ['BACK']				= 'Zurück';
 $MOD_FOLDERGALLERY_JQ['REORDER_INFO_STRING']   = 'Der Erfolg der Neuanordnung wird hier angezeigt.';
 $MOD_FOLDERGALLERY_JQ['HELP_INFORMATION']      = 'Hilfe / Info';
 
+$MOD_FOLDERGALLERY_JQ['Ration_square']      = 'quadratisch';
+
 // Tooltips
 $MOD_FOLDERGALLERY_JQ['ROOT_FOLDER_STRING_TT']	= 'Dieser Ordner legt den Stammordner fest, in welchem rekursiv nach Bilder gesucht wird. Bitte nur beim installieren ändern, sonst gehen alle Infos zu den Bilder verloren!';
 $MOD_FOLDERGALLERY_JQ['EXTENSIONS_STRING_TT']	= 'Legen sie hier die erlaubten Dateierweiterungen fest. Verwenden sie das Koma als Trennzeichen. Auf Gross-/Kleinschreibung wird nicht geachtet.';

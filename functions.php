@@ -127,7 +127,7 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 			if (function_exists('getimagesize')) {
 				list($width, $height, $type, $attr) = getimagesize($file);
 			} else {
-				continue;
+				die("function 'getimagesize' doesn't existst!");
 			}
 			if ($width >= $height && $width > $thumb_size) {
 				//#########
