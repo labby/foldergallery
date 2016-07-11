@@ -150,4 +150,3 @@ $t->pparse('output', 'modify_cat_sort');
 
 $admin->print_footer();
 ?>
-

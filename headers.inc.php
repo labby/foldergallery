@@ -28,15 +28,14 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php  
 
-
 $mod_headers = array();
 
-    $mod_headers = array(
-		'backend' => array(
-		    'js' => array(
-			'/modules/lib_jquery/jquery-ui/jquery-ui.min.js',
-			'/modules/foldergallery_jq/scripts/jcrob/js/jquery.Jcrop.min.js'
-			)
+$mod_headers = array(
+	'backend' => array(
+		'js' => array(
+		'/modules/lib_jquery/jquery-ui/jquery-ui.min.js',
+		'/modules/foldergallery_jq/scripts/jcrob/js/jquery.Jcrop.min.js'
 		)
-	);
+	)
+);
 ?>

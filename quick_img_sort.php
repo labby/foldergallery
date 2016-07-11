@@ -100,4 +100,5 @@ if($database->query($sql)){
 
 // Print admin footer
 $admin->print_footer();
+
 ?>
