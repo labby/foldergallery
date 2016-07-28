@@ -30,6 +30,13 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
+/**
+ *  IMPORTANT
+ *  Jquery core and eventually jquery migrate
+ *  have to be loaded via frontend template.
+ *  Both files are not loaded via this addon since version 2.2.0
+**/ 
+
 // Checking Requirements
 
 $PRECHECK['VERSION']        = array(
