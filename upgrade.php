@@ -72,4 +72,8 @@ if (file_exists($temp_path)) {
 		echo "Cannot delete file ".$temp_path.". Please check file permissions and ownership or delete file manually.";
 	}
 }
+
+// delete obsolete directory
+require_once(LEPTON_PATH . '/framework/summary.functions.php');
+rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/highslide');
 ?>
