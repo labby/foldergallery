@@ -71,13 +71,6 @@ $bilder = array(); // hier kommen alle Bilder der aktuellen Kategorie rein
 $error = false;
 $title = PAGE_TITLE;
 
-/** 
- *	load current jQuery
- */
-echo "
-<script src=\"". LEPTON_URL. "/modules/lib_jquery/jquery-core/jquery-core.min.js\" type=\"text/javascript\"></script>
-<script src=\"". LEPTON_URL. "/modules/lib_jquery/jquery-core/jquery-migrate.min.js\" type=\"text/javascript\"></script>
-";
 
 // Wo sind wir?
 $aktuelleKat = (isset($_GET['cat']) && is_string($_GET['cat'])) ?
