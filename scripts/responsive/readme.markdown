@@ -1,5 +1,7 @@
 Responsive-Lightbox
 ===================
+Release 1.4  https://github.com/duncanmcdougall/Responsive-Lightbox/releases
+
 by [Duncan McDougall](http://www.duncanmcdougall.co.uk) | [@duncanmcdougall](http://www.twitter.com/duncanmcdougall)
 
 jQuery responsive lightbox plugin.
