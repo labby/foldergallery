@@ -71,7 +71,7 @@ $pages = substr(PAGES_DIRECTORY, 1);
  * Weitere invisibleFileNames können direkt im Backend der Foldergallery definiert werden.
  */
 
-//Alle Ordner ausschliessen, welche zum Core von WB gehören
+//Alle Ordner ausschliessen, welche zum Core gehören
 $wbCoreFolders = array('account','admins','framework','include','languages','modules',$pages,'search','temp','templates');
 $invisibleFileNames = array('.', '..', $thumbdir1);
 
