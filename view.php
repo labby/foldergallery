@@ -34,18 +34,6 @@ if (defined('LEPTON_PATH')) {
 $lang_file = dirname(__FILE__)."/languages/".LANGUAGE .".php";
 require_once( file_exists($lang_file) ? $lang_file : dirname(__FILE__)."/languages/EN.php" ); 
 
-// check if frontend.css file needs to be included into the <body></body> of view.php
-if((!function_exists('register_frontend_modfiles') || !defined('MOD_FRONTEND_CSS_REGISTERED')) && 
-	file_exists(LEPTON_PATH .'/modules/foldergallery_jq/frontend.css')) {
-	echo '<style type="text/css">';
-		include(LEPTON_PATH .'/modules/foldergallery_jq/frontend.css');
-	echo "\n</style>\n";
-} 
-// check if frontend.js file needs to be included into the <body></body> of view.php
-if((!function_exists('register_frontend_modfiles') || !defined('MOD_FRONTEND_JAVASCRIPT_REGISTERED')) && 
-	file_exists(LEPTON_PATH .'/modules/foldergallery_jq/frontend.js')) {
-	echo '<script type="text/javascript" src="'.LEPTON_URL.'/modules/foldergallery_jq/frontend.js"></script>';
-} 
 
 $generatethumbscounter = 0;
 // Files includen
@@ -61,6 +49,7 @@ $ratio = $settings['ratio']; //Pumpi
 
 // Einstellungen
 // Link zur Seite
+$page_id = PAGE_ID;
 $query_pages = $database->query("SELECT link FROM ".TABLE_PREFIX."pages WHERE page_id = '$page_id' LIMIT 1");
 $page = $query_pages->fetchRow();
 $link = LEPTON_URL.PAGES_DIRECTORY.$page['link'].PAGE_EXTENSION;
