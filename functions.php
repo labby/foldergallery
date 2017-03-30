@@ -96,7 +96,7 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 	//Verzeichnis erstellen, falls noch nicht vorhanden
 	if(!is_dir($thumbFolder)){
 		$u = umask(0);
-		if(!@mkdir($thumbFolder, 0777)){
+		if(!mkdir($thumbFolder, 0777)){
 			echo '<!--p style="color: red; text-align: center;">Fehler beim Verzeichniss erstellen</p-->';
 		}
 		umask($u);
@@ -116,11 +116,11 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 		
 		
 		if($type == 2) {			
-			$original = @imagecreatefromjpeg($file);			
+			$original = imagecreatefromjpeg($file);			
 		} elseif ($type == 1) {
-			$original = @imagecreatefromgif($file);
+			$original = imagecreatefromgif($file);
 		} elseif($type == 3) {
-			$original = @imagecreatefrompng($file);
+			$original = imagecreatefrompng($file);
 		}
 	
 		if ( isset($original) ) {		
