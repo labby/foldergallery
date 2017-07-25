@@ -3,8 +3,8 @@
 /**
  *  @module         foldergallery_jq
  *  @version        see info.php of this module
- *  @author         Jürg Rast; schliffer; Bianka Martinovic; Chio; Pumpi,Aldus; erpe
- *  @copyright      2009-2016 Jürg Rast; schliffer; Bianka Martinovic; Chio; Pumpi,Aldus; erpe 
+ *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
+ *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -245,6 +245,8 @@ $t->set_block('view', 'categories', 'CATEGORIES');
 $t->set_block('categories', 'show_categories', 'SHOW_CATEGORIES');
 $t->set_block('view', 'images', 'IMAGES');
 $t->set_block('images', 'thumbnails', 'THUMBNAILS');
+$t->set_block('images', 'invisiblePre', 'INVISIBLEPRE'); // Für weitere Bilder
+$t->set_block('images', 'invisiblePost', 'INVISIBLEPOST');
 $t->set_block('view', 'hr', 'HR');
 $t->set_block('view', 'error', 'ERROR');  // Dieser Fehler wird nicht ausgegeben, BUG
 $t->set_block('view', 'pagenav', 'PAGE_NAV' );
@@ -356,7 +358,16 @@ if($bilder){
 			'THUMB'		=> $tumburl.'?t='.time(),
 			'CAPTION'	=> $bilder[$i]['caption']
 		));
-		$t->parse('THUMBNAILS','thumbnails',true);
+
+		// Bild sichtbar oder unsichtbar?
+        if( $i < $offset) {
+            $t->parse('INVISIBLEPRE', 'invisiblePre', true);
+        } elseif ($i > ($offset + $settings['pics_pp'] - 1)) {
+            $t->parse('INVISIBLEPOST', 'invisiblePost', true);
+        } else {
+            $t->parse('THUMBNAILS', 'thumbnails', true);
+        }		
+		//		$t->parse('THUMBNAILS','thumbnails',true);
 	}
 	$t->parse('IMAGES','images',true);
 } else {
