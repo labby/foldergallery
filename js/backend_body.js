@@ -36,7 +36,7 @@ $(document).ready(function(){
 // Remember to invoke within jQuery(window).load(...)
 // If you don't, Jcrop may not initialize properly
 $(window).load(function(){
-	
+	if(typeof settingsRatio == "undefined") var settingsRatio = "1";
 	$('#cropbox').Jcrop({
 		onChange: showPreview,
 		onSelect: updateCoords,
