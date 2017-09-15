@@ -42,6 +42,9 @@ require_once( file_exists($lang_file) ? $lang_file : LEPTON_PATH .'/modules/fold
 require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
 require_once (LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
 
+//initialize phplib template engine (needed for LEPTON_2series)
+if (!class_exists("Template")) require_once(LEPTON_PATH."/include/phplib/template.inc");
+
 // Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
 

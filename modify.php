@@ -45,13 +45,6 @@ $leptoken = isset($_GET['leptoken'])
 $mod_folder_path = dirname(__FILE__);
 $mod_folder_url = LEPTON_URL.'/modules/foldergallery_jq';
 
-// Check if backend.css file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists($mod_folder_path ."/backend.css")) {
-	echo '<style type="text/css">';
-	include($mod_folder_path .'/backend.css');
-	echo "\n</style>\n";
-}
-
 // Check if module language file exists for the language set by the user (e.g. DE, EN)
 $lang_file = $mod_folder_path .'/languages/'.LANGUAGE .'.php';
 require_once( file_exists($lang_file) ? $lang_file : $mod_folder_path .'/languages/EN.php');
@@ -59,6 +52,9 @@ require_once( file_exists($lang_file) ? $lang_file : $mod_folder_path .'/languag
 // Files includen
 require_once ($mod_folder_path.'/info.php');
 require_once ($mod_folder_path.'/backend.functions.php');
+
+//initialize phplib template engine (needed for LEPTON_2series)
+if (!class_exists("Template")) require_once(LEPTON_PATH."/include/phplib/template.inc");
 
 // Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
