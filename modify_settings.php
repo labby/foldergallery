@@ -34,19 +34,6 @@ if (defined('LEPTON_PATH')) {
 
 require(LEPTON_PATH.'/modules/admin.php');
 	
-// check if backend.css file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergallery_jq/backend.css")) {
-	echo '<style type="text/css">';
-	include(LEPTON_PATH .'/modules/foldergallery_jq/backend.css');
-	echo "\n</style>\n";
-}
-// check if backend.js file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergallery_jq/backend.js")) {
-	echo '<script type="text/javascript">';
-	include(LEPTON_PATH .'/modules/foldergallery_jq/backend.js');
-	echo "</script>";
-}
-
 // check if module language file exists for the language set by the user (e.g. DE, EN)
 $lang_file = LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php';
 require_once( file_exists($lang_file) ? $lang_file : LEPTON_PATH .'/modules/foldergallery_jq/languages/EN.php' );
@@ -54,18 +41,6 @@ require_once( file_exists($lang_file) ? $lang_file : LEPTON_PATH .'/modules/fold
 // Files includen
 require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
 require_once (LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
-
-// --- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 ---
-$jqa_lightboxes = array();
-if ( file_exists( LEPTON_PATH.'/modules/libraryadmin/foldergallery_include.php' ) ) {
-    include_once LEPTON_PATH.'/modules/libraryadmin/foldergallery_include.php';
-    $jqa_lightboxes = get_lightboxes();
-}
-elseif ( file_exists( LEPTON_PATH.'/modules/jqueryadmin/foldergallery_include.php' ) ) {
-    include_once LEPTON_PATH.'/modules/jqueryadmin/foldergallery_include.php';
-    $jqa_lightboxes = get_lightboxes();
-}
-// --- end jQueryAdmin / LibraryAdmin Integration ---
 
 // Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
@@ -98,33 +73,6 @@ if ( $dh = opendir(dirname(__FILE__).'/templates') ) {
     }
     closedir($dh);
 }
-
-// ----- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 -----
-if ( count( $jqa_lightboxes ) > 0 ) {
-    foreach ( $jqa_lightboxes as $i => $lb ) {
-        if ( is_array( $lb ) ) {
-            foreach( $lb as $item ) {
-                $lightbox_select .= '<option value="'.$i.'/plugins/'.$item.'"';
-                if ( $i.'/plugins/'.$item == $settings['lightbox'] ) {
-                    $lightbox_select .= ' selected="selected"';
-                }
-                $lightbox_select .= '> ' . $i . ': '
-                                 .  $item
-                                 .  '</option>';
-            }
-        }
-        else {
-            $lightbox_select .= '<option value="'.$lb.'"';
-            if ( $lb == $settings['lightbox'] ) {
-                $lightbox_select .= ' selected="selected"';
-            }
-            $lightbox_select .= '> jQueryAdmin: '
-                             .  $lb
-                             .  '</option>';
-        }
-    }
-}
-// ----- end jQueryAdmin / LibraryAdmin Integration -----
 
 $lightbox_select .= '</select>';
 
@@ -173,7 +121,7 @@ if ( ! empty( $settings['invisible'] ) ) {
     $invisibleFileNames = array_merge( $invisibleFileNames, explode( ',', $settings['invisible'] ) );
 }
 
-// WB Systemordner sollen nicht angezeigt werden
+// Systemordner sollen nicht angezeigt werden
 $invisibleFileNames = array_merge($invisibleFileNames, $wbCoreFolders);
 
 // Ordnerauswahl für den Root Folder erstellen

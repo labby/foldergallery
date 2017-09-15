@@ -4,7 +4,7 @@
  *  @module         foldergallery_jq
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast; schliffer; Bianka Martinovic; Chio; Pumpi; Aldus; erpe 
+ *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -33,9 +33,9 @@ if (defined('LEPTON_PATH')) {
 $module_directory	= 'foldergallery_jq';
 $module_name		= 'Foldergallery-jQuery';
 $module_function	= 'page';
-$module_version		= '2.2.1';
-$module_platform	= '2.x';
-$module_author		= 'Jürg Rast; schliffer; Bianka Martinovic; Chio; Pumpi; Aldus; erpe';
+$module_version		= '2.3.0';
+$module_platform	= '3.x';
+$module_author		= 'Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe';
 $module_license		= 'GNU General Public License';
 $module_description	= 'Bildergalerie anhand der Ordnerstruktur erstellen.';
 $module_home		= 'http://cms-lab.com/';

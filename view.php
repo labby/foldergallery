@@ -210,30 +210,12 @@ if (!class_exists("Template")) require_once(LEPTON_PATH."/include/phplib/templat
 // Template
 if (file_exists(dirname(__FILE__).'/templates/view_'.$settings['lightbox'].'.htt')) {
 	$viewTemplate = 'view_'.$settings['lightbox'].'.htt';
-// --- added by WebBird, 29.07.2010 ---
 	$t = new Template(dirname(__FILE__).'/templates', 'remove');
-// --- end added by WebBird, 29.07.2010 ---
 }
-// ----- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 -----
-elseif( file_exists( LEPTON_PATH.'/modules/'.$settings['lightbox'].'/foldergallery_template.htt' ) )
-{
-  $viewTemplate = 'foldergallery_template.htt';
-	$t = new Template(LEPTON_PATH.'/modules/'.$settings['lightbox'], 'remove');
-	$parts = split( '/', $settings['lightbox'] );
-	echo "[[LibInclude?lib=".$parts[0]."&amp;plugin=".$parts[2]."]]";
-}
-elseif( file_exists( LEPTON_PATH.'/modules/jqueryadmin/plugins/'.$settings['lightbox'].'/foldergallery_template.htt' ) )
-{
-  $viewTemplate = 'foldergallery_template.htt';
-	$t = new Template(LEPTON_PATH.'/modules/jqueryadmin/plugins/'.$settings['lightbox'], 'remove');
-	echo "[[jQueryInclude?plugin=".$settings['lightbox']."]]";
-}
-// --- end added by WebBird, 29.07.2010 ---
+
 else {
 	$viewTemplate = 'view.htt';
-// --- added by WebBird, 29.07.2010 ---
 	$t = new Template(dirname(__FILE__).'/templates', 'remove');
-// --- end added by WebBird, 29.07.2010 ---
 }
 
 // --- commented by WebBird, 29.07.2010 ---

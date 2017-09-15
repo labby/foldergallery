@@ -94,12 +94,6 @@ if (isset($_POST['ratio'])) {
 
 if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view_'.$_POST['lightbox'].'.htt' ) ) {
 	$newSettings['lightbox'] = $_POST['lightbox'];
-// ----- jQueryAdmin / LibraryAdmin Integration; last edited 27.01.2011 -----
-} elseif( isset($_POST['lightbox']) && file_exists( LEPTON_PATH.'/modules/'.$_POST['lightbox'].'/foldergallery_template.htt' ) ) {
-	$newSettings['lightbox'] = $_POST['lightbox'];
-} elseif( isset($_POST['lightbox']) && file_exists( LEPTON_PATH.'/modules/jqueryadmin/plugins/'.$_POST['lightbox'].'/foldergallery_template.htt' ) ) {
-	$newSettings['lightbox'] = $_POST['lightbox'];
-// ----- end jQueryAdmin / LibraryAdmin Integration -----
 } else {
 	$newSettings['lightbox'] = '';
 }

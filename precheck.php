@@ -4,7 +4,7 @@
  *  @module         foldergallery_jq
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast; schliffer; Bianka Martinovic; Chio; Pumpi; Aldus; erpe 
+ *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -32,7 +32,7 @@ if (defined('LEPTON_PATH')) {
 
 /**
  *  IMPORTANT
- *  Jquery core and eventually jquery migrate
+ *  Jquery core and (eventually) jquery migrate
  *  have to be loaded via frontend template.
  *  Both files are not loaded via this addon since version 2.2.0
 **/ 
@@ -40,7 +40,7 @@ if (defined('LEPTON_PATH')) {
 // Checking Requirements
 
 $PRECHECK['VERSION']        = array(
-    'VERSION' => '2.0.0',
+    'VERSION' => '3.0.0',
     'OPERATOR' => '>='
 );
 

@@ -128,41 +128,41 @@ function deleteFolder($path) {
 			$res = deleteFolder($path.'/'.$entry);
 		// wenn ein Fehler aufgetreten ist
 		if ($res == -1) { // dies duerfte gar nicht passieren
-			@closedir($dir); // Verzeichnis schliessen
+			closedir($dir); // Verzeichnis schliessen
 		return -2; // normalen Fehler melden
 }
 else if ($res == -2) { // Fehler?
-	@closedir($dir); // Verzeichnis schliessen
+	closedir($dir); // Verzeichnis schliessen
 return -2; // Fehler weitergeben
 }
 else if ($res == -3) { // nicht unterstuetzer Dateityp?
-	@closedir($dir); // Verzeichnis schliessen
+	closedir($dir); // Verzeichnis schliessen
 return -3; // Fehler weitergeben
 }
 else if ($res != 0) { // das duerfe auch nicht passieren...
-	@closedir($dir); // Verzeichnis schliessen
+	closedir($dir); // Verzeichnis schliessen
 return -2; // Fehler zurueck
 }
 }
 else if (is_file($path.'/'.$entry) || is_link($path.'/'.$entry)) {
 	// ansonsten loesche diese Datei / diesen Link
-	$res = @unlink($path.'/'.$entry);
+	$res = unlink($path.'/'.$entry);
 // Fehler?
 if (!$res) {
-	@closedir($dir); // Verzeichnis schliessen
+	closedir($dir); // Verzeichnis schliessen
 return -2; // melde ihn
 }
 }
 else {
 	// ein nicht unterstuetzer Dateityp
-	@closedir($dir); // Verzeichnis schliessen
+	closedir($dir); // Verzeichnis schliessen
 return -3; // tut mir schrecklich leid...
 }
 }
 // schliesse nun das Verzeichnis
-@closedir($dir);
+closedir($dir);
 // versuche nun, das Verzeichnis zu loeschen
-$res = @rmdir($path);
+$res = rmdir($path);
 // gab's einen Fehler?
 if (!$res) {
 	return -2; // melde ihn
