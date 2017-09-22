@@ -72,12 +72,19 @@ $sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE sect
 $query = $database->query($sql);
 while($ergebnis = $query->fetchRow( )){
 	$p = $ergebnis['parent'].'/'.$ergebnis['categorie'] ;
-	if ($ergebnis['parent'] == '-1') {$p = '';}
+	
+	if ($ergebnis['parent'] == '-1') 
+	{
+		$p = '';
+		$root_description = $ergebnis['description'];
+	}
 	if ($p == $aktuelleKat) {
 		$aktuelleKat_id = $ergebnis['id'];
 		break;	
 	}
 }
+
+
 
 //	Falls nichts angezeigt wird, wird die Root Kategorie angezeigt
 if(!$aktuelleKat){
@@ -284,7 +291,9 @@ if($bilder){
                 : 1;
 
 	$t->set_var('CAT_TITLE', $titel);
-	$t->set_var('CAT_DESCRIPTION', $description);
+//	$t->set_var('CAT_DESCRIPTION', $description);
+	$t->set_var('CAT_DESCRIPTION',(isset($root_description)? $root_description : $description));
+	
 
 	if ( is_numeric( $pages ) ) {
 	      	$pages_navi = '<ul class="fg_pages_nav">';

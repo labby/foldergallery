@@ -45,6 +45,7 @@ $leptoken = isset($_GET['leptoken'])
 $mod_folder_path = dirname(__FILE__);
 $mod_folder_url = LEPTON_URL.'/modules/foldergallery_jq';
 
+
 // Check if module language file exists for the language set by the user (e.g. DE, EN)
 $lang_file = $mod_folder_path .'/languages/'.LANGUAGE .'.php';
 require_once( file_exists($lang_file) ? $lang_file : $mod_folder_path .'/languages/EN.php');

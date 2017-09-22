@@ -41,7 +41,7 @@ body {
 }
 
 .view_title {
-    display: none;
+    display: block;
     font-size: 150%;
     font-weight: bold;
 }
