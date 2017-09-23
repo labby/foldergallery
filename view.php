@@ -62,24 +62,43 @@ $title = PAGE_TITLE;
 
 
 // Wo sind wir?
-$aktuelleKat = (isset($_GET['cat']) && is_string($_GET['cat'])) ?
-				$_GET['cat'] : '';
+$aktuelleKat = (isset($_GET['cat']) && is_string($_GET['cat']))
+    ? $_GET['cat']
+    : ''            // #1: Rootpage/Startseite/Eingangsseite
+    ;
+
 $aktuelleKat = htmlspecialchars($aktuelleKat);
 
 // Die id der aktuellen Kategorie herausfinden:
 $aktuelleKat_id = 0;
-$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$section_id.' AND is_empty=0 AND active=1 ORDER BY position DESC';
-$query = $database->query($sql);
-while($ergebnis = $query->fetchRow( )){
+$sRootDescription = NULL;
+$bIsRootPage = false;
+
+$aAlleKategorien = array();
+$database->execute_query(
+    'SELECT * FROM `'.TABLE_PREFIX.'mod_foldergallery_jq_categories` WHERE `section_id`='.$section_id.' AND `is_empty`=0 AND `active`=1 ORDER BY `position` DESC',
+    true,
+    $aAlleKategorien,
+    true
+);
+
+foreach($aAlleKategorien as &$ergebnis)
+{
 	$p = $ergebnis['parent'].'/'.$ergebnis['categorie'] ;
 	
 	if ($ergebnis['parent'] == '-1') 
 	{
-		$p = '';
-		$root_description = $ergebnis['description'];
+		$p = '';    // Siehe #1; Eingangsseite
+		$sRootDescription = $ergebnis['description'];
 	}
-	if ($p == $aktuelleKat) {
+	
+	if ($p == $aktuelleKat)
+	{
 		$aktuelleKat_id = $ergebnis['id'];
+		if( $ergebnis['parent'] == '-1' )
+		{
+		    $bIsRootPage = true;
+		}
 		break;	
 	}
 }
@@ -268,19 +287,16 @@ if($unterKats){
 	}
 	$t->parse('CATEGORIES', 'categories',true);
 } else {
-	// Falls keine Kategorien vorhanden sind kann der Block gel�scht werden
+	// Falls keine Kategorien vorhanden sind kann der Block gelöscht werden
 	$t->clear_var('show_categories');
 	$t->clear_var('categories');
 }
 // Fertig Kategorien angezeigt
 
 // Bilder anzeigen
-if($bilder){
+if($bilder)
+{
 
-	/*$folder = $root_dir.$result['parent'].'/'.$result['categorie'];
-	$pathToFolder = $path.$folder;	
-	$pathToThumb = $pathToFolder.$thumbdir.'/thumb.';
-*/
   //figure out how many pages are needed to display all the thumbs
   if ( count( $bilder ) > $settings['pics_pp'] ) {
     $pages = ceil( count( $bilder ) / $settings['pics_pp'] );
@@ -291,8 +307,8 @@ if($bilder){
                 : 1;
 
 	$t->set_var('CAT_TITLE', $titel);
-//	$t->set_var('CAT_DESCRIPTION', $description);
-	$t->set_var('CAT_DESCRIPTION',(isset($root_description)? $root_description : $description));
+
+	$t->set_var('CAT_DESCRIPTION', ($bIsRootPage === true ? $sRootDescription : $description ) );
 	
 
 	if ( is_numeric( $pages ) ) {
@@ -361,9 +377,13 @@ if($bilder){
 		//		$t->parse('THUMBNAILS','thumbnails',true);
 	}
 	$t->parse('IMAGES','images',true);
-} else {
-$t->clear_var('thumbnails');
-$t->clear_var('images');
+
+} else {    // if($bilder) vorhanden
+
+    $t->clear_var('thumbnails');
+    $t->clear_var('images');
+    
+    $t->set_var('CAT_DESCRIPTION', ($bIsRootPage === true ? $sRootDescription : $description ) );
 }
 
 if($bilder && $unterKats){
