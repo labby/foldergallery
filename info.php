@@ -33,7 +33,7 @@ if (defined('LEPTON_PATH')) {
 $module_directory	= 'foldergallery_jq';
 $module_name		= 'Foldergallery-jQuery';
 $module_function	= 'page';
-$module_version		= '2.3.1';
+$module_version		= '2.3.2';
 $module_platform	= '3.x';
 $module_author		= 'Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe';
 $module_license		= 'GNU General Public License';

@@ -90,6 +90,7 @@ foreach($aAlleKategorien as &$ergebnis)
 	{
 		$p = '';    // Siehe #1; Eingangsseite
 		$sRootDescription = $ergebnis['description'];
+		$sRootTitle = $ergebnis['cat_name'];
 	}
 	
 	if ($p == $aktuelleKat)
@@ -205,7 +206,7 @@ if(count($bilder) != 0) {
 	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories  WHERE section_id='.$section_id.' AND categorie="'.$bildkat.'" AND parent="'.$bildparent.'" LIMIT 1;';
 	$query = $database->query($sql);
 	$result = $query->fetchRow();
-	$titel = $result['cat_name'];
+	$cat_title = $result['cat_name'];
 	$description = $result['description'];
 	
 	if(!empty($result['categorie'])) $folder = $root_dir.$result['parent'].'/'.$result['categorie'].'/';
@@ -244,8 +245,6 @@ else {
 	$t = new Template(dirname(__FILE__).'/templates', 'remove');
 }
 
-// --- commented by WebBird, 29.07.2010 ---
-//$t = new Template(dirname(__FILE__).'/templates', 'remove');
 $t->halt_on_error = 'no';
 $t->set_file('view', $viewTemplate);
 $t->set_block('view', 'CommentDoc'); $t->clear_var('CommentDoc');
@@ -306,10 +305,8 @@ if($bilder)
                 ? $_GET['p']
                 : 1;
 
-	$t->set_var('CAT_TITLE', $titel);
-
-	$t->set_var('CAT_DESCRIPTION', ($bIsRootPage === true ? $sRootDescription : $description ) );
-	
+	$t->set_var('CAT_TITLE', $cat_title);  // 20170926     not clear where this is used, CAT_TITLE should be only in backend
+	$t->set_var('CAT_DESCRIPTION', $description );
 
 	if ( is_numeric( $pages ) ) {
 	      	$pages_navi = '<ul class="fg_pages_nav">';
@@ -382,7 +379,7 @@ if($bilder)
 
     $t->clear_var('thumbnails');
     $t->clear_var('images');
-    
+    $t->set_var('CATEGORIES_TITLE', ($bIsRootPage === true ? $sRootTitle : $cat_title ) );
     $t->set_var('CAT_DESCRIPTION', ($bIsRootPage === true ? $sRootDescription : $description ) );
 }
 
@@ -411,7 +408,7 @@ if ( isset( $_GET['cat'] ) ) {
                .  $link
                .  '?cat=/'.implode('/', array_slice( $path, 0, ($i+1) ) )
                .  '">'.$cat['cat_name'].'</a></li>';
-    }
+	}
 
     $bread .= '</ul><br /><br />';
     $t->set_var( 'CATBREAD', $bread );

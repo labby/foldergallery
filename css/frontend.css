@@ -40,21 +40,31 @@ body {
 	display: none;
 }
 
-.view_title {
+.gallerytitle {
     display: block;
     font-size: 150%;
     font-weight: bold;
 }
 
+.view_title {
+    display: block;
+    font-size: 100%;
+    font-weight: bold;
+}
+
 .categories_title {
-	font-size: 110%;
+    display: block;
+    font-size: 90%;
+    font-style: italic;
+    line-height: 45px;
+}
+
+.categories_desc {
+	font-size: 80%;
 	font-style: Italic;
 	line-height: 45px;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-	ADDS BY PUMPI
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 ul.photostyle {
 	list-style: none;

@@ -11,8 +11,10 @@
 
 
 <div class="gallery">
-  <div class="gallerytitel">
-    <span class="view_title">{VIEW_TITLE}&nbsp;{CATEGORIES_TITLE}</span>&nbsp;<span class="categories_title">{CAT_DESCRIPTION}&nbsp;</span>
+  <div class="gallerytitle">
+    <span class="view_title">{VIEW_TITLE}</span>
+	<span class="categories_title">{CATEGORIES_TITLE}</span>
+	<span class="categories_desc">{CAT_DESCRIPTION}</span>
   </div>
 </div>
 <div class="pagenav" style="text-align: left">{CATBREAD}</div>
