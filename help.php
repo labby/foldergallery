@@ -33,6 +33,11 @@ if (defined('LEPTON_PATH')) {
 require(LEPTON_PATH . '/modules/admin.php');
 require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
 
+// load template engine
+if(!class_exists('Template')) {
+	require_once LEPTON_PATH .'/include/phplib/template.inc';
+}
+
 // check if module language file exists for the language set by the user (e.g. DE, EN)
 if (!file_exists(LEPTON_PATH . '/modules/foldergallery_jq/languages/' . LANGUAGE . '.php')) {
 // no module language file exists for the language set by the user, include default module language file EN.php

@@ -20,5 +20,5 @@
 <p>{BUG_TEXT}</p>
 <br />
 <div style="width:150px;">
-    <input type="button" value="{BACK_STRING}" onclick="{BACK_ONCLICK}" class="FG_button" />
+    <input class="lepsem_save" type="button" value="{BACK_STRING}" onclick="{BACK_ONCLICK}" class="FG_button" />
 </div>
