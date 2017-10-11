@@ -7,8 +7,7 @@ This is a phplib-template for modify_cat.php
 	var settingsRatio = 1;
 	var LEPTON_URL = '{LEPTON_URL}';
 </script>
-<script src="{LEPTON_URL}/modules/foldergallery_jq/scripts/jquery/jquery-insert.js" type="text/javascript"></script>
-<script src="{LEPTON_URL}/modules/foldergallery_jq/scripts/jquery/jquery-include.js" type="text/javascript"></script>
+
 <h2>{MODIFY_CAT_TITLE}</h2><br />
 <h3>{MODIFY_CAT_STRING}</h3>
 <form action="{SAVE_CAT_LINK}" method="post">

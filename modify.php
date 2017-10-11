@@ -77,8 +77,6 @@ echo '
 <script type="text/javascript">
 var LEPTON_URL = "'.LEPTON_URL.'";
 </script>
-<script src="'.$mod_folder_url.'/scripts/jquery/jquery-insert.js" type="text/javascript"></script>
-<script src="'.$mod_folder_url.'/scripts/jquery/jquery-include.js" type="text/javascript"></script>
 ';
 
 // Template
