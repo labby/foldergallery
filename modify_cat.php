@@ -191,8 +191,8 @@ foreach($bilder as $bild) {
 		'IMAGE_VALUE'		=> $bild['thumb_link'].'?t='.time(),
 		'IMAGE_NAME_VALUE'	=> $bild['file_name'],
 		'CAPTION_VALUE'		=> $bild['caption'],
-		'EDIT_THUMB_SOURCE'	=> THEME_URL.'/images/resize_16.png',
-		'DELETE_IMG_SOURCE'	=> THEME_URL.'/images/delete_16.png',
+		'EDIT_THUMB_SOURCE'	=> LEPTON_URL.'/modules/lib_lepton/backend_images/resize_16.png',
+		'DELETE_IMG_SOURCE'	=> LEPTON_URL.'/modules/lib_lepton/backend_images/delete_16.png',
 		'THUMB_EDIT_LINK'	=> LEPTON_URL."/modules/foldergallery_jq/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],	
 		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery_jq/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
 		'COUNTER'			=> $counter

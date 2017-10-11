@@ -157,7 +157,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					."<td width='20px' style='padding-left:".$padding."px'>\n"
 					// Pluszeichen Darsellen
 					.'<a href="javascript: toggle_visibility(\'p'.$result['id'].'\');" title="Erweitern/Reduzieren">'
-					.'<img src="'.THEME_URL.'/images/plus_16.png" onclick="toggle_plus_minus(\''.$result['id'].'\');" name="plus_minus_'.$result['id'].'" border="0" alt="+" />'
+					.'<img src="'.LEPTON_URL.'/modules/lib_lepton/backend_images/plus_16.png" onclick="toggle_plus_minus(\''.$result['id'].'\');" name="plus_minus_'.$result['id'].'" border="0" alt="+" />'
 					.'</a>'
 					// Pluszeichen Ende
 					."</td>\n"
@@ -165,7 +165,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 
 					// Zeile Mit allen Angaben
 					."<td><a href='".$url['edit'].$result['id']."' title='Kategorie bearbeiten'>"
-					.'<img src="'.THEME_URL.'/images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
+					.'<img src="'.LEPTON_URL.'/modules/lib_lepton/backend_images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
 					.htmlentities($result['categorie'])."</a></td>"
 					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
 					
@@ -206,7 +206,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					."<td width='20px' style='padding-left:".$padding."px'></td>\n"
 					// Zeile Mit allen Angaben
 					."<td><a href='".$url['edit'].$result['id']."' title='Kategorie bearbeiten'>"
-					.'<img src="'.THEME_URL.'/images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
+					.'<img src="'.LEPTON_URL.'/modules/lib_lepton/backend_images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
 					.htmlentities($result['categorie'])."</a></td>"
 					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
 					
