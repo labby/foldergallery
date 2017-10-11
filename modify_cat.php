@@ -32,6 +32,11 @@ if (defined('LEPTON_PATH')) {
 
 if(defined('LEPTON_PATH') == false) { exit("Cannot access this file directly");  }
 require(LEPTON_PATH.'/modules/admin.php');
+
+// load template engine
+if(!class_exists('Template')) {
+	require_once LEPTON_PATH .'/include/phplib/template.inc';
+}
 	
 // check if backend.css file needs to be included into <body></body>
 if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergallery_jq/backend.css")) {
