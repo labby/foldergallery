@@ -77,4 +77,8 @@ if (file_exists($temp_path)) {
 require_once(LEPTON_PATH . '/framework/summary.functions.php');
 rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/highslide');
 rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/jquery');
+rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/fancybox');
+rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/galleryview');
+rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/lightbox2');
+rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/pirobox');
 ?>
