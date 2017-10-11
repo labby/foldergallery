@@ -35,15 +35,15 @@ $(document).ready(function(){
  
 // Remember to invoke within jQuery(window).load(...)
 // If you don't, Jcrop may not initialize properly
-$(window).load(function(){
-	if(typeof settingsRatio == "undefined") var settingsRatio = "1";
+
+	var settingsRatio;
+	// if(typeof settingsRatio == "undefined") var settingsRatio = "1";
+	// console.log("hallo: "+settingsRatio);
 	$('#cropbox').Jcrop({
 		onChange: showPreview,
 		onSelect: updateCoords,
-		aspectRatio: settingsRatio
+		aspectRatio: settingsRatio // was 16/9 == 1.777777777777
 	});
-
-});
 
 function showPreview(coords)
 {
