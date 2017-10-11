@@ -73,7 +73,8 @@ if (file_exists($temp_path)) {
 	}
 }
 
-// delete obsolete directory
+// delete obsolete directories
 require_once(LEPTON_PATH . '/framework/summary.functions.php');
 rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/highslide');
+rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/jquery');
 ?>
