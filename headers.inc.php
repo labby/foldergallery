@@ -30,12 +30,14 @@ if (defined('LEPTON_PATH')) {
 
 $mod_headers = array();
 
-$mod_headers = array(
-	'backend' => array(
-		'js' => array(
-		'/modules/lib_jquery/jquery-ui/jquery-ui.min.js',
-		'/modules/foldergallery_jq/scripts/jcrob/js/jquery.Jcrop.min.js'
-		)
-	)
-);
+if(DEFAULT_THEME === "algos") {
+    $mod_headers = array(
+        'backend' => array(
+            'js' => array(
+                '/modules/lib_jquery/jquery-ui/jquery-ui.min.js'
+            )
+        )
+    );
+}
+$mod_headers['backend']['js'][] = '/modules/foldergallery_jq/scripts/jcrob/js/jquery.Jcrop.min.js';
 ?>
