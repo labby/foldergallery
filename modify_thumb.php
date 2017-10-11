@@ -108,12 +108,6 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 				var settingsRatio = \''.$settings['ratio'].'\';
 				var LEPTON_URL =\''.LEPTON_URL.'\';
 			</script>
-<!-- Aldus begin -->
-<script src="'.LEPTON_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-insert.js" type="text/javascript"></script>
-<script src="'.LEPTON_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-include.js" type="text/javascript"></script>
-<!--[if lt IE 7]><script type="text/javascript" src="'.LEPTON_URL.'/modules/foldergallery_jq/scripts/jqery/jquery-pngFix.js"></script><![endif]-->
-<script src="'.LEPTON_URL.'/modules/foldergallery_jq/scripts/jquery/jquery-plugins.js" type="text/javascript"></script>
-<!-- Aldus end -->
 			<h2>'.$MOD_FOLDERGALLERY_JQ['EDIT_THUMB'].'</h2>
 			<p>'.$MOD_FOLDERGALLERY_JQ['EDIT_THUMB_DESCRIPTION'].'</p>
 			<p>'.$full_file_link.'</p>

@@ -45,9 +45,9 @@ function toggle_visibility(id) {
 
 function toggle_plus_minus(id){
 	var plus = new Image;
-	plus.src = theme_url+"/images/plus_16.png";
+	plus.src = LEPTON_URL+"/modules/lib_lepton/backend_images/plus_16.png";
 	var minus = new Image;
-	minus.src = theme_url+"/images/minus_16.png";
+	minus.src = LEPTON_URL+"/modules/lib_lepton/backend_images/minus_16.png";
 
 	var img_src = document.images['plus_minus_' + id].src;
 	if (img_src == plus.src) {

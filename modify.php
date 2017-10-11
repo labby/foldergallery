@@ -75,7 +75,7 @@ if($settings['root_dir'] == 'd41d8cd98f00b204e9800998ecf8427e') {
 
 echo '
 <script type="text/javascript">
-var theme_url = "'.THEME_URL.'";
+var LEPTON_URL = "'.LEPTON_URL.'";
 </script>
 <script src="'.$mod_folder_url.'/scripts/jquery/jquery-insert.js" type="text/javascript"></script>
 <script src="'.$mod_folder_url.'/scripts/jquery/jquery-include.js" type="text/javascript"></script>
@@ -165,7 +165,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 
 					// Zeile Mit allen Angaben
 					."<td><a href='".$url['edit'].$result['id']."' title='Kategorie bearbeiten'>"
-					.'<img src="'.LEPTON_URL.'/modules/lib_lepton/backend_images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
+					.'<img src="'.LEPTON_URL.'/modules/lib_lepton/backend_images/visible_16.png" alt="edit" border="0" align="left" class="lepsem_fg" style="margin-right:5px;" />'
 					.htmlentities($result['categorie'])."</a></td>"
 					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
 					
@@ -176,13 +176,13 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					// Aktionen Buttons
 					."<td width='20'>";					
 					if ($arrup == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery_jq/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
-					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
+					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/up_16.png' border='0' alt='v' /></a>";
 					}					
 					$list .= "</td>"
 					."<td width='20'>";
 					
 					if ($arrdown == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery_jq/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='aAbw&auml;rts verschieben'>"
-					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
+					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					
 					$list .= "</td>";
@@ -190,7 +190,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					
 					"<td width='20'>"
 					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery_jq/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
-					."<img src='".THEME_URL."/images/delete_16.png' border='0' alt='X'></a>"
+					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/delete_16.png' border='0' alt='X'></a>"
 					// Ende Zeile mit allen Angaben
 					*/
 
@@ -206,7 +206,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					."<td width='20px' style='padding-left:".$padding."px'></td>\n"
 					// Zeile Mit allen Angaben
 					."<td><a href='".$url['edit'].$result['id']."' title='Kategorie bearbeiten'>"
-					.'<img src="'.LEPTON_URL.'/modules/lib_lepton/backend_images/visible_16.png" alt="edit" border="0" align="left" style="margin-right: 5px" />'
+					.'<img src="'.LEPTON_URL.'/modules/lib_lepton/backend_images/visible_16.png" alt="edit" border="0" align="left" class="lepsem_fg" style="margin-right:5px;" />'
 					.htmlentities($result['categorie'])."</a></td>"
 					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
 					
@@ -215,13 +215,13 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					// Aktionen Buttons
 					."<td width='20'>";					
 					if ($arrup == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery_jq/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
-					."<img src='".THEME_URL."/images/up_16.png' border='0' alt='v' /></a>";
+					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/up_16.png' border='0' alt='v' /></a>";
 					}					
 					$list .= "</td>"
 					."<td width='20'>";
 					
 					if ($arrdown == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery_jq/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Abw&auml;rts verschieben'>"
-					."<img src='".THEME_URL."/images/down_16.png' border='0' alt='u' />"
+					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					
 					$list .= "</td>";
@@ -229,7 +229,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					
 					."<td width='20'>"
 					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery_jq/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
-					."<img src='".THEME_URL."/images/delete_16.png' border='0' alt='X'></a>"
+					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/delete_16.png' border='0' alt='X'></a>"
 					// Ende Zeile mit allen Angaben
 					*/
 					$list .= "</tr></table>\n";

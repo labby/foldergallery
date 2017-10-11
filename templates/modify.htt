@@ -1,9 +1,9 @@
 <!-- BEGIN CommentDoc -->
 <!-- This is a phplib-template for modify.php -->
 <!-- END CommentDoc -->
-
+<div id="module">
 <h2>{TITEL_BACKEND_STRING}</h2>
-<table cellpadding="5px" cellspacing="0" border="0" width="100%">
+<table cellpadding="5px" cellspacing="5px" border="0" width="100%">
     <tr>
         <td width="33%" align="left">
             <input type="button" value="{SETTINGS_STRING}" onclick="{SETTINGS_ONCLICK}" style="width: 100%"/>
@@ -64,3 +64,4 @@
 	</ul>
 <!-- END ListElement -->
 </div>
+</div><!-- END modify.php -->
