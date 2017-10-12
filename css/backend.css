@@ -68,3 +68,9 @@ li {
 #dragableTable {text-align:center;}
 #dragableTable li {float:left; margin: 4px; }
 #dragableTable td {text-align:center; vertical-align: middle; background-color:#ddd; cursor:'move';}
+
+.fg_interface_button {
+    border: 0 !important;
+    margin-top: 13px;
+    width: 160px !important;
+}

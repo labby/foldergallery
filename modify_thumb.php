@@ -125,8 +125,8 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 					<input type="hidden" id="y" name="y" />
 					<input type="hidden" id="w" name="w" />
 					<input type="hidden" id="h" name="h" />
-					<input style="width: 130px;" type="submit" value="'.$MOD_FOLDERGALLERY_JQ['EDIT_THUMB_BUTTON'].'" /><br />
-					<input style="width: 130px;" type="button" value="'.$TEXT['CANCEL'].'" onClick="parent.location=\''.LEPTON_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.$leptoken.'\'"/>
+					<input class="lepsem_save fg_interface_button" type="submit" value="'.$MOD_FOLDERGALLERY_JQ['EDIT_THUMB_BUTTON'].'" /><br />
+					<input class="lepsem_reset fg_interface_button" type="button" value="'.$TEXT['CANCEL'].'" onClick="parent.location=\''.LEPTON_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.$leptoken.'\'"/>
 				</form>
 			</div>';
 		}
