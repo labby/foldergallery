@@ -33,52 +33,26 @@ if (defined('LEPTON_PATH')) {
 /**
  *  delete not needed files
  */
-$temp_path = LEPTON_PATH."/modules/foldergallery_jq/backend.js";
-if (file_exists($temp_path)) {
-	$result = unlink ($temp_path);
-	if (false === $result) {
-		echo "Cannot delete file ".$temp_path.". Please check file permissions and ownership or delete file manually.";
-	}
-}
+$file_names = array(
+	"/modules/foldergallery_jq/backend.js",
+	"/modules/foldergallery_jq/backend.css",
+	"/modules/foldergallery_jq/backend_body.js",
+	"/modules/foldergallery_jq/frontend.js",
+	"/modules/foldergallery_jq/frontend.css"
+); 
+LEPTON_handle::delete_obsolete_files ($file_names); 
+ 
+/**
+ *  delete obsolete directories
+ */
+$directory_names = array(
+	'/modules/foldergallery_jq/scripts/highslide',
+	'/modules/foldergallery_jq/scripts/jquery',
+	'/modules/foldergallery_jq/scripts/fancybox',
+	'/modules/foldergallery_jq/scripts/galleryview',
+	'/modules/foldergallery_jq/scripts/lightbox2',
+	'/modules/foldergallery_jq/scripts/pirobox'
+);  
+LEPTON_handle::delete_obsolete_directories($directory_names);
 
-$temp_path = LEPTON_PATH."/modules/foldergallery_jq/backend.css";
-if (file_exists($temp_path)) {
-	$result = unlink ($temp_path);
-	if (false === $result) {
-		echo "Cannot delete file ".$temp_path.". Please check file permissions and ownership or delete file manually.";
-	}
-}
-
-$temp_path = LEPTON_PATH."/modules/foldergallery_jq/backend_body.js";
-if (file_exists($temp_path)) {
-	$result = unlink ($temp_path);
-	if (false === $result) {
-		echo "Cannot delete file ".$temp_path.". Please check file permissions and ownership or delete file manually.";
-	}
-}
-
-$temp_path = LEPTON_PATH."/modules/foldergallery_jq/frontend.js";
-if (file_exists($temp_path)) {
-	$result = unlink ($temp_path);
-	if (false === $result) {
-		echo "Cannot delete file ".$temp_path.". Please check file permissions and ownership or delete file manually.";
-	}
-}
-
-$temp_path = LEPTON_PATH."/modules/foldergallery_jq/frontend.css";
-if (file_exists($temp_path)) {
-	$result = unlink ($temp_path);
-	if (false === $result) {
-		echo "Cannot delete file ".$temp_path.". Please check file permissions and ownership or delete file manually.";
-	}
-}
-
-// delete obsolete directories
-require_once(LEPTON_PATH . '/framework/summary.functions.php');
-rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/highslide');
-rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/jquery');
-rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/fancybox');
-rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/galleryview');
-rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/lightbox2');
-rm_full_dir(LEPTON_PATH . '/modules/foldergallery_jq/scripts/pirobox');
 ?>

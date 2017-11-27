@@ -30,7 +30,8 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php 
 
-$database->query("DROP TABLE IF EXISTS `" .TABLE_PREFIX ."mod_foldergallery_jq_settings`");
-$database->query("DROP TABLE IF EXISTS `" .TABLE_PREFIX ."mod_foldergallery_jq_files`");
-$database->query("DROP TABLE IF EXISTS `" .TABLE_PREFIX ."mod_foldergallery_jq_categories`");
+LEPTON_handle::drop_table("mod_foldergallery_jq_settings`");
+LEPTON_handle::drop_table("mod_foldergallery_jq_files`");
+LEPTON_handle::drop_table("mod_foldergallery_jq_categories`");
+
 ?>
