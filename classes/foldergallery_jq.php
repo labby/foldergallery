@@ -27,7 +27,7 @@ class foldergallery_jq extends LEPTON_class
 	// Des gleiche wie oben, aber ohne Slash
 	// Wird für die Suche benötigt
 	const FG_THUMBDIR1 = 'fg-thumbs'; 
-	const FG_PAGES = substr(PAGES_DIRECTORY, 1);
+	const FG_PAGES = PAGES_DIRECTORY;
 
 	/**
 	 * Diese Zeilen nur ändern wenn du genau weisst was du tust! 
@@ -45,7 +45,7 @@ class foldergallery_jq extends LEPTON_class
 	public static $instance;
 	public function initialize() 
 	{
-		//eventual declaration
+		 //eventual declaration
 	}
 
 }

@@ -29,8 +29,7 @@ if (defined('LEPTON_PATH')) {
 	}
 }
 // end include class.secure.php
-
-$admin = new LEPTON_admin('Pages', 'pages_modify');
+global $MOD_FOLDERGALLERY_JQ;
 
 $file_names = array(
 '/modules/foldergallery_jq/backend.functions.php',
@@ -135,7 +134,7 @@ if(count($ergebnisse) == 0) {
 		$parent_id = $ergebnisse[$i]['id'];
 		
 		$folder = $root_dir.$cat;
-		$pathToFolder = $path.$folder.'/';
+		$pathToFolder = foldergallery_jq::FG_PATH.$folder.'/';
 		
 		$bildfilename = 'folderpreview.jpg';
 		
@@ -294,6 +293,7 @@ if($bilder)
 {
 
   //figure out how many pages are needed to display all the thumbs
+  $pages = '';
   if ( count( $bilder ) > $settings['pics_pp'] ) {
     $pages = ceil( count( $bilder ) / $settings['pics_pp'] );
   }

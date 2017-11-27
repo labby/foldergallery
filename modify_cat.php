@@ -30,6 +30,7 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
+global $MOD_FOLDERGALLERY_JQ;
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 $file_names = array(
