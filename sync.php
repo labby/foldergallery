@@ -30,23 +30,13 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
+$admin = new LEPTON_admin('Pages', 'pages_modify');
 
-require(LEPTON_PATH.'/modules/admin.php');
-
-// Direkten Zugriff verhindern
-if (!defined('LEPTON_PATH')) die (header('Location: index.php'));
-
-// check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
-	// no module language file exists for the language set by the user, include default module language file DE.php
-	require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/DE.php');
-} else {
-	// a module language file exists for the language defined by the user, load it
-	require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
-}
-
-require_once(LEPTON_PATH.'/modules/foldergallery_jq/info.php');
-require_once(LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
+$file_names = array(
+'/modules/foldergallery_jq/backend.functions.php',
+'/modules/foldergallery_jq/register_language.php'
+);
+LEPTON_handle::include_files ($file_names);
 
 $settings = getSettings($section_id);
 

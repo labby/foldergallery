@@ -29,22 +29,16 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-require(LEPTON_PATH.'/modules/admin.php');
+$admin = new LEPTON_admin('Pages', 'pages_modify');
 
-// check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
-// no module language file exists for the language set by the user, include default module language file DE.php
-require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/DE.php');
-} else {
-// a module language file exists for the language defined by the user, load it
-require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
-}
+$file_names = array(
+'/modules/foldergallery_jq/backend.functions.php',
+'/modules/foldergallery_jq/register_language.php',
+'/include/phplib/template.inc'
+);
+LEPTON_handle::include_files ($file_names);
 
-// Files includen
-require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
-require_once (LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
-
-//get the CSS
+//get the Jcrop CSS
 echo '<link rel="stylesheet" type="text/css" href="'.LEPTON_URL.'/modules/foldergallery_jq/scripts/jcrob/css/jquery.Jcrop.css" /> ';
 
 $cat_id = $_GET['cat_id'];
@@ -72,9 +66,9 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 		}
 		else $parent = '';
 		
-		$full_file_link = $url.$root_dir.$parent.'/'.$bildfilename;
-		$full_file = $path.$root_dir.$parent.'/'.$bildfilename;
-		$thumb_file = $path.$root_dir.$parent.$thumbdir.'/'.$bildfilename;
+		$full_file_link = foldergallery_jq::FG_URL.$root_dir.$parent.'/'.$bildfilename;
+		$full_file = foldergallery_jq::FG_PATH.$root_dir.$parent.'/'.$bildfilename;
+		$thumb_file = foldergallery_jq::FG_PATH.$root_dir.$parent.foldergallery_jq::FG_THUMBDIR.'/'.$bildfilename;
 		
 		if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		{	

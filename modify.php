@@ -183,14 +183,13 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					
-					$list .= "</td>";
-					/* LÖSCHEN funktioniert ohnehin nicht wirklich, weil die Verzeichnisse beim Synchronisieren wieder auftauchen
+					$list .= "</td>"
 					
-					"<td width='20'>"
+					."<td width='20'>"
 					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery_jq/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
-					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/delete_16.png' border='0' alt='X'></a>"
+					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/delete_16.png' border='0' alt='X'></a>";
 					// Ende Zeile mit allen Angaben
-					*/
+					
 
 
 					$list .= "</tr></table>\n"
@@ -222,14 +221,13 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					
-					$list .= "</td>";
-					/* LÖSCHEN funktioniert ohnehin nicht wirklich, weil die Verzeichnisse beim Synchronisieren wieder auftauchen
+					$list .= "</td>"
 					
 					."<td width='20'>"
 					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery_jq/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
-					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/delete_16.png' border='0' alt='X'></a>"
+					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/delete_16.png' border='0' alt='X'></a>";
 					// Ende Zeile mit allen Angaben
-					*/
+
 					$list .= "</tr></table>\n";
 		}
 	}	

@@ -31,19 +31,14 @@ if (defined('LEPTON_PATH')) {
 // end include class.secure.php
 
 // Admin Backend erstellen
+$admin = new LEPTON_admin('Pages', 'pages_modify');
 
-require(LEPTON_PATH.'/modules/admin.php');
-	
-// check if module language file exists for the language set by the user (e.g. DE, EN)
-$lang_file = LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php';
-require_once( file_exists($lang_file) ? $lang_file : LEPTON_PATH .'/modules/foldergallery_jq/languages/EN.php' );
-
-// Files includen
-require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
-require_once (LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
-
-//initialize phplib template engine (needed for LEPTON_2series)
-if (!class_exists("Template")) require_once(LEPTON_PATH."/include/phplib/template.inc");
+$file_names = array(
+'/modules/foldergallery_jq/backend.functions.php',
+'/modules/foldergallery_jq/register_language.php',
+'/include/phplib/template.inc'
+);
+LEPTON_handle::include_files ($file_names);
 
 // Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
@@ -121,11 +116,11 @@ $t->set_var(array(
 ));
 
 if ( ! empty( $settings['invisible'] ) ) {
-    $invisibleFileNames = array_merge( $invisibleFileNames, explode( ',', $settings['invisible'] ) );
+    $invisibleFileNames = array_merge( foldergallery_jq::INVISIBLE_FILE_NAMES, explode( ',', $settings['invisible'] ) );
 }
 
 // Systemordner sollen nicht angezeigt werden
-$invisibleFileNames = array_merge($invisibleFileNames, $wbCoreFolders);
+$invisibleFileNames = array_merge(foldergallery_jq::INVISIBLE_FILE_NAMES, foldergallery_jq::CORE_FOLDERS);
 
 // Ordnerauswahl für den Root Folder erstellen
 $ordnerliste = getFolderData($path, array(), $invisibleFileNames, 2);

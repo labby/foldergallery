@@ -30,33 +30,14 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-require(LEPTON_PATH.'/modules/admin.php');
+$admin = new LEPTON_admin('Pages', 'pages_modify');
 
-// check if backend.css file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergallery_jq/backend.css")) {
-echo '<style type="text/css">';
-include(LEPTON_PATH .'/modules/foldergallery_jq/backend.css');
-echo "\n</style>\n";
-}
-// check if backend.js file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergaller/backend.js")) {
-echo '<script type="text/javascript">';
-include(LEPTON_PATH .'/modules/foldergallery_jq/backend.js');
-echo "</script>";
-}
+$file_names = array(
+'/modules/foldergallery_jq/backend.functions.php',
+'/modules/foldergallery_jq/register_language.php'
+);
+LEPTON_handle::include_files ($file_names);
 
-// check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
-// no module language file exists for the language set by the user, include default module language file DE.php
-require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/DE.php');
-} else {
-// a module language file exists for the language defined by the user, load it
-require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
-}
-
-// Files includen
-require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
-require_once (LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
 
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 	$settings = getSettings($section_id);
@@ -68,16 +49,15 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 		$result = $query->fetchRow( );
 		$bildfilename = $result['file_name'];
 		$parent_id = $result['parent_id'];
-		//echo '<h2>'.$parent_id.'</h2>' ;
 		
 		$query2 = $database->query('SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id='.$parent_id.' LIMIT 1;');
 		$categorie = $query2->fetchRow();
 		$parent   = $categorie['parent'].'/'.$categorie['categorie'];
 		$folder = $root_dir.$parent;
-		$pathToFolder = $path.$folder.'/';
+		$pathToFolder = foldergallery_jq::FG_PATH.$folder.'/';
 				
-		$pathToFile = $path.$folder.'/'.$bildfilename;	
-		$pathToThumb = $path.$folder.$thumbdir.'/thumb.'.$bildfilename;				
+		$pathToFile = foldergallery_jq::FG_PATH.$folder.'/'.$bildfilename;	
+		$pathToThumb = foldergallery_jq::FG_PATH.$folder.foldergallery_jq::FG_THUMBDIR.'/thumb.'.$bildfilename;				
 		deleteFile($pathToFile);
 		deleteFile($pathToThumb);
 		

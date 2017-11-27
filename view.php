@@ -30,15 +30,14 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-// check if module language file exists for the language set by the user (e.g. DE, EN)
-$lang_file = dirname(__FILE__)."/languages/".LANGUAGE .".php";
-require_once( file_exists($lang_file) ? $lang_file : dirname(__FILE__)."/languages/EN.php" ); 
+$admin = new LEPTON_admin('Pages', 'pages_modify');
 
-
-$generatethumbscounter = 0;
-// Files includen
-require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
-require_once (LEPTON_PATH.'/modules/foldergallery_jq/functions.php');
+$file_names = array(
+'/modules/foldergallery_jq/backend.functions.php',
+'/modules/foldergallery_jq/register_language.php',
+'/include/phplib/template.inc'
+);
+LEPTON_handle::include_files ($file_names);
 
 // Foldergallery Einstellungen
 $settings = getSettings($section_id);
@@ -67,7 +66,7 @@ $aktuelleKat = (isset($_GET['cat']) && is_string($_GET['cat']))
     : ''            // #1: Rootpage/Startseite/Eingangsseite
     ;
 
-$aktuelleKat = htmlspecialchars($aktuelleKat);
+//$aktuelleKat = htmlspecialchars($aktuelleKat);
 
 // Die id der aktuellen Kategorie herausfinden:
 $aktuelleKat_id = 0;
@@ -164,10 +163,10 @@ if(count($ergebnisse) == 0) {
 			}
 		}
 		
-		$pathToFolder = $path.$folder.'/';
-		$pathToThumb = $path.$folder.$thumbdir.'/';
-		$urlToFolder = $url.$folder.'/';		
-		$urlToThumb = $url.$folder.$thumbdir.'/';
+		$pathToFolder = foldergallery_jq::FG_PATH.$folder.'/';
+		$pathToThumb = foldergallery_jq::FG_PATH.$folder.foldergallery_jq::FG_THUMBDIR.'/';
+		$urlToFolder = foldergallery_jq::FG_URL.$folder.'/';		
+		$urlToThumb = foldergallery_jq::FG_URL.$folder.foldergallery_jq::FG_THUMBDIR.'/';
 		
 		$unterKats[$i]['thumb'] = $urlToThumb.$bildfilename;     //LEPTON_URL.$bildLinks['thumb_link'];
 		// Eventuell wird die Gallerie zum ersten mal betrachtet
@@ -211,11 +210,11 @@ if(count($bilder) != 0) {
 	
 	if(!empty($result['categorie'])) $folder = $root_dir.$result['parent'].'/'.$result['categorie'].'/';
 	else $folder = $root_dir.$result['parent'].'/';
-	$pathToFolder = $path.$folder.'/';	
-	$pathToThumb = $path.$folder.$thumbdir.'/';
+	$pathToFolder = foldergallery_jq::FG_PATH.$folder.'/';	
+	$pathToThumb = foldergallery_jq::FG_PATH.$folder.foldergallery_jq::FG_THUMBDIR.'/';
 	
-	$urlToFolder = $url.$folder;		
-	$urlToThumb = $url.$folder.$thumbdir.'/';
+	$urlToFolder = foldergallery_jq::FG_URL.$folder;		
+	$urlToThumb = foldergallery_jq::FG_URL.$folder.foldergallery_jq::FG_THUMBDIR.'/';
 	
 }
 
@@ -231,8 +230,6 @@ if($aktuelleKat){
 	$back_link = '#';
 }
 
-//initialize phplib template engine (needed for LEPTON_2series)
-if (!class_exists("Template")) require_once(LEPTON_PATH."/include/phplib/template.inc");
 
 // Template
 if (file_exists(dirname(__FILE__).'/templates/view_'.$settings['lightbox'].'.htt')) {

@@ -30,8 +30,9 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
+$admin = new LEPTON_admin('Pages', 'pages_modify');
+
 $file_names = array(
-'/modules/admin.php',
 '/modules/foldergallery_jq/backend.functions.php',
 '/modules/foldergallery_jq/register_language.php'
 );
@@ -53,7 +54,8 @@ if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
 	if($result = $query->fetchRow( )){
 		// Dateien löschen
 		$settings = getSettings($section_id);
-		$delete_path = $path.$settings['root_dir'].$result['parent'].'/'.$result['categorie'];
+		$delete_path = foldergallery_jq::FG_PATH.$settings['root_dir'].$result['parent'].'/'.$result['categorie'];
+
 		//deleteFolder($delete_path);
 		// DB Einträge löschen
 		rek_db_delete($cat_id);

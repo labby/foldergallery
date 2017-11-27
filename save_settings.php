@@ -30,14 +30,13 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-require(LEPTON_PATH.'/modules/admin.php');
+$admin = new LEPTON_admin('Pages', 'pages_modify');
 
-// check if module language file exists for the language set by the user (e.g. DE, EN)
-$lang_file = dirname(__FILE__)."/languages/".LANGUAGE .".php";
-require_once( file_exists($lang_file) ? $lang_file : dirname(__FILE__)."/languages/EN.php" ); 
-
-require_once(LEPTON_PATH.'/modules/foldergallery_jq/info.php');
-require_once(LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
+$file_names = array(
+'/modules/foldergallery_jq/backend.functions.php',
+'/modules/foldergallery_jq/register_language.php'
+);
+LEPTON_handle::include_files ($file_names);
 
 $oldSettings = getSettings($section_id);
 $newSettings = array();
@@ -129,18 +128,16 @@ if(($oldSettings['thumb_size'] != $newSettings['thumb_size'] || $oldSettings['ra
 	$database->execute_query( $sql, true, $all_data );
 	
 	foreach($all_data as $link) {
-		$pathToFolder = $path.$oldSettings['root_dir'].$link['parent'].'/'.$link['categorie'].$thumbdir;
+		$pathToFolder = foldergallery_jq::FG_PATH.$oldSettings['root_dir'].$link['parent'].'/'.$link['categorie'].$thumbdir;
 		echo '<center><br/>Delete: '.$pathToFolder.'</center>';
 		deleteFolder($pathToFolder);
 	}
 	
-	$pathToFolder = $path.$oldSettings['root_dir'].$thumbdir;
+	$pathToFolder = foldergallery_jq::FG_PATH.$oldSettings['root_dir'].foldergallery_jq::FG_THUMBDIR;
 	echo '<center><br/>Delete: '.$pathToFolder.'</center><br />';
 	deleteFolder($pathToFolder);
 }	
 
-///Chio verändert: Orig: // Ok, Ordner hat gewechselt, also alte Thumbs löschen
-//Wieso thumbs löschen, wenn sich root-dir geändert hat? Die Thumbs sind bei den Bildern - egal wo.
 	
 if($oldSettings['root_dir'] != $newSettings['root_dir']){
 	
