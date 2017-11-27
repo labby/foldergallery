@@ -34,11 +34,12 @@ if (defined('LEPTON_PATH')) {
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 $file_names = array(
-'/modules/foldergallery_jq/backend.functions.php',
-'/modules/foldergallery_jq/register_language.php',
-'/include/phplib/template.inc'
+    '/modules/foldergallery_jq/backend.functions.php',
+    '/include/phplib/template.inc'
 );
 LEPTON_handle::include_files ($file_names);
+
+$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->lang;
 
 // Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
@@ -123,7 +124,7 @@ if ( ! empty( $settings['invisible'] ) ) {
 $invisibleFileNames = array_merge(foldergallery_jq::INVISIBLE_FILE_NAMES, foldergallery_jq::CORE_FOLDERS);
 
 // Ordnerauswahl für den Root Folder erstellen
-$ordnerliste = getFolderData($path, array(), $invisibleFileNames, 2);
+$ordnerliste = getFolderData(foldergallery_jq::FG_PATH, array(), $invisibleFileNames, 2);
 
 foreach($ordnerliste as $ordner) {
 	$t->set_var('ORDNER', $ordner);

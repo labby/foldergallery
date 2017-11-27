@@ -219,7 +219,6 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 	//Alle Angaben aus dem Filesystem holen
 	$allData = getFolderData($searchFolder, $extensions, $invisible);
 	//natsort($allData); # ! Bringt es das?
-	die(LEPTON_tools::display($allData));
 	//Angaben auswerten
 	$categories = array ();
 	$files = array ();
@@ -245,7 +244,7 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 			unset ($einzelteile[$letztesElement]);
 			$parent = implode('/', $einzelteile);
 			$parent = $searchCategorie.$parent;			
-			$fileLink = $url.$galerie['root_dir'].$parent."/".$fileName; 
+			$fileLink = foldergallery_jq::FG_URL.$galerie['root_dir'].$parent."/".$fileName; 
 			$fileLink = str_replace(LEPTON_URL, '', $fileLink);
 		
 			$files[] = array (
@@ -270,7 +269,7 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 	foreach ($categories as & $nameCat) {
 		$catName = $nameCat['categorie'];
 		foreach ($categories as $searchCat) {
-			if ((strpos($searchCat['parent'], $catName) !== false)AND(!$searchCat['is_empty'])) {
+	    	if ((strpos($searchCat['parent'], $catName) !== false)AND(!$searchCat['is_empty'])) {
 				$nameCat['is_empty'] = 0;
 				break;
 			}
@@ -317,6 +316,7 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 		$deleteSQL .= ';';	
 		$database->query($deleteSQL);
 	}
+	
 	if(strlen($insertSQL) != $insertLaenge){
 		// Jetzt fügen wir die neuen Einträge hinzu
 		$insertSQL = substr($insertSQL, 0, -1).";";

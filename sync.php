@@ -33,8 +33,7 @@ if (defined('LEPTON_PATH')) {
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 $file_names = array(
-    '/modules/foldergallery_jq/backend.functions.php',
-//     '/modules/foldergallery_jq/register_language.php'
+    '/modules/foldergallery_jq/backend.functions.php'
 );
 LEPTON_handle::include_files ($file_names);
 
@@ -51,28 +50,30 @@ if(syncDB($settings)) {
 
 	// Wieder alle Angaben aus der DB holen um Sortierung festzulegen
 	$results = array();
-	$sql = "SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_jq_categories WHERE section_id =".$section_id;
+	$sql = "SELECT * FROM `".TABLE_PREFIX."mod_foldergallery_jq_categories` WHERE `section_id` =".$section_id;
 	$query = $database->query($sql);
 	
 	if ( $query->numRows() > 0 ) {
 		
     	while($result = $query->fetchRow()) {
 			
-			$folder = $settings['root_dir'].'/'.$result['parent'].'/'.$result['categorie'];
-			$pathToFolder = $path.$folder;
-			if ($result['parent'] != -1) {; //nicht die roots;
+			$folder = $settings['root_dir'].$result['parent'].'/';//.$result['categorie'];
+			$pathToFolder = foldergallery_jq::FG_PATH.$folder;
+			echo "<p>call ".$pathToFolder."</p>";
+			if ($result['parent'] != '-1') {; //nicht die roots;
 				//checken, ob es das Verzeichnis noch gibt:
 				if(!is_dir($pathToFolder)){
-					$delete_sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id="'.$result['id'].'";';
-					$database->query($delete_sql);
+					//$delete_sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id="'.$result['id'].'";';
+					//$database->query($delete_sql);
+					
 					//echo '<p>DELETE: '.$pathToFolder. '</p>';
-					continue;
+					//continue;
 				}
 			}
 		
     		$results[] = $result;
     	}
-
+// die(LEPTON_tools::display($results));
     	$niveau = 0;
     	// Alle Kategorien durchlaufen zum Kinder und Parents und Level zuzuordnen
     	foreach($results as &$cat) {

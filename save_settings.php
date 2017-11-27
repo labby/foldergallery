@@ -33,10 +33,12 @@ if (defined('LEPTON_PATH')) {
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 $file_names = array(
-'/modules/foldergallery_jq/backend.functions.php',
-'/modules/foldergallery_jq/register_language.php'
+    '/modules/foldergallery_jq/backend.functions.php'
 );
 LEPTON_handle::include_files ($file_names);
+
+$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->lang;
+
 
 $oldSettings = getSettings($section_id);
 $newSettings = array();
