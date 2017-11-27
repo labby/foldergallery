@@ -27,7 +27,7 @@ class foldergallery_jq extends LEPTON_class
 	// Des gleiche wie oben, aber ohne Slash
 	// Wird für die Suche benötigt
 	const FG_THUMBDIR1 = 'fg-thumbs'; 
-	const FG_PAGES = PAGES_DIRECTORY;
+ 	const FG_PAGES = PAGES_DIRECTORY;
 
 	/**
 	 * Diese Zeilen nur ändern wenn du genau weisst was du tust! 
@@ -35,17 +35,20 @@ class foldergallery_jq extends LEPTON_class
 	 * Weitere invisibleFileNames können direkt im Backend der Foldergallery definiert werden.
 	 */
 
-	//Alle Ordner ausschliessen, welche zum Core gehören
+	// Alle Ordner ausschliessen, welche zum Core gehören
 	const CORE_FOLDERS = array('account','admins','framework','include','languages','modules',self::FG_PAGES,'search','temp','templates');
 	const INVISIBLE_FILE_NAMES = array('.', '..', self::FG_THUMBDIR1);
 
 	const FG_MB_LIMIT = 2; // Ab dieser Größe des Images wird kein Thumb mehr erzeugt.
 	
+	public $lang = array();
 	
 	public static $instance;
+	
 	public function initialize() 
 	{
-		 //eventual declaration
+		 require_once dirname(__DIR__)."/register_language.php";
+		 $this->lang = $MOD_FOLDERGALLERY_JQ;
 	}
 
 }

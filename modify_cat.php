@@ -30,15 +30,15 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-global $MOD_FOLDERGALLERY_JQ;
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 $file_names = array(
-'/modules/foldergallery_jq/backend.functions.php',
-'/modules/foldergallery_jq/register_language.php',
-'/include/phplib/template.inc'
+    '/modules/foldergallery_jq/backend.functions.php',
+    '/include/phplib/template.inc'
 );
 LEPTON_handle::include_files ($file_names);
+
+$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->lang;
 
 $settings = getSettings($section_id);
 $thumb_size = $settings['thumb_size']; //Chio

@@ -39,26 +39,21 @@ $leptoken = isset($_GET['leptoken'])
 	: ""
 	;
 
-/**
- *	Some 'shortcuts'
- */
-$mod_folder_path = dirname(__FILE__);
-$mod_folder_url = LEPTON_URL.'/modules/foldergallery_jq';
+$file_names = array(
+    '/modules/foldergallery_jq/backend.functions.php',
+    '/include/phplib/template.inc'
+);
+LEPTON_handle::include_files ($file_names);
 
-
-// Check if module language file exists for the language set by the user (e.g. DE, EN)
-$lang_file = $mod_folder_path .'/languages/'.LANGUAGE .'.php';
-require_once( file_exists($lang_file) ? $lang_file : $mod_folder_path .'/languages/EN.php');
-
-// Files includen
-require_once ($mod_folder_path.'/info.php');
-require_once ($mod_folder_path.'/backend.functions.php');
-
-//initialize phplib template engine (needed for LEPTON_2series)
-if (!class_exists("Template")) require_once(LEPTON_PATH."/include/phplib/template.inc");
+$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->lang;
 
 // Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
+
+/**
+ *	Some 'shortcuts'
+ */
+$mod_folder_url = LEPTON_URL.'/modules/foldergallery_jq';
 
 // Falls noch keine Einstellungen gemacht wurden auf die Einstellungsseite umleiten
 if($settings['root_dir'] == 'd41d8cd98f00b204e9800998ecf8427e') {
@@ -80,7 +75,7 @@ var LEPTON_URL = "'.LEPTON_URL.'";
 ';
 
 // Template
-$t = new Template($mod_folder_path.'/templates', 'remove');
+$t = new Template(dirname(__FILE__).'/templates', 'remove');
 $t->halt_on_error = 'no';
 $t->set_file('modify', 'modify.htt');
 // clear the comment-block, if present

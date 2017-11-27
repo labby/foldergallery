@@ -45,8 +45,10 @@ require_once (LEPTON_PATH.'/modules/foldergallery_jq/functions.php');
 
 function scanDirectories($rootDir, $allowedExtensions = array (), $invisibleFileNames = array (),
 $modus = 1, $rekursiv = true, $allData = array ()) {
+	
 	// run through content of root directory
 	$dirContent = scandir($rootDir);
+	
 	foreach ($dirContent as $content) {
 		// filter all files not accessible
 		$path = $rootDir.'/'.$content;
@@ -208,15 +210,16 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 	
 	
 	// Daten Vorbereiten
-	$rootDir = $path.$galerie['root_dir'];
+	$rootDir = foldergallery_jq::FG_PATH.$galerie['root_dir'];
 	$searchFolder = $rootDir.$searchCategorie;
 	$extensions = explode(',', $galerie['extensions']);
-	$invisible = array_merge($invisibleFileNames, explode(',', $galerie['invisible']));
+	
+	$invisible = array_merge( foldergallery_jq::INVISIBLE_FILE_NAMES, explode(',', $galerie['invisible']));
 
 	//Alle Angaben aus dem Filesystem holen
 	$allData = getFolderData($searchFolder, $extensions, $invisible);
 	//natsort($allData); # ! Bringt es das?
-	
+	die(LEPTON_tools::display($allData));
 	//Angaben auswerten
 	$categories = array ();
 	$files = array ();
