@@ -45,9 +45,8 @@ $file_names = array(
 );
 LEPTON_handle::include_files ($file_names);
 
-$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->lang;
+$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->language;
 
-// Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
 
 /**

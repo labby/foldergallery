@@ -40,17 +40,11 @@ class foldergallery_jq extends LEPTON_class
 	const INVISIBLE_FILE_NAMES = array('.', '..', self::FG_THUMBDIR1);
 
 	const FG_MB_LIMIT = 2; // Ab dieser Größe des Images wird kein Thumb mehr erzeugt.
-	
-	public $lang = array();
-	
+
 	public static $instance;
 	
 	public function initialize() 
 	{
-		 require_once dirname(__DIR__)."/register_language.php";
-		 $this->lang = $MOD_FOLDERGALLERY_JQ;
+
 	}
-
 }
-
-?>
