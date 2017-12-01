@@ -39,7 +39,7 @@ LEPTON_handle::include_files ($file_names);
 
 $settings = getSettings($section_id);
 
-$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->lang;
+$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->language;
 
 $flag = false;
 
