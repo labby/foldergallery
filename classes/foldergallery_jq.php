@@ -10,7 +10,7 @@
  * 
  */
  
-class foldergallery_jq extends LEPTON_class
+class foldergallery_jq extends LEPTON_abstract
 {
 	 
 	/**
