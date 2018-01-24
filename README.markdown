@@ -1,4 +1,4 @@
-#Foldergallery
+### Foldergallery
 ## Description
 Foldergallery-jQuery is a module for LEPTON CMS. 
 It's an imagegallery to handle many images in different categories using various jQuery plugins. 
