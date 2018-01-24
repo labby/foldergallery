@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -33,16 +33,16 @@ if (defined('LEPTON_PATH')) {
 // Delete DB-Entries (messages and settings)
 $temp_parent_ids = array();
 $database->execute_query(
-	'SELECT `id` FROM `'.TABLE_PREFIX.'mod_foldergallery_jq_categories` WHERE `section_id`='.$section_id.';',
+	'SELECT `id` FROM `'.TABLE_PREFIX.'mod_foldergallery_categories` WHERE `section_id`='.$section_id.';',
 	true,
 	$temp_parent_ids
 );
 
 foreach($temp_parent_ids as $parent) {
-	$database->simple_query('DELETE FROM `'.TABLE_PREFIX.'mod_foldergallery_jq_files` WHERE `parent_id`='.$parent['id']);
+	$database->simple_query('DELETE FROM `'.TABLE_PREFIX.'mod_foldergallery_files` WHERE `parent_id`='.$parent['id']);
 }
 
-$database->simple_query("DELETE FROM `".TABLE_PREFIX."mod_foldergallery_jq_settings` WHERE `page_id` = '$page_id' AND `section_id` = '$section_id'");
-$database->simple_query("DELETE FROM `".TABLE_PREFIX."mod_foldergallery_jq_categories` WHERE `section_id` = '$section_id'");
+$database->simple_query("DELETE FROM `".TABLE_PREFIX."mod_foldergallery_settings` WHERE `page_id` = '$page_id' AND `section_id` = '$section_id'");
+$database->simple_query("DELETE FROM `".TABLE_PREFIX."mod_foldergallery_categories` WHERE `section_id` = '$section_id'");
 
 ?>

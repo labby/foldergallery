@@ -1,15 +1,15 @@
 <!-- Jquery Lightbox-->
-<link rel="stylesheet" href="{LEPTON_URL}/modules/foldergallery_jq/scripts/lightbox/css/jquery.lightbox-0.5.css" type="text/css" media="screen" charset="utf-8" />
-<script type="text/javascript" src="{LEPTON_URL}/modules/foldergallery_jq/scripts/lightbox/js/jquery.lightbox-0.5.pack.js"></script>
+<link rel="stylesheet" href="{LEPTON_URL}/modules/foldergallery/scripts/lightbox/css/jquery.lightbox-0.5.css" type="text/css" media="screen" charset="utf-8" />
+<script type="text/javascript" src="{LEPTON_URL}/modules/foldergallery/scripts/lightbox/js/jquery.lightbox-0.5.pack.js"></script>
 
 <script type="text/javascript">
 $(function() {
    $('#lightbox a').lightBox({
-	imageLoading: '{LEPTON_URL}/modules/foldergallery_jq/scripts/lightbox/images/lightbox-ico-loading.gif',
-	imageBtnClose: '{LEPTON_URL}/modules/foldergallery_jq/scripts/lightbox/images/lightbox-btn-close.gif',
-	imageBtnPrev: '{LEPTON_URL}/modules/foldergallery_jq/scripts/lightbox/images/lightbox-btn-prev.gif',
-	imageBtnNext: '{LEPTON_URL}/modules/foldergallery_jq/scripts/lightbox/images/lightbox-btn-next.gif',
-	imageBlank:	'{LEPTON_URL}/modules/foldergallery_jq/scripts/lightbox/images/lightbox-blank.gif',
+	imageLoading: '{LEPTON_URL}/modules/foldergallery/scripts/lightbox/images/lightbox-ico-loading.gif',
+	imageBtnClose: '{LEPTON_URL}/modules/foldergallery/scripts/lightbox/images/lightbox-btn-close.gif',
+	imageBtnPrev: '{LEPTON_URL}/modules/foldergallery/scripts/lightbox/images/lightbox-btn-prev.gif',
+	imageBtnNext: '{LEPTON_URL}/modules/foldergallery/scripts/lightbox/images/lightbox-btn-next.gif',
+	imageBlank:	'{LEPTON_URL}/modules/foldergallery/scripts/lightbox/images/lightbox-blank.gif',
 	txtImage: 'Bild',
 	txtOf: 'von'
    });

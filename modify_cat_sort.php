@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -33,8 +33,8 @@ if (defined('LEPTON_PATH')) {
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 $file_names = array(
-'/modules/foldergallery_jq/backend.functions.php',
-'/modules/foldergallery_jq/register_language.php',
+'/modules/foldergallery/backend.functions.php',
+'/modules/foldergallery/register_language.php',
 '/include/phplib/template.inc'
 );
 LEPTON_handle::include_files ($file_names);
@@ -50,18 +50,18 @@ if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
 }
 
 // Kategorie Infos aus der DB holen
-$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id='.$cat_id.' LIMIT 1;';
+$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id='.$cat_id.' LIMIT 1;';
 $query = $database->query($sql);
 $categorie = $query->fetchRow();
 
 if ( is_array( $categorie ) ) {
     if ( $categorie['parent'] != -1 ) {
-        $cat_path = foldergallery_jq::FG_PATH.$settings['root_dir'].$categorie['parent'].'/'.$categorie['categorie'];
+        $cat_path = foldergallery::FG_PATH.$settings['root_dir'].$categorie['parent'].'/'.$categorie['categorie'];
         $parent   = $categorie['parent'].'/'.$categorie['categorie'];
     }
     else {
         // Root
-        $cat_path = foldergallery_jq::FG_PATH.$settings['root_dir'];
+        $cat_path = foldergallery::FG_PATH.$settings['root_dir'];
         $parent   = '';		
     }
 }
@@ -69,14 +69,14 @@ $parent_id = $categorie['id'];
 if ($categorie['active'] == 1) {$cat_active_checked = 'checked="checked"';} else {$cat_active_checked = '';}
 
 $folder = $root_dir.$parent;
-$pathToFolder = foldergallery_jq::FG_PATH.$folder.'/';	
-$pathToThumb = foldergallery_jq::FG_PATH.$folder.foldergallery_jq::FG_THUMBDIR.'/';
-$urlToFolder = foldergallery_jq::FG_URL.$folder.'/';		
-$urlToThumb = foldergallery_jq::FG_URL.$folder.foldergallery_jq::FG_THUMBDIR.'/';
+$pathToFolder = foldergallery::FG_PATH.$folder.'/';	
+$pathToThumb = foldergallery::FG_PATH.$folder.foldergallery::FG_THUMBDIR.'/';
+$urlToFolder = foldergallery::FG_URL.$folder.'/';		
+$urlToThumb = foldergallery::FG_URL.$folder.foldergallery::FG_THUMBDIR.'/';
 
 
 $bilder= array();
-$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE parent_id="'.$parent_id.'" ORDER BY position ASC;';
+$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id="'.$parent_id.'" ORDER BY position ASC;';
 $query = $database->query($sql);
 
 
@@ -100,9 +100,9 @@ $t->set_var(array(
 
 // Links Parsen
 $t->set_var(array(
-	'CANCEL_ONCLICK'		=> 'javascript: window.location = \''.LEPTON_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'\';',
-	'QUICK_ASC_ONCLICK'		=> 'javascript: window.location = \''.LEPTON_URL.'/modules/foldergallery_jq/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=ASC\';',
-	'QUICK_DESC_ONCLICK'	=> 'javascript: window.location = \''.LEPTON_URL.'/modules/foldergallery_jq/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=DESC\';'
+	'CANCEL_ONCLICK'		=> 'javascript: window.location = \''.LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'\';',
+	'QUICK_ASC_ONCLICK'		=> 'javascript: window.location = \''.LEPTON_URL.'/modules/foldergallery/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=ASC\';',
+	'QUICK_DESC_ONCLICK'	=> 'javascript: window.location = \''.LEPTON_URL.'/modules/foldergallery/quick_img_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&sort=DESC\';'
 ));
 
 // JS Werte Parsen

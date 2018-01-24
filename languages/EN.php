@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -105,11 +105,11 @@ $FG_HELP['NOUPDATES']       = 'There are no updates aviable at the moment!';
 $FG_HELP['UPDATE']          = 'Version %s is aviable, a update is recommeded.';
 $FG_HELP['VERSION_TEXT']    = 'You can find latest release on <a href="http://www.lepton-cms.org/english/addons/free-addons.php" target="_blank">LEPTON Homepage</a>'
                             .' or on <a href="http://cms-lab.com/lab/en/modules/standard-modules/foldergallery-jquery.php" target="_blank" >CMS-LAB</a>';
-$FG_HELP['HOMEPAGE_TEXT']   = 'On <a href="https://github.com/aldus/foldergallery_jq" target="_blank">GITHUB</a> you can find the whole changelog, current development and older releases.';                  
+$FG_HELP['HOMEPAGE_TEXT']   = 'On <a href="https://github.com/aldus/foldergallery" target="_blank">GITHUB</a> you can find the whole changelog, current development and older releases.';                  
 $FG_HELP['HELP_TITLE']      = 'Help and Support';
 $FG_HELP['HELP_TEXT']       = 'You get support on the <a href="http://forum.lepton-cms.org" target="_blank">LEPTON CMS Addons Forum</a>.';
 $FG_HELP['BUG_TITLE']       = 'Report a bug';
-$FG_HELP['BUG_TEXT']        = 'Bugs can be reported on <a href="http://forum.lepton-cms.org/" target="_blank">LEPTON CMS Addons Forum</a> or directly on <a href="https://github.com/aldus/foldergallery_jq" target="_blank">GITHUB</a>';
+$FG_HELP['BUG_TEXT']        = 'Bugs can be reported on <a href="http://forum.lepton-cms.org/" target="_blank">LEPTON CMS Addons Forum</a> or directly on <a href="https://github.com/aldus/foldergallery" target="_blank">GITHUB</a>';
 
 $FG_HELP['BACK_STRING']     = 'Back';
 ?>

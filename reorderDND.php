@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -55,7 +55,7 @@ if(!isset($_POST['action']) OR !isset($_POST['recordsArray'])) {
 		$output = "";
 		foreach ($updateRecordsArray as $recordIDValue) {
 			
-			$database->query("UPDATE `".TABLE_PREFIX."mod_foldergallery_jq_files` SET position = ".$listingCounter." WHERE `id` = ".$recordIDValue);
+			$database->query("UPDATE `".TABLE_PREFIX."mod_foldergallery_files` SET position = ".$listingCounter." WHERE `id` = ".$recordIDValue);
 
 			$listingCounter ++;
 		}

@@ -1,9 +1,9 @@
 <?php
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -32,11 +32,11 @@ if (defined('LEPTON_PATH')) {
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 $file_names = array(
-    '/modules/foldergallery_jq/backend.functions.php'
+    '/modules/foldergallery/backend.functions.php'
 );
 LEPTON_handle::include_files ($file_names);
 
-$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->language;
+$MOD_FOLDERGALLERY_JQ = foldergallery::getInstance()->language;
 
 $settings = getSettings($section_id);
 
@@ -66,7 +66,7 @@ if(isset($_POST['save'])) {
 	
 	$database->build_and_execute(
 		'update',
-		TABLE_PREFIX.'mod_foldergallery_jq_categories',
+		TABLE_PREFIX.'mod_foldergallery_categories',
 		$fields,
 		'id='.$cat_id
 	);

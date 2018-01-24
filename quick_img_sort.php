@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -75,12 +75,12 @@ require_once(LEPTON_PATH.'/framework/class.admin.php');
 $admin = new admin('Pages', 'pages_settings');
 
 
-$sql="SELECT file_name, position, id FROM `".TABLE_PREFIX."mod_foldergallery_jq_files` WHERE parent_id =".$cat_id." ORDER BY file_name ".$sort;
+$sql="SELECT file_name, position, id FROM `".TABLE_PREFIX."mod_foldergallery_files` WHERE parent_id =".$cat_id." ORDER BY file_name ".$sort;
 
 $query=$database->query($sql);
 
 if($query->numRows()) {
-	$sql = "UPDATE `".TABLE_PREFIX."mod_foldergallery_jq_files` SET position= CASE ";
+	$sql = "UPDATE `".TABLE_PREFIX."mod_foldergallery_files` SET position= CASE ";
 	$position = 1;
 	while($result = $query->fetchRow()){
 		$sql = $sql."WHEN id=".$result['id']." THEN '".$position."' ";
@@ -92,10 +92,10 @@ if($query->numRows()) {
 
 if($database->query($sql)){
 	$admin->print_success($MESSAGE['PAGES']['REORDERED'],
-	LEPTON_URL.'/modules/foldergallery_jq/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+	LEPTON_URL.'/modules/foldergallery/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 } else {
 	$admin->print_error($TEXT['ERROR'],
-	LEPTON_URL.'/modules/foldergallery_jq/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+	LEPTON_URL.'/modules/foldergallery/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 }
 
 // Print admin footer

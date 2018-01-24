@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -33,11 +33,11 @@ if (defined('LEPTON_PATH')) {
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 $file_names = array(
-    '/modules/foldergallery_jq/backend.functions.php'
+    '/modules/foldergallery/backend.functions.php'
 );
 LEPTON_handle::include_files ($file_names);
 
-$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->language;
+$MOD_FOLDERGALLERY_JQ = foldergallery::getInstance()->language;
 
 
 $oldSettings = getSettings($section_id);
@@ -102,7 +102,7 @@ if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view
 echo "<center>".$MOD_FOLDERGALLERY_JQ['SAVE_SETTINGS']."</center><br />";
 $newSettings['section_id'] = $section_id;
 
-$settingsTable = TABLE_PREFIX.'mod_foldergallery_jq_settings';
+$settingsTable = TABLE_PREFIX.'mod_foldergallery_settings';
 
 // SQL eintragen
 $fields = array(
@@ -125,17 +125,17 @@ $database->build_and_execute(
 
 if(($oldSettings['thumb_size'] != $newSettings['thumb_size'] || $oldSettings['ratio'] != $newSettings['ratio']) && !isset($_POST['noNew'])){
 	// Ok, thumb_size hat gewechselt, also alte Thumbs löschen
-	$sql = 'SELECT `parent`, `categorie` FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$oldSettings['section_id'].';';
+	$sql = 'SELECT `parent`, `categorie` FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$oldSettings['section_id'].';';
 	$all_data = array();
 	$database->execute_query( $sql, true, $all_data );
 	
 	foreach($all_data as $link) {
-		$pathToFolder = foldergallery_jq::FG_PATH.$oldSettings['root_dir'].$link['parent'].'/'.$link['categorie'].$thumbdir;
+		$pathToFolder = foldergallery::FG_PATH.$oldSettings['root_dir'].$link['parent'].'/'.$link['categorie'].$thumbdir;
 		echo '<center><br/>Delete: '.$pathToFolder.'</center>';
 		deleteFolder($pathToFolder);
 	}
 	
-	$pathToFolder = foldergallery_jq::FG_PATH.$oldSettings['root_dir'].foldergallery_jq::FG_THUMBDIR;
+	$pathToFolder = foldergallery::FG_PATH.$oldSettings['root_dir'].foldergallery::FG_THUMBDIR;
 	echo '<center><br/>Delete: '.$pathToFolder.'</center><br />';
 	deleteFolder($pathToFolder);
 }	
@@ -144,22 +144,22 @@ if(($oldSettings['thumb_size'] != $newSettings['thumb_size'] || $oldSettings['ra
 if($oldSettings['root_dir'] != $newSettings['root_dir']){
 	
 	// Und jetzt noch alte DB Einträge
-	$sql = 'SELECT `parent`, `categorie` FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$oldSettings['section_id'].';';
+	$sql = 'SELECT `parent`, `categorie` FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$oldSettings['section_id'].';';
 	$query = $database->query($sql);
 	while($cat = $query->fetchRow()) {
-		$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE parent_id='.$cat['parent'];
+		$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id='.$cat['parent'];
 		$database->query($sql);
 	}
 	
 	
-	$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$oldSettings['section_id'].';';
+	$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$oldSettings['section_id'].';';
 	$database->query($sql);
   // Root als Kategorie eintragen
-  $sql = 'INSERT INTO '.TABLE_PREFIX."mod_foldergallery_jq_categories ( `section_id`,`parent_id`,`categorie`,`parent`,`cat_name`,`active`,`is_empty`,`position`,`niveau`,`has_child`,`childs`,`description` )
+  $sql = 'INSERT INTO '.TABLE_PREFIX."mod_foldergallery_categories ( `section_id`,`parent_id`,`categorie`,`parent`,`cat_name`,`active`,`is_empty`,`position`,`niveau`,`has_child`,`childs`,`description` )
     VALUES ( '$section_id', '-1', 'Root', '-1', 'Root', '1', '0', '0', '-1', '0', '', 'Root Description' );";
   $query = $database->query($sql);
   if($database->is_error()) {
-  	$admin->print_error($database->get_error(), LEPTON_URL.'/modules/foldergallery_jq/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
+  	$admin->print_error($database->get_error(), LEPTON_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
   }
 }
 
@@ -168,9 +168,9 @@ syncDB($newSettings);
 
 // Überprüfen ob ein Fehler aufgetreten ist, sonst Erfolg ausgeben
 if($database->is_error()) {
-	$admin->print_error($database->get_error(), LEPTON_URL.'/modules/foldergallery_jq/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
+	$admin->print_error($database->get_error(), LEPTON_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
 } else {
-	$admin->print_success($TEXT['SUCCESS'], LEPTON_URL.'/modules/foldergallery_jq/sync.php?page_id='.$page_id.'&section_id='.$section_id);
+	$admin->print_success($TEXT['SUCCESS'], LEPTON_URL.'/modules/foldergallery/sync.php?page_id='.$page_id.'&section_id='.$section_id);
 }
 
 // Print admin footer

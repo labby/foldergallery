@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -34,30 +34,30 @@ if(defined('LEPTON_PATH') == false) { exit("Cannot access this file directly"); 
 require(LEPTON_PATH.'/modules/admin.php');
 	
 // check if backend.css file needs to be included into <body></body>
-if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergallery_jq/backend.css")) {
+if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergallery/backend.css")) {
 echo '<style type="text/css">';
-include(LEPTON_PATH .'/modules/foldergallery_jq/backend.css');
+include(LEPTON_PATH .'/modules/foldergallery/backend.css');
 echo "\n</style>\n";
 }
 // check if backend.js file needs to be included into <body></body>
 if(!method_exists($admin, 'register_backend_modfiles') && file_exists(LEPTON_PATH ."/modules/foldergaller/backend.js")) {
 echo '<script type="text/javascript">';
-include(LEPTON_PATH .'/modules/foldergallery_jq/backend.js');
+include(LEPTON_PATH .'/modules/foldergallery/backend.js');
 echo "</script>";
 }
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if(!file_exists(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php')) {
+if(!file_exists(LEPTON_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php')) {
 // no module language file exists for the language set by the user, include default module language file DE.php
-require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/DE.php');
+require_once(LEPTON_PATH .'/modules/foldergallery/languages/DE.php');
 } else {
 // a module language file exists for the language defined by the user, load it
-require_once(LEPTON_PATH .'/modules/foldergallery_jq/languages/'.LANGUAGE .'.php');
+require_once(LEPTON_PATH .'/modules/foldergallery/languages/'.LANGUAGE .'.php');
 }
 
 // Files includen
-require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
-require_once (LEPTON_PATH.'/modules/foldergallery_jq/backend.functions.php');
+require_once (LEPTON_PATH.'/modules/foldergallery/info.php');
+require_once (LEPTON_PATH.'/modules/foldergallery/backend.functions.php');
 
 
 
@@ -76,7 +76,7 @@ if(!isset($_POST['save']) && !is_string($_POST['save'])) {
 	}
 	
 	if(!isset($_POST['id'])) {
-		$admin->print_success($TEXT['SUCCESS'], LEPTON_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+		$admin->print_success($TEXT['SUCCESS'], LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 		$admin->print_footer();
 		die();
 	}
@@ -99,9 +99,9 @@ if(!isset($_POST['save']) && !is_string($_POST['save'])) {
 	//echo '<pre>'; var_export($bilderNeu); echo '</pre>';
 		
 	// Jetzt machen wir alle Datenbank Änderungen
-	$deleteSQL = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE ';
-	$selectSQL = 'SELECT id, caption FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE ';
-	$updateSQL = 'UPDATE '.TABLE_PREFIX.'mod_foldergallery_jq_files SET ';
+	$deleteSQL = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE ';
+	$selectSQL = 'SELECT id, caption FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE ';
+	$updateSQL = 'UPDATE '.TABLE_PREFIX.'mod_foldergallery_files SET ';
 	foreach($bilderNeu as $bild){
 		$selectArray[] = $bild['id'];
 	}
@@ -134,7 +134,7 @@ if(!isset($_POST['save']) && !is_string($_POST['save'])) {
 	}
 	
 }
-$admin->print_success($TEXT['SUCCESS'], LEPTON_URL.'/modules/foldergallery_jq/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+$admin->print_success($TEXT['SUCCESS'], LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 
 $admin->print_footer();
 ?>

@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -104,12 +104,12 @@ $FG_HELP['NOUPDATES']       = 'Dies ist momentan die aktuellste Version!';
 $FG_HELP['UPDATE']          = 'Version %s ist verfügbar, es wird empfohlen ein Update durchzuführen.';
 $FG_HELP['VERSION_TEXT']    = 'Die aktuellste Version ist immer auf <a href="http://www.lepton-cms.org/deutsch/addons/freie-addons.php" target="_blank">der LEPTON Homepage</a>'
                             .' oder bei <a href="http://cms-lab.com/lab/de/module/standard-module/foldergallery-jquery.php" target="_blank" >CMS-LAB</a> zu finden!';
-$FG_HELP['HOMEPAGE_TEXT']   = 'Auf <a href="https://github.com/aldus/foldergallery_jq" target="_blank">GITHUB</a> finden sie den gesamten Changelog sowie ältere Versionen und den aktuellen Entwicklungsstand.';
+$FG_HELP['HOMEPAGE_TEXT']   = 'Auf <a href="https://github.com/aldus/foldergallery" target="_blank">GITHUB</a> finden sie den gesamten Changelog sowie ältere Versionen und den aktuellen Entwicklungsstand.';
                            
 $FG_HELP['HELP_TITLE']      = 'Hilfe und Support';
 $FG_HELP['HELP_TEXT']       = 'Support wird im <a href="http://forum.lepton-cms.org" target="_blank">LEPTON CMS Addons Forum</a> angeboten.';
 $FG_HELP['BUG_TITLE']       = 'Problem melden';
-$FG_HELP['BUG_TEXT']        = 'Fehler können ebenso im  <a href="http://forum.lepton-cms.org/" target="_blank">LEPTON CMS Addons Forum</a> oder auf <a href="https://github.com/aldus/foldergallery_jq" target="_blank">GITHUB</a> gemeldet werden!';
+$FG_HELP['BUG_TEXT']        = 'Fehler können ebenso im  <a href="http://forum.lepton-cms.org/" target="_blank">LEPTON CMS Addons Forum</a> oder auf <a href="https://github.com/aldus/foldergallery" target="_blank">GITHUB</a> gemeldet werden!';
 
 $FG_HELP['BACK_STRING']     = 'Zurück';
 ?>

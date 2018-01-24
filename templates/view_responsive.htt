@@ -1,6 +1,6 @@
 
-<link type="text/css" media="screen" rel="stylesheet" href="{LEPTON_URL}/modules/foldergallery_jq/scripts/responsive/jquery.lightbox.css" />
-<script src="{LEPTON_URL}/modules/foldergallery_jq/scripts/responsive/jquery.lightbox.js" type="text/javascript"></script>
+<link type="text/css" media="screen" rel="stylesheet" href="{LEPTON_URL}/modules/foldergallery/scripts/responsive/jquery.lightbox.css" />
+<script src="{LEPTON_URL}/modules/foldergallery/scripts/responsive/jquery.lightbox.js" type="text/javascript"></script>
 
 <script>
   // Initiate Lightbox

@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -33,8 +33,8 @@ if (defined('LEPTON_PATH')) {
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 $file_names = array(
-'/modules/foldergallery_jq/backend.functions.php',
-'/modules/foldergallery_jq/register_language.php'
+'/modules/foldergallery/backend.functions.php',
+'/modules/foldergallery/register_language.php'
 );
 LEPTON_handle::include_files ($file_names);
 
@@ -49,12 +49,12 @@ if(isset($_GET['section_id']) && is_numeric($_GET['section_id'])){
 
 if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
 	$cat_id = $_GET['cat_id'];
-	$sql = 'SELECT categorie, parent, has_child FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id='.$cat_id.';';
+	$sql = 'SELECT categorie, parent, has_child FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id='.$cat_id.';';
 	$query = $database->query($sql);
 	if($result = $query->fetchRow( )){
 		// Dateien löschen
 		$settings = getSettings($section_id);
-		$delete_path = foldergallery_jq::FG_PATH.$settings['root_dir'].$result['parent'].'/'.$result['categorie'];
+		$delete_path = foldergallery::FG_PATH.$settings['root_dir'].$result['parent'].'/'.$result['categorie'];
 
 		//deleteFolder($delete_path);
 		// DB Einträge löschen

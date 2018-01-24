@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -33,12 +33,12 @@ if (defined('LEPTON_PATH')) {
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 $file_names = array(
-    '/modules/foldergallery_jq/backend.functions.php',
+    '/modules/foldergallery/backend.functions.php',
     '/include/phplib/template.inc'
 );
 LEPTON_handle::include_files ($file_names);
 
-$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->language;
+$MOD_FOLDERGALLERY_JQ = foldergallery::getInstance()->language;
 
 $settings = getSettings($section_id);
 $thumb_size = $settings['thumb_size']; //Chio
@@ -55,19 +55,19 @@ if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
 }
 
 // Kategorie Infos aus der DB holen
-$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id='.$cat_id.' LIMIT 1;';
+$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id='.$cat_id.' LIMIT 1;';
 $query = $database->query($sql);
 $categorie = $query->fetchRow();
 
 if ( is_array( $categorie ) ) {
     if ( $categorie['parent'] != -1 ) {
-        $cat_path = foldergallery_jq::FG_PATH.$settings['root_dir'].$categorie['parent'].'/'.$categorie['categorie'];
+        $cat_path = foldergallery::FG_PATH.$settings['root_dir'].$categorie['parent'].'/'.$categorie['categorie'];
 		$cat_path = str_replace(LEPTON_PATH, '', $cat_path);
         $parent   = $categorie['parent'].'/'.$categorie['categorie'];
     }
     else {
         // Root
-        $cat_path = foldergallery_jq::FG_PATH.$settings['root_dir'];
+        $cat_path = foldergallery::FG_PATH.$settings['root_dir'];
         $parent   = '';		
     }
 }
@@ -76,15 +76,15 @@ if ($categorie['active'] == 1) {$cat_active_checked = 'checked="checked"';} else
 
 
 $folder = $root_dir.$parent;
-$pathToFolder = foldergallery_jq::FG_PATH.$folder.'/';	
-$pathToThumb = foldergallery_jq::FG_PATH.$folder.foldergallery_jq::FG_THUMBDIR.'/';
-$urlToFolder = foldergallery_jq::FG_URL.$folder.'/';		
-$urlToThumb = foldergallery_jq::FG_URL.$folder.foldergallery_jq::FG_THUMBDIR.'/';
+$pathToFolder = foldergallery::FG_PATH.$folder.'/';	
+$pathToThumb = foldergallery::FG_PATH.$folder.foldergallery::FG_THUMBDIR.'/';
+$urlToFolder = foldergallery::FG_URL.$folder.'/';		
+$urlToThumb = foldergallery::FG_URL.$folder.foldergallery::FG_THUMBDIR.'/';
 
 //echo '<h3>'.$parent_id.'</h3>'; 
 
 $bilder= array();
-$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE parent_id="'.$parent_id.'" ORDER BY position ASC;';
+$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id="'.$parent_id.'" ORDER BY position ASC;';
 $query = $database->query($sql);
 
 if($query->numRows()){
@@ -94,7 +94,7 @@ if($query->numRows()){
 		$bildfilename = $result['file_name'];
 		$file = $pathToFolder.$bildfilename;
 		if(!is_file($file)){	
-			$deletesql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE id='.$result['id'];
+			$deletesql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE id='.$result['id'];
 			$database->query($deletesql);
 			continue;
 		}
@@ -154,8 +154,8 @@ $t->set_var(array(
 
 // Links parsen
 $t->set_var(array(
-	'SAVE_CAT_LINK'			=> LEPTON_URL.'/modules/foldergallery_jq/save_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
-	'SAVE_FILES_LINK'		=> LEPTON_URL.'/modules/foldergallery_jq/save_files.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
+	'SAVE_CAT_LINK'			=> LEPTON_URL.'/modules/foldergallery/save_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
+	'SAVE_FILES_LINK'		=> LEPTON_URL.'/modules/foldergallery/save_files.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
 	'CANCEL_ONCLICK'		=> 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';'
 ));
 
@@ -169,8 +169,8 @@ foreach($bilder as $bild) {
 		'CAPTION_VALUE'		=> $bild['caption'],
 		'EDIT_THUMB_SOURCE'	=> LEPTON_URL.'/modules/lib_lepton/backend_images/resize_16.png',
 		'DELETE_IMG_SOURCE'	=> LEPTON_URL.'/modules/lib_lepton/backend_images/delete_16.png',
-		'THUMB_EDIT_LINK'	=> LEPTON_URL."/modules/foldergallery_jq/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],	
-		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery_jq/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
+		'THUMB_EDIT_LINK'	=> LEPTON_URL."/modules/foldergallery/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],	
+		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
 		'COUNTER'			=> $counter
 	));
 	$t->parse('FILE_LOOP', 'file_loop', true);

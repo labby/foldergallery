@@ -1,9 +1,9 @@
 <?php
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -39,5 +39,5 @@ if(DEFAULT_THEME === "algos") {
         )
     );
 }
-$mod_headers['backend']['js'][] = '/modules/foldergallery_jq/scripts/jcrob/js/jquery.Jcrop.min.js';
+$mod_headers['backend']['js'][] = '/modules/foldergallery/scripts/jcrob/js/jquery.Jcrop.min.js';
 ?>

@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -31,7 +31,7 @@ if (defined('LEPTON_PATH')) {
 /*
  * Create new module db-tables
  */
-$table_name = 'mod_foldergallery_jq_settings';
+$table_name = 'mod_foldergallery_settings';
 $table_fields='
 	`section_id` INT NOT NULL DEFAULT 0,
 	`page_id` INT NOT NULL DEFAULT 0,
@@ -49,7 +49,7 @@ $table_fields='
 LEPTON_handle::install_table($table_name, $table_fields);
 
 
-$table_name = 'mod_foldergallery_jq_files';
+$table_name = 'mod_foldergallery_files';
 $table_fields='
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`parent_id` INT NOT NULL DEFAULT 0,
@@ -60,7 +60,7 @@ $table_fields='
 	';	
 LEPTON_handle::install_table($table_name, $table_fields);
 
-$table_name = 'mod_foldergallery_jq_categories';
+$table_name = 'mod_foldergallery_categories';
 $table_fields='
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`section_id` INT NOT NULL DEFAULT 0,

@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -30,7 +30,7 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-require_once (LEPTON_PATH.'/modules/foldergallery_jq/functions.php');
+require_once (LEPTON_PATH.'/modules/foldergallery/functions.php');
 
 /**
  * Durchsucht einen Ordner rekursiv mit einigen Optionen
@@ -210,11 +210,11 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 	
 	
 	// Daten Vorbereiten
-	$rootDir = foldergallery_jq::FG_PATH.$galerie['root_dir'];
+	$rootDir = foldergallery::FG_PATH.$galerie['root_dir'];
 	$searchFolder = $rootDir.$searchCategorie;
 	$extensions = explode(',', $galerie['extensions']);
 	
-	$invisible = array_merge( foldergallery_jq::INVISIBLE_FILE_NAMES, explode(',', $galerie['invisible']));
+	$invisible = array_merge( foldergallery::INVISIBLE_FILE_NAMES, explode(',', $galerie['invisible']));
 
 	//Alle Angaben aus dem Filesystem holen
 	$allData = getFolderData($searchFolder, $extensions, $invisible);
@@ -244,7 +244,7 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 			unset ($einzelteile[$letztesElement]);
 			$parent = implode('/', $einzelteile);
 			$parent = $searchCategorie.$parent;			
-			$fileLink = foldergallery_jq::FG_URL.$galerie['root_dir'].$parent."/".$fileName; 
+			$fileLink = foldergallery::FG_URL.$galerie['root_dir'].$parent."/".$fileName; 
 			$fileLink = str_replace(LEPTON_URL, '', $fileLink);
 		
 			$files[] = array (
@@ -279,12 +279,12 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 	// Kategorien mit DB synchronisieren
 	// Neuer SQL vorbereiten
 	$notDeleteArray = array();
-	$insertSQL = "INSERT INTO ".TABLE_PREFIX."mod_foldergallery_jq_categories (section_id, categorie, parent, cat_name, is_empty) VALUES";
-	$deleteSQL = "DELETE FROM ".TABLE_PREFIX."mod_foldergallery_jq_categories WHERE parent_id > '0' AND section_id=".$galerie['section_id'] ; 
+	$insertSQL = "INSERT INTO ".TABLE_PREFIX."mod_foldergallery_categories (section_id, categorie, parent, cat_name, is_empty) VALUES";
+	$deleteSQL = "DELETE FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE parent_id > '0' AND section_id=".$galerie['section_id'] ; 
 	$deleteLaenge = strlen($deleteSQL);
 	$insertLaenge = strlen($insertSQL);
 	foreach ($categories as $cat) {
-		$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories'
+		$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories'
 			.' WHERE section_id='.$galerie['section_id'].' AND'
 			.' categorie="'.$cat['categorie'].'" AND'
 			.' parent="'.$cat['parent'].'"'
@@ -330,7 +330,7 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 	
 	//Wieder aus der Datenbank laden:	
 	$catpathArray = array();
-	$sql = 'SELECT id, categorie, parent FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$galerie['section_id'];
+	$sql = 'SELECT id, categorie, parent FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$galerie['section_id'];
 	$query = $database->query($sql);
 	while($result = $query->fetchRow()) {		
 		$p = $result['parent'].'/'.$result['categorie'] ;
@@ -340,13 +340,13 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 	
 	
 	$notDeleteArray = array();
-	$insertSQL = "INSERT INTO ".TABLE_PREFIX."mod_foldergallery_jq_files (file_name, parent_id, caption) VALUES";
+	$insertSQL = "INSERT INTO ".TABLE_PREFIX."mod_foldergallery_files (file_name, parent_id, caption) VALUES";
 	
 	//-------------------------------------------------------------------------------------------------------
 	//Das Macht ein Problem, sobald es mehrere Seiten mit FG gibt.
 	//Das es keine Section_id mehr gibt, werden alle Einträge von anderen Sections ebenfalls gelöscht. 
 	//Das muss anders gelöst werden, ich weiß aber nicht wie.
-	$deleteSQL = "DELETE FROM ".TABLE_PREFIX."mod_foldergallery_jq_files WHERE (id NOT IN";
+	$deleteSQL = "DELETE FROM ".TABLE_PREFIX."mod_foldergallery_files WHERE (id NOT IN";
 	//Siehe unten, wird derzeit nicht ausgeführt
 	//-------------------------------------------------------------------------------------------------------
 	
@@ -364,7 +364,7 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 			//die();
 		}
 	
-		$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE parent_id ="'.$parent_id.'" AND file_name="'.$file['file_name'].'" LIMIT 1;';		
+		$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id ="'.$parent_id.'" AND file_name="'.$file['file_name'].'" LIMIT 1;';		
 		$query = $database->query($sql);
 		if($result = $query->fetchRow()){
 			//$notDeleteArray[] = $result['id'];
@@ -389,14 +389,14 @@ function syncDB($galerie, $searchCategorie = '', $modus = 1, $rekursiv = true) {
 
 function delete_files_with_no_cat() {
 	global $database;
-	$sql = 'SELECT id FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories';
+	$sql = 'SELECT id FROM '.TABLE_PREFIX.'mod_foldergallery_categories';
 	$query = $database->query($sql);
 	$notDeleteArray = array();
 	while($result = $query->fetchRow()) {		
 		$notDeleteArray[] = $result['id'];
     }
 	if(!empty($notDeleteArray)) {
-		$deleteSQL = "DELETE FROM ".TABLE_PREFIX."mod_foldergallery_jq_files WHERE (parent_id NOT IN";
+		$deleteSQL = "DELETE FROM ".TABLE_PREFIX."mod_foldergallery_files WHERE (parent_id NOT IN";
 		$deleteSQL .= '(0,'.implode(',',$notDeleteArray).'));';
 		$database->query($deleteSQL);		
 	}
@@ -406,21 +406,21 @@ function delete_files_with_no_cat() {
 function rek_db_delete($cat_id) {
 	global $database;
 	
-	$sql = 'SELECT section_id, categorie, parent, has_child FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id='.$cat_id.';';
+	$sql = 'SELECT section_id, categorie, parent, has_child FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id='.$cat_id.';';
 	$query = $database->query($sql);
 	if($result = $query->fetchRow()) {
 		$parent = $result['parent'].'/'.$result['categorie'];
-		$delete_file_sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE parent_id="'.$cat_id.'";';
+		$delete_file_sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id="'.$cat_id.'";';
 		$database->query($delete_file_sql);
 		if($result['has_child']){
-			$select_sql = 'SELECT id FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE parent_id='.$cat_id.';';
+			$select_sql = 'SELECT id FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE parent_id='.$cat_id.';';
 			$query = $database->query($select_sql);
 			while($select_result = $query->fetchRow()) {
 				rek_db_delete($select_result['id']);
 			}
 		}
 	}
-	$deletesql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id='.$cat_id;
+	$deletesql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id='.$cat_id;
 	$database->query($deletesql);
 }
 

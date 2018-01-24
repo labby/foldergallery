@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -33,13 +33,13 @@ if (defined('LEPTON_PATH')) {
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 $file_names = array(
-    '/modules/foldergallery_jq/backend.functions.php'
+    '/modules/foldergallery/backend.functions.php'
 );
 LEPTON_handle::include_files ($file_names);
 
 $settings = getSettings($section_id);
 
-$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->language;
+$MOD_FOLDERGALLERY_JQ = foldergallery::getInstance()->language;
 
 $flag = false;
 
@@ -50,7 +50,7 @@ if(syncDB($settings)) {
 
 	// Wieder alle Angaben aus der DB holen um Sortierung festzulegen
 	$results = array();
-	$sql = "SELECT * FROM `".TABLE_PREFIX."mod_foldergallery_jq_categories` WHERE `section_id` =".$section_id;
+	$sql = "SELECT * FROM `".TABLE_PREFIX."mod_foldergallery_categories` WHERE `section_id` =".$section_id;
 	$query = $database->query($sql);
 	
 	if ( $query->numRows() > 0 ) {
@@ -58,12 +58,12 @@ if(syncDB($settings)) {
     	while($result = $query->fetchRow()) {
 			
 			$folder = $settings['root_dir'].$result['parent'].'/';//.$result['categorie'];
-			$pathToFolder = foldergallery_jq::FG_PATH.$folder;
+			$pathToFolder = foldergallery::FG_PATH.$folder;
 			echo "<p>call ".$pathToFolder."</p>";
 			if ($result['parent'] != '-1') {; //nicht die roots;
 				//checken, ob es das Verzeichnis noch gibt:
 				if(!is_dir($pathToFolder)){
-					//$delete_sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id="'.$result['id'].'";';
+					//$delete_sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id="'.$result['id'].'";';
 					//$database->query($delete_sql);
 					
 					//echo '<p>DELETE: '.$pathToFolder. '</p>';
@@ -126,7 +126,7 @@ if(syncDB($settings)) {
     	}
 
     	// Datenkank Update
-    	$updatesql = 'UPDATE '.TABLE_PREFIX.'mod_foldergallery_jq_categories SET ';
+    	$updatesql = 'UPDATE '.TABLE_PREFIX.'mod_foldergallery_categories SET ';
     	for($i = 0; $i<count($results); $i++){
 			$childs = $results[$i]['childs'];
 			//$childs=substr($childs,1,strlen($childs-1)); //Führenden Beistrich belassen, der wird in view wieder benotigt
@@ -142,7 +142,7 @@ if(syncDB($settings)) {
     	for($i = 0; $i<=$niveau; $i++) {
     		$last_parent = 0;
     		$counter = 1;
-    		$sql = "SELECT `position`,`id`, `parent_id` FROM ".TABLE_PREFIX."mod_foldergallery_jq_categories WHERE section_id =".$section_id." AND niveau=".$i." ORDER BY position ASC, parent_id ASC;";
+    		$sql = "SELECT `position`,`id`, `parent_id` FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE section_id =".$section_id." AND niveau=".$i." ORDER BY position ASC, parent_id ASC;";
     		$query = $database->query($sql);
     		while($result = $query->fetchRow()){
     			if($last_parent == $result['parent_id']) {
@@ -166,12 +166,12 @@ if(syncDB($settings)) {
       if($flag) {
       	$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
       } else {
-    	  $admin->print_error("Synchronisation fehlgeschlagen", LEPTON_URL.'/modules/foldergallery_jq/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
+    	  $admin->print_error("Synchronisation fehlgeschlagen", LEPTON_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
       }
 
     }   // keine Kategorien vorhanden
     else {
-        $admin->print_error( $MOD_FOLDERGALLERY_JQ['NO_CATEGORIES'], LEPTON_URL.'/modules/foldergallery_jq/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id );
+        $admin->print_error( $MOD_FOLDERGALLERY_JQ['NO_CATEGORIES'], LEPTON_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id );
     }
 
 }

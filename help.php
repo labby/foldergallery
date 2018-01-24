@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -31,7 +31,7 @@ if (defined('LEPTON_PATH')) {
 // end include class.secure.php
 
 require(LEPTON_PATH . '/modules/admin.php');
-require_once (LEPTON_PATH.'/modules/foldergallery_jq/info.php');
+require_once (LEPTON_PATH.'/modules/foldergallery/info.php');
 
 // load template engine
 if(!class_exists('Template')) {
@@ -39,12 +39,12 @@ if(!class_exists('Template')) {
 }
 
 // check if module language file exists for the language set by the user (e.g. DE, EN)
-if (!file_exists(LEPTON_PATH . '/modules/foldergallery_jq/languages/' . LANGUAGE . '.php')) {
+if (!file_exists(LEPTON_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php')) {
 // no module language file exists for the language set by the user, include default module language file EN.php
-    require_once(LEPTON_PATH . '/modules/foldergallery_jq/languages/EN.php');
+    require_once(LEPTON_PATH . '/modules/foldergallery/languages/EN.php');
 } else {
 // a module language file exists for the language defined by the user, load it
-    require_once(LEPTON_PATH . '/modules/foldergallery_jq/languages/' . LANGUAGE . '.php');
+    require_once(LEPTON_PATH . '/modules/foldergallery/languages/' . LANGUAGE . '.php');
 }
 
 //Template

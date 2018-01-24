@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -34,12 +34,12 @@ if (defined('LEPTON_PATH')) {
 $admin = new LEPTON_admin('Pages', 'pages_modify');
 
 $file_names = array(
-    '/modules/foldergallery_jq/backend.functions.php',
+    '/modules/foldergallery/backend.functions.php',
     '/include/phplib/template.inc'
 );
 LEPTON_handle::include_files ($file_names);
 
-$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->language;
+$MOD_FOLDERGALLERY_JQ = foldergallery::getInstance()->language;
 
 // Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
@@ -106,7 +106,7 @@ $t->set_var(array(
 // Links einsetzen
 $t->set_var(array(
 	'CANCEL_ONCLICK' 		=> 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';',
-	'MODIFY_SETTINGS_LINK'	=> LEPTON_URL.'/modules/foldergallery_jq/save_settings.php?page_id='.$page_id.'&section_id='.$section_id
+	'MODIFY_SETTINGS_LINK'	=> LEPTON_URL.'/modules/foldergallery/save_settings.php?page_id='.$page_id.'&section_id='.$section_id
 ));
 
 //Tooltips einsetzen
@@ -117,14 +117,14 @@ $t->set_var(array(
 ));
 
 if ( ! empty( $settings['invisible'] ) ) {
-    $invisibleFileNames = array_merge( foldergallery_jq::INVISIBLE_FILE_NAMES, explode( ',', $settings['invisible'] ) );
+    $invisibleFileNames = array_merge( foldergallery::INVISIBLE_FILE_NAMES, explode( ',', $settings['invisible'] ) );
 }
 
 // Systemordner sollen nicht angezeigt werden
-$invisibleFileNames = array_merge(foldergallery_jq::INVISIBLE_FILE_NAMES, foldergallery_jq::CORE_FOLDERS);
+$invisibleFileNames = array_merge(foldergallery::INVISIBLE_FILE_NAMES, foldergallery::CORE_FOLDERS);
 
 // Ordnerauswahl für den Root Folder erstellen
-$ordnerliste = getFolderData(foldergallery_jq::FG_PATH, array(), $invisibleFileNames, 2);
+$ordnerliste = getFolderData(foldergallery::FG_PATH, array(), $invisibleFileNames, 2);
 
 foreach($ordnerliste as $ordner) {
 	$t->set_var('ORDNER', $ordner);

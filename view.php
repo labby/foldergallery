@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -32,8 +32,8 @@ if (defined('LEPTON_PATH')) {
 global $MOD_FOLDERGALLERY_JQ;
 
 $file_names = array(
-'/modules/foldergallery_jq/backend.functions.php',
-'/modules/foldergallery_jq/register_language.php',
+'/modules/foldergallery/backend.functions.php',
+'/modules/foldergallery/register_language.php',
 '/include/phplib/template.inc'
 );
 LEPTON_handle::include_files ($file_names);
@@ -74,7 +74,7 @@ $bIsRootPage = false;
 
 $aAlleKategorien = array();
 $database->execute_query(
-    'SELECT * FROM `'.TABLE_PREFIX.'mod_foldergallery_jq_categories` WHERE `section_id`='.$section_id.' AND `is_empty`=0 AND `active`=1 ORDER BY `position` DESC',
+    'SELECT * FROM `'.TABLE_PREFIX.'mod_foldergallery_categories` WHERE `section_id`='.$section_id.' AND `is_empty`=0 AND `active`=1 ORDER BY `position` DESC',
     true,
     $aAlleKategorien,
     true
@@ -106,10 +106,10 @@ foreach($aAlleKategorien as &$ergebnis)
 
 //	Falls nichts angezeigt wird, wird die Root Kategorie angezeigt
 if(!$aktuelleKat){
-	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE section_id='.$section_id.' AND parent="" AND is_empty=0 AND active=1 ORDER BY position ASC';
+	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$section_id.' AND parent="" AND is_empty=0 AND active=1 ORDER BY position ASC';
 } else {
 	$where = 'WHERE section_id='.$section_id.' AND parent="'.$aktuelleKat.'" AND is_empty=0 AND active=1'; 
-	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories '.$where.' ORDER BY position DESC';
+	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories '.$where.' ORDER BY position DESC';
 }
 
 // OK, Angaben aus DB holen
@@ -134,16 +134,16 @@ if(count($ergebnisse) == 0) {
 		$parent_id = $ergebnisse[$i]['id'];
 		
 		$folder = $root_dir.$cat;
-		$pathToFolder = foldergallery_jq::FG_PATH.$folder.'/';
+		$pathToFolder = foldergallery::FG_PATH.$folder.'/';
 		
 		$bildfilename = 'folderpreview.jpg';
 		
 		if(!is_file($pathToFolder.$bildfilename )){		
 			// Vorschaubild suchen
-			$sql = 'SELECT file_name, id, parent_id  FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE parent_id = '.$parent_id.' ORDER BY '.$catpicstring.' LIMIT 1;';						
+			$sql = 'SELECT file_name, id, parent_id  FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id = '.$parent_id.' ORDER BY '.$catpicstring.' LIMIT 1;';						
 			$query = $database->query($sql);			
 			if ($query->numRows() < 1) {					
-				$sql = 'SELECT file_name, id, parent_id  FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE parent_id IN ('.$parent_id.$ergebnisse[$i]['childs'].') ORDER BY '.$catpicstring.' LIMIT 1;';						
+				$sql = 'SELECT file_name, id, parent_id  FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id IN ('.$parent_id.$ergebnisse[$i]['childs'].') ORDER BY '.$catpicstring.' LIMIT 1;';						
 				$query = $database->query($sql);
 			}
 			$bildLinks = $query->fetchRow();
@@ -151,7 +151,7 @@ if(count($ergebnisse) == 0) {
 			
 			//Falls es childs gab, k?nnte das Bild auch aus einem anderen Verzeichnis sein:
 			if ($bildLinks['parent_id'] != $parent_id ) {			
-				$sql = 'SELECT parent, categorie, active FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE id = "'.$bildLinks['parent_id'].'";';
+				$sql = 'SELECT parent, categorie, active FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id = "'.$bildLinks['parent_id'].'";';
 				$query = $database->query($sql);
 				$ergebnisseneu = $query->fetchRow();
 				$catneu = $ergebnisseneu['parent'].'/'.$ergebnisseneu['categorie'];
@@ -162,10 +162,10 @@ if(count($ergebnisse) == 0) {
 			}
 		}
 		
-		$pathToFolder = foldergallery_jq::FG_PATH.$folder.'/';
-		$pathToThumb = foldergallery_jq::FG_PATH.$folder.foldergallery_jq::FG_THUMBDIR.'/';
-		$urlToFolder = foldergallery_jq::FG_URL.$folder.'/';		
-		$urlToThumb = foldergallery_jq::FG_URL.$folder.foldergallery_jq::FG_THUMBDIR.'/';
+		$pathToFolder = foldergallery::FG_PATH.$folder.'/';
+		$pathToThumb = foldergallery::FG_PATH.$folder.foldergallery::FG_THUMBDIR.'/';
+		$urlToFolder = foldergallery::FG_URL.$folder.'/';		
+		$urlToThumb = foldergallery::FG_URL.$folder.foldergallery::FG_THUMBDIR.'/';
 		
 		$unterKats[$i]['thumb'] = $urlToThumb.$bildfilename;     //LEPTON_URL.$bildLinks['thumb_link'];
 		// Eventuell wird die Gallerie zum ersten mal betrachtet
@@ -173,13 +173,13 @@ if(count($ergebnisse) == 0) {
 		
 		
 		if ($bildfilename == '') { // Leer oder ein Ordner
-		 	$unterKats[$i]['thumb'] = LEPTON_URL.'/modules/foldergallery_jq/images/folder.jpg';
+		 	$unterKats[$i]['thumb'] = LEPTON_URL.'/modules/foldergallery/images/folder.jpg';
 		 } else {
 			$thumb = $pathToThumb.$bildfilename;
 			if(!is_file($thumb)){
 				$file = $pathToFolder.$bildfilename;				
 				$terg = generateThumb($file, $thumb, $thumb_size, 0, $ratio);
-				if ($terg < 0) $unterKats[$i]['thumb'] = LEPTON_URL.'/modules/foldergallery_jq/images/broken'.$terg.'.jpg';
+				if ($terg < 0) $unterKats[$i]['thumb'] = LEPTON_URL.'/modules/foldergallery/images/broken'.$terg.'.jpg';
 			}
 		}
 		// Chio ENDE
@@ -187,7 +187,7 @@ if(count($ergebnisse) == 0) {
 }
 
 // Gibt es Bilder in dieser Kategorie
-$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE parent_id="'.$aktuelleKat_id.'" ORDER BY position ASC;';
+$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id="'.$aktuelleKat_id.'" ORDER BY position ASC;';
 $query = $database->query($sql);
 while($bild = $query->fetchRow()){
 	if ($bild['file_name'] == 'folderpreview.jpg') continue;
@@ -201,7 +201,7 @@ if(count($bilder) != 0) {
 	$temp = explode('/', $aktuelleKat);
 	$bildkat = array_pop($temp);
 	$bildparent = implode('/', $temp);
-	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories  WHERE section_id='.$section_id.' AND categorie="'.$bildkat.'" AND parent="'.$bildparent.'" LIMIT 1;';
+	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories  WHERE section_id='.$section_id.' AND categorie="'.$bildkat.'" AND parent="'.$bildparent.'" LIMIT 1;';
 	$query = $database->query($sql);
 	$result = $query->fetchRow();
 	$cat_title = $result['cat_name'];
@@ -209,11 +209,11 @@ if(count($bilder) != 0) {
 	
 	if(!empty($result['categorie'])) $folder = $root_dir.$result['parent'].'/'.$result['categorie'].'/';
 	else $folder = $root_dir.$result['parent'].'/';
-	$pathToFolder = foldergallery_jq::FG_PATH.$folder.'/';	
-	$pathToThumb = foldergallery_jq::FG_PATH.$folder.foldergallery_jq::FG_THUMBDIR.'/';
+	$pathToFolder = foldergallery::FG_PATH.$folder.'/';	
+	$pathToThumb = foldergallery::FG_PATH.$folder.foldergallery::FG_THUMBDIR.'/';
 	
-	$urlToFolder = foldergallery_jq::FG_URL.$folder;		
-	$urlToThumb = foldergallery_jq::FG_URL.$folder.foldergallery_jq::FG_THUMBDIR.'/';
+	$urlToFolder = foldergallery::FG_URL.$folder;		
+	$urlToThumb = foldergallery::FG_URL.$folder.foldergallery::FG_THUMBDIR.'/';
 	
 }
 
@@ -341,14 +341,14 @@ if($bilder)
 		$file = $pathToFolder.$bildfilename;
 		if(!is_file($file)){
 			//echo '<h1>|'.$bildfilename.'|</h1>';
-			$deletesql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_jq_files WHERE id='.$bilder[$i]['id'];
+			$deletesql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE id='.$bilder[$i]['id'];
 			$database->query($deletesql);
 			continue;
 		}	
 		if(!is_file($thumb)){			
 			$file = $pathToFolder.$bildfilename;
 			$terg = generateThumb($file, $thumb, $thumb_size, 0, $ratio);
-			if ($terg < 0) $tumburl = LEPTON_URL.'/modules/foldergallery_jq/images/broken'.$terg.'.jpg';
+			if ($terg < 0) $tumburl = LEPTON_URL.'/modules/foldergallery/images/broken'.$terg.'.jpg';
 		}
 
 		if ($settings['lightbox'] != 'contentFlow') $timeadd = '?t='.time();
@@ -399,7 +399,7 @@ if ( isset( $_GET['cat'] ) ) {
     // first element is empty as the string begins with /
     array_shift($path);
     foreach ( $path as $i => $cat_name ) {
-        $catres = $database->query("SELECT cat_name FROM ".TABLE_PREFIX."mod_foldergallery_jq_categories WHERE categorie = '$cat_name' LIMIT 1");
+        $catres = $database->query("SELECT cat_name FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE categorie = '$cat_name' LIMIT 1");
         $cat    = $catres->fetchRow();
         $bread .= '<li> <a href="'
                .  $link

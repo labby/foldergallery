@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -30,11 +30,11 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-$module_directory	= 'foldergallery_jq';
-$module_name		= 'Foldergallery-jQuery';
+$module_directory	= 'foldergallery';
+$module_name		= 'Foldergallery';
 $module_function	= 'page';
-$module_version		= '2.5.0';
-$module_platform	= '3.x';
+$module_version		= '3.0.0';
+$module_platform	= '4.x';
 $module_author		= 'Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe';
 $module_license		= 'GNU General Public License';
 $module_description	= 'Bildergalerie anhand der Ordnerstruktur erstellen.';
@@ -51,7 +51,7 @@ $module_guid		= 'c362eb43-878d-492f-906f-57a07da6d0f6';
 	/**
 	 *  IMPORTANT
 	 *  All variables and constants are set in
-	 *  classes/foldergallery_jq
+	 *  classes/foldergallery
 	**/ 
 
 ?>

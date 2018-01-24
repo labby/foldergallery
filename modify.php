@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -40,19 +40,19 @@ $leptoken = isset($_GET['leptoken'])
 	;
 
 $file_names = array(
-    '/modules/foldergallery_jq/backend.functions.php',
+    '/modules/foldergallery/backend.functions.php',
     '/include/phplib/template.inc'
 );
 LEPTON_handle::include_files ($file_names);
 
-$MOD_FOLDERGALLERY_JQ = foldergallery_jq::getInstance()->language;
+$MOD_FOLDERGALLERY_JQ = foldergallery::getInstance()->language;
 
 $settings = getSettings($section_id);
 
 /**
  *	Some 'shortcuts'
  */
-$mod_folder_url = LEPTON_URL.'/modules/foldergallery_jq';
+$mod_folder_url = LEPTON_URL.'/modules/foldergallery';
 
 // Falls noch keine Einstellungen gemacht wurden auf die Einstellungsseite umleiten
 if($settings['root_dir'] == 'd41d8cd98f00b204e9800998ecf8427e') {
@@ -109,7 +109,7 @@ $t->set_var(array(
 $t->pparse('output', 'modify');
 
 // Kategorien von der obersten Ebene aus DB hohlen
-$sql = "SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_jq_categories WHERE section_id=".$section_id." AND niveau=0;";
+$sql = "SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE section_id=".$section_id." AND niveau=0;";
 $query = $database->query($sql);
 while($result = $query->fetchRow( )){
 	$results[] = $result;
@@ -125,7 +125,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 	$padding = $tiefe*20;
 	
 	$list = "\n";
-	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_jq_categories WHERE parent_id='.$parent_id.' AND section_id ='.$section_id.' ORDER BY `position` ASC;';
+	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE parent_id='.$parent_id.' AND section_id ='.$section_id.' ORDER BY `position` ASC;';
 	$query = $database->query($sql);
 	$zagl = $query->numRows();
 	
@@ -162,25 +162,25 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
 					
 					//Active:
-					.'<td width="30"><img src="'.LEPTON_URL.'/modules/foldergallery_jq/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
+					.'<td width="30"><img src="'.LEPTON_URL.'/modules/foldergallery/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
 					
 					
 					// Aktionen Buttons
 					."<td width='20'>";					
-					if ($arrup == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery_jq/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					if ($arrup == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
 					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/up_16.png' border='0' alt='v' /></a>";
 					}					
 					$list .= "</td>"
 					."<td width='20'>";
 					
-					if ($arrdown == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery_jq/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='aAbw&auml;rts verschieben'>"
+					if ($arrdown == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='aAbw&auml;rts verschieben'>"
 					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					
 					$list .= "</td>"
 					
 					."<td width='20'>"
-					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery_jq/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
+					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
 					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/delete_16.png' border='0' alt='X'></a>";
 					// Ende Zeile mit allen Angaben
 					
@@ -202,23 +202,23 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 					."<td align='left' width='415'>".htmlentities($result['cat_name'])."</td>"
 					
 					//Active:
-					.'<td width="30"><img src="'.LEPTON_URL.'/modules/foldergallery_jq/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
+					.'<td width="30"><img src="'.LEPTON_URL.'/modules/foldergallery/images/active'.$result['active'].'.gif" border="0" alt="" title="active" />&nbsp;&nbsp;</td>'
 					// Aktionen Buttons
 					."<td width='20'>";					
-					if ($arrup == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery_jq/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
+					if ($arrup == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery/move_up.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Aufw&auml;rts verschieben'>"
 					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/up_16.png' border='0' alt='v' /></a>";
 					}					
 					$list .= "</td>"
 					."<td width='20'>";
 					
-					if ($arrdown == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery_jq/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Abw&auml;rts verschieben'>"
+					if ($arrdown == true) {$list .="<a href='".LEPTON_URL."/modules/foldergallery/move_down.php?page_id=".$page_id."&section_id=".$section_id."&id=".$result['id']."' title='Abw&auml;rts verschieben'>"
 					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/down_16.png' border='0' alt='u' />"
 					."</a>";}
 					
 					$list .= "</td>"
 					
 					."<td width='20'>"
-					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery_jq/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
+					."<a href='javascript: confirm_link(\"Sind sie sicher, dass Sie die ausgew&auml;hlte Kategorie mit allen Unterkategorien und Bilder l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery/delete_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$result['id']."\");' >"
 					."<img src='".LEPTON_URL."/modules/lib_lepton/backend_images/delete_16.png' border='0' alt='X'></a>";
 					// Ende Zeile mit allen Angaben
 
@@ -230,7 +230,7 @@ function display_categories($parent_id, $section_id , $tiefe = 0) {
 }
 
 $url = array(
-	'edit'	=> LEPTON_URL."/modules/foldergallery_jq/modify_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=",
+	'edit'	=> LEPTON_URL."/modules/foldergallery/modify_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=",
 );
 
 echo '<script type="text/javascript">

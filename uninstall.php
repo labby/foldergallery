@@ -1,10 +1,10 @@
 <?php
 
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -30,8 +30,8 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php 
 
-LEPTON_handle::drop_table("mod_foldergallery_jq_settings");
-LEPTON_handle::drop_table("mod_foldergallery_jq_files");
-LEPTON_handle::drop_table("mod_foldergallery_jq_categories");
+LEPTON_handle::drop_table("mod_foldergallery_settings");
+LEPTON_handle::drop_table("mod_foldergallery_files");
+LEPTON_handle::drop_table("mod_foldergallery_categories");
 
 ?>

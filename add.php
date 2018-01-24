@@ -1,9 +1,9 @@
 <?php
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -37,7 +37,7 @@ if (defined('LEPTON_PATH')) {
  */
 $root_dir = 'd41d8cd98f00b204e9800998ecf8427e';
 $extensions = 'jpg,jpeg,gif,png';
-$database->query("INSERT INTO `" .TABLE_PREFIX ."mod_foldergallery_jq_settings` "
+$database->query("INSERT INTO `" .TABLE_PREFIX ."mod_foldergallery_settings` "
 		. "(`page_id`, `section_id`, `root_dir`, `extensions`) VALUES "
 		. "('$page_id', '$section_id', '$root_dir', '$extensions')");
 ?>

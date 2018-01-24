@@ -1,6 +1,6 @@
 <!-- Jquery slimbox-->	
-  <script type="text/javascript" src="{LEPTON_URL}/modules/foldergallery_jq/scripts/slimbox2/slimbox2.js"></script>
-<link rel="stylesheet" href="{LEPTON_URL}/modules/foldergallery_jq/scripts/slimbox2/slimbox2.css" media="screen" />
+  <script type="text/javascript" src="{LEPTON_URL}/modules/foldergallery/scripts/slimbox2/slimbox2.js"></script>
+<link rel="stylesheet" href="{LEPTON_URL}/modules/foldergallery/scripts/slimbox2/slimbox2.css" media="screen" />
 <!-- END Jquery Lightbox -->  
 
 <div class="gallery">
