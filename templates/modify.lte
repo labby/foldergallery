@@ -1,0 +1,110 @@
+{#
+/**
+ *  @module         foldergallery
+ *  @version        see info.php of this module
+ *  @author         Aldus, erpe (initiated by Jürg Rast)
+ *  @copyright      2009-2018 Aldus, erpe 
+ *  @license        GNU General Public License
+ *  @license terms  see info.php of this module
+ *  @platform       see info.php of this module
+ * 
+ */
+ #}
+ 
+<!-- start twig content -->
+{% autoescape false %}
+{% if oFG.fg_settings.root_dir == oFG.module_guid %}
+	<div>
+	<script language="javascript">
+		function initial_redirect() {
+   			location.href='{{ oFG.folder_url }}modify_settings.php?page_id={{ oFG.fg_settings.page_id }}&section_id={{ oFG.fg_settings.section_id }}&leptoken={{ leptoken }}';
+		}
+		window.setTimeout("initial_redirect()", 2000); // in milliseconds,  1000 = one second
+	</script>
+	</div>
+	<div class="ui basic segment">
+		<div class="ui positive message">{{ oFG.language.REDIRECT }}</div>
+	</div>
+{% else %}
+	<div><script language="javascript">var LEPTON_URL = "{{ LEPTON_URL }}";</script></div>
+
+	<div class="ui basic segment {{ oFG.module_directory }}">
+	<h3 class="ui {{ oFG.addon_color }} header">{{ oFG.module_name }}</h3>
+	<div class="ui basic segment">	
+		<form class="ui form" name="erpe">
+			<button class="ui {{ oFG.addon_color }} basic left floated button" type="submit" name="settings" value="set" title="{{ oFG.language.SETTINGS }}" formaction="{{ oFG.folder_url }}modify_settings.php?page_id={{ oFG.fg_settings.page_id }}&section_id={{ oFG.fg_settings.section_id }}" formmethod="post"><i class="{{ oFG.addon_color }} settings icon"></i>{{ oFG.language.SETTINGS }}</button>		
+			<button class="ui {{ oFG.addon_color }} basic left floated button" type="submit" name="sync" value="sync" title="{{ oFG.language.SYNC }}" formaction="{{ oFG.folder_url }}sync.php?page_id={{ oFG.fg_settings.page_id }}&section_id={{ oFG.fg_settings.section_id }}" formmethod="post"><i class="{{ oFG.addon_color }} sync icon"></i>{{ oFG.language.SYNC }}</button>	
+			<button class="ui {{ oFG.addon_color }} basic right floated button" type="submit" name="show_info" value="show" title="{{ MENU.HELP }}" formaction="{{ oFG.folder_url }}help.php?page_id={{ oFG.fg_settings.page_id }}&section_id={{ oFG.fg_settings.section_id }}" formmethod="post"><i class="{{ oFG.addon_color }} help icon"></i>{{ MENU.HELP }}</button>		
+		</form>
+		<form name="edit_module_file" action="{{ LEPTON_URL }}/modules/edit_module_files.php?page_id={{ oFG.fg_settings.page_id }}" method="post">
+			<input name="page_id" value="{{ oFG.fg_settings.page_id }}" type="hidden">
+			<input name="section_id" value="{{ oFG.fg_settings.section_id }}" type="hidden">
+			<input name="mod_dir" value="{{ oFG.module_directory }}" type="hidden">
+			<input name="edit_file" value="frontend.css" type="hidden">
+			<input name="action" value="edit" type="hidden">
+			<button class="ui {{ oFG.addon_color }} basic right floated button" type="submit" name="edit_css" value="{{ TEXT.CAP_EDIT_CSS }}" title="{{ TEXT.CAP_EDIT_CSS }}"><i class="edit icon"></i>{{ TEXT.CAP_EDIT_CSS }}</button>
+		</form>			
+	</div>	
+	<div class="spacer2"></div>
+	<div class="ui basic segment">		
+		<h4 class="ui {{ oFG.addon_color }} header">{{ oFG.language.TITEL_MODIFY }}</h4>
+
+		<div class="cat_list">		
+			<table class="ui striped table fg_modify">
+				<thead>
+					<tr>
+						<th> </th>
+						<th>{{ oFG.language.FOLDER_IN_FS }}</th>
+						<th>{{ oFG.language.CAT_TITLE }}</th>
+						<th class="one wide single line">{{ oFG.language.ACTION }}</th>
+						<th> </th>
+					</tr>
+				</thead>
+				<tbody>	
+				{% for item in oFG.fg_category_zero %}
+					<tr>
+						<td> </td>					
+
+						<td><a href="{{ oFG.cat_url }}?page_id={{ item.page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}"><i class="eye icon"></i>{{ item.categorie }}</a></td>
+						<td><a href="{{ oFG.cat_url }}?page_id={{ item.page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}">{{ item.cat_name }}</a></td>
+						<td>
+							<i class="large {% if item.active == 1 %}green {% else %}red {% endif %}thumbs up icon"></i>
+							<i class="large green {% if arrow_up == 1 %}arrow up {% elseif arrow_down == 1 %}arrow down {% else %}{% endif %}icon"></i>
+						</td>						
+
+						
+						<td> </td>
+					</tr>						
+				{% endfor %}	
+				</tbody>
+			</table>				
+		
+		
+
+			
+		<!-- Liste erstellen -->
+		<!-- BEGIN ListElement -->
+			<div id="dragableTable">
+				<ul id="p{{ COUNTER }}">
+					<li style="padding: 1px 0px 1px 0px;">
+						<table cellpadding="1" cellspacing="0" border="0" class="cat_table">
+							<tr onmouseover="this.style.backgroundColor = '#F1F8DD';" onmouseout="this.style.backgroundColor = '#ECF3F7';">
+								<td width="20" style="padding-left: 0px;">
+									<a href="javascript: toggle_visibility('p{{ NCOUNTER }}');" title="Erweitern/Reduzieren">
+										<img src="../images/plus_16.png" onclick="toggle_plus_minus('{{ NCOUNTER }}');" name="plus_minus_{{ NCOUNTER }}" border="0" alt="+" />
+									</a>
+								</td>
+								<td>{{ FOLDER_VALUE }}</td>
+							</tr>
+						</table>
+					</li>
+					{{ SUBELEM }}
+				</ul>
+				<!-- END ListElement -->
+			</div>
+		</div>			
+	</div><!-- END modify.php -->
+	</div>
+{% endif %}
+{% endautoescape %}
+<!-- end twig content -->
