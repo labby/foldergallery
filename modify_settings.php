@@ -39,7 +39,7 @@ $file_names = array(
 );
 LEPTON_handle::include_files ($file_names);
 
-$MOD_FOLDERGALLERY_JQ = foldergallery::getInstance()->language;
+$MOD_FOLDERGALLERY = foldergallery::getInstance()->language;
 
 // Einstellungen zur aktuellen Foldergallery aus der DB
 $settings = getSettings($section_id);
@@ -83,22 +83,22 @@ $catpicselect .= '</select>';
 
 // Text einsetzten
 $t->set_var(array(
-	'SETTINGS_STRING'		=> $MOD_FOLDERGALLERY_JQ['SETTINGS'],
-	'ROOT_FOLDER_STRING' 	=> $MOD_FOLDERGALLERY_JQ['ROOT_DIR'],
-	'EXTENSIONS_STRING'		=> $MOD_FOLDERGALLERY_JQ['EXTENSIONS'],
+	'SETTINGS_STRING'		=> $MOD_FOLDERGALLERY['SETTINGS'],
+	'ROOT_FOLDER_STRING' 	=> $MOD_FOLDERGALLERY['ROOT_DIR'],
+	'EXTENSIONS_STRING'		=> $MOD_FOLDERGALLERY['EXTENSIONS'],
 	'EXTENSIONS_VALUE'		=> $settings['extensions'],
-	'INVISIBLE_STRING'		=> $MOD_FOLDERGALLERY_JQ['INVISIBLE'],
+	'INVISIBLE_STRING'		=> $MOD_FOLDERGALLERY['INVISIBLE'],
 	'INVISIBLE_VALUE'		=> $settings['invisible'],
 	'SAVE_STRING' 			=> $TEXT['SAVE'],
 	'CANCEL_STRING' 		=> $TEXT['CANCEL'],
-	'PICS_PP_STRING'    		=> $MOD_FOLDERGALLERY_JQ['PICS_PP'],
+	'PICS_PP_STRING'    		=> $MOD_FOLDERGALLERY['PICS_PP'],
 	'PICS_PP_VALUE'    		=> $settings['pics_pp'],
 	'THUMBSIZE'    			=> $settings['thumb_size'],
-	'THUMB_SIZE_STRING'   		=> $MOD_FOLDERGALLERY_JQ['THUMB_SIZE'],
-	'THUMB_RATIO_STRING'    	=> $MOD_FOLDERGALLERY_JQ['THUMB_RATIO'],
-	'THUMB_NOT_NEW_STRING'    	=> $MOD_FOLDERGALLERY_JQ['THUMB_NOT_NEW'],
-	'CHANGING_INFO_STRING'    	=> $MOD_FOLDERGALLERY_JQ['CHANGING_INFO'],
-	'LIGHTBOX_STRING' 		=> $MOD_FOLDERGALLERY_JQ['LIGHTBOX'],
+	'THUMB_SIZE_STRING'   		=> $MOD_FOLDERGALLERY['THUMB_SIZE'],
+	'THUMB_RATIO_STRING'    	=> $MOD_FOLDERGALLERY['THUMB_RATIO'],
+	'THUMB_NOT_NEW_STRING'    	=> $MOD_FOLDERGALLERY['THUMB_NOT_NEW'],
+	'CHANGING_INFO_STRING'    	=> $MOD_FOLDERGALLERY['CHANGING_INFO'],
+	'LIGHTBOX_STRING' 		=> $MOD_FOLDERGALLERY['LIGHTBOX'],
 	'LIGHTBOX_VALUE' 		=> $lightbox_select,
 	'CATPIC_VALUE' 			=> $catpicselect,
 ));
@@ -111,9 +111,9 @@ $t->set_var(array(
 
 //Tooltips einsetzen
 $t->set_var(array(
-	'ROOT_FOLDER_STRING_TT' => $MOD_FOLDERGALLERY_JQ['ROOT_FOLDER_STRING_TT'],
-	'EXTENSIONS_STRING_TT'	=> $MOD_FOLDERGALLERY_JQ['EXTENSIONS_STRING_TT'],
-	'INVISIBLE_STRING_TT'	=> $MOD_FOLDERGALLERY_JQ['INVISIBLE_STRING_TT'],
+	'ROOT_FOLDER_STRING_TT' => $MOD_FOLDERGALLERY['ROOT_FOLDER_STRING_TT'],
+	'EXTENSIONS_STRING_TT'	=> $MOD_FOLDERGALLERY['EXTENSIONS_STRING_TT'],
+	'INVISIBLE_STRING_TT'	=> $MOD_FOLDERGALLERY['INVISIBLE_STRING_TT'],
 ));
 
 if ( ! empty( $settings['invisible'] ) ) {
@@ -137,7 +137,7 @@ foreach($ordnerliste as $ordner) {
 }
 
 //Ratio Auswahlliste
-$ratioArray = array($MOD_FOLDERGALLERY_JQ['Ration_square'] => 1, "4:3" => round(4/3, 4), "3:4" => round(3/4, 4), "16:9" => round(16/9, 4), "9:16" => round(9/16, 4));
+$ratioArray = array($MOD_FOLDERGALLERY['Ration_square'] => 1, "4:3" => round(4/3, 4), "3:4" => round(3/4, 4), "16:9" => round(16/9, 4), "9:16" => round(9/16, 4));
 foreach($ratioArray as $ratio => $value) {
 	$t->set_var(array(
 			'RATIO'		=> $ratio,

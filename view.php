@@ -29,7 +29,7 @@ if (defined('LEPTON_PATH')) {
 	}
 }
 // end include class.secure.php
-global $MOD_FOLDERGALLERY_JQ;
+global $MOD_FOLDERGALLERY;
 
 $file_names = array(
 '/modules/foldergallery/backend.functions.php',
@@ -255,7 +255,7 @@ $t->set_block('view', 'error', 'ERROR');  // Dieser Fehler wird nicht ausgegeben
 $t->set_block('view', 'pagenav', 'PAGE_NAV' );
 
 if($error) {
-	$t->set_var('FRONT_END_ERROR_STRING', $MOD_FOLDERGALLERY_JQ['FRONT_END_ERROR']);
+	$t->set_var('FRONT_END_ERROR_STRING', $MOD_FOLDERGALLERY['FRONT_END_ERROR']);
 	$t->parse('ERROR', 'error');
 } else {
 	$t->clear_var('error');
@@ -264,14 +264,14 @@ if($error) {
 $t->set_var(array(
 	'VIEW_TITLE'	=> $title,
 	'BACK_LINK'		=> $back_link,
-	'BACK_STRING'	=> $MOD_FOLDERGALLERY_JQ['BACK_STRING'],
+	'BACK_STRING'	=> $MOD_FOLDERGALLERY['BACK_STRING'],
 	'HIDDEN'		  => $hidden,
 	'THUMB_SIZE'  => $settings['thumb_size'],
 ));
 
 // Kategorien anzeigen
 if($unterKats){
-	//$t->set_var('CATEGORIES_TITLE', $MOD_FOLDERGALLERY_JQ['CATEGORIES_TITLE']);
+	//$t->set_var('CATEGORIES_TITLE', $MOD_FOLDERGALLERY['CATEGORIES_TITLE']);
 	foreach($unterKats as $kat) {
 		$t->set_var(array(
 			'CAT_LINK'	=> $kat['link'],
@@ -321,7 +321,7 @@ if($bilder)
 	    	$t->set_var(
 		  array(
 		      'PAGE_NAV' => $pages_navi,
-		      'PAGE'     => $MOD_FOLDERGALLERY_JQ['PAGE']
+		      'PAGE'     => $MOD_FOLDERGALLERY['PAGE']
 		)
       		);
       		$t->parse('PAGE_NAV', 'pagenav' );
@@ -393,7 +393,7 @@ if ( isset( $_GET['cat'] ) ) {
            . '<li><a href="'
            . $link
            . '">'
-           . $MOD_FOLDERGALLERY_JQ['BACK_STRING']
+           . $MOD_FOLDERGALLERY['BACK_STRING']
            . '</a></li>';
 
     // first element is empty as the string begins with /

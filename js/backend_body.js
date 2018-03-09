@@ -1,8 +1,8 @@
 /**
- *  @module         foldergallery
+ *  @module         foldergallery_jq
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -13,7 +13,7 @@ $(document).ready(function(){
 	$(function() { 
 		$("#dragableTable ul").sortable({ opacity: 0.6, cursor: 'move', update: function() { 
 			var order = $(this).sortable("serialize") + '&action=updateRecordsListings&parent_id='+the_parent_id; 
-			$.post(LEPTON_URL+"/modules/foldergallery/reorderDND.php", order, function(theResponse){ 
+			$.post(LEPTON_URL+"/modules/foldergallery_jq/reorderDND.php", order, function(theResponse){ 
 				$("#dragableResult").html(theResponse); 
 			}); 
 		} 
@@ -25,7 +25,7 @@ $(document).ready(function(){
 	$(function() { 
 		$("#dragableCategorie ul").sortable({ opacity: 0.6, cursor: 'move', update: function() { 
 			var order = $(this).sortable("serialize") + '&action=updateRecordsListings&parent_id='+the_parent_id; 
-			$.post(LEPTON_URL+"/modules/foldergallery/reorderCNC.php", order, function(theResponse){ 
+			$.post(LEPTON_URL+"/modules/foldergallery_jq/reorderCNC.php", order, function(theResponse){ 
 				$("#dragableResult").html(theResponse); 
 			}); 
 		} 
@@ -35,15 +35,15 @@ $(document).ready(function(){
  
 // Remember to invoke within jQuery(window).load(...)
 // If you don't, Jcrop may not initialize properly
-
-	var settingsRatio;
-	// if(typeof settingsRatio == "undefined") var settingsRatio = "1";
-	// console.log("hallo: "+settingsRatio);
+$(window).load(function(){
+	if(typeof settingsRatio == "undefined") var settingsRatio = "1";
 	$('#cropbox').Jcrop({
 		onChange: showPreview,
 		onSelect: updateCoords,
-		aspectRatio: settingsRatio // was 16/9 == 1.777777777777
+		aspectRatio: settingsRatio
 	});
+
+});
 
 function showPreview(coords)
 {

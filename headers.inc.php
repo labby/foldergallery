@@ -1,4 +1,5 @@
 <?php
+
 /**
  *  @module         foldergallery
  *  @version        see info.php of this module
@@ -9,35 +10,48 @@
  *  @platform       see info.php of this module
  * 
  */
-
-// include class.secure.php to protect this file and the whole CMS!
-if (defined('LEPTON_PATH')) {
-	include(LEPTON_PATH.'/framework/class.secure.php');
+ 
+ // include class.secure.php to protect this file and the whole CMS!
+if (defined('LEPTON_PATH')) {   
+   include(LEPTON_PATH.'/framework/class.secure.php');
 } else {
-	$root = "../";
-	$level = 1;
-	while (($level < 10) && (!file_exists($root.'/framework/class.secure.php'))) {
-		$root .= "../";
-		$level += 1;
-	}
-	if (file_exists($root.'/framework/class.secure.php')) {
-		include($root.'/framework/class.secure.php');
-	} else {
-		trigger_error(sprintf("[ <b>%s</b> ] Can't include class.secure.php!", $_SERVER['SCRIPT_NAME']), E_USER_ERROR);
-	}
+   $oneback = "../";
+   $root = $oneback;
+   $level = 1;
+   while (($level < 10) && (!file_exists($root.'/framework/class.secure.php'))) {
+      $root .= $oneback;
+      $level += 1;
+   }
+   if (file_exists($root.'/framework/class.secure.php')) {
+      include($root.'/framework/class.secure.php');
+   } else {
+      trigger_error(sprintf("[ <b>%s</b> ] Can't include class.secure.php!", $_SERVER['SCRIPT_NAME']), E_USER_ERROR);
+   }
 }
-// end include class.secure.php  
+// end include class.secure.php
 
-$mod_headers = array();
 
-if(DEFAULT_THEME === "algos") {
-    $mod_headers = array(
-        'backend' => array(
-            'js' => array(
-                '/modules/lib_jquery/jquery-ui/jquery-ui.min.js'
-            )
-        )
-    );
-}
-$mod_headers['backend']['js'][] = '/modules/foldergallery/scripts/jcrob/js/jquery.Jcrop.min.js';
+$mod_headers = array(
+	'backend' => array(
+        'css' => array(
+		array(
+			'media'  => 'all',
+			'file'  => 'modules/lib_semantic/dist/semantic.min.css'
+			)		
+ 		),				
+		'js' => array(
+			'modules/lib_jquery/jquery-core/jquery-core.min.js',
+			'modules/lib_jquery/jquery-core/jquery-migrate.min.js',
+			'/modules/foldergallery/scripts/jcrob/js/jquery.Jcrop.min.js',
+			'modules/lib_semantic/dist/semantic.min.js'
+		)
+	),
+	'frontend' => array(			
+		'js' => array(
+			'modules/lib_jquery/jquery-core/jquery-core.min.js',
+			'modules/lib_jquery/jquery-core/jquery-migrate.min.js'
+		)
+	)	
+);
 ?>
+

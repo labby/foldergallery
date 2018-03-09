@@ -39,14 +39,14 @@ LEPTON_handle::include_files ($file_names);
 
 $settings = getSettings($section_id);
 
-$MOD_FOLDERGALLERY_JQ = foldergallery::getInstance()->language;
+$MOD_FOLDERGALLERY = foldergallery::getInstance()->language;
 
 $flag = false;
 
 /* syncDB($galerie) ist kompletter updatealgorithmus */
 if(syncDB($settings)) {
 
-	echo "<center>".$MOD_FOLDERGALLERY_JQ['SYNC_DATABASE']."</center><br />";
+	echo "<center>".$MOD_FOLDERGALLERY['SYNC_DATABASE']."</center><br />";
 
 	// Wieder alle Angaben aus der DB holen um Sortierung festzulegen
 	$results = array();
@@ -171,7 +171,7 @@ if(syncDB($settings)) {
 
     }   // keine Kategorien vorhanden
     else {
-        $admin->print_error( $MOD_FOLDERGALLERY_JQ['NO_CATEGORIES'], LEPTON_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id );
+        $admin->print_error( $MOD_FOLDERGALLERY['NO_CATEGORIES'], LEPTON_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id );
     }
 
 }

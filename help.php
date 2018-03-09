@@ -54,16 +54,16 @@ $t->set_file('help', 'help.htt');
 $t->set_block('help', 'CommentDoc'); $t->clear_var('CommentDoc');
 
 $t->set_var(array(
-    'TITLE'                 => $FG_HELP['TITLE'],
-    'VERSION'               => $FG_HELP['VERSION'],
-    'YOUR_VERSION_TEXT'     => sprintf($FG_HELP['YOUR_VERSION'],$module_version),
-    'VERSION_TEXT'          => $FG_HELP['VERSION_TEXT'],
-    'HOMEPAGE_TEXT'         => $FG_HELP['HOMEPAGE_TEXT'],
-    'HELP_TITLE'            => $FG_HELP['HELP_TITLE'],
-    'HELP_TEXT'             => $FG_HELP['HELP_TEXT'],
-    'BUG_TITLE'             => $FG_HELP['BUG_TITLE'],
-    'BUG_TEXT'              => $FG_HELP['BUG_TEXT'],
-    'BACK_STRING'           => $FG_HELP['BACK_STRING'],
+    'TITLE'                 => $MOD_FOLDERGALLERY['TITLE'],
+    'VERSION'               => $MOD_FOLDERGALLERY['VERSION'],
+    'YOUR_VERSION_TEXT'     => sprintf($MOD_FOLDERGALLERY['YOUR_VERSION'],$module_version),
+    'VERSION_TEXT'          => $MOD_FOLDERGALLERY['VERSION_TEXT'],
+    'HOMEPAGE_TEXT'         => $MOD_FOLDERGALLERY['HOMEPAGE_TEXT'],
+    'HELP_TITLE'            => $MOD_FOLDERGALLERY['HELP_TITLE'],
+    'HELP_TEXT'             => $MOD_FOLDERGALLERY['HELP_TEXT'],
+    'BUG_TITLE'             => $MOD_FOLDERGALLERY['BUG_TITLE'],
+    'BUG_TEXT'              => $MOD_FOLDERGALLERY['BUG_TEXT'],
+    'BACK_STRING'           => $MOD_FOLDERGALLERY['BACK_STRING'],
     'BACK_ONCLICK'          => 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';'
 ));
 

@@ -36,7 +36,7 @@ $file_names = array(
 );
 LEPTON_handle::include_files ($file_names);
 
-$MOD_FOLDERGALLERY_JQ = foldergallery::getInstance()->language;
+$MOD_FOLDERGALLERY = foldergallery::getInstance()->language;
 
 $settings = getSettings($section_id);
 
@@ -74,7 +74,7 @@ if(isset($_POST['save'])) {
 	if(!$database->is_error()){
 		$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
 	} else {
-		$admin->print_error($MOD_FOLDERGALLERY_JQ['ERROR_MESSAGE'].": ".$database->get_error(), ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
+		$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'].": ".$database->get_error(), ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
 	}
 }
 

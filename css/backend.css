@@ -1,8 +1,8 @@
 /**
- *  @module         foldergallery
+ *  @module         foldergallery_jq
  *  @version        see info.php of this module
  *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -13,6 +13,23 @@
 body {
 	cursor : default;
 }
+
+#module {
+padding:20px;
+}
+
+textarea {
+    padding: 6px;
+}
+
+input[type="submit"], input[type="button"] {
+	background: #eee;
+	cursor: pointer;
+	border: 1px solid #ccc;
+	margin: 5px;
+	border-radius: 5px;
+}
+
 .tooltip {
 	position: absolute;
 	display: none;
@@ -34,12 +51,21 @@ tr.title{
 }
 
 table.list {
-	background-color: #d3dcdc;
+	background-color: #eee;
 }
 
 .cat_table {
 	background-color: #ECF3F7;
 	width: 100%;
+}
+
+.cat_table tr {
+	line-height:30px;
+	background:#ccc !important
+}
+
+img.lepsem_fg {
+	padding-top:8px;
 }
 
 .cat_subelem {
@@ -64,13 +90,31 @@ li {
 	margin: 0;
 	padding: 0;
 }
+.settings tr {
+	line-height:30px;
+}
+
+.settings input {
+	margin-top:2px;
+	margin-bottom:2px;
+}
+
+.settings select {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding: 8px;
+	min-width: 150px;
+}
 
 #dragableTable {text-align:center;}
 #dragableTable li {float:left; margin: 4px; }
 #dragableTable td {text-align:center; vertical-align: middle; background-color:#ddd; cursor:'move';}
 
-.fg_interface_button {
-    border: 0 !important;
-    margin-top: 13px;
-    width: 160px !important;
+input.lepsem_submit, input.lepsem_reset, input.lepsem_save {
+	border: none !important;
+}
+
+input.lepsem_save {
+	padding-left: 20px;
+	padding-right: 20px;
 }

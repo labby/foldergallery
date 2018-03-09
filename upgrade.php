@@ -30,35 +30,9 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-// obsolete with 3.0.0
-/**
- *  delete not needed files
-
-$file_names = array(
-	"/modules/foldergallery/backend.js",
-	"/modules/foldergallery/backend.css",
-	"/modules/foldergallery/backend_body.js",
-	"/modules/foldergallery/frontend.js",
-	"/modules/foldergallery/frontend.css"
-); 
-LEPTON_handle::delete_obsolete_files ($file_names); 
-  */
-/**
- *  delete obsolete directories
-
-$directory_names = array(
-	'/modules/foldergallery/scripts/highslide',
-	'/modules/foldergallery/scripts/jquery',
-	'/modules/foldergallery/scripts/fancybox',
-	'/modules/foldergallery/scripts/galleryview',
-	'/modules/foldergallery/scripts/lightbox2',
-	'/modules/foldergallery/scripts/pirobox'
-);  
-LEPTON_handle::delete_obsolete_directories($directory_names);
-*/
 
 // release 3.0.0. : change table names and directory name to foldergallery
-$result = $database->get_one("SELECT page_id FROM ".TABLE_PREFIX."mod_foldergallery_jq");
+$result = $database->get_one("SELECT page_id FROM ".TABLE_PREFIX."mod_foldergallery_jq_settings");
 $table_exists = count($result);
 
 if($table_exists != 0) {
@@ -68,12 +42,15 @@ if($table_exists != 0) {
 	LEPTON_handle::create_sik_table('mod_foldergallery_jq_categories');	
 
 	// create new tables
-	$database->simple_query( "RENAME_TABLE `".TABLE_PREFIX."mod_foldergallery_jq_settings` TO `".TABLE_PREFIX."mod_foldergallery_settings` ");
-	$database->simple_query( "RENAME_TABLE `".TABLE_PREFIX."mod_foldergallery_jq_files` TO `".TABLE_PREFIX."mod_foldergallery_files` ");
-	$database->simple_query( "RENAME_TABLE `".TABLE_PREFIX."mod_foldergallery_jq_categories` TO `".TABLE_PREFIX."mod_foldergallery_categories` ");	
+	$database->simple_query( "RENAME TABLE ".TABLE_PREFIX."mod_foldergallery_jq_settings TO ".TABLE_PREFIX."mod_foldergallery_settings ");
+	$database->simple_query( "RENAME TABLE ".TABLE_PREFIX."mod_foldergallery_jq_files TO ".TABLE_PREFIX."mod_foldergallery_files ");
+	$database->simple_query( "RENAME TABLE ".TABLE_PREFIX."mod_foldergallery_jq_categories TO ".TABLE_PREFIX."mod_foldergallery_categories ");	
 	
 	// modify addon entry
-	$database->simple_query('UPDATE `' . TABLE_PREFIX . 'addons` SET `directory` =\'foldergallery\' WHERE `guid` =\'c362eb43-878d-492f-906f-57a07da6d0f6\'');	
+	$database->simple_query('UPDATE `' . TABLE_PREFIX . 'addons` SET `directory` =\'foldergallery\' WHERE `guid` =\'c362eb43-878d-492f-906f-57a07da6d0f6\'');
+	
+	// modify section entries
+	$database->simple_query('UPDATE `' . TABLE_PREFIX . 'sections` SET `module` =\'foldergallery\' WHERE `module` =\'foldergallery_jq\'');		
 }
 
 // save current backend.css

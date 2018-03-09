@@ -37,7 +37,7 @@ $file_names = array(
 );
 LEPTON_handle::include_files ($file_names);
 
-$MOD_FOLDERGALLERY_JQ = foldergallery::getInstance()->language;
+$MOD_FOLDERGALLERY = foldergallery::getInstance()->language;
 
 
 $oldSettings = getSettings($section_id);
@@ -99,7 +99,7 @@ if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view
 	$newSettings['lightbox'] = '';
 }
 
-echo "<center>".$MOD_FOLDERGALLERY_JQ['SAVE_SETTINGS']."</center><br />";
+echo "<center>".$MOD_FOLDERGALLERY['SAVE_SETTINGS']."</center><br />";
 $newSettings['section_id'] = $section_id;
 
 $settingsTable = TABLE_PREFIX.'mod_foldergallery_settings';

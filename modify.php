@@ -45,7 +45,7 @@ $file_names = array(
 );
 LEPTON_handle::include_files ($file_names);
 
-$MOD_FOLDERGALLERY_JQ = foldergallery::getInstance()->language;
+$MOD_FOLDERGALLERY = foldergallery::getInstance()->language;
 
 $settings = getSettings($section_id);
 
@@ -64,13 +64,15 @@ if($settings['root_dir'] == 'd41d8cd98f00b204e9800998ecf8427e') {
 			window.setTimeout("Weiterleitung()", 2000); // in msecs 1000 => eine Sekunde
 		</script>
 	<?php
-	echo $MOD_FOLDERGALLERY_JQ['REDIRECT'];
+	echo $MOD_FOLDERGALLERY['REDIRECT'];
 } else {
 
 echo '
+<div>
 <script type="text/javascript">
 var LEPTON_URL = "'.LEPTON_URL.'";
 </script>
+<div>
 ';
 
 // Template
@@ -94,15 +96,15 @@ $t->set_var(array(
 
 // Text im Template setzten
 $t->set_var(array(
-	'TITEL_BACKEND_STRING'	=> $MOD_FOLDERGALLERY_JQ['TITEL_BACKEND'],
-	'TITEL_MODIFY'			=> $MOD_FOLDERGALLERY_JQ['TITEL_MODIFY'],
-	'SETTINGS_STRING'		=> $MOD_FOLDERGALLERY_JQ['SETTINGS'],
-	'FOLDER_IN_FS_STRING'	=> $MOD_FOLDERGALLERY_JQ['FOLDER_IN_FS'],
-	'CAT_TITLE_STRING'		=> $MOD_FOLDERGALLERY_JQ['CAT_TITLE'],
-	'ACTIONS_STRING'		=> $MOD_FOLDERGALLERY_JQ['ACTION'],
-	'SYNC_STRING'			=> $MOD_FOLDERGALLERY_JQ['SYNC'],
-	'EDIT_CSS_STRING'		=> $MOD_FOLDERGALLERY_JQ['EDIT_CSS'],
-	'HELP_STRING'           => $MOD_FOLDERGALLERY_JQ['HELP_INFORMATION'],	
+	'TITEL_BACKEND_STRING'	=> $MOD_FOLDERGALLERY['TITEL_BACKEND'],
+	'TITEL_MODIFY'			=> $MOD_FOLDERGALLERY['TITEL_MODIFY'],
+	'SETTINGS_STRING'		=> $MOD_FOLDERGALLERY['SETTINGS'],
+	'FOLDER_IN_FS_STRING'	=> $MOD_FOLDERGALLERY['FOLDER_IN_FS'],
+	'CAT_TITLE_STRING'		=> $MOD_FOLDERGALLERY['CAT_TITLE'],
+	'ACTIONS_STRING'		=> $MOD_FOLDERGALLERY['ACTION'],
+	'SYNC_STRING'			=> $MOD_FOLDERGALLERY['SYNC'],
+	'EDIT_CSS_STRING'		=> $MOD_FOLDERGALLERY['EDIT_CSS'],
+	'HELP_STRING'           => $MOD_FOLDERGALLERY['HELP_INFORMATION'],	
 ));
 
 // Template ausgeben
@@ -233,10 +235,10 @@ $url = array(
 	'edit'	=> LEPTON_URL."/modules/foldergallery/modify_cat.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=",
 );
 
-echo '<script type="text/javascript">
+echo '<div><script type="text/javascript">
 		var the_parent_id = "0";			
 		var LEPTON_URL = "'.LEPTON_URL.'";
-	</script>
+	</script><div>
 <div style="display: block; width: 90%; height: 15px; padding: 5px;"><div id="dragableResult"> </div></div>
 	<ul>
 		'.display_categories(-1, $section_id).'
