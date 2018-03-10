@@ -85,7 +85,7 @@
 								</button>
 										</td>
 										<td>
-											{% if item.position == 1 and item.parent != -1 %}
+											{% if loop.index < loop.length %}
 												<button class="ui basic button blank" type="submit" name="move_down" value="{{ item.id }}" title="{{ TEXT.MOVE_DOWN }}" formaction="{{ oFG.modify_url }}?page_id={{ oFG.fg_settings.page_id }}" formmethod="post"><i class="large green arrow down icon"></i></button>
 											{% elseif item.position > 1 and item.parent != -1 %}
 												<i class="large blank icon"></i>
@@ -93,7 +93,7 @@
 											{% endif %}
 										</td>
 										<td>
-											{% if item.position > 1 and item.parent != -1 %}
+											{% if loop.index > 1 %}
 												<button class="ui basic button blank" type="submit" name="move_up" value="{{ item.id }}" title="{{ TEXT.MOVE_UP }}" formaction="{{ oFG.modify_url }}?page_id={{ oFG.fg_settings.page_id }}" formmethod="post"><i class="large green arrow up icon"></i></button>
 											{% elseif item.position == 1 and item.parent != -1 %}
 												<i class="large blank icon"></i>

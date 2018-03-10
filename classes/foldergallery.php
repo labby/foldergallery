@@ -106,7 +106,7 @@ class foldergallery extends LEPTON_abstract
 				$admin->print_success($this->language['SAVE_SETTINGS'], ADMIN_URL.'/pages/modify.php?page_id='.$this->page_id.'');
 				return true;
 			} else {
-				$admin->print_error($this->language['DB_ERROR'], ADMIN_URL.'/pages/modify.php?page_id='.$this->page_id);
+				$admin->print_error($this->language['DB_ERROR'] ."<br />". $order->error, ADMIN_URL.'/pages/modify.php?page_id='.$this->page_id);
 				return false;
 			}
 		} elseif (isset($_POST['move_down']) && is_numeric ($_POST['move_down'])) {	
@@ -115,7 +115,7 @@ class foldergallery extends LEPTON_abstract
 				$admin->print_success($this->language['SAVE_SETTINGS'], ADMIN_URL.'/pages/modify.php?page_id='.$this->page_id.'');
 				return true;
 			} else {
-				$admin->print_error($this->language['DB_ERROR'], ADMIN_URL.'/pages/modify.php?page_id='.$this->page_id);
+				$admin->print_error($this->language['DB_ERROR']."<br />".$order->error, ADMIN_URL.'/pages/modify.php?page_id='.$this->page_id);
 				return false;
 			}		
 		} 	
