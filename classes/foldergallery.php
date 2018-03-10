@@ -16,7 +16,7 @@ class foldergallery extends LEPTON_abstract
 	public $database = 0;
 	public $admin = 0;
 	public $fg_settings = array();
-	public $fg_category_zero = array();	
+	public $fg_category_all = array();
 	public $addon_color = 'orange';
 	public $fg_extensions ='jpg,jpeg,gif,png';
 	public $folder_url = LEPTON_URL.'/modules/foldergallery/';
@@ -65,14 +65,15 @@ class foldergallery extends LEPTON_abstract
 			$this->fg_settings,
 			false
 		);	
-		
-		//get categories on section
-		$this->fg_category_zero = array();
+
+		//get all categories on section
+		$this->fg_category_all = array();
 		$this->database->execute_query(
-			"SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE section_id=". $iSectionID." AND niveau = 0 ",
+			"SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE section_id=". $iSectionID." ",
 			true,
-			$this->fg_category_zero,
+			$this->fg_category_all,
 			true
-		);			
+		);	
+				
 	}	
 }

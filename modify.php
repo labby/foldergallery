@@ -40,9 +40,15 @@ $oFG = foldergallery::getInstance();
 $oFG->init_section( $page_id, $section_id );
 $oTWIG = lib_twig_box::getInstance();
 $oTWIG->registerModule('foldergallery');
-echo(LEPTON_tools::display($oFG->fg_category_zero,'pre','ui message'));
+echo(LEPTON_tools::display($oFG->fg_category_all,'pre','ui message'));
+
+//recursiv Aufruf aller childs
+
+
+
 $data = array(
 	'oFG'	=> $oFG,
+	'page_id'	=> $page_id,
 	'leptoken'	=> get_leptoken()
 );
 		

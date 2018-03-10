@@ -2,8 +2,8 @@
 /**
  *  @module         foldergallery
  *  @version        see info.php of this module
- *  @author         Aldus, erpe (initiated by Jürg Rast)
- *  @copyright      2009-2018 Aldus, erpe 
+ *  @author         cms-lab (initiated by Jürg Rast)
+ *  @copyright      2010-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -50,31 +50,58 @@
 		<h4 class="ui {{ oFG.addon_color }} header">{{ oFG.language.TITEL_MODIFY }}</h4>
 
 		<div class="cat_list">		
-			<table class="ui striped table fg_modify">
+			<table class="ui striped compact table fg_modify">
 				<thead>
 					<tr>
 						<th> </th>
 						<th>{{ oFG.language.FOLDER_IN_FS }}</th>
 						<th>{{ oFG.language.CAT_TITLE }}</th>
-						<th class="one wide single line">{{ oFG.language.ACTION }}</th>
+						<th>{{ oFG.language.ACTION }}</th>
 						<th> </th>
 					</tr>
 				</thead>
 				<tbody>	
-				{% for item in oFG.fg_category_zero %}
+				{% for item in oFG.fg_category_all %}
+					{% if item.niveau == 0 %}
 					<tr>
 						<td> </td>					
 
 						<td><a href="{{ oFG.cat_url }}?page_id={{ item.page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}"><i class="eye icon"></i>{{ item.categorie }}</a></td>
 						<td><a href="{{ oFG.cat_url }}?page_id={{ item.page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}">{{ item.cat_name }}</a></td>
 						<td>
-							<i class="large {% if item.active == 1 %}green {% else %}red {% endif %}thumbs up icon"></i>
-							<i class="large green {% if arrow_up == 1 %}arrow up {% elseif arrow_down == 1 %}arrow down {% else %}{% endif %}icon"></i>
+							<table>
+								<tr>
+									<td>
+										{% if item.active == 1 %}
+											<i class="large green thumbs up icon" title="active"></i>
+										 {% else %}
+											<i class="large red thumbs down icon" title="not active"></i>
+										 {% endif %}
+									</td>
+									<td>
+										{% if item.position == 1 and item.parent != -1 %}
+											<i class="large green arrow down icon" title="{{ TEXT.MOVE_DOWN }}"></i> 
+										{% elseif item.position > 1 and item.parent != -1 %}
+											<i class="large blank icon"></i>
+										{% elseif item.position == 1 and item.parent == -1 %}
+										{% endif %}
+									</td>
+									<td>
+										{% if item.position > 1 and item.parent != -1 %}
+											<a href="{{ oFG.folder_url }}move_up.php?page_id={{ page_id }}&section_id={{ item.section_id }}&id={{ item.id }}" title="{{ TEXT.MOVE_UP }}"><i class="large green arrow up icon"></i></a>
+										{% elseif item.position == 1 and item.parent != -1 %}
+											<i class="large blank icon"></i>
+										{% elseif item.position == 1 and item.parent == -1 %}
+										{% endif %}	
+									</td>
+								</tr>
+							</table>							
 						</td>						
 
 						
 						<td> </td>
-					</tr>						
+					</tr>
+				{% endif %}					
 				{% endfor %}	
 				</tbody>
 			</table>				

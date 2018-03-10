@@ -31,7 +31,7 @@ if (defined('LEPTON_PATH')) {
 // end include class.secure.php
 
 // Modul Description
-$module_description = 'Vollautomatische Bildergalerie mit Ordner als Kategorien erstellen.';
+$module_description = 'Automatische Bildergalerie mit Ordner als Kategorien erstellen.';
 
 $MOD_FOLDERGALLERY = array(
 // Variables for the Frontend

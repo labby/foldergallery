@@ -43,7 +43,7 @@ $MOD_FOLDERGALLERY = foldergallery::getInstance()->language;
 
 $flag = false;
 
-/* syncDB($galerie) ist kompletter updatealgorithmus */
+/* syncDB($galerie) ist kompletter update algorithmus */
 if(syncDB($settings)) {
 
 	echo "<center>".$MOD_FOLDERGALLERY['SYNC_DATABASE']."</center><br />";
@@ -59,7 +59,8 @@ if(syncDB($settings)) {
 			
 			$folder = $settings['root_dir'].$result['parent'].'/';//.$result['categorie'];
 			$pathToFolder = foldergallery::FG_PATH.$folder;
-			echo "<p>call ".$pathToFolder."</p>";
+			echo(LEPTON_tools::display($pathToFolder,'pre','ui info message'));
+
 			if ($result['parent'] != '-1') {; //nicht die roots;
 				//checken, ob es das Verzeichnis noch gibt:
 				if(!is_dir($pathToFolder)){
@@ -104,7 +105,7 @@ if(syncDB($settings)) {
 				
 				if  (strpos($others['ast'], $cat['ast']) !== false) {
 					//others ist also ein Child von $cat
-					$cat['childs'].= ','.$others['id'];
+					$cat['childs'].= (($cat['childs'] != '') ? ',' : '').$others['id'];
 				}			
 			}
 		}

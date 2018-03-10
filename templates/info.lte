@@ -14,7 +14,7 @@
 <!-- start twig content -->
 {% autoescape false %}
 		<div class="ui {{ oFG.addon_color }} segment">
-			<h3 class="ui header">{{ oFG.language.info }}</h3>
+			<h3 class="ui header">Addon Info</h3>
 			<div class="ui basic segment">
 				<h3 class="ui header"></h3>
 
