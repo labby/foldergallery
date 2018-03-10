@@ -40,7 +40,14 @@ $oFG = foldergallery::getInstance();
 $oFG->init_section( $page_id, $section_id );
 $oTWIG = lib_twig_box::getInstance();
 $oTWIG->registerModule('foldergallery');
-echo(LEPTON_tools::display($oFG->fg_category_all,'pre','ui message'));
+
+
+if(isset($_POST['toggle']) && is_numeric($_POST['toggle'])) {
+	$oFG->toggle_active($_POST['toggle']);
+}
+if(isset($_POST['move_down']) || isset($_POST['move_up'])) {
+	$oFG->move();
+}
 
 //recursiv Aufruf aller childs
 

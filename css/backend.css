@@ -41,6 +41,10 @@
     font-size: 14px !important;
 }
 
+ .ui.basic.button.blank  {
+	box-shadow: none !important;
+	padding: 0px !important;	
+}
 
 /* 
 body {

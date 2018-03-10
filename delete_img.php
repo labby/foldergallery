@@ -58,8 +58,8 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 				
 		$pathToFile = foldergallery::FG_PATH.$folder.'/'.$bildfilename;	
 		$pathToThumb = foldergallery::FG_PATH.$folder.foldergallery::FG_THUMBDIR.'/thumb.'.$bildfilename;				
-		deleteFile($pathToFile);
-		deleteFile($pathToThumb);
+		LEPTON_handle::delete_obsolete_files ($pathToFile);  //deleteFile($pathToFile);
+		LEPTON_handle::delete_obsolete_files ($pathToThumb); //deleteFile($pathToThumb);
 		
 		$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE id='.$_GET['id'];
 		$database->query($sql);

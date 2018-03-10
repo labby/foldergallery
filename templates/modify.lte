@@ -31,7 +31,7 @@
 	<div class="ui basic segment {{ oFG.module_directory }}">
 	<h3 class="ui {{ oFG.addon_color }} header">{{ oFG.module_name }}</h3>
 	<div class="ui basic segment">	
-		<form class="ui form" name="erpe">
+		<form class="ui form" name="buttons">
 			<button class="ui {{ oFG.addon_color }} basic left floated button" type="submit" name="settings" value="set" title="{{ oFG.language.SETTINGS }}" formaction="{{ oFG.folder_url }}modify_settings.php?page_id={{ oFG.fg_settings.page_id }}&section_id={{ oFG.fg_settings.section_id }}" formmethod="post"><i class="{{ oFG.addon_color }} settings icon"></i>{{ oFG.language.SETTINGS }}</button>		
 			<button class="ui {{ oFG.addon_color }} basic left floated button" type="submit" name="sync" value="sync" title="{{ oFG.language.SYNC }}" formaction="{{ oFG.folder_url }}sync.php?page_id={{ oFG.fg_settings.page_id }}&section_id={{ oFG.fg_settings.section_id }}" formmethod="post"><i class="{{ oFG.addon_color }} sync icon"></i>{{ oFG.language.SYNC }}</button>	
 			<button class="ui {{ oFG.addon_color }} basic right floated button" type="submit" name="show_info" value="show" title="{{ MENU.HELP }}" formaction="{{ oFG.folder_url }}help.php?page_id={{ oFG.fg_settings.page_id }}&section_id={{ oFG.fg_settings.section_id }}" formmethod="post"><i class="{{ oFG.addon_color }} help icon"></i>{{ MENU.HELP }}</button>		
@@ -49,62 +49,69 @@
 	<div class="ui basic segment">		
 		<h4 class="ui {{ oFG.addon_color }} header">{{ oFG.language.TITEL_MODIFY }}</h4>
 
-		<div class="cat_list">		
-			<table class="ui striped compact table fg_modify">
-				<thead>
-					<tr>
-						<th> </th>
-						<th>{{ oFG.language.FOLDER_IN_FS }}</th>
-						<th>{{ oFG.language.CAT_TITLE }}</th>
-						<th>{{ oFG.language.ACTION }}</th>
-						<th> </th>
-					</tr>
-				</thead>
-				<tbody>	
-				{% for item in oFG.fg_category_all %}
-					{% if item.niveau == 0 %}
-					<tr>
-						<td> </td>					
+		<div class="cat_list">
+			<form class="ui form" name="list">
+				<input type="hidden" name="page_id" value="{{ oFG.fg_settings.page_id }}" />
+				<input type="hidden" name="section_id" value="{{ oFG.fg_settings.section_id }}" />
+				<input type="hidden" name="leptoken" value="{{ leptoken }}" />				
+				<table class="ui striped compact table fg_modify">
+					<thead>
+						<tr>
+							<th> </th>
+							<th>{{ oFG.language.FOLDER_IN_FS }}</th>
+							<th>{{ oFG.language.CAT_TITLE }}</th>
+							<th>{{ oFG.language.ACTION }}</th>
+							<th> </th>
+						</tr>
+					</thead>
+					<tbody>	
+					{% for item in oFG.fg_category_all %}
+						{% if item.niveau == 0 %}
+						<tr>
+							<td> </td>					
 
-						<td><a href="{{ oFG.cat_url }}?page_id={{ item.page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}"><i class="eye icon"></i>{{ item.categorie }}</a></td>
-						<td><a href="{{ oFG.cat_url }}?page_id={{ item.page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}">{{ item.cat_name }}</a></td>
-						<td>
-							<table>
-								<tr>
-									<td>
-										{% if item.active == 1 %}
-											<i class="large green thumbs up icon" title="active"></i>
-										 {% else %}
-											<i class="large red thumbs down icon" title="not active"></i>
-										 {% endif %}
-									</td>
-									<td>
-										{% if item.position == 1 and item.parent != -1 %}
-											<i class="large green arrow down icon" title="{{ TEXT.MOVE_DOWN }}"></i> 
-										{% elseif item.position > 1 and item.parent != -1 %}
-											<i class="large blank icon"></i>
-										{% elseif item.position == 1 and item.parent == -1 %}
-										{% endif %}
-									</td>
-									<td>
-										{% if item.position > 1 and item.parent != -1 %}
-											<a href="{{ oFG.folder_url }}move_up.php?page_id={{ page_id }}&section_id={{ item.section_id }}&id={{ item.id }}" title="{{ TEXT.MOVE_UP }}"><i class="large green arrow up icon"></i></a>
-										{% elseif item.position == 1 and item.parent != -1 %}
-											<i class="large blank icon"></i>
-										{% elseif item.position == 1 and item.parent == -1 %}
-										{% endif %}	
-									</td>
-								</tr>
-							</table>							
-						</td>						
+							<td><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ item.page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}"><i class="eye icon"></i>{{ item.categorie }}</a></td>
+							<td><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ item.page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}">{{ item.cat_name }}</a></td>
+							<td>
+								<table>
+									<tr>
+										<td>
+								<button class="ui basic button blank" type="submit" name="toggle" value="{{ item.id }}" title="{% if item.active == 1 %}active{% else %}not active{% endif %}" formaction="{{ oFG.modify_url }}?page_id={{ oFG.fg_settings.page_id }}" formmethod="post">
+								{% if item.active == 1 %}
+									<i class="large green thumbs up icon"></i>
+								{% else %}
+									<i class="large red thumbs down icon"></i>
+								{% endif %}
+								</button>
+										</td>
+										<td>
+											{% if item.position == 1 and item.parent != -1 %}
+												<button class="ui basic button blank" type="submit" name="move_down" value="{{ item.id }}" title="{{ TEXT.MOVE_DOWN }}" formaction="{{ oFG.modify_url }}?page_id={{ oFG.fg_settings.page_id }}" formmethod="post"><i class="large green arrow down icon"></i></button>
+											{% elseif item.position > 1 and item.parent != -1 %}
+												<i class="large blank icon"></i>
+											{% elseif item.position == 1 and item.parent == -1 %}
+											{% endif %}
+										</td>
+										<td>
+											{% if item.position > 1 and item.parent != -1 %}
+												<button class="ui basic button blank" type="submit" name="move_up" value="{{ item.id }}" title="{{ TEXT.MOVE_UP }}" formaction="{{ oFG.modify_url }}?page_id={{ oFG.fg_settings.page_id }}" formmethod="post"><i class="large green arrow up icon"></i></button>
+											{% elseif item.position == 1 and item.parent != -1 %}
+												<i class="large blank icon"></i>
+											{% elseif item.position == 1 and item.parent == -1 %}
+											{% endif %}	
+										</td>
+									</tr>
+								</table>							
+							</td>						
 
-						
-						<td> </td>
-					</tr>
-				{% endif %}					
-				{% endfor %}	
-				</tbody>
-			</table>				
+							
+							<td> </td>
+						</tr>
+					{% endif %}					
+					{% endfor %}	
+					</tbody>
+				</table>
+			</form>			
 		
 		
 

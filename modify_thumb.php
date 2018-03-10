@@ -73,7 +73,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 		if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		{	
 			// Löscht das bisherige Thumbnail
-			deleteFile($thumb_file);
+			LEPTON_handle::delete_obsolete_files ($thumb_file); //deleteFile($thumb_file);
 			
 			//Neues Thumb erstellen
 			if (generateThumb($full_file, $thumb_file, $settings['thumb_size'], 1, $settings['ratio'], $_POST['x'], $_POST['y'], $_POST['w'], $_POST['h'])) {

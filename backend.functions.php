@@ -173,19 +173,6 @@ if (!$res) {
 return 0;
 }
 
-/**
- * Einfache Funktion zum ein File löschen
- * @return bool true wenn alles gut ging, sonst false
- * @param string $path pfad zum files
- */
-function deleteFile($path) {
-	if(is_file($path)){
-		unlink($path);
-		return true;
-	} else {
-		return false;
-	}
-}
 
 /**
  * Syncronisiert eine gesamte Bildergalerie, löscht alte Einträge oder erstellt neu in der DB
