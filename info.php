@@ -3,8 +3,8 @@
 /**
  *  @module         foldergallery
  *  @version        see info.php of this module
- *  @author         Aldus, erpe (initiated by Jürg Rast)
- *  @copyright      2009-2018 Aldus, erpe 
+ *  @author         cms-lab (initiated by Jürg Rast)
+ *  @copyright      2010-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -35,8 +35,9 @@ $module_name		= 'Foldergallery';
 $module_function	= 'page';
 $module_version		= '3.0.0';
 $module_platform	= '4.x';
-$module_author		= 'Aldus, erpe';
-$module_license		= 'GNU General Public License';
+$module_author		= '<a href="http://cms-lab.com" target="_blank">CMS-LAB</a>';
+$module_license		= '<a href="http://cms-lab.com/_documentation/foldergallery/license.php" class="info" target="_blank">GNU General Public License</a>';
+$module_license_terms = '<a href="http://cms-lab.com/_documentation/foldergallery/license.php" class="info" target="_blank">License terms</a>';
 $module_description	= 'Create an Image Gallery with folders as categories.';
 $module_home		= 'http://cms-lab.com/';
 $module_guid		= 'c362eb43-878d-492f-906f-57a07da6d0f6';

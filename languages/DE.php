@@ -3,8 +3,8 @@
 /**
  *  @module         foldergallery
  *  @version        see info.php of this module
- *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @author         cms-lab (initiated by Jürg Rast)
+ *  @copyright      2010-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -46,7 +46,7 @@ $MOD_FOLDERGALLERY = array(
    'LIGHTBOX'  => 'Lightbox',
 
    'MODIFY_CAT_TITLE' 	=> 'Kategorie und Bilddetailes bearbeiten',
-   'MODIFY_CAT' 			=> 'Kategoriedetailes bearbeiten:',
+   'MODIFY_CAT' 			=> 'Kategoriedetails bearbeiten:',
    'CAT_NAME' 			=> 'Kategoriename/Titel:',
    'CAT_DESCRIPTION' 	=> 'Kategoriebeschrieb:',
    'MODIFY_IMG' 			=> 'Bilder bearbeiten:',
@@ -95,23 +95,6 @@ $MOD_FOLDERGALLERY = array(
    'ROOT_FOLDER_STRING_TT' 	=> 'Dieser Ordner legt den Stammordner fest, in welchem rekursiv nach Bilder gesucht wird. Bitte nur beim installieren ändern, sonst gehen alle Infos zu den Bilder verloren!',
    'EXTENSIONS_STRING_TT' 	=> 'Legen sie hier die erlaubten Dateierweiterungen fest. Verwenden sie das Koma als Trennzeichen. Auf Gross-/Kleinschreibung wird nicht geachtet.',
    'INVISIBLE_STRING_TT' 	=> 'Ordner die sie hier eintragen werden nicht durchsucht.',
-   'DELETE_TITLE_TT'		=> 'Achtung, es werden ALLE Bilder und Unterkategorien mitsamt den Bilder vom Server gelöscht!',
-   
-// Helppage
-    'TITLE'            => 'Foldergallery-jQuery: Hilfe- und Infoseite',
-    'VERSION'          => 'Versionsinfo',
-    'YOUR_VERSION'     => 'Sie verwenden Version %s.',
-    'NOUPDATES'        => 'Dies ist momentan die aktuellste Version!',
-    'UPDATE'           => 'Version %s ist verfügbar, es wird empfohlen ein Update durchzuführen.',
-    'VERSION_TEXT'     => 'Die aktuellste Version ist immer auf <a href="http://www.lepton-cms.org/deutsch/addons/freie-addons.php" target="_blank">der LEPTON Homepage</a>'
-                            .' oder bei <a href="http://cms-lab.com/lab/de/module/standard-module/foldergallery-jquery.php" target="_blank" >CMS-LAB</a> zu finden!',
-    'HOMEPAGE_TEXT'    => 'Auf <a href="https://github.com/labby/foldergallery" target="_blank">GITHUB</a> finden sie den gesamten Changelog sowie ältere Versionen und den aktuellen Entwicklungsstand.',
-                           
-    'HELP_TITLE'       => 'Hilfe und Support',
-    'HELP_TEXT'        => 'Support wird im <a href="http://forum.lepton-cms.org" target="_blank">LEPTON CMS Addons Forum</a> angeboten.',
-    'BUG_TITLE'        => 'Problem melden',
-    'BUG_TEXT'         => 'Fehler können ebenso im  <a href="http://forum.lepton-cms.org/" target="_blank">LEPTON CMS Addons Forum</a> oder auf <a href="https://github.com/labby/foldergallery" target="_blank">GITHUB</a> gemeldet werden!',
-
-    'BACK_STRING'      => 'Zurück' 
+   'DELETE_TITLE_TT'		=> 'Achtung, es werden ALLE Bilder und Unterkategorien mitsamt den Bilder vom Server gelöscht!'
 );
 ?>

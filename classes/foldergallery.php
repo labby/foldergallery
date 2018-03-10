@@ -3,8 +3,8 @@
 /**
  *  @module         foldergallery
  *  @version        see info.php of this module
- *  @author         Aldus, erpe (initiated by Jürg Rast)
- *  @copyright      2009-2018 Aldus, erpe 
+ *  @author         cms-lab (initiated by Jürg Rast)
+ *  @copyright      2010-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module

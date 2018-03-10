@@ -3,8 +3,8 @@
 /**
  *  @module         foldergallery
  *  @version        see info.php of this module
- *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @author         cms-lab (initiated by Jürg Rast)
+ *  @copyright      2010-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -95,22 +95,6 @@ $MOD_FOLDERGALLERY = array(
                                             . ' Verander deze map niet meer! Alle instellingen en gegevens van de foto\'s zullen verloren gaan!',
     'EXTENSIONS_STRING_TT' 	=> 'Definieer de extensies die je beschikbaar wilt maken. (Hoofdlettergevoelig.) Gebruik "," (komma) als scheidingsteken.',
     'INVISIBLE_STRING_TT' 	=> 'Mappen die hier aangegeven worden zullen niet zichtbaar zijn in de gallery.',
-    'DELETE_TITLE_TT' 		=> 'Waarschuwing: Dit verwijderd alle categorie&euml;n en foto\'s! (De foto\'s zullen dus ook verwijderd worden!)',
-
-// Helppage
-    'TITLE'            => 'Foldergallery: Help- and Infopage',
-    'VERSION'          => 'Release-info',
-    'YOUR_VERSION'     => 'You are using Version %s.',
-    'NOUPDATES'        => 'There are no updates aviable at the moment!',
-    'UPDATE'           => 'Version %s is aviable, a update is recommeded.',
-    'VERSION_TEXT'     => 'You can find latest release on <a href="http://www.lepton-cms.com/lepador/modules/foldergallery.php" target="_blank">LEPTON Homepage</a>'
-                            .' or on <a href="http://cms-lab.com/lab/en/modules/standard-modules/foldergallery-jquery.php" target="_blank" >CMS-LAB</a>',
-    'HOMEPAGE_TEXT'    => 'On <a href="https://github.com/labby/foldergallery" target="_blank">GITHUB</a> you can find the whole changelog, current development and older releases.',                  
-    'HELP_TITLE'       => 'Help and Support',
-    'HELP_TEXT'        => 'You get support on the <a href="http://forum.lepton-cms.org" target="_blank">LEPTON CMS Addons Forum</a>.',
-    'BUG_TITLE'        => 'Report a bug',
-    'BUG_TEXT'         => 'Bugs can be reported on <a href="http://forum.lepton-cms.org/" target="_blank">LEPTON CMS Addons Forum</a> or directly on <a href="https://github.com/labby/foldergallery" target="_blank">GITHUB</a>',
-
-    'BACK_STRING'      => 'Back'
+    'DELETE_TITLE_TT' 		=> 'Waarschuwing: Dit verwijderd alle categorie&euml;n en foto\'s! (De foto\'s zullen dus ook verwijderd worden!)'
 );
 ?>

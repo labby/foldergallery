@@ -3,8 +3,8 @@
 /**
  *  @module         foldergallery
  *  @version        see info.php of this module
- *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
- *  @copyright      2009-2018 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @author         cms-lab (initiated by Jürg Rast)
+ *  @copyright      2010-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -96,22 +96,6 @@ $MOD_FOLDERGALLERY = array(
                                             . ' Please do not change this folder later, or all image settings will be lost!',
     'EXTENSIONS_STRING_TT' 	=> 'Define the file suffixes you wish to allow here. (Case insensitive.) Use "," (comma) as delimiter.',
     'INVISIBLE_STRING_TT' 	=> 'Folder that are listed here will not be scanned.',
-    'DELETE_TITLE_TT' 		=> 'Warning: This will delete ALL categories and images! (The images will be REMOVED, too!)',
-
-// Helppage
-    'TITLE'            => 'Foldergallery: Help- and Infopage',
-    'VERSION'          => 'Release-info',
-    'YOUR_VERSION'     => 'You are using Version %s.',
-    'NOUPDATES'        => 'There are no updates aviable at the moment!',
-    'UPDATE'           => 'Version %s is aviable, a update is recommeded.',
-    'VERSION_TEXT'     => 'You can find latest release on <a href="http://www.lepton-cms.com/lepador/modules/foldergallery.php" target="_blank">LEPTON Homepage</a>'
-                            .' or on <a href="http://cms-lab.com/lab/en/modules/standard-modules/foldergallery-jquery.php" target="_blank" >CMS-LAB</a>',
-    'HOMEPAGE_TEXT'    => 'On <a href="https://github.com/labby/foldergallery" target="_blank">GITHUB</a> you can find the whole changelog, current development and older releases.',                  
-    'HELP_TITLE'       => 'Help and Support',
-    'HELP_TEXT'        => 'You get support on the <a href="http://forum.lepton-cms.org" target="_blank">LEPTON CMS Addons Forum</a>.',
-    'BUG_TITLE'        => 'Report a bug',
-    'BUG_TEXT'         => 'Bugs can be reported on <a href="http://forum.lepton-cms.org/" target="_blank">LEPTON CMS Addons Forum</a> or directly on <a href="https://github.com/labby/foldergallery" target="_blank">GITHUB</a>',
-
-    'BACK_STRING'      => 'Back'
+    'DELETE_TITLE_TT' 		=> 'Warning: This will delete ALL categories and images! (The images will be REMOVED, too!)'
 );
 ?>

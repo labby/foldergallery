@@ -1,7 +1,7 @@
 /**
  *  @module         foldergallery_jq
  *  @version        see info.php of this module
- *  @author         Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe
+ *  @author         cms-lab (initiated by Jürg Rast)
  *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
