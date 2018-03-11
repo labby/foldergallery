@@ -97,27 +97,37 @@ class foldergallery extends LEPTON_abstract
 		}		
 	} 
 
+    /**
+     *  Handle the 'move' of given entries "up" or "down" (the position).
+     *
+     *  @return boolean True if success, otherwise false.
+     */
 	public function move()  
 	{
 		$admin = LEPTON_admin::getInstance();
-		$order = new LEPTON_order(TABLE_PREFIX."mod_foldergallery_categories", 'position','id', 'parent_id');			
-		if(isset($_POST['move_up']) && is_numeric ($_POST['move_up'])) {				
-			if($order->move_up($_POST['move_up'])) {
-				$admin->print_success($this->language['SAVE_SETTINGS'], ADMIN_URL.'/pages/modify.php?page_id='.$this->page_id.'');
-				return true;
-			} else {
-				$admin->print_error($this->language['DB_ERROR'] ."<br />". $order->error, ADMIN_URL.'/pages/modify.php?page_id='.$this->page_id);
-				return false;
-			}
-		} elseif (isset($_POST['move_down']) && is_numeric ($_POST['move_down'])) {	
-			//die(LEPTON_tools::display($order,'pre','ui message'));
-			if($order->move_down($_POST['move_down'])) {
-				$admin->print_success($this->language['SAVE_SETTINGS'], ADMIN_URL.'/pages/modify.php?page_id='.$this->page_id.'');
-				return true;
-			} else {
-				$admin->print_error($this->language['DB_ERROR']."<br />".$order->error, ADMIN_URL.'/pages/modify.php?page_id='.$this->page_id);
-				return false;
-			}		
-		} 	
+		$order = new LEPTON_order( TABLE_PREFIX."mod_foldergallery_categories", 'position','id', 'parent_id' );
+		
+		switch(true)
+		{			
+		    case (isset($_POST['move_up']) && is_numeric($_POST['move_up'])):				
+			    $bSuccess = $order->move_up(intval($_POST['move_up']));
+				break;
+			
+			case (isset($_POST['move_down']) && is_numeric($_POST['move_down'])):
+			    $bSuccess = $order->move_down(intval($_POST['move_down']));
+			    break;
+			    
+			default:
+			    return false;
+		}
+		
+		if(true === $bSuccess)
+		{
+            $admin->print_success($this->language['SAVE_SETTINGS'], ADMIN_URL.'/pages/modify.php?page_id='.$this->page_id.'');
+            return true;
+        } else {
+            $admin->print_error($this->language['DB_ERROR'] ."<br />". $order->errorMessage, ADMIN_URL.'/pages/modify.php?page_id='.$this->page_id);
+            return false;
+        }
 	}
 }
