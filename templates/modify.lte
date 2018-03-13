@@ -37,8 +37,8 @@
 			<button class="ui {{ oFG.addon_color }} basic right floated button" type="submit" name="show_info" value="show" title="{{ MENU.HELP }}" formaction="{{ oFG.folder_url }}help.php?page_id={{ oFG.fg_settings.page_id }}&section_id={{ oFG.fg_settings.section_id }}" formmethod="post"><i class="{{ oFG.addon_color }} help icon"></i>{{ MENU.HELP }}</button>		
 		</form>
 		<form name="edit_module_file" action="{{ LEPTON_URL }}/modules/edit_module_files.php?page_id={{ oFG.fg_settings.page_id }}" method="post">
-			<input name="page_id" value="{{ oFG.fg_settings.page_id }}" type="hidden">
-			<input name="section_id" value="{{ oFG.fg_settings.section_id }}" type="hidden">
+			<input name="page_id" value="{{ page_id }}" type="hidden">
+			<input name="section_id" value="{{ section_id }}" type="hidden">
 			<input name="mod_dir" value="{{ oFG.module_directory }}" type="hidden">
 			<input name="edit_file" value="frontend.css" type="hidden">
 			<input name="action" value="edit" type="hidden">
@@ -51,8 +51,8 @@
 
 		<div class="cat_list">
 			<form class="ui form" name="list">
-				<input type="hidden" name="page_id" value="{{ oFG.fg_settings.page_id }}" />
-				<input type="hidden" name="section_id" value="{{ oFG.fg_settings.section_id }}" />
+				<input type="hidden" name="page_id" value="{{ page_id }}" />
+				<input type="hidden" name="section_id" value="{{ section_id }}" />
 				<input type="hidden" name="leptoken" value="{{ leptoken }}" />				
 				<table class="ui striped compact table fg_modify">
 					<thead>
@@ -70,8 +70,8 @@
 						<tr>
 							<td> </td>					
 
-							<td><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ item.page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}"><i class="eye icon"></i>{{ item.categorie }}</a></td>
-							<td><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ item.page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}">{{ item.cat_name }}</a></td>
+							<td><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}"><i class="eye icon"></i>{{ item.categorie }}</a></td>
+							<td><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}">{{ item.cat_name }}</a></td>
 							<td>
 								<table>
 									<tr>

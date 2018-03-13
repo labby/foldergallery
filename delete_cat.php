@@ -30,13 +30,8 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-$admin = new LEPTON_admin('Pages', 'pages_modify');
-
-$file_names = array(
-'/modules/foldergallery/backend.functions.php',
-'/modules/foldergallery/register_language.php'
-);
-LEPTON_handle::include_files ($file_names);
+$oFG = foldergallery::getInstance();
+LEPTON_handle::include_files ('/modules/foldergallery/backend.functions.php');
 
 
 if(isset($_GET['page_id']) && is_numeric($_GET['page_id'])) {
@@ -49,21 +44,25 @@ if(isset($_GET['section_id']) && is_numeric($_GET['section_id'])){
 
 if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
 	$cat_id = $_GET['cat_id'];
-	$sql = 'SELECT categorie, parent, has_child FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id='.$cat_id.';';
-	$query = $database->query($sql);
-	if($result = $query->fetchRow( )){
-		// Dateien löschen
-		$settings = getSettings($section_id);
+	$result = array();	
+	$oFG->database->execute_query(
+			"SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE id=". $cat_id,
+			true,
+			$result,
+			false
+		);		
+	if(count($result) > 0){	
+		// delete files
+		$settings =  getSettings($section_id);
 		$delete_path = foldergallery::FG_PATH.$settings['root_dir'].$result['parent'].'/'.$result['categorie'];
-
-		//deleteFolder($delete_path);
-		// DB Einträge löschen
+		
+		// delete db entries
 		rek_db_delete($cat_id);
-		$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
+		$oFG->admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
 	} else {
-		$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
+		$oFG->admin->print_error($oFG->language['ERROR_MESSAGE'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
 	}
 
 }
-$admin->print_footer();
+$oFG->admin->print_footer();
 ?>

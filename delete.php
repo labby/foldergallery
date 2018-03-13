@@ -33,16 +33,17 @@ if (defined('LEPTON_PATH')) {
 // Delete DB-Entries (messages and settings)
 $temp_parent_ids = array();
 $database->execute_query(
-	'SELECT `id` FROM `'.TABLE_PREFIX.'mod_foldergallery_categories` WHERE `section_id`='.$section_id.';',
+	"SELECT `id` FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE section_id=". $iSectionID ,
 	true,
-	$temp_parent_ids
+	$temp_parent_ids,
+	true
 );
 
 foreach($temp_parent_ids as $parent) {
 	$database->simple_query('DELETE FROM `'.TABLE_PREFIX.'mod_foldergallery_files` WHERE `parent_id`='.$parent['id']);
 }
 
-$database->simple_query("DELETE FROM `".TABLE_PREFIX."mod_foldergallery_settings` WHERE `page_id` = '$page_id' AND `section_id` = '$section_id'");
-$database->simple_query("DELETE FROM `".TABLE_PREFIX."mod_foldergallery_categories` WHERE `section_id` = '$section_id'");
+$database->simple_query("DELETE FROM `".TABLE_PREFIX."mod_foldergallery_settings` WHERE `page_id` = ".$page_id." AND `section_id` = ".$section_id);
+$database->simple_query("DELETE FROM `".TABLE_PREFIX."mod_foldergallery_categories` WHERE `section_id` = ".$section_id);
 
 ?>

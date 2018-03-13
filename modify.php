@@ -56,6 +56,7 @@ if(isset($_POST['move_down']) || isset($_POST['move_up'])) {
 $data = array(
 	'oFG'	=> $oFG,
 	'page_id'	=> $page_id,
+	'section_id'=> $section_id,	
 	'leptoken'	=> get_leptoken()
 );
 		
