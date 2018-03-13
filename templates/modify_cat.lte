@@ -1,0 +1,107 @@
+{#
+/**
+ *  @module         foldergallery
+ *  @version        see info.php of this module
+ *  @author         cms-lab (initiated by Jürg Rast)
+ *  @copyright      2010-2018 cms-lab 
+ *  @license        GNU General Public License
+ *  @license terms  see info.php of this module
+ *  @platform       see info.php of this module
+ * 
+ */
+ #}
+ 
+<!-- start twig content -->
+{% autoescape false %}
+<div>
+<script type="text/javascript">
+	var settingsRatio = 1;
+	var LEPTON_URL = '{{ LEPTON_URL }}';
+</script>
+</div>
+<div class="ui {{ oFG.addon_color }} segment">
+	<div class="ui basic segment">
+		<h2>{{ oFG.language.MODIFY_CAT_TITLE }}</h2>
+		<h3>{{ oFG.language.MODIFY_CAT }}</h3>
+		<form action="{{ oFG.folder_url }}save_cat.php?page_id={{ page_id }}&section_id={{ section_id }}&cat_id={{ cat_id }}" method="post">
+			<input type="hidden" name="section_id" value="{{ section_id }}">
+			<input type="hidden" name="page_id" value="{{ page_id }}">
+			<input type="hidden" name="cat_id" value="{{ cat_id }}">
+			<input type="hidden" name="leptoken" value="{{ leptoken }}">
+			<table class="ui table cat">
+				<tr>
+					<td><b>{{ oFG.language.FOLDER_IN_FS }}</b></td>
+					<td>{{ cat_path }}</td>
+				</tr>
+				<tr>
+					<td><b>{{ oFG.language.CAT_NAME }}</b></td>
+					<td><input name='cat_name' type='text' size='80' value='{{ categorie.cat_name }}'></td>
+				</tr>
+				<tr>
+					<td><b>{{ TEXT.ACTIVE }}</b></td>
+					<td><input name="active" type="checkbox" {% if categorie.active == 1 %}value="1" checked ="checked"{% else %}value="0" {% endif %}></td>
+				</tr>
+				<tr>
+					<td>{{ oFG.language.CAT_DESCRIPTION }}</td>
+					<td><textarea cols="78" rows="3" name="cat_description">{{ categorie.description }}</textarea></td>
+				</tr>	
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td>
+						<button class="ui positive button" type="submit" name="save" value="{{ cat_id }}">{{ TEXT.SAVE }}</button>
+					</td>
+					<td>
+						<button class="ui negative button" type="submit" name="cancel" value="{{ cat_id }}" formaction="{{ oFG.modify_url }}?page_id={{ page_id }}" formmethod="post">{{ TEXT.CANCEL }}</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div class="ui grey inverted segment">
+		<h3>{{ oFG.language.MODIFY_IMG }} || <a href="{{ oFG.folder_url }}modify_cat_sort.php?page_id={{ page_id }}&section_id={{ section_id }}&cat_id={{ cat_id }}" class="dark_segment" title="{{ oFG.language.SORT_IMAGE }}">{{ oFG.language.SORT_IMAGE }}</a></h3>
+		<form action="{{ oFG.folder_url }}save_files.php?page_id={{ page_id }}&section_id={{ section_id }}&cat_id={{ cat_id }}" method="post">
+			<table class="ui table list">
+				<tr class="title">
+					<td align="center">{{ oFG.language.IMAGE }}</td>
+					<td>{{ oFG.language.IMAGE_NAME }}</td>
+					<td>{{ oFG.language.IMG_CAPTION }}</td>
+					<td colspan="2">{{ oFG.language.ACTION }}</td>
+				</tr>
+				{% for item in bilder %}
+				<tr>
+					<input type="hidden" name="{{ item.id }}" value="{{ item.id }}" alt="Thumb" />
+					<td align="center">
+						<a href="{{ oFG.folder_url }}modify_thumb.php?page_id={{ page_id }}&section_id={{ section_id }}&cat_id={{ cat_id }}&id={{ item.id }}"><img src="{{ urlToThumb }}{{ item.file_name }}?t={{ time }}"></a>
+					</td>
+					<td>
+						{{ item.file_name }}
+					</td>
+					<td>
+						<textarea cols="40" rows="3"  name="caption[{{ item.id }}]" >{{ item.caption }}</textarea>
+					</td>
+					<td align="center" width="20px">
+						<a href='{{ oFG.folder_url }}modify_thumb.php?page_id={{ page_id }}&section_id={{ section_id }}&cat_id={{ cat_id }}&id={{ item.id }}' title="{{ oFG.language.MODIFY_IMG }}"><i class="large green crop icon"></i></a>
+					</td>
+					<td align="center" width="20px">
+						<a href='{{ oFG.folder_url }}delete_img.php?page_id={{ page_id }}&section_id={{ section_id }}&cat_id={{ cat_id }}&id={{ item.id }}'' title="{{ TEXT.DELETE }}"><i class="large red delete icon"></i></a>
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+			<div class="spacer2"></div>
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td>
+						<button class="ui positive button" type="submit" name="save" value="{{ cat_id }}">{{ TEXT.SAVE }}</button>
+					</td>
+					<td>
+						<button class="ui negative button" type="submit" name="cancel" value="{{ cat_id }}" formaction="{{ oFG.modify_url }}?page_id={{ page_id }}" formmethod="post">{{ TEXT.CANCEL }}</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+{% endautoescape %}
+<!-- end twig content -->

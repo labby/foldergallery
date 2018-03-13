@@ -30,36 +30,34 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-$admin = new LEPTON_admin('Pages', 'pages_modify');
-
-$file_names = array(
-    '/modules/foldergallery/backend.functions.php',
-    '/include/phplib/template.inc'
-);
-LEPTON_handle::include_files ($file_names);
-
-$MOD_FOLDERGALLERY = foldergallery::getInstance()->language;
-
-$settings = getSettings($section_id);
-$thumb_size = $settings['thumb_size']; //Chio
-$root_dir = $settings['root_dir']; //Chio
-$ratio = $settings['ratio']; //Pumpi
-
+$oFG = foldergallery::getInstance();
+$oTWIG = lib_twig_box::getInstance();
+$oTWIG->registerModule('foldergallery');
+LEPTON_handle::include_files ('/modules/foldergallery/backend.functions.php');
+$admin = LEPTON_admin::getInstance();
+$settings = getSettings($_GET['section_id']);
+$thumb_size = $settings['thumb_size'];
+$root_dir = $settings['root_dir'];
+$ratio = $settings['ratio']; 
 
 if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
 	$cat_id = $_GET['cat_id'];
 } else {
-	$error['no_cat_id'] = 1;
-	$admin->print_error('lost cat', ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
+	$admin->print_error('no categorie found', ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
 	die();
 }
 
-// Kategorie Infos aus der DB holen
-$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id='.$cat_id.' LIMIT 1;';
-$query = $database->query($sql);
-$categorie = $query->fetchRow();
 
-if ( is_array( $categorie ) ) {
+//get infos from db
+$categorie = array();	
+$oFG->database->execute_query(
+	"SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE id=".$cat_id,
+	true,
+	$categorie,
+	false
+);	
+
+if ( count($categorie) > 0 ) {
     if ( $categorie['parent'] != -1 ) {
         $cat_path = foldergallery::FG_PATH.$settings['root_dir'].$categorie['parent'].'/'.$categorie['categorie'];
 		$cat_path = str_replace(LEPTON_PATH, '', $cat_path);
@@ -71,31 +69,31 @@ if ( is_array( $categorie ) ) {
         $parent   = '';		
     }
 }
+
+
 $parent_id = $categorie['id'];
-if ($categorie['active'] == 1) {$cat_active_checked = 'checked="checked"';} else {$cat_active_checked = '';}
-
-
 $folder = $root_dir.$parent;
 $pathToFolder = foldergallery::FG_PATH.$folder.'/';	
 $pathToThumb = foldergallery::FG_PATH.$folder.foldergallery::FG_THUMBDIR.'/';
 $urlToFolder = foldergallery::FG_URL.$folder.'/';		
 $urlToThumb = foldergallery::FG_URL.$folder.foldergallery::FG_THUMBDIR.'/';
 
-//echo '<h3>'.$parent_id.'</h3>'; 
 
-$bilder= array();
-$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id="'.$parent_id.'" ORDER BY position ASC;';
-$query = $database->query($sql);
+$bilder = array();	
+$oFG->database->execute_query(
+	"SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_files WHERE parent_id=".$parent_id." ORDER BY position ASC",
+	true,
+	$bilder,
+	true
+);	
 
-if($query->numRows()){
-	while($result = $query->fetchRow()) {
-		// Falls es das Vorschaubild noch nicht gibt:
-		//Chio Start
+if(count($bilder) > 0 ){
+	foreach ($bilder as $result) {
 		$bildfilename = $result['file_name'];
 		$file = $pathToFolder.$bildfilename;
-		if(!is_file($file)){	
-			$deletesql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE id='.$result['id'];
-			$database->query($deletesql);
+		
+		if(!is_file($file)){	// if no file, delete image from db
+			$oFG->database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_foldergallery_files WHERE id=".$result['id']); 
 			continue;
 		}
 		
@@ -104,80 +102,36 @@ if($query->numRows()){
 			generateThumb($file, $thumb, $thumb_size, 0, $ratio);
 		}
 		
-		//Chio Ende
-		$bilder[] = array(
+/*		$result[] = array(
 			'id'		=> $result['id'],
-			'file_name'	=> $bildfilename, //Chio
-			'caption'	=> $result['caption'], //Chio
+			'file_name'	=> $bildfilename, 
+			'caption'	=> $result['caption'], 
 			'thumb_link'=> $urlToThumb .$bildfilename
-		);		
+		);
+*/		
 	}
 } else {
-	// Diese Kategorie enthält noch keine Bilder
-	$error['noimages'] = 1;
+	$admin->print_error('no images found');
+	die();
 }
-
-//Template
-$t = new Template(dirname(__FILE__).'/templates', 'remove');
-$t->set_file('modify_cat', 'modify_cat.htt');
-// clear the comment-block, if present
-$t->set_block('modify_cat', 'CommentDoc'); $t->clear_var('CommentDoc');
-$t->set_block('modify_cat', 'file_loop', 'FILE_LOOP');
-
-$MOD_FOLDERGALLERY;
-
-// Textvariablen parsen
-$t->set_var(array(
-	'MODIFY_CAT_TITLE'		=> $MOD_FOLDERGALLERY['MODIFY_CAT_TITLE'],
-	'MODIFY_CAT_STRING'		=> $MOD_FOLDERGALLERY['MODIFY_CAT'],
-	'FOLDER_IN_FS_STRING'	=> $MOD_FOLDERGALLERY['FOLDER_IN_FS'],
-	'FOLDER_IN_FS_VALUE'	=> htmlentities($cat_path),
-	'CAT_ACTIVE_CHECKED'	=> $cat_active_checked,
-	'CAT_NAME_STRING'		=> $MOD_FOLDERGALLERY['CAT_NAME'],
-	'CAT_NAME_VALUE'		=> $categorie['cat_name'],
-	'CAT_DESCRIPTION_STRING'=> $MOD_FOLDERGALLERY['CAT_DESCRIPTION'],
-	'CAT_DESCRIPTION_VALUE'	=> $categorie['description'],
-	'MODIFY_IMG_STRING'		=> $MOD_FOLDERGALLERY['MODIFY_IMG'],
-	'IMAGE_STRING'			=> $MOD_FOLDERGALLERY['IMAGE'],
-	'IMAGE_NAME_STRING'		=> $MOD_FOLDERGALLERY['IMAGE_NAME'],
-	'IMAGE_CAPTION_STRING'	=> $MOD_FOLDERGALLERY['IMG_CAPTION'],
-	'IMAGE_ACTION_STRING'	=> $MOD_FOLDERGALLERY['ACTION'],
-	'SAVE_STRING'			=> $TEXT['SAVE'],
-	'CANCEL_STRING'			=> $TEXT['CANCEL'],
-	'SORT_IMAGE_STRING'		=> $MOD_FOLDERGALLERY['SORT_IMAGE'],
-	// Section und Page ID
-	'SECTION_ID_VALUE'		=> $section_id,
-	'PAGE_ID_VALUE'			=> $page_id,
-	'CAT_ID_VALUE'			=> $cat_id,
-	'LEPTON_URL'	=> LEPTON_URL
-));
-
-// Links parsen
-$t->set_var(array(
-	'SAVE_CAT_LINK'			=> LEPTON_URL.'/modules/foldergallery/save_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
-	'SAVE_FILES_LINK'		=> LEPTON_URL.'/modules/foldergallery/save_files.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id,
-	'CANCEL_ONCLICK'		=> 'javascript: window.location = \''.ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'\';'
-));
-
-// Files parsen
-$counter = 0;
-foreach($bilder as $bild) {
-	$t->set_var(array(
-		'ID_VALUE'			=> $bild['id'],
-		'IMAGE_VALUE'		=> $bild['thumb_link'].'?t='.time(),
-		'IMAGE_NAME_VALUE'	=> $bild['file_name'],
-		'CAPTION_VALUE'		=> $bild['caption'],
-		'EDIT_THUMB_SOURCE'	=> LEPTON_URL.'/modules/lib_lepton/backend_images/resize_16.png',
-		'DELETE_IMG_SOURCE'	=> LEPTON_URL.'/modules/lib_lepton/backend_images/delete_16.png',
-		'THUMB_EDIT_LINK'	=> LEPTON_URL."/modules/foldergallery/modify_thumb.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id'],	
-		'IMAGE_DELETE_LINK'	=> "javascript: confirm_link(\"Sind Sie sicher, dass Sie das ausgew&auml;hlte Bild l&ouml;schen m&ouml;chten?\", \"".LEPTON_URL."/modules/foldergallery/delete_img.php?page_id=".$page_id."&section_id=".$section_id."&cat_id=".$cat_id."&id=".$bild['id']."\");",
-		'COUNTER'			=> $counter
-	));
-	$t->parse('FILE_LOOP', 'file_loop', true);
-	$counter++;
-}
-
-$t->pparse('output', 'modify_cat');
+//die(LEPTON_tools::display($bilder,'pre','ui message'));
+$data = array(
+	'oFG'	=> $oFG,
+	'cat_id'	=> $cat_id,
+	'cat_path'	=> $cat_path,
+	'categorie'	=> $categorie,
+	'bilder'	=> $bilder,	
+	'page_id'	=> $_GET['page_id'],
+	'section_id'=> $_GET['section_id'],
+	'time'		=> time(),
+	'urlToThumb'=> $urlToThumb,	
+	'leptoken'	=> get_leptoken()
+);
+		
+echo $oTWIG->render( 
+	"@foldergallery/modify_cat.lte",	//	template-filename
+	$data								//	template-data
+);
 
 $admin->print_footer();
 

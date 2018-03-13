@@ -46,6 +46,26 @@
 	padding: 0px !important;	
 }
 
+.ui.table.cat {
+	border: 0px !important;
+}
+
+.ui.table.cat tr td {
+    border: 0px !important;
+}	
+
+a.dark_segment {
+    color:#fff;
+	text-decoration:underline;
+}
+
+a:hover.dark_segment {
+	text-decoration:none;
+}
+
+tr.title  {
+   font-weight: bold !important;
+}
 /* 
 body {
 	cursor : default;
