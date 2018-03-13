@@ -30,47 +30,57 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-$admin = new LEPTON_admin('Pages', 'pages_modify');
-
-$file_names = array(
-'/modules/foldergallery/backend.functions.php',
-'/modules/foldergallery/register_language.php'
-);
-LEPTON_handle::include_files ($file_names);
-
+$oFG = foldergallery::getInstance();
+LEPTON_handle::include_files ('/modules/foldergallery/backend.functions.php');
+die(LEPTON_tools::display($_GET,'pre','ui message'));
 
 if(isset($_GET['id']) && is_numeric($_GET['id'])) {
-	$settings = getSettings($section_id);
-	$root_dir = $settings['root_dir']; //Chio
-
+	$settings = getSettings($_GET['section_id']);	
+	$root_dir = $settings['root_dir']; 
+	$page_id = $_GET['page_id'];
+	$section_id = $_GET['section_id'];
 	$cat_id = $_GET['cat_id'];
-	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE id='.$_GET['id'].';';
-	if($query = $database->query($sql)){
-		$result = $query->fetchRow( );
+	
+	$result = array();	
+	$oFG->database->execute_query(
+			"SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_files WHERE id=". $_GET['id'],
+			true,
+			$result,
+			false
+		);
+		
+	if(count($result) > 0){	
+		// delete images
 		$bildfilename = $result['file_name'];
 		$parent_id = $result['parent_id'];
-		
-		$query2 = $database->query('SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id='.$parent_id.' LIMIT 1;');
-		$categorie = $query2->fetchRow();
+
+		$categorie = array();	
+		$oFG->database->execute_query(
+				"SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE id=".$parent_id,
+				true,
+				$categorie,
+				false
+			);		
+
 		$parent   = $categorie['parent'].'/'.$categorie['categorie'];
 		$folder = $root_dir.$parent;
 		$pathToFolder = foldergallery::FG_PATH.$folder.'/';
 				
 		$pathToFile = foldergallery::FG_PATH.$folder.'/'.$bildfilename;	
-		$pathToThumb = foldergallery::FG_PATH.$folder.foldergallery::FG_THUMBDIR.'/thumb.'.$bildfilename;				
+		$pathToThumb = foldergallery::FG_PATH.$folder.foldergallery::FG_THUMBDIR.'/thumb.'.$bildfilename;
+		
 		LEPTON_handle::delete_obsolete_files ($pathToFile);  //deleteFile($pathToFile);
 		LEPTON_handle::delete_obsolete_files ($pathToThumb); //deleteFile($pathToThumb);
 		
-		$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE id='.$_GET['id'];
-		$database->query($sql);
+		$oFG->database->simple_query("DELETE FROM ".TABLE_PREFIX."mod_foldergallery_files WHERE id=".$_GET['id']); //delete from db
 			
-		$admin->print_success($TEXT['SUCCESS'], LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+		$oFG->admin->print_success($TEXT['SUCCESS'], LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 		
 	} else {
-		$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+		$oFG->admin->print_error($oFG->language['ERROR_MESSAGE'], LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 	}
 } else {
-	$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+	$oFG->admin->print_error($oFG->language['ERROR_MESSAGE'], LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 }
-$admin->print_footer();
+$oFG->admin->print_footer();
 ?>

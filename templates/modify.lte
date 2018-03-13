@@ -76,17 +76,17 @@
 								<table>
 									<tr>
 										<td>
-								<button class="ui basic button blank" type="submit" name="toggle" value="{{ item.id }}" title="{% if item.active == 1 %}active{% else %}not active{% endif %}" formaction="{{ oFG.modify_url }}?page_id={{ oFG.fg_settings.page_id }}" formmethod="post">
-								{% if item.active == 1 %}
-									<i class="large green thumbs up icon"></i>
-								{% else %}
-									<i class="large red thumbs down icon"></i>
-								{% endif %}
-								</button>
+											<button class="ui basic button blank" type="submit" name="toggle" value="{{ item.id }}" title="{% if item.active == 1 %}active{% else %}not active{% endif %}" formaction="{{ oFG.modify_url }}?page_id={{ oFG.fg_settings.page_id }}" formmethod="post">
+											{% if item.active == 1 %}
+												<i class="large green thumbs up icon"></i>
+											{% else %}
+												<i class="large red thumbs down icon"></i>
+											{% endif %}
+											</button>
 										</td>
 										<td>
 											{% if loop.index < loop.length %}
-												<button class="ui basic button blank" type="submit" name="move_down" value="{{ item.id }}" title="{{ TEXT.MOVE_DOWN }}" formaction="{{ oFG.modify_url }}?page_id={{ oFG.fg_settings.page_id }}" formmethod="post"><i class="large green arrow down icon"></i></button>
+												<button class="ui basic button blank" type="submit" name="move_down" value="{{ item.id }}" title="{{ TEXT.MOVE_DOWN }}" formaction="{{ oFG.modify_url }}?page_id={{ page_id }}" formmethod="post"><i class="large green arrow down icon"></i></button>
 											{% elseif item.position > 1 and item.parent != -1 %}
 												<i class="large blank icon"></i>
 											{% elseif item.position == 1 and item.parent == -1 %}
@@ -94,12 +94,17 @@
 										</td>
 										<td>
 											{% if loop.index > 1 %}
-												<button class="ui basic button blank" type="submit" name="move_up" value="{{ item.id }}" title="{{ TEXT.MOVE_UP }}" formaction="{{ oFG.modify_url }}?page_id={{ oFG.fg_settings.page_id }}" formmethod="post"><i class="large green arrow up icon"></i></button>
+												<button class="ui basic button blank" type="submit" name="move_up" value="{{ item.id }}" title="{{ TEXT.MOVE_UP }}" formaction="{{ oFG.modify_url }}?page_id={{ page_id }}" formmethod="post"><i class="large green arrow up icon"></i></button>
 											{% elseif item.position == 1 and item.parent != -1 %}
 												<i class="large blank icon"></i>
 											{% elseif item.position == 1 and item.parent == -1 %}
 											{% endif %}	
 										</td>
+										<td>
+											{% if loop.index > 1 %}
+												<button class="ui basic button blank" type="submit" name="delete" value="{{ item.id }}" title="{{ TEXT.DELETE }}" formaction="{{ oFG.folder_url }}delete_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}"" formmethod="post"><i class="large red delete icon"></i></button>
+											{% endif %}	
+										</td>										
 									</tr>
 								</table>							
 							</td>						

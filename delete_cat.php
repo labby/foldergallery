@@ -33,7 +33,6 @@ if (defined('LEPTON_PATH')) {
 $oFG = foldergallery::getInstance();
 LEPTON_handle::include_files ('/modules/foldergallery/backend.functions.php');
 
-
 if(isset($_GET['page_id']) && is_numeric($_GET['page_id'])) {
 	$page_id = $_GET['page_id'];
 }

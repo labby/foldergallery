@@ -16,6 +16,7 @@ class foldergallery extends LEPTON_abstract
 	public $database = 0;
 	public $admin = 0;
 	public $page_id = 0;
+	public $section_id = 0;	
 	public $fg_settings = array();
 	public $fg_category_all = array();
 	public $addon_color = 'orange';
@@ -59,6 +60,7 @@ class foldergallery extends LEPTON_abstract
 	public function init_section( $iPageID = 0, $iSectionID = 0 )
 	{
 		$this->page_id = $iPageID;
+		$this->section_id = $iSectionID;
 		//get array of settings
 		$this->fg_settings = array();
 		$this->database->execute_query(
