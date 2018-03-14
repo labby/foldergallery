@@ -65,11 +65,11 @@
 						</tr>
 					</thead>
 					<tbody>						
-					{% import _self as categories %}
-					{{ categories.display_cat( AllCartegories, 0 ) }}
+                {% import _self as categories %}
+                {{ categories.display_cat( AllCartegories, 0, oFG, page_id, section_id, leptoken ) }}
 
-					{% macro display_cat( aList, aDeep ) %}
-					{% for item in aList %}						
+					{% macro display_cat( aList, aDeep, oFG, page_id, section_id, leptoken ) %}
+					    {% for item in aList %}						
 						<tr>
 							<td> </td>					
 							<td class="cat{{aDeep}}"><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}"><i class="eye icon"></i>{{ item.categorie }}</a></td>
@@ -114,10 +114,10 @@
 							
 							<td> </td>
 						</tr>
-					{% import _self as sub_categories %}
-                    {{ sub_categories.display_cat( item.subcategories, aDeep+1 ) }}
+					    {% import _self as sub_categories %}
+                        {{ sub_categories.display_cat( item.subcategories, aDeep+1, oFG, page_id, section_id, leptoken ) }}
 					
-					{% endfor %}
+					    {% endfor %}
 					{% endmacro %}
 					
 					</tbody>
