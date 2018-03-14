@@ -1,4 +1,4 @@
-/**
+﻿/**
  *  @module         foldergallery_jq
  *  @version        see info.php of this module
  *  @author         cms-lab (initiated by Jürg Rast)
@@ -84,6 +84,10 @@ td.cat3 {
     padding-left:120px !important;
 }
 
+textarea {
+    padding: 6px;
+}
+
 /* 
 body {
 	cursor : default;
@@ -93,9 +97,7 @@ body {
 padding:20px;
 }
 
-textarea {
-    padding: 6px;
-}
+
 
 input[type="submit"], input[type="button"] {
 	background: #eee;
