@@ -70,9 +70,13 @@
 
 					{% macro display_cat( aList, aDeep, oFG, page_id, section_id, leptoken ) %}
 					    {% for item in aList %}						
-						<tr>
+						<tr id="cat_item_{{ item.id }}">
 							<td> </td>					
-							<td class="cat{{aDeep}}"><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}"><i class="eye icon"></i>{{ item.categorie }}</a></td>
+							<td class="cat{{aDeep}}">
+							{% if(item.subcategories|length > 0) %}
+							    <img src="{{ LEPTON_URL }}/modules/lib_lepton/backend_images/minus_16.png" onclick="fg_toggle_categorie( this, '{{ item.childs }}');" />
+							{% endif %}
+							<a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}"><i class="eye icon"></i>{{ item.categorie }}</a></td>
 							<td><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}">{{ item.cat_name }}</a></td>
 							<td>
 								<table>
@@ -126,7 +130,7 @@
 		
 		
 
-			
+			<h4>layout altlast</h4>
 		<!-- Liste erstellen -->
 		<!-- BEGIN ListElement -->
 			<div id="dragableTable">
@@ -136,7 +140,7 @@
 							<tr onmouseover="this.style.backgroundColor = '#F1F8DD';" onmouseout="this.style.backgroundColor = '#ECF3F7';">
 								<td width="20" style="padding-left: 0px;">
 									<a href="javascript: toggle_visibility('p{{ NCOUNTER }}');" title="Erweitern/Reduzieren">
-										<img src="../images/plus_16.png" onclick="toggle_plus_minus('{{ NCOUNTER }}');" name="plus_minus_{{ NCOUNTER }}" border="0" alt="+" />
+										<img src="{{ LEPTON_URL }}/modules/lib_lepton/backend_images/plus_16.png" onclick="toggle_plus_minus('{{ NCOUNTER }}');" name="plus_minus_{{ NCOUNTER }}" border="0" alt="+" />
 									</a>
 								</td>
 								<td>{{ FOLDER_VALUE }}</td>

@@ -57,3 +57,31 @@ function toggle_plus_minus(id){
 		document.images['plus_minus_' + id].src = plus.src;
 	}
 }
+
+
+/**
+ *  New by aldus
+ *
+ */
+function fg_toggle_categorie( aImgRef, aChildIDList )
+{
+    var _plus = LEPTON_URL+"/modules/lib_lepton/backend_images/plus_16.png";
+    var _minus = LEPTON_URL+"/modules/lib_lepton/backend_images/minus_16.png";
+    var state = "table-row";
+    
+    if(aImgRef.src == _plus)
+    {
+        aImgRef.src = _minus;
+        
+    } else {
+        aImgRef.src = _plus;
+        state = "none";
+    }
+    
+    var list = aChildIDList.split(",");
+    for( var i=0; i < list.length; i++ )
+    {
+        document.getElementById("cat_item_"+list[ i ]).style.display = state;
+        // console.log("hello "+list[i]);
+    }
+} 
