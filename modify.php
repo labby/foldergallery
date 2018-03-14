@@ -48,10 +48,17 @@ if(isset($_POST['toggle']) && is_numeric($_POST['toggle'])) {
 if(isset($_POST['move_down']) || isset($_POST['move_up'])) {
 	$oFG->move();
 }
+//echo LEPTON_tools::display( $oFG->fg_category_all);
 
 //recursiv Aufruf aller childs
 $aAllCartegories = array();
 $oFG->buildCatTree( 0, $aAllCartegories);
+
+// Add "root" to the top of the tree
+$oFG->fg_category_all[0]['subcategories'] = $aAllCartegories;
+$aAllCartegories = array(
+    $oFG->fg_category_all[0]
+);
 
 $data = array(
 	'oFG'	=> $oFG,

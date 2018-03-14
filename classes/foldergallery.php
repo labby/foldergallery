@@ -75,7 +75,7 @@ echo($this->database->get_error());
 		//get all categories on section
 		$this->fg_category_all = array();
 		$this->database->execute_query(
-			"SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE section_id=". $iSectionID." ORDER BY position ",
+			"SELECT * FROM `".TABLE_PREFIX."mod_foldergallery_categories` WHERE `section_id`=". $iSectionID." ORDER BY `position` ",
 			true,
 			$this->fg_category_all,
 			true
