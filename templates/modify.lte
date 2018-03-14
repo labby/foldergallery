@@ -65,12 +65,16 @@
 						</tr>
 					</thead>
 					<tbody>	
-					{% for item in oFG.fg_category_all %}
-						{% if item.niveau == 0 %}
+					
+{% import _self as categories %}
+{{ categories.display_cat( AllCartegories, 0 ) }}
+
+{% macro display_cat( aList, aDeep ) %}
+    {% for item in aList %}						
 						<tr>
 							<td> </td>					
 
-							<td><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}"><i class="eye icon"></i>{{ item.categorie }}</a></td>
+							<td class="cat{{aDeep}}"><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}"><i class="eye icon"></i>{{ item.categorie }}</a></td>
 							<td><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}">{{ item.cat_name }}</a></td>
 							<td>
 								<table>
@@ -112,8 +116,11 @@
 							
 							<td> </td>
 						</tr>
-					{% endif %}					
-					{% endfor %}	
+						{% import _self as sub_categories %}
+                        {{ sub_categories.display_cat( item.subcategories, aDeep+1 ) }}
+	{% endfor %}
+{% endmacro %}
+					
 					</tbody>
 				</table>
 			</form>			

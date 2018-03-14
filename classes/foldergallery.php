@@ -134,4 +134,21 @@ echo($this->database->get_error());
             return false;
         }
 	}
+	
+	
+	public function buildCatTree( $iParentID = 0, &$aStorrage, $iDeep = 0)
+	{
+	    foreach($this->fg_category_all as &$ref)
+	    {
+	        if($ref['parent_id'] == $iParentID)
+	        {
+	           $aTemp = array();
+	           $this->buildCatTree( $ref['id'], $aTemp, $iDeep + 1);
+	           $ref['subcategories'] = $aTemp;
+	           
+	           $aStorrage[] = $ref;
+	        }
+	    }
+	
+	}
 }
