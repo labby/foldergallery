@@ -1,8 +1,8 @@
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         cms-lab (initiated by Jürg Rast)
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2010-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -12,27 +12,30 @@
 $(document).ready(function(){ 
 	$(function() { 
 		$("#dragableTable ul").sortable({ opacity: 0.6, cursor: 'move', update: function() { 
-			var order = $(this).sortable("serialize") + '&action=updateRecordsListings&parent_id='+the_parent_id; 
-			$.post(LEPTON_URL+"/modules/foldergallery_jq/reorderDND.php", order, function(theResponse){ 
+			var order = $(this).sortable("serialize") + '&action=updateRecordsListings&parent_id='+the_parent_id+'&leptoken='+leptoken; 		
+			$.post(LEPTON_URL+"/modules/foldergallery/reorderDND.php", order, function(theResponse){ 
 				$("#dragableResult").html(theResponse); 
 			}); 
 		} 
 		}); 
 	}); 
  }); 
- 
+
+/* this part is not called anywhere!!!!
 $(document).ready(function(){ 
 	$(function() { 
 		$("#dragableCategorie ul").sortable({ opacity: 0.6, cursor: 'move', update: function() { 
 			var order = $(this).sortable("serialize") + '&action=updateRecordsListings&parent_id='+the_parent_id; 
-			$.post(LEPTON_URL+"/modules/foldergallery_jq/reorderCNC.php", order, function(theResponse){ 
+			alert('erpe'+order);
+			$.post(LEPTON_URL+"/modules/foldergallery/reorderCNC.php", order, function(theResponse){ 
 				$("#dragableResult").html(theResponse); 
 			}); 
 		} 
 		}); 
 	}); 
  });
- 
+*/ 
+
 // Remember to invoke within jQuery(window).load(...)
 // If you don't, Jcrop may not initialize properly
 $(window).load(function(){

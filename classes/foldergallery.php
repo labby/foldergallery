@@ -135,7 +135,7 @@ echo($this->database->get_error());
         }
 	}
 	
-	
+		
 	public function buildCatTree( $iParentID = 0, &$aStorrage, $iDeep = 0)
 	{
 	    foreach($this->fg_category_all as &$ref)
@@ -150,5 +150,6 @@ echo($this->database->get_error());
 	        }
 	    }
 	
-	}
+	}	
+	
 }

@@ -1,0 +1,63 @@
+{#
+/**
+ *  @module         foldergallery
+ *  @version        see info.php of this module
+ *  @author         cms-lab (initiated by Jürg Rast)
+ *  @copyright      2010-2018 cms-lab 
+ *  @license        GNU General Public License
+ *  @license terms  see info.php of this module
+ *  @platform       see info.php of this module
+ * 
+ */
+ #}
+ 
+<!-- start twig content -->
+{% autoescape false %}
+<div>
+	<script type="text/javascript">
+		var leptoken ="{{ leptoken }}";
+		var the_parent_id = {{ categorie.id }};
+		var LEPTON_URL = "{{ LEPTON_URL }}";
+	</script>
+</div>
+<div class="ui {{ oFG.addon_color }} segment">
+	<div class="ui basic segment">
+		<h2>{{ oFG.language.REORDER_IMAGES_STRING }}</h2>
+		<h3>{{ oFG.language.QUICK_SORT_STRING}}</h3>
+		<form class="ui form" name="buttons">
+			<input name="page_id" value="{{ page_id }}" type="hidden">
+			<input name="section_id" value="{{ section_id }}" type="hidden">
+			<input name="cat_id" value="{{ cat_id }}" type="hidden">	
+			<button class="ui {{ oFG.addon_color }} basic left floated button" type="submit" name="sort" value="ASC" title="{{  oFG.language.QUICK_ASC_STRING }}" formaction="{{ oFG.folder_url }}quick_img_sort.php" formmethod="post">{{ oFG.language.QUICK_ASC_STRING }}</button>		
+			<button class="ui {{ oFG.addon_color }} basic left floated button" type="submit" name="sort" value="DESC" title="{{ oFG.language.QUICK_DESC_STRING }}" formaction="{{ oFG.folder_url }}quick_img_sort.php" formmethod="post">{{ oFG.language.QUICK_DESC_STRING }}</button>		
+			<button class="ui negative right floated button" type="submit" name="cancel" value="{{ cat_id }}" formaction="{{ oFG.modify_url }}?page_id={{ page_id }}" formmethod="post">{{ TEXT.CANCEL }}</button>
+		</form>	
+	</div>
+	
+	<div class="spacer2"></div>
+	
+	<div class="ui basic segment">
+		<h3>{{ oFG.language.MANUAL_SORT }}</h3>
+		<div id="dragableTable">
+			<ul>
+			{% for item in bilder %}
+				<li id="recordsArray_{{ item.id }}" style="width:{{ oFG.fg_settings.thumb_size }}px; height:{{ oFG.fg_settings.thumb_size }}px; ">
+					<table cellpadding="0" cellspacing="0" border="0" width="100%" class="sortgroup">
+						<tr>
+							<td style="width:{{ oFG.fg_settings.thumb_size }}px; height:{{ oFG.fg_settings.thumb_size }}px; ">
+								<img src="{{ urlToThumb }}{{ item.file_name }}" title="{{ item.position }}:{{ item.file_name }}" />
+							</td>
+						</tr>
+					</table>
+				</li>			
+			{% endfor %}
+			</ul>
+		</div>
+		<div id="dragableResult" style="clear:left;">
+			<div class="ui info message">Reordered result will be displayed here.&nbsp;</div>
+		</div>
+	</div>
+</div>
+
+{% endautoescape %}
+<!-- end twig content -->

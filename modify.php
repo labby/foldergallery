@@ -53,14 +53,12 @@ if(isset($_POST['move_down']) || isset($_POST['move_up'])) {
 $aAllCartegories = array();
 $oFG->buildCatTree( 0, $aAllCartegories);
 
-//echo LEPTON_tools::display( $aAllCartegories );
-
 $data = array(
 	'oFG'	=> $oFG,
 	'page_id'	=> $page_id,
-	'section_id'=> $section_id,	
-	'leptoken'	=> get_leptoken(),
-	'AllCartegories' => $aAllCartegories
+	'section_id'=> $section_id,
+	'AllCartegories' => $aAllCartegories,	
+	'leptoken'	=> get_leptoken()
 );
 		
 echo $oTWIG->render( 

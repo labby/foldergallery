@@ -66,6 +66,24 @@ a:hover.dark_segment {
 tr.title  {
    font-weight: bold !important;
 }
+
+#dragableTable {text-align:center;}
+#dragableTable li {list-style:none; }
+#dragableTable li {float:left; margin: 4px; }
+#dragableTable td {text-align:center; vertical-align: middle; background-color:#ddd; cursor:'move';}
+
+td.cat1 {
+    padding-left:40px !important;
+}
+
+td.cat2 {
+    padding-left:80px !important;
+}
+
+td.cat3 {
+    padding-left:120px !important;
+}
+
 /* 
 body {
 	cursor : default;
@@ -168,10 +186,6 @@ li {
 	min-width: 150px;
 }
 
-#dragableTable {text-align:center;}
-#dragableTable li {float:left; margin: 4px; }
-#dragableTable td {text-align:center; vertical-align: middle; background-color:#ddd; cursor:'move';}
-
 input.lepsem_submit, input.lepsem_reset, input.lepsem_save {
 	border: none !important;
 }
@@ -181,13 +195,3 @@ input.lepsem_save {
 	padding-right: 20px;
 }
 */
-
-td.cat1 {
-    padding-left:40px !important;
-}
-td.cat2 {
-    padding-left:80px !important;
-}
-td.cat3 {
-    padding-left:120px !important;
-}

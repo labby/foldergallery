@@ -48,7 +48,7 @@ $MOD_FOLDERGALLERY = array(
    'MODIFY_CAT_TITLE' 	=> 'Kategorie und Bilddetailes bearbeiten',
    'MODIFY_CAT' 			=> 'Kategoriedetails bearbeiten:',
    'CAT_NAME' 			=> 'Kategoriename/Titel:',
-   'CAT_DESCRIPTION' 	=> 'Kategoriebeschrieb:',
+   'CAT_DESCRIPTION' 	=> 'Kategoriebeschreibung:',
    'MODIFY_IMG' 			=> 'Bilder bearbeiten:',
    'IMAGE' 				=> 'Bild',
    'IMAGE_NAME' 			=> 'Bildname',
@@ -68,8 +68,8 @@ $MOD_FOLDERGALLERY = array(
    'ERROR_MESSAGE'		=> 'Keine Daten zum verarbeiten Erhalten!',
    'DB_ERROR' 			=> 'Datenbank Fehler!',
    'FS_ERROR' 			=> 'Fehler beim löschen des Ordners!',
-   'NO_FILES_IN_CAT' 	=> 'Diese Kategorie enth&auml;lt keine Bilder!',
-   'SYNC' 				=> 'Datenbank mit Filesystem synchronisieren',
+   'NO_FILES_IN_CAT' 	=> 'Diese Kategorie enthält keine Bilder!',
+   'SYNC' 				=> 'Datenbank mit Dateien synchronisieren',
    'EDIT_CSS' 			=> 'CSS bearbeiten',
    'FOLDER_IN_FS'		=> 'Ordner im Dateisystem:',
    'CAT_TITLE' 			=> 'Kategorietitel:',
@@ -88,8 +88,13 @@ $MOD_FOLDERGALLERY = array(
    'BACK' 				=> 'Zurück',
    'REORDER_INFO_STRING'    => 'Der Erfolg der Neuanordnung wird hier angezeigt.',
    'HELP_INFORMATION'       => 'Hilfe / Info',
-
    'Ration_square'       => 'quadratisch',
+   
+	'REORDER_IMAGES_STRING' => 'Bilder sortieren',
+	'QUICK_SORT_STRING'		=> 'Bilder nach Dateiname sortiern',
+	'QUICK_ASC_STRING'		=> 'Dateiname aufsteigend',
+	'QUICK_DESC_STRING'		=> 'Dateiname absteigend',
+	'MANUAL_SORT'			=> 'Frei sortieren (drag&drop)',	
 
 // Tooltips
    'ROOT_FOLDER_STRING_TT' 	=> 'Dieser Ordner legt den Stammordner fest, in welchem rekursiv nach Bilder gesucht wird. Bitte nur beim installieren ändern, sonst gehen alle Infos zu den Bilder verloren!',

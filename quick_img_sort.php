@@ -30,28 +30,24 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-$error = null;
 
-if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
-	$cat_id = $_GET['cat_id'];
+if(isset($_POST['cat_id']) && is_numeric($_POST['cat_id'])) {
+	$cat_id = $_POST['cat_id'];
 } else {
-	$error['no_cat_id'] = 1;
+	$oFG->admin->print_error('no categorie found', ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
+	die();
 }
 
-if(isset($_GET['page_id']) && is_numeric($_GET['page_id'])) {
-	$page_id = $_GET['page_id'];
-} else {
-	$error['no_page_id'] = 1;
+if(isset($_POST['page_id']) && is_numeric($_POST['page_id'])) {
+	$page_id = $_POST['page_id'];
 }
 
-if(isset($_GET['section_id']) && is_numeric($_GET['section_id'])) {
-	$section_id = $_GET['section_id'];
-} else {
-	$error['no_section_id'] = 1;
+if(isset($_POST['section_id']) && is_numeric($_POST['section_id'])) {
+	$section_id = $_POST['section_id'];
 }
 
-if(isset($_GET['sort'])) {
-	switch($_GET['sort']) {
+if(isset($_POST['sort'])) {
+	switch($_POST['sort']) {
 		case "ASC":
 			$sort = "ASC";
 			break;
@@ -59,46 +55,43 @@ if(isset($_GET['sort'])) {
 			$sort = "DESC";
 			break;
 		default:
-			$error['no_sort'] = 1;
+			$oFG->admin->print_error('no sort advice');
 			break;
 	}
-
 }
 
-if($error != null) {
-	header("Location: ../../index.php");
-	exit();
-}
+// get class instance
+$oFG = foldergallery::getInstance();
 
-// Create new admin object and print admin header
-require_once(LEPTON_PATH.'/framework/class.admin.php');
-$admin = new admin('Pages', 'pages_settings');
+// get infos from db
+$result = array();	
+$oFG->database->execute_query(
+	"SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_files  WHERE parent_id =".$cat_id." ORDER BY file_name ".$sort,
+	true,
+	$result,
+	true
+);	
 
-
-$sql="SELECT file_name, position, id FROM `".TABLE_PREFIX."mod_foldergallery_files` WHERE parent_id =".$cat_id." ORDER BY file_name ".$sort;
-
-$query=$database->query($sql);
-
-if($query->numRows()) {
+if(count($result) > 0) {
 	$sql = "UPDATE `".TABLE_PREFIX."mod_foldergallery_files` SET position= CASE ";
 	$position = 1;
-	while($result = $query->fetchRow()){
-		$sql = $sql."WHEN id=".$result['id']." THEN '".$position."' ";
+	foreach($result as $image){
+		$sql = $sql."WHEN id=".$image['id']." THEN '".$position."' ";
 		$position++;
 	}
 	$sql = $sql." ELSE position END;";
 }
 
 
-if($database->query($sql)){
-	$admin->print_success($MESSAGE['PAGES']['REORDERED'],
+if($oFG->database->query($sql)){
+	$oFG->admin->print_success($MESSAGE['PAGES_REORDERED'],
 	LEPTON_URL.'/modules/foldergallery/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 } else {
-	$admin->print_error($TEXT['ERROR'],
+	$oFG->admin->print_error($TEXT['ERROR'],
 	LEPTON_URL.'/modules/foldergallery/modify_cat_sort.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 }
 
 // Print admin footer
-$admin->print_footer();
+$oFG->admin->print_footer();
 
 ?>

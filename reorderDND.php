@@ -30,38 +30,32 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-if(defined('LEPTON_PATH') == false) { exit("Cannot access this file directly");  }
 
-// First we prevent direct access and check for variables
 if(!isset($_POST['action']) OR !isset($_POST['recordsArray'])) {
-	// now we redirect to index, if you are in subfolder use ../index.php
 	header( 'Location: ../../index.php' ) ;
-} else {
+} else 
+{	
+	$admin = new LEPTON_admin('Modules', 'module_view', false, false);  // prevent double header!
+	$oFG = foldergallery::getInstance();
 
-	// check if user has permissions to access the  module
-	require_once(LEPTON_PATH.'/framework/class.admin.php');
-	$admin = new admin('Modules', 'module_view', false, false);
-	if (!($admin->is_authenticated() && $admin->get_permission('foldergallery', 'module'))) 
-		die(header('Location: ../../index.php'));
-	
 	// Sanitized variables
 	$action = addslashes($_POST['action']);
 	$updateRecordsArray = isset($_POST['recordsArray']) ? $_POST['recordsArray'] : array();
 
-	// This line verifies that in &action is not other text than "updateRecordsListings", if something else is inputed (to try to HACK the DB), there will be no DB access..
+	// only "updateRecordsListings" is allowed
 	if ($action == "updateRecordsListings"){
 	 
 		$listingCounter = 1;
 		$output = "";
 		foreach ($updateRecordsArray as $recordIDValue) {
 			
-			$database->query("UPDATE `".TABLE_PREFIX."mod_foldergallery_files` SET position = ".$listingCounter." WHERE `id` = ".$recordIDValue);
+			$oFG->database->query("UPDATE `".TABLE_PREFIX."mod_foldergallery_files` SET position = ".$listingCounter." WHERE `id` = ".$recordIDValue);
 
 			$listingCounter ++;
 		}
-	 
-		echo 'You successfuly reordered';
+		echo(LEPTON_tools::display('Sucessfully reorderd','pre','ui info message'));
+		//echo '<span><i class="large green crop icon"></i>Sucessfully reorderd</span>';
 
 	}
-} // this ends else statement from the top of the page
+} 
 ?>
