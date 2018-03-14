@@ -30,6 +30,8 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
+// get class instance
+$oFG = foldergallery::getInstance();
 
 if(isset($_POST['cat_id']) && is_numeric($_POST['cat_id'])) {
 	$cat_id = $_POST['cat_id'];
@@ -59,9 +61,6 @@ if(isset($_POST['sort'])) {
 			break;
 	}
 }
-
-// get class instance
-$oFG = foldergallery::getInstance();
 
 // get infos from db
 $result = array();	
