@@ -100,21 +100,13 @@ if(count($bilder) > 0 ){
 		$thumb = $pathToThumb.$bildfilename;			
 		if(!is_file($thumb)){	
 			generateThumb($file, $thumb, $thumb_size, 0, $ratio);
-		}
-		
-/*		$result[] = array(
-			'id'		=> $result['id'],
-			'file_name'	=> $bildfilename, 
-			'caption'	=> $result['caption'], 
-			'thumb_link'=> $urlToThumb .$bildfilename
-		);
-*/		
+		}	
 	}
 } else {
 	$admin->print_error('no images found');
 	die();
 }
-//die(LEPTON_tools::display($bilder,'pre','ui message'));
+
 $data = array(
 	'oFG'	=> $oFG,
 	'cat_id'	=> $cat_id,

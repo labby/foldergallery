@@ -29,28 +29,11 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-$admin = new LEPTON_admin('Pages', 'pages_modify');
-
-$file_names = array(
-    '/modules/foldergallery/backend.functions.php'
-);
-LEPTON_handle::include_files ($file_names);
-
-$MOD_FOLDERGALLERY = foldergallery::getInstance()->language;
-
-$settings = getSettings($section_id);
+$oFG = foldergallery::getInstance();
 
 if(isset($_POST['save'])) {
-	if(isset($_POST['cat_id'])) {
-		$cat_id = $_POST['cat_id'];
-	} else {
-		$error['no_cat_id'] = 1;
-	}
-	if(isset($_POST['cat_name'])) {
-		$cat_name = $_POST['cat_name'];
-	}
-	if(isset($_POST['cat_description'])) {
-		$cat_description = $_POST['cat_description'];
+	if(!isset($_POST['cat_id'])) {
+		$oFG->admin->print_error('no_cat_id');
 	}
 	
 	$active = 0;
@@ -59,24 +42,26 @@ if(isset($_POST['save'])) {
 	}
 	
 	$fields = array(
-		'cat_name'	=> $cat_name,
-		'description'	=> $cat_description,
+		'cat_name'	=> $_POST['cat_name'],
+		'description'	=> $_POST['cat_description'],
 		'active'	=> $active
 	);
 	
-	$database->build_and_execute(
+	$oFG->database->build_and_execute(
 		'update',
 		TABLE_PREFIX.'mod_foldergallery_categories',
 		$fields,
-		'id='.$cat_id
+		'id='.$_POST['cat_id']
 	);
 
 	if(!$database->is_error()){
-		$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
+		$oFG->admin->print_success($TEXT['SUCCESS'], $oFG->folder_url.'modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$_POST['cat_id']);
 	} else {
-		$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'].": ".$database->get_error(), ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
+		$oFG->admin->print_error($oFG->language['ERROR_MESSAGE'].": ".$database->get_error(), ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
 	}
+} else {
+	die ('something went wrong');
 }
 
-$admin->print_footer();
+$oFG->admin->print_footer();
 ?>

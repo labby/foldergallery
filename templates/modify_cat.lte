@@ -39,7 +39,7 @@
 				</tr>
 				<tr>
 					<td><b>{{ TEXT.ACTIVE }}</b></td>
-					<td><input name="active" type="checkbox" {% if categorie.active == 1 %}value="1" checked ="checked"{% else %}value="0" {% endif %}></td>
+					<td><input type="checkbox" name="active" value="1" {% if categorie.active == 1 %}checked ="checked"{% endif %} /></td>					
 				</tr>
 				<tr>
 					<td>{{ oFG.language.CAT_DESCRIPTION }}</td>
@@ -70,7 +70,6 @@
 				</tr>
 				{% for item in bilder %}
 				<tr>
-					<input type="hidden" name="{{ item.id }}" value="{{ item.id }}" alt="Thumb" />
 					<td align="center">
 						<a href="{{ oFG.folder_url }}modify_thumb.php?page_id={{ page_id }}&section_id={{ section_id }}&cat_id={{ cat_id }}&id={{ item.id }}"><img src="{{ urlToThumb }}{{ item.file_name }}?t={{ time }}"></a>
 					</td>

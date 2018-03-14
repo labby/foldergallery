@@ -53,8 +53,10 @@ class foldergallery extends LEPTON_abstract
 	public function initialize() 
 	{
 		
-		$this->database = LEPTON_database::getInstance();		
-		$this->init_section();		
+		$this->database = LEPTON_database::getInstance();	
+		$this->admin = LEPTON_admin::getInstance();
+		global $page_id, $section_id;
+		$this->init_section( $page_id, $section_id);		
 	}
 	
 	public function init_section( $iPageID = 0, $iSectionID = 0 )
@@ -69,7 +71,7 @@ class foldergallery extends LEPTON_abstract
 			$this->fg_settings,
 			false
 		);	
-
+echo($this->database->get_error());
 		//get all categories on section
 		$this->fg_category_all = array();
 		$this->database->execute_query(
