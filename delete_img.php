@@ -31,12 +31,9 @@ if (defined('LEPTON_PATH')) {
 // end include class.secure.php
 
 $oFG = foldergallery::getInstance();
-LEPTON_handle::include_files ('/modules/foldergallery/backend.functions.php');
-die(LEPTON_tools::display($_GET,'pre','ui message'));
 
-if(isset($_GET['id']) && is_numeric($_GET['id'])) {
-	$settings = getSettings($_GET['section_id']);	
-	$root_dir = $settings['root_dir']; 
+if(isset($_GET['id']) && is_numeric($_GET['id'])) {	
+	$root_dir = $oFG->all_settings['root_dir']; 
 	$page_id = $_GET['page_id'];
 	$section_id = $_GET['section_id'];
 	$cat_id = $_GET['cat_id'];

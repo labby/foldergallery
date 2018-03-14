@@ -52,8 +52,7 @@ if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
 		);		
 	if(count($result) > 0){	
 		// delete files
-		$settings =  getSettings($section_id);
-		$delete_path = foldergallery::FG_PATH.$settings['root_dir'].$result['parent'].'/'.$result['categorie'];
+		$delete_path = foldergallery::FG_PATH.$oFG->fg_settings['root_dir'].$result['parent'].'/'.$result['categorie'];
 		
 		// delete db entries
 		rek_db_delete($cat_id);

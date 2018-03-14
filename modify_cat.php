@@ -33,9 +33,9 @@ if (defined('LEPTON_PATH')) {
 $oFG = foldergallery::getInstance();
 $oTWIG = lib_twig_box::getInstance();
 $oTWIG->registerModule('foldergallery');
-LEPTON_handle::include_files ('/modules/foldergallery/backend.functions.php');
-$admin = LEPTON_admin::getInstance();
-$settings = getSettings($_GET['section_id']);
+LEPTON_handle::include_files ('/modules/foldergallery/functions.php');
+
+$settings = $oFG->fg_settings;
 $thumb_size = $settings['thumb_size'];
 $root_dir = $settings['root_dir'];
 $ratio = $settings['ratio']; 
@@ -43,7 +43,7 @@ $ratio = $settings['ratio'];
 if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
 	$cat_id = $_GET['cat_id'];
 } else {
-	$admin->print_error('no categorie found', ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
+	$oFG->admin->print_error('no categorie found', ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
 	die();
 }
 
@@ -103,7 +103,7 @@ if(count($bilder) > 0 ){
 		}	
 	}
 } else {
-	$admin->print_error('no images found');
+	$oFG->admin->print_error('no images found');
 	die();
 }
 
@@ -125,6 +125,6 @@ echo $oTWIG->render(
 	$data								//	template-data
 );
 
-$admin->print_footer();
+$oFG->admin->print_footer();
 
 ?>
