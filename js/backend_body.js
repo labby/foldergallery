@@ -75,3 +75,4 @@ function checkCoords()
 	alert('Please select a crop region then press submit.');
 	return false;
 };
+

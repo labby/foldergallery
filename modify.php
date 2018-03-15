@@ -48,7 +48,6 @@ if(isset($_POST['toggle']) && is_numeric($_POST['toggle'])) {
 if(isset($_POST['move_down']) || isset($_POST['move_up'])) {
 	$oFG->move();
 }
-//echo LEPTON_tools::display( $oFG->fg_category_all);
 
 //recursiv Aufruf aller childs
 $aAllCartegories = array();

@@ -81,7 +81,7 @@ $MOD_FOLDERGALLERY = array(
    'THUMB_SIZE' 			=> 'Thumbnail Größe',
    'THUMB_RATIO'		=> 'Thumbnail Verhältniss',
    'THUMB_NOT_NEW'		=> 'Keine neuen Thumbnails erzeugen',
-   'CHANGING_INFO'		=> 'Das ändern von <strong>Thumbnail Größe</strong> oder <strong>Thumbnail Verhältniss</strong> bewirkt das löschen (und neu erstellen) aller Thumbnails.',
+   'CHANGING_INFO'		=> 'Das ändern von <strong>Thumbnail Größe</strong> oder <strong>Thumbnail Verhältniss</strong> bewirkt das Löschen (und Neuerstellen) aller Thumbnails.',
    'SYNC_DATABASE'		=> 'Synchronisiere Dateisystem mit Datenbank...',
    'SAVE_SETTINGS'		=> 'Einstellungen werden gespeichert...',
    'SORT_IMAGE' 			=> 'Bilder sortieren',
@@ -99,7 +99,7 @@ $MOD_FOLDERGALLERY = array(
 // Tooltips
    'ROOT_FOLDER_STRING_TT' 	=> 'Dieser Ordner legt den Stammordner fest, in welchem rekursiv nach Bilder gesucht wird. Bitte nur beim installieren ändern, sonst gehen alle Infos zu den Bilder verloren!',
    'EXTENSIONS_STRING_TT' 	=> 'Legen sie hier die erlaubten Dateierweiterungen fest. Verwenden sie das Koma als Trennzeichen. Auf Gross-/Kleinschreibung wird nicht geachtet.',
-   'INVISIBLE_STRING_TT' 	=> 'Ordner die sie hier eintragen werden nicht durchsucht.',
+   'INVISIBLE_STRING_TT' 	=> 'Ordner die sie hier eintragen werden, nicht durchsucht.',
    'DELETE_TITLE_TT'		=> 'Achtung, es werden ALLE Bilder und Unterkategorien mitsamt den Bilder vom Server gelöscht!'
 );
 ?>

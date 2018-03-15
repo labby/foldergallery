@@ -9,8 +9,8 @@
  * 
  */
  
+/* FRONTEND CSS */
 
-/* Dieser Eintrag entfernt den gepunkteten Rahmen um Links beim anklicken. */
 a:focus {
 	outline: none;
 }

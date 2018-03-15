@@ -1,0 +1,108 @@
+{#
+/**
+ *  @module         foldergallery
+ *  @version        see info.php of this module
+ *  @author         cms-lab (initiated by Jürg Rast)
+ *  @copyright      2010-2018 cms-lab 
+ *  @license        GNU General Public License
+ *  @license terms  see info.php of this module
+ *  @platform       see info.php of this module
+ * 
+ */
+ #}
+ 
+<!-- start twig content -->
+{% autoescape false %}
+<div class="ui {{ oFG.addon_color }} segment">
+	<h2 class="ui header">{{ oFG.language.SETTINGS }}</h2>
+	<form class="ui form" action="{{ oFG.folder_url }}save_settings.php?page_id={{ page_id }}&section_id={{ section_id }}" method="post">
+		<input type="hidden" name="section_id" value="{{ section_id }}" />
+		<input type="hidden" name="page_id" value="{{ page_id }}" />
+		<input type="hidden" name="leptoken" value="{{leptoken }}" />
+		<div class="ui basic segment fg_settings">
+			<div class="column">
+				<div class="field">
+					<label class="tooltip" data-tooltip="{{ oFG.language.ROOT_FOLDER_STRING_TT }}">{{ oFG.language.ROOT_DIR }}:</label>
+					<select name="root_dir">
+					{% for key,value in folders %}
+						<option value="{{ key }}" {% if value == oFG.fg_settings.root_dir %}selected="selected"{% endif %}>{{ value }}</option>
+					{% endfor %}
+					</select>
+				</div>
+			</div>				
+			<div class="spacer3"></div>		
+			<div class="column">
+				<div class="field">
+					<label class="tooltip" data-tooltip="{{ oFG.language.EXTENSIONS_STRING_TT }}">{{ oFG.language.EXTENSIONS }}:</label>
+					<input type="text" name="extensions" value="{{ oFG.fg_settings.extensions }}" />
+				</div>	
+			</div>							
+			<div class="spacer3"></div>		
+			<div class="column">
+				<div class="field">
+					<label class="tooltip" data-tooltip="{{ oFG.language.INVISIBLE_STRING_TT }}">{{ oFG.language.INVISIBLE }}:</label>
+					<input type="text" name="invisible" value="{{ oFG.fg_settings.invisible }}" />
+				</div>	
+			</div>							
+			<div class="spacer3"></div>	
+			<div class="ui grid">
+				<div class="six wide column">			
+					<div class="field">
+						<label>{{ oFG.language.PICS_PP }}:</label>
+						<input type="text" name="pics_pp" value="{{ oFG.fg_settings.pics_pp }}" />
+					</div>
+				</div>				
+					
+				<div class="five wide column">			
+					<div class="field">
+						<label>{{ oFG.language.THUMB_SIZE }}:</label>
+						<input type="text" name="thumb_size" value="{{ oFG.fg_settings.thumb_size }}" />
+					</div>				
+				</div>
+						
+				<div class="five wide column">			
+					<div class="field">
+						<label>{{ oFG.language.THUMB_RATIO }}:</label>
+						<select name="ratio">
+						{% for key,value in ratio %}
+							<option value="{{ value }}" {% if key == oFG.fg_settings.ratio %}selected="selected"{% endif %}>{{ key }}</option>
+						{% endfor %}
+						</select>
+					</div>				
+				</div>				
+			</div> <!-- end row -->	
+			<div class="spacer3"></div>
+			<div class="ui info message">
+			<p>{{ oFG.language.CHANGING_INFO}}</p>
+			<p><input class="fg_settings_check" type="checkbox" name="noNew">{{ oFG.language.THUMB_NOT_NEW }}</p>
+			</div>
+			<div class="spacer3"></div>
+			<div class="ui grid">								
+				<div class="eight wide column">			
+					<div class="field">
+						<label>Overview-Pic:</label>
+						<select name="catpic">
+							<option value="0" {% if oFG.fg_settings.catpic == 0 %}selected="selected"{% endif %}>Random</option>
+							<option value="1" {% if oFG.fg_settings.catpic == 1 %}selected="selected"{% endif %}>First</option>
+							<option value="2" {% if oFG.fg_settings.catpic == 2 %}selected="selected"{% endif %}>Last</option>
+						</select>
+					</div>				
+				</div>
+						
+				<div class="eight wide column">			
+					<div class="field">
+						<label>{{ oFG.language.LIGHTBOX }}:</label>
+						<select name="lightbox" id="lightbox">
+							{{ lightbox }}
+						</select>
+					</div>				
+				</div>				
+			</div> <!-- end row -->	
+			<div class="spacer3"></div>	
+			<button class="ui positive button" type="submit" name="save" value="settings">{{ TEXT.SAVE }}</button>
+			<button class="ui negative right floated button" type="submit" name="cancel" value="back" formaction="{{ oFG.modify_url }}?page_id={{ page_id }}" formmethod="post">{{ TEXT.CANCEL }}</button>		
+		</div>
+	</form>
+</div>
+{% endautoescape %}
+<!-- end twig content -->
