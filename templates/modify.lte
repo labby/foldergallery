@@ -70,11 +70,11 @@
 
 					{% macro display_cat( aList, aDeep, oFG, page_id, section_id, leptoken ) %}
 					    {% for item in aList %}						
-						<tr id="cat_item_{{ item.id }}">
+						<tr id="cat_item_{{ item.id }}" {% if(aDeep > 1) %}class="fg_cat_hidden"{% endif %}>
 							<td> </td>					
 							<td class="cat{{aDeep}}">
-							{% if(item.subcategories|length > 0) %}
-							    <img src="{{ LEPTON_URL }}/modules/lib_lepton/backend_images/minus_16.png" onclick="fg_toggle_categorie( this, '{{ item.childs }}');" />
+							{% if (item.subcategories|length > 0  and  item.parent_id != -1) %}
+							    <img src="{{ LEPTON_URL }}/modules/lib_lepton/backend_images/plus_16.png" onclick="fg_toggle_categorie( this, '{{ item.childs }}');" />
 							{% endif %}
 							<a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}"><i class="eye icon"></i>{{ item.categorie }}</a></td>
 							<td><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}">{{ item.cat_name }}</a></td>

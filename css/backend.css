@@ -1,4 +1,4 @@
-﻿/**
+/**
  *  @module         foldergallery_jq
  *  @version        see info.php of this module
  *  @author         cms-lab (initiated by Jürg Rast)
@@ -88,6 +88,9 @@ textarea {
     padding: 6px;
 }
 
+tr.fg_cat_hidden {
+    display: none;
+}
 /* 
 body {
 	cursor : default;
