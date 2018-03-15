@@ -51,7 +51,7 @@ if(isset($_GET['cat_id']) && is_numeric($_GET['cat_id'])) {
 //get infos from db
 $categorie = array();	
 $oFG->database->execute_query(
-	"SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE id=".$cat_id,
+	"SELECT * FROM `".TABLE_PREFIX."mod_foldergallery_categories` WHERE `id`=".$cat_id,
 	true,
 	$categorie,
 	false
@@ -69,7 +69,6 @@ if ( count($categorie) > 0 ) {
         $parent   = '';		
     }
 }
-
 
 $parent_id = $categorie['id'];
 $folder = $root_dir.$parent;

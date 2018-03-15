@@ -125,12 +125,15 @@ $database->build_and_execute(
 
 if(($oldSettings['thumb_size'] != $newSettings['thumb_size'] || $oldSettings['ratio'] != $newSettings['ratio']) && !isset($_POST['noNew'])){
 	// Ok, thumb_size hat gewechselt, also alte Thumbs löschen
-	$sql = 'SELECT `parent`, `categorie` FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$oldSettings['section_id'].';';
 	$all_data = array();
-	$database->execute_query( $sql, true, $all_data );
+	$database->execute_query(
+	    'SELECT `parent`, `categorie` FROM `'.TABLE_PREFIX.'mod_foldergallery_categories` WHERE `section_id`='.$oldSettings['section_id'].';',
+	    true,
+	    $all_data
+	);
 	
 	foreach($all_data as $link) {
-		$pathToFolder = foldergallery::FG_PATH.$oldSettings['root_dir'].$link['parent'].'/'.$link['categorie'].$thumbdir;
+		$pathToFolder = foldergallery::FG_PATH.$oldSettings['root_dir'].$link['parent'].'/'.$link['categorie'].foldergallery::FG_THUMBDIR;
 		echo '<center><br/>Delete: '.$pathToFolder.'</center>';
 		deleteFolder($pathToFolder);
 	}
@@ -144,23 +147,46 @@ if(($oldSettings['thumb_size'] != $newSettings['thumb_size'] || $oldSettings['ra
 if($oldSettings['root_dir'] != $newSettings['root_dir']){
 	
 	// Und jetzt noch alte DB Einträge
-	$sql = 'SELECT `parent`, `categorie` FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$oldSettings['section_id'].';';
-	$query = $database->query($sql);
-	while($cat = $query->fetchRow()) {
-		$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE parent_id='.$cat['parent'];
-		$database->query($sql);
+	$aEntriesToDelete = array();
+	$database->execute_query(
+	    "SELECT `parent`, `categorie` FROM `".TABLE_PREFIX."mod_foldergallery_categories` WHERE `section_id`=".$oldSettings['section_id'].";",
+	    true,
+	    $aEntriesToDelete,
+	    true
+	);
+	
+	foreach( $aEntriesToDelete as $cat)
+	{
+		$database->simple_query("DELETE FROM `".TABLE_PREFIX."mod_foldergallery_files` WHERE `parent_id`=".$cat['parent']);
 	}
 	
 	
-	$sql = 'DELETE FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$oldSettings['section_id'].';';
-	$database->query($sql);
+	$database->simple_query( "DELETE FROM `".TABLE_PREFIX."mod_foldergallery_categories` WHERE `section_id`=".$oldSettings['section_id'].";" );
+  
   // Root als Kategorie eintragen
-  $sql = 'INSERT INTO '.TABLE_PREFIX."mod_foldergallery_categories ( `section_id`,`parent_id`,`categorie`,`parent`,`cat_name`,`active`,`is_empty`,`position`,`niveau`,`has_child`,`childs`,`description` )
-    VALUES ( '$section_id', '-1', 'Root', '-1', 'Root', '1', '0', '0', '-1', '0', '', 'Root Description' );";
-  $query = $database->query($sql);
-  if($database->is_error()) {
-  	$admin->print_error($database->get_error(), LEPTON_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
-  }
+    $fields = array(
+        "section_id"    => $section_id,
+        "parent_id"     => -1,
+        "categorie"     => "Root",
+        "parent"        => -1,
+        "cat_name"      => "Root",
+        "active"        => 1,
+        "is_empty"      => 0,
+        "position"      => 0,
+        "niveau"        => -1, // ?
+        "has_child"     => 0,
+        "childs"        => "",
+        "description"   => ""
+    );
+    $database->build_and_execute(
+        "insert",
+        TABLE_PREFIX."mod_foldergallery_categories",
+        $fields
+    );
+  
+    if($database->is_error()) {
+        $admin->print_error($database->get_error(), LEPTON_URL.'/modules/foldergallery/modify_settings.php?page_id='.$page_id.'&section_id='.$section_id);
+    }
 }
 
 // Jetzt wird die DB neu synchronisiert //Anm CHio: Wozu? Wenn ein Fehler ist, kann man nichtmal die Settings speichern.
