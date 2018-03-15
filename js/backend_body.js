@@ -21,20 +21,6 @@ $(document).ready(function(){
 	}); 
  }); 
 
-/* this part is not called anywhere!!!!
-$(document).ready(function(){ 
-	$(function() { 
-		$("#dragableCategorie ul").sortable({ opacity: 0.6, cursor: 'move', update: function() { 
-			var order = $(this).sortable("serialize") + '&action=updateRecordsListings&parent_id='+the_parent_id; 
-			alert('erpe'+order);
-			$.post(LEPTON_URL+"/modules/foldergallery/reorderCNC.php", order, function(theResponse){ 
-				$("#dragableResult").html(theResponse); 
-			}); 
-		} 
-		}); 
-	}); 
- });
-*/ 
 
 // Remember to invoke within jQuery(window).load(...)
 // If you don't, Jcrop may not initialize properly
