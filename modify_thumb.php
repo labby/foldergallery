@@ -89,7 +89,7 @@ if(isset($_POST['edit']) && is_numeric($_POST['edit'])) {
 	{
 		list($width, $height, $type, $attr) = getimagesize($full_file); //str_replace um auch Datein oder Ordner mit leerzeichen bearbeiten zu können.
 			
-		// erstellt ein passendes Vorschaufenster zum eingestellten Verhältniss
+		// create preview
 		if ($settings['ratio'] > 1) {
 			$previewWidth = $settings['thumb_size'];
 			$previewHeight = $settings['thumb_size'] / $settings['ratio'];
