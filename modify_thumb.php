@@ -35,7 +35,6 @@ $oTWIG = lib_twig_box::getInstance();
 $oTWIG->registerModule('foldergallery');
 LEPTON_handle::include_files ('/modules/foldergallery/functions.php');
 
-
 if(isset($_POST['edit']) && is_numeric($_POST['edit'])) {
 	$file_id = $_POST['edit'];
 	$cat_id = $_POST['cat_id'];
@@ -78,10 +77,19 @@ if(isset($_POST['edit']) && is_numeric($_POST['edit'])) {
 	{
 //		die(LEPTON_tools::display($thumb_file,'pre','ui message'));
 		//delete current thumb and create a new one
+
 		LEPTON_handle::delete_obsolete_files ($thumb_file);
-		if(generateThumb($full_file, $thumb_file, $settings['thumb_size'], 1, $settings['ratio'], $_POST['x'], $_POST['y'], $_POST['w'], $_POST['h']) )
+		$tempResult = generateThumb($full_file, $thumb_file, $settings['thumb_size'], 1, $settings['ratio'], $_POST['x'], $_POST['y'], $_POST['w'], $_POST['h']);
+		
+		if( $tempResult )
 		{
 			$oFG->admin->print_success('Thumb erfolgreich geändert', LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+		} else {
+		    // not ok!
+		    // something is gone wrong!
+		    echo "Bad things happend!";
+		    LEPTON_tools::use_var_dump( true );
+		    echo LEPTON_tools::display($tempResult, "div", "ui message red");
 		}
 		
 	}

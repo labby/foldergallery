@@ -34,15 +34,14 @@ if (defined('LEPTON_PATH')) {
 $mod_headers = array(
 	'backend' => array(
         'css' => array(
-		array(
-			'media'  => 'all',
-			'file'  => 'modules/lib_semantic/dist/semantic.min.css'
-			)		
+            array(
+                'media'  => 'all',
+                'file'  => 'modules/lib_semantic/dist/semantic.min.css'
+			)
  		),				
 		'js' => array(
 			'modules/lib_jquery/jquery-core/jquery-core.min.js',
-			'modules/lib_jquery/jquery-core/jquery-migrate.min.js',
-			'/modules/foldergallery/scripts/jcrob/js/jquery.Jcrop.min.js',
+			'modules/lib_jquery/jquery-core/jquery-migrate.min.js',			
 			'modules/lib_semantic/dist/semantic.min.js'
 		)
 	),
@@ -53,5 +52,22 @@ $mod_headers = array(
 		)
 	)	
 );
-?>
 
+$aTemp = explode( DIRECTORY_SEPARATOR, $_SERVER['SCRIPT_NAME']);
+$sFilename = array_pop( $aTemp );
+
+switch( $sFilename )
+{
+    case "modify_thumb.php":
+        $mod_headers['backend']['css'][] = array(
+			'media'  => 'all',
+			'file'  => 'modules/foldergallery/scripts/jcrob/css/jquery.Jcrop.css'
+        );
+        
+        $mod_headers['backend']['js'][] = 'modules/foldergallery/scripts/jcrob/js/jquery.Jcrop.min.js';
+			
+        break;
+
+}
+
+?>

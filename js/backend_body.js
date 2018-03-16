@@ -24,15 +24,24 @@ $(document).ready(function(){
 
 // Remember to invoke within jQuery(window).load(...)
 // If you don't, Jcrop may not initialize properly
-$(window).load(function(){
-	if(typeof settingsRatio == "undefined") var settingsRatio = "1";
-	$('#cropbox').Jcrop({
-		onChange: showPreview,
-		onSelect: updateCoords,
-		aspectRatio: settingsRatio
-	});
 
-});
+var aTemp = window.location.pathname.split("/");
+var sFilename = aTemp[ aTemp.length -1 ];
+console.log( sFilename );
+
+if(sFilename == "modify_thumb.php") {
+    
+    $(window).load(function(){
+    
+        if(typeof settingsRatio == "undefined") var settingsRatio = "1"; 
+		
+    	    $('#cropbox').Jcrop({
+                onChange: showPreview,
+                onSelect: updateCoords,
+                aspectRatio: settingsRatio
+            });    
+        });
+}
 
 function showPreview(coords)
 {

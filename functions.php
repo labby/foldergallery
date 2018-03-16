@@ -62,7 +62,10 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 
 	//Von Chio eingefügt:
 	global $megapixel_limit;
-	if ($megapixel_limit < 2) {$megapixel_limit = 5;}
+	if ($megapixel_limit < 2)
+	{
+	    $megapixel_limit = foldergallery::FG_MEGAPIXEL_LIMIT;
+	}
 	
 	static $thumbscounter, $thumbsstarttime, $allthumbssizes;
 	if (!$thumbscounter) {$thumbscounter = 0;}
@@ -104,10 +107,11 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 	
 	// Thumb erstellen
 	if(!is_file($thumb)) {
-		//checken, ob megapixel �ber 5:
+		
 		if (function_exists('getimagesize')) {
 			list($width, $height, $type, $attr) = getimagesize($file);
 			$fl = ceil(($width * $height) / 1000000);
+			// checken, ob megapixel über limit -> siehe foldergallery::FG_MEGAPIXEL_LIMIT
 			if ($fl > $megapixel_limit){
 				if ($showmessage==1) { echo '<br/><b>'.$fl. ' Megapixel; skipped!</b>';}
 			 	return -2;

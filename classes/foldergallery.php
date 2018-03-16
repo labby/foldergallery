@@ -35,7 +35,10 @@ class foldergallery extends LEPTON_abstract
 	// The same as above but without "slash", used by search
 	const FG_THUMBDIR1 = 'fg-thumbs'; 
  	const FG_PAGES = PAGES_DIRECTORY;
-
+    
+    //  Max MB for thumbnais: if an image-file size is greater than this value (in MB) no thumbnais are generated.
+    const FG_MEGAPIXEL_LIMIT = 8;
+    
 	/**
 	 * Please modify these lines only if you know what you do!
 	 * '.' and '..' are forbidden!
@@ -46,7 +49,7 @@ class foldergallery extends LEPTON_abstract
 	const CORE_FOLDERS = array('account','admins','framework','include','languages','modules',self::FG_PAGES,'search','temp','templates');
 	const INVISIBLE_FILE_NAMES = array('.', '..', self::FG_THUMBDIR1);
 
-	const FG_MB_LIMIT = 2; // max image-size to display thumbs.
+	const FG_MB_LIMIT = 8; // max image-size to display thumbs.
 
 	public static $instance;
 	
