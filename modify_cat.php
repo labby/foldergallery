@@ -114,7 +114,6 @@ $data = array(
 	'bilder'	=> $bilder,	
 	'page_id'	=> $_GET['page_id'],
 	'section_id'=> $_GET['section_id'],
-	'time'		=> time(),
 	'urlToThumb'=> $urlToThumb,	
 	'leptoken'	=> get_leptoken()
 );

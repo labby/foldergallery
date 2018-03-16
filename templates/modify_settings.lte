@@ -24,8 +24,8 @@
 				<div class="field">
 					<label class="tooltip" data-tooltip="{{ oFG.language.ROOT_FOLDER_STRING_TT }}">{{ oFG.language.ROOT_DIR }}:</label>
 					<select name="root_dir">
-					{% for key,value in folders %}
-						<option value="{{ key }}" {% if value == oFG.fg_settings.root_dir %}selected="selected"{% endif %}>{{ value }}</option>
+					{% for value in folders %}
+						<option value="{{ value }}" {% if value == oFG.fg_settings.root_dir %}selected="selected"{% endif %}>{{ value }}</option>
 					{% endfor %}
 					</select>
 				</div>

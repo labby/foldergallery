@@ -9,7 +9,9 @@
  * 
  */
 
+
 /* Tooltipp Funktionen */
+ /*
 wmtt = null; 
 document.onmousemove = updateWMTT;
  
@@ -21,7 +23,7 @@ function updateWMTT(e) {
     wmtt.style.top   = (y + 20) + "px";
   }
 }
- 
+
 function showWMTT(id) {
   wmtt = document.getElementById(id);
   wmtt.style.display = "block"
@@ -30,8 +32,9 @@ function showWMTT(id) {
 function hideWMTT() {
   wmtt.style.display = "none";
 }
-
+*/
 /* Kategorieanzeige Funktionen */
+ /*
 function toggle_visibility(id) {
 	if (document.getElementById(id).style.display == "block") {
 		document.getElementById(id).style.display = "none";
@@ -57,7 +60,7 @@ function toggle_plus_minus(id){
 		document.images['plus_minus_' + id].src = plus.src;
 	}
 }
-
+*/
 
 /**
  *  New by aldus

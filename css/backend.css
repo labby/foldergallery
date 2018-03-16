@@ -1,8 +1,8 @@
 /**
- *  @module         foldergallery_jq
+ *  @module         foldergallery
  *  @version        see info.php of this module
  *  @author         cms-lab (initiated by Jürg Rast)
- *  @copyright      2009-2017 Jürg Rast, schliffer, Bianka Martinovic, Chio, Pumpi, Aldus, erpe 
+ *  @copyright      2010-2018 cms-lab 
  *  @license        GNU General Public License
  *  @license terms  see info.php of this module
  *  @platform       see info.php of this module
@@ -97,6 +97,7 @@ tr.fg_cat_hidden {
 
 input.lepsem_submit, input.lepsem_reset, input.lepsem_save {
 	border: none !important;
+	cursor: pointer;
 }
 
 .ui.basic.segment.fg_settings {
@@ -114,103 +115,9 @@ input.fg_settings_check {
 	margin-right: 10px;
 }
 
-/* 
-body {
-	cursor : default;
+.ui.blank.button {
+	padding: 0px;
+	background: none;
+	margin: 0px;
 }
 
-#module {
-padding:20px;
-}
-
-
-
-input[type="submit"], input[type="button"] {
-	background: #eee;
-	cursor: pointer;
-	border: 1px solid #ccc;
-	margin: 5px;
-	border-radius: 5px;
-}
-
-.tooltip {
-	position: absolute;
-	display: none;
-	background-color: #FFFFFF;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #000000;
-	padding: 2px;
-	width : 200px;
-}
-
-p.ttlink{
-	cursor : help;
-	text-decoration: underline;
-}
-
-tr.title{
-	font-weight: bold;
-}
-
-table.list {
-	background-color: #eee;
-}
-
-.cat_table {
-    background-color: #ECF3F7;
-    width: 94%;
-    margin-left: 30px !important;
-}
-
-.cat_table tr {
-	line-height:30px;
-	background:#ccc !important
-}
-
-img.lepsem_fg {
-	padding-top:8px;
-}
-
-.cat_subelem {
-	display:none;
-}
-
-.cat_list {
-    display: block;
-    background: #ccc;
-    width: 98%;
-    margin-left: 10px;
-    padding: 10px;
-}
-
-ul {
-   list-style-type:none;
-   margin:0;
-   padding:0;
-}
-ul li {
-   margin:0;
-   padding:0;
-} 
-
-li {
-	margin: 0;
-	padding: 0;
-}
-
-
-.settings input {
-	margin-top:2px;
-	margin-bottom:2px;
-}
-
-.settings select {
-	margin-top: 2px;
-	margin-bottom: 2px;
-	padding: 8px;
-	min-width: 150px;
-}
-
-
-*/

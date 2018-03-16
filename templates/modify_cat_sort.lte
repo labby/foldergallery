@@ -30,7 +30,7 @@
 			<input name="cat_id" value="{{ cat_id }}" type="hidden">	
 			<button class="ui {{ oFG.addon_color }} basic left floated button" type="submit" name="sort" value="ASC" title="{{  oFG.language.QUICK_ASC_STRING }}" formaction="{{ oFG.folder_url }}quick_img_sort.php" formmethod="post">{{ oFG.language.QUICK_ASC_STRING }}</button>		
 			<button class="ui {{ oFG.addon_color }} basic left floated button" type="submit" name="sort" value="DESC" title="{{ oFG.language.QUICK_DESC_STRING }}" formaction="{{ oFG.folder_url }}quick_img_sort.php" formmethod="post">{{ oFG.language.QUICK_DESC_STRING }}</button>		
-			<button class="ui negative right floated button" type="submit" name="cancel" value="{{ cat_id }}" formaction="{{ oFG.modify_url }}?page_id={{ page_id }}" formmethod="post">{{ TEXT.CANCEL }}</button>
+			<button class="ui {{ oFG.addon_color }} right floated button" type="submit" name="cancel" value="{{ cat_id }}" formaction="{{ oFG.modify_url }}?page_id={{ page_id }}" formmethod="post">{{ TEXT.BACK }}</button>
 		</form>	
 	</div>
 	

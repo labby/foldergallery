@@ -33,14 +33,14 @@ if (defined('LEPTON_PATH')) {
 require_once (LEPTON_PATH.'/modules/foldergallery/functions.php');
 
 /**
- * Durchsucht einen Ordner rekursiv mit einigen Optionen
+ * Scans one directory rekursive with options
  * @return array
  * @param string $rootDir
  * @param array $allowedExtensions[optional]
  * @param array $invisibleFileNames[optional
- * @param integer $modus[optional]  0 = Files, 1 = Files/Folders, 2 = Folders
- * @param bool $rekursiv[optional] default = true
- * @param array $allData[optional]
+ * @param integer $modus[option]  0 = Files, 1 = Files/Folders, 2 = Folders
+ * @param bool $rekursiv[option] default = true
+ * @param array $allData[option]
  */
 
 function scanDirectories($rootDir, $allowedExtensions = array (), $invisibleFileNames = array (),
@@ -111,7 +111,7 @@ function deleteFolder($path) {
 		return -1;
 	}
 	// oeffne das Verzeichnis
-	$dir = @opendir($path);
+	$dir = opendir($path);
 
 	// Fehler?
 	if (!$dir) {

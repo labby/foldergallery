@@ -31,13 +31,15 @@ if (defined('LEPTON_PATH')) {
 // end include class.secure.php
 
 
+
 $oFG = foldergallery::getInstance();
 LEPTON_handle::include_files ('/modules/foldergallery/backend.functions.php');
 
 $oldSettings = $oFG->fg_settings;
 $newSettings = array();
 
-//	Daten aus $_post auswerten und validieren
+
+//	Get data from $_POST
 if (isset($_POST['root_dir'])) {
     $newSettings['root_dir'] = $_POST['root_dir'];
 } else {

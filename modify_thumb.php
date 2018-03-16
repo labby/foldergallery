@@ -29,107 +29,103 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-$admin = new LEPTON_admin('Pages', 'pages_modify');
 
-$file_names = array(
-'/modules/foldergallery/backend.functions.php',
-'/modules/foldergallery/register_language.php',
-'/include/phplib/template.inc'
-);
-LEPTON_handle::include_files ($file_names);
+$oFG = foldergallery::getInstance();
+$oTWIG = lib_twig_box::getInstance();
+$oTWIG->registerModule('foldergallery');
+LEPTON_handle::include_files ('/modules/foldergallery/functions.php');
 
-//get the Jcrop CSS
-echo '<link rel="stylesheet" type="text/css" href="'.LEPTON_URL.'/modules/foldergallery/scripts/jcrob/css/jquery.Jcrop.css" /> ';
 
-$cat_id = $_GET['cat_id'];
+if(isset($_POST['edit']) && is_numeric($_POST['edit'])) {
+	$file_id = $_POST['edit'];
+	$cat_id = $_POST['cat_id'];
+	$settings = $oFG->fg_settings;
+	$root_dir = $settings['root_dir'];
 
-if(isset($_GET['id']) && is_numeric($_GET['id'])) {
-	/**
-	 *	Get leptoken hash
-	 */
-	$leptoken = (isset($_GET['leptoken'])) ? "&leptoken=".$_GET['leptoken'] : "";
-	
-	$settings = getSettings($section_id);
-	$root_dir = $settings['root_dir']; //Chio
-	
-	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_files WHERE id='.$_GET['id'].';';
-	if($query = $database->query($sql)){
-		$result = $query->fetchRow( );
-		$bildfilename = $result['file_name'];
-		$parent_id = $result['parent_id'];
-		
-		$query2 = $database->query('SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE id='.$parent_id.' LIMIT 1;');
-		$categorie = $query2->fetchRow( );
-		
-		if ($categorie['parent'] != "-1") {
-			$parent   = $categorie['parent'].'/'.$categorie['categorie'];
-		}
-		else $parent = '';
-		
-		$full_file_link = foldergallery::FG_URL.$root_dir.$parent.'/'.$bildfilename;
-		$full_file = foldergallery::FG_PATH.$root_dir.$parent.'/'.$bildfilename;
-		$thumb_file = foldergallery::FG_PATH.$root_dir.$parent.foldergallery::FG_THUMBDIR.'/'.$bildfilename;
-		
-		if ($_SERVER['REQUEST_METHOD'] == 'POST')
-		{	
-			// Löscht das bisherige Thumbnail
-			LEPTON_handle::delete_obsolete_files ($thumb_file); //deleteFile($thumb_file);
-			
-			//Neues Thumb erstellen
-			if (generateThumb($full_file, $thumb_file, $settings['thumb_size'], 1, $settings['ratio'], $_POST['x'], $_POST['y'], $_POST['w'], $_POST['h'])) {
-				$admin->print_success('Thumb erfolgreich geändert', LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
-			}
-		}
-		else {
-			list($width, $height, $type, $attr) = getimagesize($full_file); //str_replace um auch Datein oder Ordner mit leerzeichen bearbeiten zu können.
-			
-			// erstellt ein passendes Vorschaufenster zum eingestellten Verhältniss
-			if ($settings['ratio'] > 1) {
-				$previewWidth = $settings['thumb_size'];
-				$previewHeight = $settings['thumb_size'] / $settings['ratio'];
-			}
-			else {
-				$previewWidth = $settings['thumb_size'] * $settings['ratio'];
-				$previewHeight = $settings['thumb_size'];
-			}
-			
-			echo '
-			<!-- Gives the Jcrop the variable to work -->
-			<script type="text/javascript">
-				var relWidth = \''.$width.'\';
-				var relHeight = \''.$height.'\';
-				var thumbSize = \''.$settings['thumb_size'].'\';
-				var settingsRatio = \''.$settings['ratio'].'\';
-				var LEPTON_URL =\''.LEPTON_URL.'\';
-			</script>
-			<h2>'.$MOD_FOLDERGALLERY['EDIT_THUMB'].'</h2>
-			<p>'.$MOD_FOLDERGALLERY['EDIT_THUMB_DESCRIPTION'].'</p>
-			<p>'.$full_file_link.'</p>
-			<div style="float: left; padding: 0 20px 0 20px;">
-				<img src="'.$full_file_link.'" id="cropbox" style="max-width: 500px; max-height: 500px;"/>
-			</div>
-			<div style="float:left;" align="center">
-				<div style="overflow: hidden; width: '.$previewWidth.'px; height: '.$previewHeight.'px;">
-					<img src="'.$full_file_link.'" id="preview">
-				</div>
-				<br />
-				<!-- This is the form that our event handler fills -->
-				<form action="'.LEPTON_URL.'/modules/foldergallery/modify_thumb.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.'&id='.$_GET['id'].'" method="post" onsubmit="return checkCoords();">
-					<input type="hidden" id="x" name="x" />
-					<input type="hidden" id="y" name="y" />
-					<input type="hidden" id="w" name="w" />
-					<input type="hidden" id="h" name="h" />
-					<input class="lepsem_save fg_interface_button" type="submit" value="'.$MOD_FOLDERGALLERY['EDIT_THUMB_BUTTON'].'" /><br />
-					<input class="lepsem_reset fg_interface_button" type="button" value="'.$TEXT['CANCEL'].'" onClick="parent.location=\''.LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id.$leptoken.'\'"/>
-				</form>
-			</div>';
-		}
+	//get current image data
+	$current_image = array();
+	$oFG->database->execute_query(
+			"SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_files WHERE id=".$file_id." ",
+			true,
+			$current_image,
+			false
+	);
+
+	$bildfilename = $current_image['file_name'];
+
+	//get current cat data
+	$current_cat = array();
+	$oFG->database->execute_query(
+			"SELECT * FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE id=".$current_image['parent_id']." ",
+			true,
+			$current_cat,
+			false
+	);
+	// why??		
+	if ($current_cat['parent'] != "-1") {
+		$parent   = $current_cat['parent'].'/'.$current_cat['categorie'];
 	}
+	else $parent = '';
+	
+		
+	$full_file_link = foldergallery::FG_URL.$root_dir.$parent.'/'.$bildfilename;
+	$full_file = foldergallery::FG_PATH.$root_dir.$parent.'/'.$bildfilename;
+	$thumb_file = foldergallery::FG_PATH.$root_dir.$parent.foldergallery::FG_THUMBDIR.'/'.$bildfilename;
+
+			
+	// check if event handler filled the form
+	if(isset($_POST['w']))			
+	{
+//		die(LEPTON_tools::display($thumb_file,'pre','ui message'));
+		//delete current thumb and create a new one
+		LEPTON_handle::delete_obsolete_files ($thumb_file);
+		if(generateThumb($full_file, $thumb_file, $settings['thumb_size'], 1, $settings['ratio'], $_POST['x'], $_POST['y'], $_POST['w'], $_POST['h']) )
+		{
+			$oFG->admin->print_success('Thumb erfolgreich geändert', LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+		}
+		
+	}
+	else 
+	{
+		list($width, $height, $type, $attr) = getimagesize($full_file); //str_replace um auch Datein oder Ordner mit leerzeichen bearbeiten zu können.
+			
+		// erstellt ein passendes Vorschaufenster zum eingestellten Verhältniss
+		if ($settings['ratio'] > 1) {
+			$previewWidth = $settings['thumb_size'];
+			$previewHeight = $settings['thumb_size'] / $settings['ratio'];
+		}
+		else 
+		{
+			$previewWidth = $settings['thumb_size'] * $settings['ratio'];
+			$previewHeight = $settings['thumb_size'];
+		}
+			
+		$data = array(
+			'oFG'	=> $oFG,
+			'cat_id'	=> $cat_id,
+			'file_id'	=> $file_id,
+			'full_file_link'	=> $full_file_link,
+			'previewWidth'	=> $previewWidth,
+			'previewHeight'	=> $previewHeight,	
+			'page_id'	=> $_POST['page_id'],
+			'section_id'=> $_POST['section_id'],
+			'relWidth'=> $width,
+			'relHeight'=> $height,				
+			'leptoken'	=> get_leptoken()
+		);
+					
+		echo $oTWIG->render( 
+			"@foldergallery/modify_thumb.lte",	//	template-filename
+			$data								//	template-data
+		);
+	}
+
 }
-else {
-	$admin->print_error($MOD_FOLDERGALLERY['ERROR_MESSAGE'], LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
+else 
+{
+	$oFG->admin->print_error($oFG->language['ERROR_MESSAGE'], LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 }
 
-$admin->print_footer();
+$oFG->admin->print_footer();
 
 ?>
