@@ -13,18 +13,19 @@
  *  New by aldus
  *
  */
-function fg_toggle_categorie( aImgRef, aChildIDList )
+function fg_toggle_categorie( aRef, aChildIDList )
 {
-    var _plus = LEPTON_URL+"/modules/lib_lepton/backend_images/plus_16.png";
-    var _minus = LEPTON_URL+"/modules/lib_lepton/backend_images/minus_16.png";
+    var folder_open     = "icon folder open green";
+    var folder_closed   = "icon folder green";
+    
     var state = "table-row";
     
-    if(aImgRef.src == _plus)
-    {
-        aImgRef.src = _minus;
-        
+    var current_class = aRef.getAttribute("class");
+    
+    if(current_class == folder_closed) {
+        aRef.setAttribute("class", folder_open);
     } else {
-        aImgRef.src = _plus;
+        aRef.setAttribute("class", folder_closed);
         state = "none";
     }
     
