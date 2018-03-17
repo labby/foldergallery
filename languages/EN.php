@@ -91,6 +91,12 @@ $MOD_FOLDERGALLERY = array(
 
     'Ration_square'       => 'square',
 
+	'REORDER_IMAGES_STRING' => 'Sort images',
+	'QUICK_SORT_STRING'		=> 'Sort images by filename.',
+	'QUICK_ASC_STRING'		=> 'Filename asc.',
+	'QUICK_DESC_STRING'		=> 'Filename desc.',
+	'MANUAL_SORT'			=> 'Per drag and drop.',	
+
 // Tooltips
     'ROOT_FOLDER_STRING_TT' 	=> 'This is the basic (root) folder to scan for images recursively. '
                                             . ' Please do not change this folder later, or all image settings will be lost!',

@@ -113,12 +113,12 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage=1, $ratio, $posi
 	if(!is_file($thumb)) {
 		
         list($width, $height, $type, $attr) = getimagesize($file);
-        $fl = ceil(($width * $height) / 1000000);
-        // checken, ob megapixel über limit -> siehe foldergallery::FG_MEGAPIXEL_LIMIT
-        if ($fl > $megapixel_limit)
+        
+        $iTempFileSize = ceil( filesize($file) / 1048576); // 1024 * 1024 
+        if( $iTempFileSize > $megapixel_limit)
         {
-            if ($showmessage==1) {
-                echo '<br/><b>'.$fl. ' Megapixel! skipped!</b>';
+            if ($showmessage == 1) {
+                echo "<br/><b>".$iTempFileSize. " Megabyte filesize! Process skipped!</b>";
             }
             return -2;  // !! why negative integer here?
         }

@@ -35,12 +35,12 @@ if(sFilename == "modify_thumb.php") {
     
         if(typeof settingsRatio == "undefined") var settingsRatio = "1"; 
 		
-    	    $('#cropbox').Jcrop({
-                onChange: showPreview,
-                onSelect: updateCoords,
-                aspectRatio: settingsRatio
-            });    
-        });
+    	$('#cropbox').Jcrop({
+            onChange: showPreview,
+            onSelect: updateCoords,
+            aspectRatio: settingsRatio
+        });    
+    });
 }
 
 function showPreview(coords)

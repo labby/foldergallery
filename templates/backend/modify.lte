@@ -93,23 +93,21 @@
 										<td>
 											{% if loop.index < loop.length %}
 												<button class="ui basic button blank" type="submit" name="move_down" value="{{ item.id }}" title="{{ TEXT.MOVE_DOWN }}" formaction="{{ oFG.modify_url }}?page_id={{ page_id }}" formmethod="post"><i class="large green arrow down icon"></i></button>
-											{% elseif item.position > 1 and item.parent != -1 %}
+											{% else %}
 												<i class="large blank icon"></i>
-											{% elseif item.position == 1 and item.parent == -1 %}
 											{% endif %}
 										</td>
 										<td>
 											{% if loop.index > 1 %}
 												<button class="ui basic button blank" type="submit" name="move_up" value="{{ item.id }}" title="{{ TEXT.MOVE_UP }}" formaction="{{ oFG.modify_url }}?page_id={{ page_id }}" formmethod="post"><i class="large green arrow up icon"></i></button>
-											{% elseif item.position == 1 and item.parent != -1 %}
+											{% else %}
 												<i class="large blank icon"></i>
-											{% elseif item.position == 1 and item.parent == -1 %}
 											{% endif %}	
 										</td>
 										<td>
-											{% if loop.index > 1 %}
-												<button class="ui basic button blank" type="submit" name="delete" value="{{ item.id }}" title="{{ TEXT.DELETE }}" formaction="{{ oFG.folder_url }}delete_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}"" formmethod="post"><i class="large red delete icon"></i></button>
-											{% endif %}	
+											{% if ( item.parent_id != -1 ) %}
+											<button class="ui basic button blank" type="submit" name="delete" value="{{ item.id }}" title="{{ TEXT.DELETE }}" formaction="{{ oFG.folder_url }}delete_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}"" formmethod="post"><i class="large red delete icon"></i></button>
+										    {% endif %}
 										</td>										
 									</tr>
 								</table>							
