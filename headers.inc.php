@@ -53,7 +53,7 @@ $mod_headers = array(
 	)	
 );
 
-//$aTemp = explode( DIRECTORY_SEPARATOR, $_SERVER['SCRIPT_NAME']);
+// load only on single pages
 $aTemp = explode( '/', $_SERVER['SCRIPT_NAME']);
 $sFilename = array_pop( $aTemp );
 

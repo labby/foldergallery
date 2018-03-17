@@ -37,7 +37,7 @@
 				<img src="{{ full_file_link }}" id="cropbox" style="max-width: 480px;"/>
 			</div>
 			<div class="column">
-				<div style="overflow: hidden; width:{{ previewWidth * 1.5 }}px; height:{{ previewHeight * 1.5 }}px;">
+				<div style="overflow: hidden; width:{{ previewWidth }}px; height:{{ previewHeight }}px;">
 					<img src="{{ full_file_link }}" id="preview" />
 				</div>
 				<div class="spacer3"></div>

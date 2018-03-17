@@ -119,7 +119,7 @@ $data = array(
 );
 		
 echo $oTWIG->render( 
-	"@foldergallery/modify_cat.lte",	//	template-filename
+	"@foldergallery/backend/modify_cat.lte",	//	template-filename
 	$data								//	template-data
 );
 

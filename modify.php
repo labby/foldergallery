@@ -68,7 +68,7 @@ $data = array(
 );
 		
 echo $oTWIG->render( 
-	"@foldergallery/modify.lte",	//	template-filename
+	"@foldergallery/backend/modify.lte",	//	template-filename
 	$data							//	template-data
 );
 

@@ -82,7 +82,7 @@ if (isset($_POST['ratio'])) {
 	$newSettings['ratio'] = '';
 }
 
-if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/view_'.$_POST['lightbox'].'.htt' ) ) {
+if (isset($_POST['lightbox']) && file_exists( dirname(__FILE__).'/templates/frontend/view_'.$_POST['lightbox'].'.htt' ) ) {
 	$newSettings['lightbox'] = $_POST['lightbox'];
 } else {
 	$newSettings['lightbox'] = '';

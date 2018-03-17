@@ -1,5 +1,4 @@
 <?php
-
 /**
  *  @module         foldergallery
  *  @version        see info.php of this module
@@ -30,23 +29,4 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
-$oFG = foldergallery::getInstance();
-$admin = LEPTON_admin::getInstance();
-$oTWIG = lib_twig_box::getInstance();
-$oTWIG->registerModule('foldergallery');
-
-$data = array(
-	'oFG'	=> $oFG,
-	'image_url'	=> 'http://cms-lab.com/_documentation/media/foldergallery/foldergallery.jpg',
-	'readme_link'	=> "<a href='http://cms-lab.com/_documentation/foldergallery/readme.php' class='info' target='_blank'>Readme</a>",
-	'page_id'		=> $page_id,
-	'leptoken'	=> get_leptoken()
-);
-		
-echo $oTWIG->render( 
-	"@foldergallery/backend/info.lte",	//	template-filename
-	$data							//	template-data
-);
-
-$admin->print_footer();
 ?>

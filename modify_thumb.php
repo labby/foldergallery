@@ -80,7 +80,7 @@ if(isset($_POST['edit']) && is_numeric($_POST['edit'])) {
 		LEPTON_handle::delete_obsolete_files ($thumb_file);
         // Create the new one
 		$tempResult = generateThumb($full_file, $thumb_file, $settings['thumb_size'], 1, $settings['ratio'], $_POST['x'], $_POST['y'], $_POST['w'], $_POST['h']);
-		
+	
 		if( $tempResult )
 		{
 			$oFG->admin->print_success('Thumb erfolgreich geändert', LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
@@ -123,7 +123,7 @@ if(isset($_POST['edit']) && is_numeric($_POST['edit'])) {
 		);
 					
 		echo $oTWIG->render( 
-			"@foldergallery/modify_thumb.lte",	//	template-filename
+			"@foldergallery/backend/modify_thumb.lte",	//	template-filename
 			$data								//	template-data
 		);
 	}

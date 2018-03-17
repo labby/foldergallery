@@ -57,7 +57,7 @@ $ratio = array(
 
 // available lightboxes	
 $lightbox_select = '';
-if ( $dh = opendir(dirname(__FILE__).'/templates') ) {
+if ( $dh = opendir(dirname(__FILE__).'/templates/frontend') ) {
     while ( ($file = readdir($dh)) !== false ) {
         if ( preg_match( "/^view_(\w+).htt$/", $file, $matches ) ) {
             $lightbox_select .= '<option value="'
@@ -85,7 +85,7 @@ $data = array(
 );
 		
 echo $oTWIG->render( 
-	"@foldergallery/modify_settings.lte",	//	template-filename
+	"@foldergallery/backend/modify_settings.lte",	//	template-filename
 	$data							//	template-data
 );
 ?>

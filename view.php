@@ -231,14 +231,14 @@ if($aktuelleKat){
 
 
 // Template
-if (file_exists(dirname(__FILE__).'/templates/view_'.$settings['lightbox'].'.htt')) {
+if (file_exists(dirname(__FILE__).'/templates/frontend/view_'.$settings['lightbox'].'.htt')) {
 	$viewTemplate = 'view_'.$settings['lightbox'].'.htt';
-	$t = new Template(dirname(__FILE__).'/templates', 'remove');
+	$t = new Template(dirname(__FILE__).'/templates/frontend', 'remove');
 }
 
 else {
 	$viewTemplate = 'view.htt';
-	$t = new Template(dirname(__FILE__).'/templates', 'remove');
+	$t = new Template(dirname(__FILE__).'/templates/frontend', 'remove');
 }
 
 $t->halt_on_error = 'no';

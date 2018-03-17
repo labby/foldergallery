@@ -96,7 +96,7 @@ $data = array(
 );
 		
 echo $oTWIG->render( 
-	"@foldergallery/modify_cat_sort.lte",	//	template-filename
+	"@foldergallery/backend/modify_cat_sort.lte",	//	template-filename
 	$data								//	template-data
 );
 
