@@ -46,19 +46,24 @@ function getSettings( &$section_id ){
 }
 
 /**
- * Generiert ein Thumbnail $thumb aus $file, falls dieses noch nicht vorhanden ist 
- * @return void or true
- * @param string $file  Pfadangabe zum original File
- * @param string $thumb Pfadangabe zum Thumbfile
- ***********************************************
- * Anpassung für individuelle Thumb erstellung
- * @param string $ratio Seitenverhältniss der Thumbs
- * @param string $positionX Position X von jCrop ansonsten 0
- * @param string $positionY Position Y von jCrop ansonsten 0
- * @param string $positionW Position W von jCrop ansonsten 0
- * @param string $positionH Position H von jCrop ansonsten 0
+ *  Generiert ein Thumbnail $thumb aus $file, falls dieses noch nicht vorhanden ist. 
+ *
+ *  @param string $file  Pfadangabe zum original File
+ *  @param string $thumb Pfadangabe zum Thumbfile
+ *  @param integer $thumb_size
+ *  @param integer $showmessage
+ *  *********************************************
+ *  Anpassung für individuelle Thumb erstellung
+ *  @param string $ratio Seitenverhältniss der Thumbs
+ *  @param string $positionX Position X von jCrop ansonsten 0
+ *  @param string $positionY Position Y von jCrop ansonsten 0
+ *  @param string $positionW Position W von jCrop ansonsten 0
+ *  @param string $positionH Position H von jCrop ansonsten 0
+ *
+ *  @return void or true
+ *
  */
-function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positionX = 0, $positionY = 0, $positionW = 0, $positionH = 0 ){
+function generateThumb($file, $thumb, $thumb_size, $showmessage=1, $ratio, $positionX = 0, $positionY = 0, $positionW = 0, $positionH = 0 ){
 
 	//Von Chio eingefügt:
 	global $megapixel_limit;
@@ -91,16 +96,15 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 	$png = '\.png$';
 	//$thumb_size = 140;
 	$fontSize = 2;
-	$bg = "D1F6FF";
+	$bg = "D1F6FF"; // [3] fixed background?!
 	
-	$thumbFolder = dirname($thumb);
-		
+	$thumbFolder = dirname($thumb);	
 
 	//Verzeichnis erstellen, falls noch nicht vorhanden
 	if(!is_dir($thumbFolder)){
 		$u = umask(0);
-		if(!mkdir($thumbFolder, 0777)){
-			echo '<!--p style="color: red; text-align: center;">Fehler beim Verzeichniss erstellen</p-->';
+		if(!mkdir($thumbFolder, 0755)){
+			echo '<p style="color: red; text-align: center;">Fehler beim Verzeichniss erstellen</p>';
 		}
 		umask($u);
 	}
@@ -108,31 +112,44 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 	// Thumb erstellen
 	if(!is_file($thumb)) {
 		
-		if (function_exists('getimagesize')) {
-			list($width, $height, $type, $attr) = getimagesize($file);
-			$fl = ceil(($width * $height) / 1000000);
-			// checken, ob megapixel über limit -> siehe foldergallery::FG_MEGAPIXEL_LIMIT
-			if ($fl > $megapixel_limit){
-				if ($showmessage==1) { echo '<br/><b>'.$fl. ' Megapixel; skipped!</b>';}
-			 	return -2;
-			}
-		}
-		
-		
-		if($type == 2) {			
-			$original = imagecreatefromjpeg($file);			
-		} elseif ($type == 1) {
-			$original = imagecreatefromgif($file);
-		} elseif($type == 3) {
-			$original = imagecreatefrompng($file);
+        list($width, $height, $type, $attr) = getimagesize($file);
+        $fl = ceil(($width * $height) / 1000000);
+        // checken, ob megapixel über limit -> siehe foldergallery::FG_MEGAPIXEL_LIMIT
+        if ($fl > $megapixel_limit)
+        {
+            if ($showmessage==1) {
+                echo '<br/><b>'.$fl. ' Megapixel! skipped!</b>';
+            }
+            return -2;  // !! why negative integer here?
+        }
+
+        $original = NULL;
+        
+        switch( $type )
+        {
+            case 1: // gif
+                $original = imagecreatefromgif($file);
+                break;
+
+            case 2: // jpeg
+                $original = imagecreatefromjpeg($file);
+                break;
+
+		    case 3: // png
+			    $original = imagecreatefrompng($file);
+			    break;
+			    
+			default:
+			    echo '<br/><b>No type match!</b>';
+			    return -3; // ok, another negative number ...
 		}
 	
-		if ( isset($original) ) {		
-			if (function_exists('getimagesize')) {
-				list($width, $height, $type, $attr) = getimagesize($file);
-			} else {
-				die("function 'getimagesize' doesn't existst!");
-			}
+		if ( $original != NULL )
+		{		
+			
+			//list( $width, $height, $type, $attr) = getimagesize($file);
+			
+			
 			if ($width >= $height && $width > $thumb_size) {
 				//#########
 				//Thumbnail verarbeitung verändert um einen Ausschnitt der Größe der $thumbnail_size
@@ -143,7 +160,7 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 				//$smallheight = floor($height / ($width / $smallwidth));
 				$smallwidth = intval($width*$thumb_size/$height);
 				$smallheight = $thumb_size;
-				$ofx = 0;
+				$ofx = 0;   // [1]
 				$ofy = floor(($thumb_size - $thumb_size) / 2);
 			} elseif ($width <= $height && $height > $thumb_size) {
 				//$smallheight = $thumb_size;
@@ -151,7 +168,7 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 				$smallheight = intval($height*$thumb_size/$width);
 				$smallwidth = $thumb_size;
 				$ofx = floor(($thumb_size - $thumb_size) / 2); 
-				$ofy = 0;
+				$ofy = 0; // [2]
 			} else {
 				$smallheight = $height;
 				$smallwidth = $width;
@@ -170,7 +187,9 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 			} else {
 				$small = imagecreate($smallwidth, $smallheight);
 			}
-			sscanf($bg, '%2x%2x%2x', $red, $green, $blue);
+			
+			sscanf($bg, '%2x%2x%2x', $red, $green, $blue); // see [3] above
+			
 			$b = imagecolorallocate($small, $red, $green, $blue);
 			imagefill($small, 0, 0, $b);
 			if ($original) {
@@ -192,17 +211,22 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage, $ratio, $positi
 				}
 				
 				if (function_exists('imagecopyresampled')) {
+				    
 					imagecopyresampled($small, $original, $ofx, $ofy, $positionX, $positionY, $smallwidth, $smallheight, $width, $height);
 				} else {
+				
 					imagecopyresized($small, $original, $ofx, $ofy, $positionX, $positionY, $smallwidth, $smallheight, $width, $height);
 				}
 			} else {
+			
 				$black = imagecolorallocate($small, 0, 0, 0);
 				$fw = imagefontwidth($fontSize);
 				$fh = imagefontheight($fontSize);
 				$htw = ($fw*strlen($filename))/2;
 				$hts = $thumb_size/2;
+				
 				imagestring($small, $fontSize, $hts-$htw, $hts-($fh/2), $filename, $black);
+				
 				imagerectangle($small, $hts-$htw-$fw-1, $hts-$fh, $hts+$htw+$fw-1, $hts+$fh, $black);
 			}
 			imagejpeg($small, $thumb);

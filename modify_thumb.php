@@ -75,10 +75,10 @@ if(isset($_POST['edit']) && is_numeric($_POST['edit'])) {
 	// check if event handler filled the form
 	if(isset($_POST['w']))			
 	{
-//		die(LEPTON_tools::display($thumb_file,'pre','ui message'));
-		//delete current thumb and create a new one
-
+		
+		// Force to create a new thumbnail file by deleting the old omne.
 		LEPTON_handle::delete_obsolete_files ($thumb_file);
+        // Create the new one
 		$tempResult = generateThumb($full_file, $thumb_file, $settings['thumb_size'], 1, $settings['ratio'], $_POST['x'], $_POST['y'], $_POST['w'], $_POST['h']);
 		
 		if( $tempResult )
@@ -88,7 +88,7 @@ if(isset($_POST['edit']) && is_numeric($_POST['edit'])) {
 		    // not ok!
 		    // something is gone wrong!
 		    echo "Bad things happend!";
-		    LEPTON_tools::use_var_dump( true );
+		    LEPTON_tools::use_var_dump( true ); // force to use VAR_DUMP instead of PRINT_R
 		    echo LEPTON_tools::display($tempResult, "div", "ui message red");
 		}
 		
