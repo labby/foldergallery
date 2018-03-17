@@ -96,15 +96,15 @@ if(syncDB($settings)) {
     		}
     	}
 		
-		//Das ginge sicher besser:
-		//Childs finden
+		//  Find the "childs"
 		foreach($results as &$cat) {		
 			if ($cat['has_child'] == 0) continue;
 			foreach($results as $others) {
 				if ($cat['id'] == $others['id']) continue;
 				
-				if  (strpos($others['ast'], $cat['ast']) !== false) {
-					//others ist also ein Child von $cat
+				// looking for the "parent" of the "child"
+				if( $others['parent_id'] == $cat['id'] ) {
+					// add the id to the "childs"
 					$cat['childs'].= (($cat['childs'] != '') ? ',' : '').$others['id'];
 				}			
 			}
