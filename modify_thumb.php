@@ -81,15 +81,29 @@ if(isset($_POST['edit']) && is_numeric($_POST['edit'])) {
         // Create the new one
 		$tempResult = generateThumb($full_file, $thumb_file, $settings['thumb_size'], 1, $settings['ratio'], $_POST['x'], $_POST['y'], $_POST['w'], $_POST['h']);
 	
-		if( $tempResult )
+		if( (true === $tempResult) || ($tempResult > 0) )
 		{
 			$oFG->admin->print_success('Thumb erfolgreich geändert', LEPTON_URL.'/modules/foldergallery/modify_cat.php?page_id='.$page_id.'&section_id='.$section_id.'&cat_id='.$cat_id);
 		} else {
-		    // not ok!
-		    // something is gone wrong!
-		    echo "Bad things happend!";
-		    LEPTON_tools::use_var_dump( true ); // force to use VAR_DUMP instead of PRINT_R
-		    echo LEPTON_tools::display($tempResult, "div", "ui message red");
+		    
+		    // Something has gone wrong!
+		    $sMessage = "<p>Error [fg]: ".$tempResult.".</p>";
+		    switch ($tempResult)
+		    {
+		        case -1:    // can't create thumb dir
+		            $sMessage .= "<p>Can't create thumbnail-directory!</p>";
+		            break;
+		            
+		        case -2: // filesize over foldergallery::FG_MEGAPIXEL_LIMIT
+		            $sMessage .= "<p>File is too big! (Over ".foldergallery::FG_MEGAPIXEL_LIMIT.")</p>";
+		            break;
+		            
+		        case -3:
+		            $sMessage .= "<p><strong>No mime-type match!</strong></p>";
+		            break;
+		    }
+		    
+		    echo LEPTON_tools::display( $sMessage, "div", "ui message red");
 		}
 		
 	}

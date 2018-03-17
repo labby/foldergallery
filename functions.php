@@ -60,7 +60,7 @@ function getSettings( &$section_id ){
  *  @param string $positionW Position W von jCrop ansonsten 0
  *  @param string $positionH Position H von jCrop ansonsten 0
  *
- *  @return void or true
+ *  @return mixed   void or true, negative imntegers for errors
  *
  */
 function generateThumb($file, $thumb, $thumb_size, $showmessage=1, $ratio, $positionX = 0, $positionY = 0, $positionW = 0, $positionH = 0 ){
@@ -104,7 +104,8 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage=1, $ratio, $posi
 	if(!is_dir($thumbFolder)){
 		$u = umask(0);
 		if(!mkdir($thumbFolder, 0755)){
-			echo '<p style="color: red; text-align: center;">Fehler beim Verzeichniss erstellen</p>';
+			echo '<p style="color: red; text-align: center;">cant\'t create directory.</p>';
+			return -1;
 		}
 		umask($u);
 	}
@@ -120,7 +121,7 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage=1, $ratio, $posi
             if ($showmessage == 1) {
                 echo "<br/><b>".$iTempFileSize. " Megabyte filesize! Process skipped!</b>";
             }
-            return -2;  // !! why negative integer here?
+            return -2;  // Negative numbers for errors
         }
 
         $original = NULL;
@@ -211,12 +212,11 @@ function generateThumb($file, $thumb, $thumb_size, $showmessage=1, $ratio, $posi
 				}
 				
 				if (function_exists('imagecopyresampled')) {
-				    
 					imagecopyresampled($small, $original, $ofx, $ofy, $positionX, $positionY, $smallwidth, $smallheight, $width, $height);
 				} else {
-				
 					imagecopyresized($small, $original, $ofx, $ofy, $positionX, $positionY, $smallwidth, $smallheight, $width, $height);
 				}
+				
 			} else {
 			
 				$black = imagecolorallocate($small, 0, 0, 0);

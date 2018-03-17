@@ -96,9 +96,10 @@ if(count($bilder) > 0 ){
 			continue;
 		}
 		
-		$thumb = $pathToThumb.$bildfilename;			
-		if(!is_file($thumb)){	
-			generateThumb($file, $thumb, $thumb_size, 0, $ratio);
+		$thumb = $pathToThumb.$bildfilename;
+			
+		if(!is_file($thumb)){
+			generateThumb($file, $thumb, $thumb_size, 1, $ratio);
 		}	
 	}
 } else {

@@ -54,7 +54,7 @@
 					<input type="hidden" id="h" name="h" />
 
 					<input class="ui positive left floated button" type="submit" value="{{ oFG.language.EDIT_THUMB_BUTTON }}" />
-					<input class="ui {{ oFG.addon_color }} right floated button" type="button" value="{{ TEXT.BACK }}" onClick="parent.location='{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{section_id }}&cat_id={{ cat_id }}&leptoken={{ leptoken }}'"/>
+					<input class="ui {{ oFG.addon_color }} right floated button" type="button" value="{{ TEXT.BACK }}" onClick="document.location='{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{section_id }}&cat_id={{ cat_id }}&leptoken={{ leptoken }}'"/>
 
 				</form>
 			</div>
