@@ -60,7 +60,7 @@
 	</div>
 	<div class="ui grey inverted segment">
 		<h3>{{ oFG.language.MODIFY_IMG }} || <a href="{{ oFG.folder_url }}modify_cat_sort.php?page_id={{ page_id }}&section_id={{ section_id }}&cat_id={{ cat_id }}" class="dark_segment" title="{{ oFG.language.SORT_IMAGE }}">{{ oFG.language.SORT_IMAGE }}</a></h3>
-		<form action="{{ oFG.folder_url }}save_files.php?page_id={{ page_id }}&section_id={{ section_id }}&cat_id={{ cat_id }}" method="post">
+		<form action="{{ oFG.folder_url }}save_files.php?page_id={{ page_id }}&section_id={{ section_id }}&cat_id={{ cat_id }}" method="post" id="fg_list_thumbnails">
 			<input type="hidden" name="section_id" value="{{ section_id }}" />
 			<input type="hidden" name="page_id" value="{{ page_id }}" />
 			<input type="hidden" name="cat_id" value="{{ cat_id }}" />
@@ -76,7 +76,7 @@
 				{% for item in bilder %}
 				<tr>
 					<td align="center">
-						<img src="{{ urlToThumb }}{{ item.file_name }}">
+						<a onclick="fg_modifyThumb(this, {{ item.id }}, '{{ oFG.folder_url }}modify_thumb.php');"><img src="{{ urlToThumb }}{{ item.file_name }}" style="cursor:pointer;"></a>
 					</td>
 					<td>
 						{{ item.file_name }}
@@ -107,5 +107,6 @@
 		</form>
 	</div>
 </div>
+
 {% endautoescape %}
 <!-- end twig content -->

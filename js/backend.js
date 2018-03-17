@@ -34,4 +34,15 @@ function fg_toggle_categorie( aRef, aChildIDList )
     {
         document.getElementById("cat_item_"+list[ i ]).style.display = state;
     }
-} 
+}
+
+function fg_modifyThumb( aRef, aID, aLink) {
+    var form = document.getElementById( "fg_list_thumbnails");
+    form.action = aLink;
+    
+    var e = document.createElement("input");
+    e.name = "edit";
+    e.value = aID;
+    form.appendChild( e );
+    form.submit();
+}
