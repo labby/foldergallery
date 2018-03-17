@@ -31,7 +31,7 @@
 			<table class="ui table cat">
 				<tr>
 					<td><b>{{ oFG.language.FOLDER_IN_FS }}</b></td>
-					<td>{{ cat_path }}</td>
+					<td><b>{{ cat_path }}</b></td>
 				</tr>
 				<tr>
 					<td><b>{{ oFG.language.CAT_NAME }}</b></td>
@@ -42,7 +42,7 @@
 					<td><input type="checkbox" name="active" value="1" {% if categorie.active == 1 %}checked ="checked"{% endif %} /></td>					
 				</tr>
 				<tr>
-					<td>{{ oFG.language.CAT_DESCRIPTION }}</td>
+					<td><b>{{ oFG.language.CAT_DESCRIPTION }}</b></td>
 					<td><textarea cols="78" rows="3" name="cat_description">{{ categorie.description }}</textarea></td>
 				</tr>	
 			</table>

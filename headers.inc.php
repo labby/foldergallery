@@ -53,7 +53,8 @@ $mod_headers = array(
 	)	
 );
 
-$aTemp = explode( DIRECTORY_SEPARATOR, $_SERVER['SCRIPT_NAME']);
+//$aTemp = explode( DIRECTORY_SEPARATOR, $_SERVER['SCRIPT_NAME']);
+$aTemp = explode( '/', $_SERVER['SCRIPT_NAME']);
 $sFilename = array_pop( $aTemp );
 
 switch( $sFilename )

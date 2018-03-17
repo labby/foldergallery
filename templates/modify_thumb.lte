@@ -47,7 +47,6 @@
 					<input name="section_id" value="{{ section_id }}" type="hidden">
 					<input name="cat_id" value="{{ cat_id }}" type="hidden">
 					<input name="edit" value="{{ file_id }}" type="hidden">
-					<input name="leptoken" value="{{ leptoken }}" type="hidden">
 					
 					<input type="hidden" id="x" name="x" />
 					<input type="hidden" id="y" name="y" />
