@@ -53,6 +53,7 @@ function hideChilds( aID ) {
         // console.log("ref-> "+ s2 );
         for( var i=0; i < s2.length; i++) {
             document.getElementById("cat_item_"+s2[ i ]).style.display = "none";
+            hideChilds( s2[ i ] ); // and the next childs ...
         }
         
         ref.setAttribute("class", "large icon folder green");
