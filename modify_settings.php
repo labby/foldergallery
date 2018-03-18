@@ -43,21 +43,28 @@ if ( ! empty( $oFG->fg_settings['invisible'] ) ) {
 // Do not display system directories
 $invisibleFileNames = array_merge(foldergallery::INVISIBLE_FILE_NAMES, foldergallery::CORE_FOLDERS);
 
-// list start root directory
-// $folders = getFolderData(foldergallery::FG_PATH, array(), $invisibleFileNames, 2);
-
-// Using LEPTON internal function instead of the 'old'
 LEPTON_handle::register( "directory_list");
-$folders = array();
+$aTempFolders = array();
 $sStripFromPath = LEPTON_PATH.MEDIA_DIRECTORY."/";
 
 directory_list(
     LEPTON_PATH.MEDIA_DIRECTORY."/", // leading slash is ugly! (old mess)
     false,
     0,
-    $folders,
+    $aTempFolders,
     $sStripFromPath
 );
+
+// Strip the thumbnail(-dirs) from the list
+$folders = array();
+foreach($aTempFolders as &$ref)
+{
+    $aTemp = explode("/", $ref);
+    if( array_pop($aTemp) != foldergallery::FG_THUMBDIR1 )
+    {
+        $folders[] = $ref;
+    }
+}
 
 //Ratio array
 $ratio = array(
