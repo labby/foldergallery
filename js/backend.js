@@ -15,8 +15,8 @@
  */
 function fg_toggle_categorie( aRef, aChildIDList )
 {
-    var folder_open     = "icon folder open large green";
-    var folder_closed   = "icon folder large green";
+    var folder_open     = "large icon folder open green";
+    var folder_closed   = "large icon folder green";
     
     var state = "table-row";
     
