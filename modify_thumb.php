@@ -87,19 +87,19 @@ if(isset($_POST['edit']) && is_numeric($_POST['edit'])) {
 		} else {
 		    
 		    // Something has gone wrong!
-		    $sMessage = "<p>Error [fg]: ".$tempResult.".</p>";
+		    $sMessage = "<p>Error [fg 23]: ".$tempResult.".</p>";
 		    switch ($tempResult)
 		    {
 		        case -1:    // can't create thumb dir
-		            $sMessage .= "<p>Can't create thumbnail-directory!</p>";
+		            $sMessage .= "<p>".$oFG->language['ERROR_THUMBNAILS_CANT_CREATE_DIR']."</p>";
 		            break;
 		            
 		        case -2: // filesize over foldergallery::FG_MEGAPIXEL_LIMIT
-		            $sMessage .= "<p>File is too big! (Over ".foldergallery::FG_MEGAPIXEL_LIMIT.")</p>";
+		            $sMessage .= "<p>".$oFG->language['ERROR_THUMBNAILS_FILE_TOO_LAGE']."</p>";
 		            break;
 		            
 		        case -3:
-		            $sMessage .= "<p><strong>No mime-type match!</strong></p>";
+		            $sMessage .= "<p>".$oFG->language['ERROR_THUMBNAILS_NO_TYPE_MATCH']."</p>";
 		            break;
 		    }
 		    
@@ -109,7 +109,7 @@ if(isset($_POST['edit']) && is_numeric($_POST['edit'])) {
 	}
 	else 
 	{
-		list($width, $height, $type, $attr) = getimagesize($full_file); //str_replace um auch Datein oder Ordner mit leerzeichen bearbeiten zu können.
+		list($width, $height, $type, $attr) = getimagesize($full_file);
 			
 		// create preview
 		if ($settings['ratio'] > 1) {

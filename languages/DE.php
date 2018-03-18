@@ -89,12 +89,18 @@ $MOD_FOLDERGALLERY = array(
    'REORDER_INFO_STRING'    => 'Der Erfolg der Neuanordnung wird hier angezeigt.',
    'HELP_INFORMATION'       => 'Hilfe / Info',
    'Ration_square'       => 'quadratisch',
-   
+
+//  ?
 	'REORDER_IMAGES_STRING' => 'Bilder sortieren',
 	'QUICK_SORT_STRING'		=> 'Bilder nach Dateiname sortiern',
 	'QUICK_ASC_STRING'		=> 'Dateiname aufsteigend',
 	'QUICK_DESC_STRING'		=> 'Dateiname absteigend',
 	'MANUAL_SORT'			=> 'Frei sortieren (drag&drop)',	
+
+//  Errors durinbg thumbnail generation	
+	'ERROR_THUMBNAILS_CANT_CREATE_DIR'  => "Konnte das Verzeichniss für die Thumbnails nicht erstellen!!",
+	'ERROR_THUMBNAILS_FILE_TOO_LAGE' => "Die Bilddatei ist zu groß! (Über das erlaubte Maß von ".foldergallery::FG_MEGAPIXEL_LIMIT." MB)",
+	'ERROR_THUMBNAILS_NO_TYPE_MATCH' => "Bildformat passt nicht! Datei ist weder 'jpeg', noch 'png', oder 'gif'.)",
 
 // Tooltips
    'ROOT_FOLDER_STRING_TT' 	=> 'Dieser Ordner legt den Stammordner fest, in welchem rekursiv nach Bilder gesucht wird. Bitte nur beim installieren ändern, sonst gehen alle Infos zu den Bilder verloren!',

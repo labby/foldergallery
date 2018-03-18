@@ -30,7 +30,6 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php 
 
-
 $file_names = array(
     '/modules/foldergallery/backend.functions.php'
 );
@@ -38,6 +37,7 @@ LEPTON_handle::include_files ($file_names);
 
 $oFG = foldergallery::getInstance();
 $oFG->init_section( $page_id, $section_id );
+
 $oTWIG = lib_twig_box::getInstance();
 $oTWIG->registerModule('foldergallery');
 
@@ -49,7 +49,7 @@ if(isset($_POST['move_down']) || isset($_POST['move_up'])) {
 	$oFG->move();
 }
 
-//recursiv Aufruf aller childs
+//  Build categories-tree
 $aAllCartegories = array();
 $oFG->buildCatTree( 0, $aAllCartegories);
 

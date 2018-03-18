@@ -91,11 +91,17 @@ $MOD_FOLDERGALLERY = array(
 
     'Ration_square'       => 'square',
 
+//  Sorting tumbnails
 	'REORDER_IMAGES_STRING' => 'Sort images',
 	'QUICK_SORT_STRING'		=> 'Sort images by filename.',
 	'QUICK_ASC_STRING'		=> 'Filename asc.',
 	'QUICK_DESC_STRING'		=> 'Filename desc.',
-	'MANUAL_SORT'			=> 'Per drag and drop.',	
+	'MANUAL_SORT'			=> 'Per drag and drop.',
+
+//  Errors durinbg thumbnail generation	
+	'ERROR_THUMBNAILS_CANT_CREATE_DIR'  => "Can't create thumbnail-directory!",
+	'ERROR_THUMBNAILS_FILE_TOO_LAGE' => "File is too big! (Over ".foldergallery::FG_MEGAPIXEL_LIMIT.")",
+	'ERROR_THUMBNAILS_NO_TYPE_MATCH' => "No mime-type match! (File type has to be 'jpeg', 'png', or 'gif'.)",
 
 // Tooltips
     'ROOT_FOLDER_STRING_TT' 	=> 'This is the basic (root) folder to scan for images recursively. '
