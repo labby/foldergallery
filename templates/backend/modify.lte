@@ -73,14 +73,18 @@
 						<tr id="cat_item_{{ item.id }}" {% if(aDeep > 1) %}class="fg_cat_hidden"{% endif %}>
 							<td> </td>					
 							<td class="cat{{aDeep}}">
-							{% if (item.subcategories|length > 0  and  item.parent_id != -1) %}
-							    <i class="icon folder green" onclick="fg_toggle_categorie( this, '{{ item.childs }}');" onmouseenter="this.style.cursor='pointer';"></i>
-							{% endif %}
-							<a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}"><i class="eye icon"></i>{{ item.categorie }}</a></td>
+								{% if (item.subcategories|length > 0  and  item.parent_id != -1) %}
+									<i class="large icon folder green" onclick="fg_toggle_categorie( this, '{{ item.childs }}');" onmouseenter="this.style.cursor='pointer';"></i>
+								{% endif %}
+								<a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}">{{ item.categorie }}</a>
+							</td>
 							<td><a href="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" title="{{ oFG.language.MODIFY_CAT }}">{{ item.cat_name }}</a></td>
 							<td>
 								<table>
 									<tr>
+										<td>
+											<button class="ui basic button blank" type="submit" name="edit" value="{{ item.id }}" title="{{ TEXT.DELETE }}" formaction="{{ oFG.folder_url }}modify_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" formmethod="post"><i class="large green edit icon"></i></button>
+										</td>										
 										<td>
 											<button class="ui basic button blank" type="submit" name="toggle" value="{{ item.id }}" title="{% if item.active == 1 %}active{% else %}not active{% endif %}" formaction="{{ oFG.modify_url }}?page_id={{ oFG.fg_settings.page_id }}" formmethod="post">
 											{% if item.active == 1 %}
@@ -89,7 +93,7 @@
 												<i class="large red thumbs down icon"></i>
 											{% endif %}
 											</button>
-										</td>
+										</td>										
 										<td>
 											{% if loop.index < loop.length %}
 												<button class="ui basic button blank" type="submit" name="move_down" value="{{ item.id }}" title="{{ TEXT.MOVE_DOWN }}" formaction="{{ oFG.modify_url }}?page_id={{ page_id }}" formmethod="post"><i class="large green arrow down icon"></i></button>
@@ -106,9 +110,9 @@
 										</td>
 										<td>
 											{% if ( item.parent_id != -1 ) %}
-											<button class="ui basic button blank" type="submit" name="delete" value="{{ item.id }}" title="{{ TEXT.DELETE }}" formaction="{{ oFG.folder_url }}delete_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}"" formmethod="post"><i class="large red delete icon"></i></button>
+											<button class="ui basic button blank" type="submit" name="delete" value="{{ item.id }}" title="{{ TEXT.DELETE }}" formaction="{{ oFG.folder_url }}delete_cat.php?page_id={{ page_id }}&section_id={{ item.section_id }}&cat_id={{ item.id }}" formmethod="post"><i class="large red delete icon"></i></button>
 										    {% endif %}
-										</td>										
+										</td>									
 									</tr>
 								</table>							
 							</td>						
