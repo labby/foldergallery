@@ -44,7 +44,20 @@ if ( ! empty( $oFG->fg_settings['invisible'] ) ) {
 $invisibleFileNames = array_merge(foldergallery::INVISIBLE_FILE_NAMES, foldergallery::CORE_FOLDERS);
 
 // list start root directory
-$folders = getFolderData(foldergallery::FG_PATH, array(), $invisibleFileNames, 2);
+// $folders = getFolderData(foldergallery::FG_PATH, array(), $invisibleFileNames, 2);
+
+// Using LEPTON internal function instead of the 'old'
+LEPTON_handle::register( "directory_list");
+$folders = array();
+$sStripFromPath = LEPTON_PATH.MEDIA_DIRECTORY."/";
+
+directory_list(
+    LEPTON_PATH.MEDIA_DIRECTORY."/", // leading slash is ugly! (old mess)
+    false,
+    0,
+    $folders,
+    $sStripFromPath
+);
 
 //Ratio array
 $ratio = array(
