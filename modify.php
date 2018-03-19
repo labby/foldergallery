@@ -30,14 +30,12 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php 
 
-$file_names = array(
-    '/modules/foldergallery/backend.functions.php'
-);
-LEPTON_handle::include_files ($file_names);
+
+
 
 $oFG = foldergallery::getInstance();
 $oFG->init_section( $page_id, $section_id );
-
+LEPTON_handle::include_files ( '/modules/foldergallery/backend.functions.php');
 $oTWIG = lib_twig_box::getInstance();
 $oTWIG->registerModule('foldergallery');
 

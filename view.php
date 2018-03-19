@@ -29,28 +29,24 @@ if (defined('LEPTON_PATH')) {
 	}
 }
 // end include class.secure.php
-global $MOD_FOLDERGALLERY;
 
-$file_names = array(
-'/modules/foldergallery/backend.functions.php',
-'/modules/foldergallery/register_language.php',
-'/include/phplib/template.inc'
-);
-LEPTON_handle::include_files ($file_names);
 
-// Foldergallery Einstellungen
-$settings = getSettings($section_id);
-$thumb_size = $settings['thumb_size']; //Chio
-$root_dir = $settings['root_dir']; //Chio
-$catpic = (int) $settings['catpic']; //Chio
-$ratio = $settings['ratio']; //Pumpi
+$oFGF = foldergallery_frontend::getInstance();
+$oFGF->init_frontend_page($page_id, $section_id);
+LEPTON_handle::include_files ( '/modules/foldergallery/backend.functions.php');
+$oTWIG = lib_twig_box::getInstance();
+$oTWIG->registerModule('foldergallery');
 
-// Einstellungen
-// Link zur Seite
-$page_id = PAGE_ID;
-$query_pages = $database->query("SELECT link FROM ".TABLE_PREFIX."pages WHERE page_id = '$page_id' LIMIT 1");
-$page = $query_pages->fetchRow();
-$link = LEPTON_URL.PAGES_DIRECTORY.$page['link'].PAGE_EXTENSION;
+// Foldergallery settings
+$thumb_size = $oFGF->fg_settings['thumb_size'];
+$root_dir = $oFGF->fg_settings['root_dir'];
+$catpic = (int) $oFGF->fg_settings['catpic'];
+$ratio = $oFGF->fg_settings['ratio']; 
+
+// Links to page
+$page_link = $database->get_one("SELECT link FROM ".TABLE_PREFIX."pages WHERE page_id = ".$page_id." LIMIT 1");
+$link = LEPTON_URL.PAGES_DIRECTORY.$page_link.PAGE_EXTENSION;
+die(LEPTON_tools::display($oFGF,'pre','ui message'));
 
 $ergebnisse = array(); // Da drin werden dann alle Ergebnisse aus der DB gespeichert
 $unterKats = array(); // Hier rein kommen die Unterkategorien der aktuellen Kategorie

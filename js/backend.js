@@ -9,15 +9,16 @@
  * 
  */
 
+/* define icons class names*/
+var folder_open     = "large green folder open icon";
+var folder_closed   = "large green folder icon ";
+	
 /**
  *  New by aldus
  *
  */
 function fg_toggle_categorie( aRef, aChildIDList )
-{
-    var folder_open     = "large icon folder open green";
-    var folder_closed   = "large icon folder green";
-    
+{ 
     var state = "table-row";
     
     var current_class = aRef.getAttribute("class");
@@ -56,7 +57,7 @@ function hideChilds( aID ) {
             hideChilds( s2[ i ] ); // and the next childs ...
         }
         
-        ref.setAttribute("class", "large icon folder green");
+        ref.setAttribute("class", folder_closed);
     }
 }
 
