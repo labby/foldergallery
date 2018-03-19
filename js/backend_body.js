@@ -11,16 +11,27 @@
  
 $(document).ready(function(){ 
 	$(function() { 
-		$("#dragableTable ul").sortable({ opacity: 0.6, cursor: 'move', update: function() { 
-			var order = $(this).sortable("serialize") + '&action=updateRecordsListings&parent_id='+the_parent_id+'&leptoken='+leptoken; 		
-			$.post(LEPTON_URL+"/modules/foldergallery/reorderDND.php", order, function(theResponse){ 
-				$("#dragableResult").html(theResponse); 
-			}); 
-		} 
-		}); 
+		$("#fg_cat_table tr").sortable(
+		    {
+		        opacity: 0.6,
+		        cursor: 'move',
+		        connectWith: "tr",
+		        update: function( event, ui) { 
+                    /*
+                    var order = $(this).sortable("serialize") + '&action=updateRecordsListings&parent_id='+the_parent_id+'&leptoken='+leptoken; 		
+                    $.post(LEPTON_URL+"/modules/foldergallery/reorderDND.php", order, function(theResponse){ 
+                        //$("#dragableResult").html(theResponse);
+                        //console.log("res: "+theResponse); 
+                    });
+                    */
+                    console.log("res: "+$(this).sortable( "toArray" )); 
+                   //  console.log("res: "+event); 
+                } 
+		    }
+		); 
 	}); 
  }); 
-
+$("#fg_cat_table tr").disableSelection();
 
 // Remember to invoke within jQuery(window).load(...)
 // If you don't, Jcrop may not initialize properly

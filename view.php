@@ -46,7 +46,16 @@ $ratio = $oFGF->fg_settings['ratio'];
 // Links to page
 $page_link = $database->get_one("SELECT link FROM ".TABLE_PREFIX."pages WHERE page_id = ".$page_id." LIMIT 1");
 $link = LEPTON_URL.PAGES_DIRECTORY.$page_link.PAGE_EXTENSION;
-die(LEPTON_tools::display($oFGF,'pre','ui message'));
+
+// Build the category tree
+$aCatTree = array();
+$oFGF->buildCatTree( 0, $aCatTree, 0);
+
+echo (LEPTON_tools::display( $aCatTree ,'pre','ui message'));
+//echo (LEPTON_tools::display($oFGF,'pre','ui message'));
+
+// No "die" - we just exit here (in this __FILE__ and keep the current process going on ..
+return 0;
 
 $ergebnisse = array(); // Da drin werden dann alle Ergebnisse aus der DB gespeichert
 $unterKats = array(); // Hier rein kommen die Unterkategorien der aktuellen Kategorie
