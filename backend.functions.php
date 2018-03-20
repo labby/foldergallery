@@ -127,7 +127,7 @@ function deleteFolder($path) {
 		// wenn der Eintrag ein Verzeichnis ist, dann
 		if (is_dir($path.'/'.$entry)) {
 			// rufe mich selbst auf
-			$res = deleteFolder($path.'/'.$entry);
+			// $res = deleteFolder($path.'/'.$entry);
 		// wenn ein Fehler aufgetreten ist
 		if ($res == -1) { // dies duerfte gar nicht passieren
 			closedir($dir); // Verzeichnis schliessen

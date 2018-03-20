@@ -30,6 +30,10 @@ if (defined('LEPTON_PATH')) {
 }
 // end include class.secure.php
 
+header('Cache-Control: no-cache, no-store, must-revalidate');
+header('Pragma: no-cache');
+header('Expires: 0');
+
 $oFG = foldergallery::getInstance();
 $oTWIG = lib_twig_box::getInstance();
 $oTWIG->registerModule('foldergallery');
