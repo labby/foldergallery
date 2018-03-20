@@ -37,7 +37,7 @@ class foldergallery extends LEPTON_abstract
  	const FG_PAGES = PAGES_DIRECTORY;
     
     //  Max MB for thumbnais: if an image-file size is greater than this value (in MB) no thumbnais are generated.
-    const FG_MEGAPIXEL_LIMIT = 6;
+    const FG_MEGAPIXEL_LIMIT = 4;
     
 	/**
 	 * Please modify these lines only if you know what you do!
@@ -72,7 +72,7 @@ class foldergallery extends LEPTON_abstract
 			$this->fg_settings,
 			false
 		);	
-echo($this->database->get_error());
+
 		//get all categories on section
 		$this->fg_category_all = array();
 		$this->database->execute_query(
