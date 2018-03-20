@@ -50,56 +50,50 @@ $link = LEPTON_URL.PAGES_DIRECTORY.$page_link.PAGE_EXTENSION;
 // Build the category tree
 $aCatTree = array();
 $oFGF->buildCatTree( 0, $aCatTree, 0);
-
 echo (LEPTON_tools::display( $aCatTree ,'pre','ui message'));
-//echo (LEPTON_tools::display($oFGF,'pre','ui message'));
+return 0; // No "die" - we just exit here (in this __FILE__ and keep the current process going on ..
 
-// No "die" - we just exit here (in this __FILE__ and keep the current process going on ..
-return 0;
-
-$ergebnisse = array(); // Da drin werden dann alle Ergebnisse aus der DB gespeichert
-$unterKats = array(); // Hier rein kommen die Unterkategorien der aktuellen Kategorie
-$bilder = array(); // hier kommen alle Bilder der aktuellen Kategorie rein
+$result = array();
+$subCat = array();
+$images = array();
 $error = false;
 $title = PAGE_TITLE;
 
 
-// Wo sind wir?
-$aktuelleKat = (isset($_GET['cat']) && is_string($_GET['cat']))
-    ? $_GET['cat']
-    : ''            // #1: Rootpage/Startseite/Eingangsseite
-    ;
+// get root?
+if((isset($_GET['cat']) && is_string($_GET['cat']))) {
+	$currentCat = $_GET['cat'];
+} else {
+	$currentCat = '';
+}
 
-//$aktuelleKat = htmlspecialchars($aktuelleKat);
-
-// Die id der aktuellen Kategorie herausfinden:
-$aktuelleKat_id = 0;
+$currentCat_id = 0;
 $sRootDescription = NULL;
 $bIsRootPage = false;
 
-$aAlleKategorien = array();
+$all_cats = array();
 $database->execute_query(
     'SELECT * FROM `'.TABLE_PREFIX.'mod_foldergallery_categories` WHERE `section_id`='.$section_id.' AND `is_empty`=0 AND `active`=1 ORDER BY `position` DESC',
     true,
-    $aAlleKategorien,
+    $all_cats,
     true
 );
 
-foreach($aAlleKategorien as &$ergebnis)
+foreach($all_cats as &$result)
 {
-	$p = $ergebnis['parent'].'/'.$ergebnis['categorie'] ;
+	$p = $result['parent'].'/'.$result['categorie'] ;
 	
-	if ($ergebnis['parent'] == '-1') 
+	if ($result['parent'] == '-1') 
 	{
-		$p = '';    // Siehe #1; Eingangsseite
-		$sRootDescription = $ergebnis['description'];
-		$sRootTitle = $ergebnis['cat_name'];
+		$p = ''; 
+		$sRootDescription = $result['description'];
+		$sRootTitle = $result['cat_name'];
 	}
 	
-	if ($p == $aktuelleKat)
+	if ($p == $currentCat)
 	{
-		$aktuelleKat_id = $ergebnis['id'];
-		if( $ergebnis['parent'] == '-1' )
+		$currentCat_id = $result['id'];
+		if( $result['parent'] == '-1' )
 		{
 		    $bIsRootPage = true;
 		}
@@ -107,22 +101,22 @@ foreach($aAlleKategorien as &$ergebnis)
 	}
 }
 
-
-
-//	Falls nichts angezeigt wird, wird die Root Kategorie angezeigt
-if(!$aktuelleKat){
+//	display root if nothing is to display
+if(!$currentCat){
 	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$section_id.' AND parent="" AND is_empty=0 AND active=1 ORDER BY position ASC';
 } else {
-	$where = 'WHERE section_id='.$section_id.' AND parent="'.$aktuelleKat.'" AND is_empty=0 AND active=1'; 
-	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories '.$where.' ORDER BY position DESC';
+	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$section_id.' AND parent="'.$currentCat.'" AND is_empty=0 AND active=1 ORDER BY position DESC';
 }
 
-// OK, Angaben aus DB holen
+// get data from database
 $query = $database->query($sql);
 while($ergebnis = $query->fetchRow()){
 	// Es gibt also folgende Kategorien mit Inhalt in dieser Kategorie
 	$ergebnisse[] = $ergebnis;	
 }
+echo(LEPTON_tools::display($query,'pre','ui message'));
+echo('<br />');
+echo(LEPTON_tools::display($_POST,'pre','ui message'));
 
 if(count($ergebnisse) == 0) {
 	$error = true;
