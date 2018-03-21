@@ -1,0 +1,21 @@
+{% autoescape false %}
+{% include "@foldergallery/frontend/style.lte" %}
+<link type="text/css" media="screen" rel="stylesheet" href="{{ LEPTON_URL }}/modules/foldergallery/scripts/responsive/jquery.lightbox.css" />
+<script src="{{ LEPTON_URL }}/modules/foldergallery/scripts/responsive/jquery.lightbox.js" type="text/javascript"></script>
+
+<script>
+  // Initiate Lightbox
+  $(function() {
+    $('.photostyle a').lightbox(); 
+  });
+</script>
+
+<div class="gallery">
+	<div class="gallerytitle">
+		<span class="view_title">{{ page_title }}</span>
+		{% if all_cats|length < 2 %}<span class="categories_title">{{ all_cats.cat_name }}</span>{% endif %}
+		{% if all_cats|length < 2 %}<span class="categories_desc">{{ all_cats.description }}</span>{% endif %}	
+	</div>
+</div>
+<div class="pagenav" style="text-align: left">{{ CATBREAD }}</div>
+{% endautoescape %}

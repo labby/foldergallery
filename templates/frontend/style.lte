@@ -1,0 +1,9 @@
+{% autoescape false %}
+<style type="text/css">
+ul.categories li a {
+	width: {{ catWidth }}px;
+	height: {{ catHeight }}px;
+}
+</style>
+
+{% endautoescape %}
