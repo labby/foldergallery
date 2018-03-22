@@ -17,5 +17,26 @@
 		{% if all_cats|length < 2 %}<span class="categories_desc">{{ all_cats.description }}</span>{% endif %}	
 	</div>
 </div>
-<div class="pagenav" style="text-align: left">{{ CATBREAD }}</div>
+{% if breadcrumb == 1 %}
+<div class="pagenav" style="text-align: left">
+	<ul class="fg_pages_nav">
+		<li><a href="{{ link }}">{{ oFGF.language.BACK_STRING }}</a></li>
+		{{ bread }}
+	</ul>
+</div>
+{% endif %}
+<div class="foldergallery-wrapper">
+	<ul class="categories">
+		{% for item in subCats %}
+		<li>
+			<a href="{{ item.link }}"><img src="{{ item.thumb }}" alt=""/><br />
+			{{ item.name }}</a>
+		</li>
+		{% endfor %}
+	</ul>
+
+
+	<hr class="clear" />
+</div>
+
 {% endautoescape %}

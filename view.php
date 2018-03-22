@@ -44,7 +44,7 @@ $root_dir = $settings['root_dir'];
 $catpic = (int) $settings['catpic'];
 $ratio = $settings['ratio']; 
 
-// Links to page
+// Link to page
 $page_link = $database->get_one("SELECT link FROM ".TABLE_PREFIX."pages WHERE page_id = ".$page_id." LIMIT 1");
 $link = LEPTON_URL.PAGES_DIRECTORY.$page_link.PAGE_EXTENSION;
 
@@ -62,7 +62,7 @@ $error = false;
 $title = PAGE_TITLE;
 
 
-// get root?
+// only subpages/subfolder
 if((isset($_GET['cat']) && is_string($_GET['cat']))) {
 	$currentCat = $_GET['cat'];
 } else {
@@ -80,7 +80,7 @@ $database->execute_query(
     $all_cats,
     true
 );
-echo(LEPTON_tools::display($all_cats,'pre','ui message'));
+
 foreach($all_cats as &$result)
 {
 	$p = $result['parent'].'/'.$result['categorie'] ;
@@ -103,12 +103,53 @@ foreach($all_cats as &$result)
 	}
 }
 
-//	display root if nothing is to display
+//	display root if there are no subfolders
 if(!$currentCat){
 	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$section_id.' AND parent="" AND is_empty=0 AND active=1 ORDER BY position ASC';
 } else {
 	$sql = 'SELECT * FROM '.TABLE_PREFIX.'mod_foldergallery_categories WHERE section_id='.$section_id.' AND parent="'.$currentCat.'" AND is_empty=0 AND active=1 ORDER BY position DESC';
 }
+
+$subCats = array();
+$database->execute_query(
+    $sql,
+    true,
+    $subCats,
+    true
+);
+
+if(count($subCats) == 0) {
+	$error = true;
+} else {
+
+}
+
+echo(LEPTON_tools::display($_GET,'pre','ui message'));
+echo('<br />');
+echo(LEPTON_tools::display($subCats,'pre','ui message'));
+
+
+// create breadcrumb, get current cat path (only for subgalleries, not root)
+if ( isset( $_GET['cat'] ) ) {
+    $path  = explode( '/', $_GET['cat'] );
+
+    // first element is empty as the string begins with /
+    array_shift($path);
+    foreach ( $path as $i => $cat_name ) {
+        $catres = $database->query("SELECT cat_name FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE categorie = '$cat_name' LIMIT 1");
+        $cat    = $catres->fetchRow();
+        $bread = '<li> <a href="'
+               .  $link
+               .  '?cat=/'.implode('/', array_slice( $path, 0, ($i+1) ) )
+               .  '">'.$cat['cat_name'].'</a></li>';
+	}
+	$breadcrumb = 1;
+
+} else {
+	$breadcrumb = 0;
+}
+
+
 
 // get thumbsize from settings
 $catWidth = $settings['thumb_size'] + 10;
@@ -122,9 +163,13 @@ else {
 }
 
 $data = array(
-	'oFGF'	=> $oFGF,
+	'oFGF'		=> $oFGF,
 	'page_id'	=> $page_id,
 	'section_id'=> $section_id,
+	'link'		=> $link,
+	'breadcrumb'=> $breadcrumb,	
+	'bread'		=> $bread,
+	'subCats'	=>$subCats,
 	'page_title'=> PAGE_TITLE,
 	'all_cats'=>$all_cats,	
 	'catWidth'=> $catWidth,
