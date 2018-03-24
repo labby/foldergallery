@@ -79,7 +79,7 @@ $ratio = array(
 $lightbox_select = '';
 if ( $dh = opendir(dirname(__FILE__).'/templates/frontend') ) {
     while ( ($file = readdir($dh)) !== false ) {
-        if ( preg_match( "/^(\w+).lte$/", $file, $matches ) ) {
+        if ( preg_match( "/^view_(\w+).lte$/", $file, $matches ) ) {
             $lightbox_select .= '<option value="'
                              .  $matches[1] .'"';
             if ( $matches[1] == $oFG->fg_settings['lightbox'] ) {
