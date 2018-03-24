@@ -179,7 +179,7 @@ $data = array(
 );
 		
 echo $oTWIG->render( 
-	"@foldergallery/frontend/".$settings['lightbox'].".lte",	//	template-filename
+	"@foldergallery/frontend/view_".$settings['lightbox'].".lte",	//	template-filename
 	$data							//	template-data
 );
 
