@@ -41,7 +41,29 @@ class foldergallery_frontend extends foldergallery
 			true
 		);	
 				
-	}	
+	}
 	
-
+	/**
+	 *
+	 *  @param  integer iParentID   The "root" id looking for
+	 *  @param  array   aStorrage   An array for the results - pass by reference!
+	 *  @param  array   aAll        All given entries - pass by reference!
+	 *  @param  integer iDeep       The recursions counter.
+	 *
+	 */
+    public function buildCatTreeFrontend( $iParentID = 0, &$aStorrage, &$aAll, $iDeep = 0)
+	{
+	    foreach($aAll as &$ref)
+	    {
+	        if($ref['parent_id'] == $iParentID)
+	        {
+	           $aTemp = array();
+	           $this->buildCatTreeFrontend( $ref['id'], $aTemp, $aAll, $iDeep + 1);
+	           $ref['subcategories'] = $aTemp;
+	           
+	           $aStorrage[] = $ref;
+	        }
+	    }
+	
+	}	
 } // end of class
