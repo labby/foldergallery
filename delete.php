@@ -33,7 +33,7 @@ if (defined('LEPTON_PATH')) {
 // Delete DB-Entries (messages and settings)
 $temp_parent_ids = array();
 $database->execute_query(
-	"SELECT `id` FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE section_id=". $iSectionID ,
+	"SELECT `id` FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE section_id=". $section_id ,
 	true,
 	$temp_parent_ids,
 	true

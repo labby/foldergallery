@@ -128,7 +128,7 @@ echo(LEPTON_tools::display($_GET,'pre','ui message'));
 echo('<br />');
 echo(LEPTON_tools::display($subCats,'pre','ui message'));
 
-
+$bread = "";
 // create breadcrumb, get current cat path (only for subgalleries, not root)
 if ( isset( $_GET['cat'] ) ) {
     $path  = explode( '/', $_GET['cat'] );
