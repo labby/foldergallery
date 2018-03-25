@@ -164,6 +164,22 @@ if(syncDB($settings)) {
     		}
     	}
 
+// root!
+	$aTempRef = array();
+	$database->execute_query(
+	    "SELECT `id` from `".TABLE_PREFIX."mod_foldergallery_categories` WHERE `parent_id` =0 AND `section_id`=".$section_id." ORDER BY `id`",
+	    true,
+	    $aTempRef,
+	    true
+	);
+	
+	$aAllRootChilds = array();
+	foreach($aTempRef as $ref)
+	{
+	    $aAllRootChilds[] = $ref['id'];
+	}
+	$database->simple_query("UPDATE `".TABLE_PREFIX."mod_foldergallery_categories` set `childs`='".implode(",", $aAllRootChilds)."' WHERE `section_id`=".$section_id." AND `parent_id`=-1");
+//	
       if($flag) {
       	$admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id.'&section_id='.$section_id);
       } else {
