@@ -14,6 +14,9 @@
 class foldergallery_frontend extends foldergallery
 {
 	public $database = 0;	
+	public $view_url = LEPTON_URL.PAGES_DIRECTORY;
+	public $thumb_url = self::FG_URL;
+	public $thumb	 = 0;
 	public static $instance;
 
 	public function initialize() 
@@ -23,6 +26,10 @@ class foldergallery_frontend extends foldergallery
 	
 	public function init_frontend_page( $iPageID = 0, $iSectionID = 0 )
 	{
+		// get page link
+		$page_link = $this->database->get_one("SELECT link FROM ".TABLE_PREFIX."pages WHERE page_id=".$iPageID." ");
+		$this->view_url = LEPTON_URL.PAGES_DIRECTORY.$page_link.PAGE_EXTENSION;	
+				
 		//get array of settings
 		$this->fg_settings = array();
 		$this->database->execute_query(
@@ -31,6 +38,7 @@ class foldergallery_frontend extends foldergallery
 			$this->fg_settings,
 			false
 		);	
+			
 
 		//get all categories on section
 		$this->fg_category_all = array();
@@ -40,7 +48,10 @@ class foldergallery_frontend extends foldergallery
 			$this->fg_category_all,
 			true
 		);	
-				
+		
+		// get thumb_url
+		$this->thumb_url = self::FG_URL.$this->fg_settings['root_dir'].self::FG_THUMBDIR;
+
 	}
 	
 	/**

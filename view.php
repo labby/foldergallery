@@ -44,10 +44,6 @@ $root_dir = $settings['root_dir'];
 $catpic = (int) $settings['catpic'];
 $ratio = $settings['ratio']; 
 
-// Link to page
-$page_link = $database->get_one("SELECT link FROM ".TABLE_PREFIX."pages WHERE page_id = ".$page_id." LIMIT 1");
-$link = LEPTON_URL.PAGES_DIRECTORY.$page_link.PAGE_EXTENSION;
-
 // Build the category tree
 /*
 $aCatTree = array();
@@ -120,13 +116,35 @@ $database->execute_query(
 
 if(count($subCats) == 0) {
 	$error = true;
-} else {
-
 }
 
-echo(LEPTON_tools::display($_GET,'pre','ui message'));
+if(count($subCats > 0) && $subCats['parent_id'] != -1) {
+// get thumb (file_name) from files table
+	foreach($subCats as $thumb) {
+		if($catpic == 2) { // last
+				$cat_thumb = $database->get_one("SELECT file_name FROM ".TABLE_PREFIX."mod_foldergallery_files WHERE parent_id =".$thumb['parent_id']." ORDER BY position DESC");
+		}
+		if($catpic == 1) { // first
+				$cat_thumb = $database->get_one("SELECT file_name FROM ".TABLE_PREFIX."mod_foldergallery_files WHERE parent_id =".$thumb['parent_id']." ORDER BY position ASC");
+		}
+		if($catpic == 0) { // random
+				$all_thumbs = array();
+				$database->execute_query("SELECT file_name FROM ".TABLE_PREFIX."mod_foldergallery_files WHERE parent_id =".$thumb['parent_id']." ORDER BY position" ,
+					true,
+					$all_thumbs,
+					true
+				);
+				$cat_thumb = array_rand($all_thumbs);
+		}		
+	}
+}
+
+
+
+
+echo(LEPTON_tools::display($cat_thumb,'pre','ui red message'));
 echo('<br />');
-echo(LEPTON_tools::display($subCats,'pre','ui message'));
+echo(LEPTON_tools::display($subCats['categorie'],'pre','ui info message'));
 
 $bread = "";
 // create breadcrumb, get current cat path (only for subgalleries, not root)
@@ -139,7 +157,7 @@ if ( isset( $_GET['cat'] ) ) {
         $catres = $database->query("SELECT cat_name FROM ".TABLE_PREFIX."mod_foldergallery_categories WHERE categorie = '$cat_name' LIMIT 1");
         $cat    = $catres->fetchRow();
         $bread = '<li> <a href="'
-               .  $link
+               .  $oFGF->view_url
                .  '?cat=/'.implode('/', array_slice( $path, 0, ($i+1) ) )
                .  '">'.$cat['cat_name'].'</a></li>';
 	}
@@ -166,10 +184,10 @@ $data = array(
 	'oFGF'		=> $oFGF,
 	'page_id'	=> $page_id,
 	'section_id'=> $section_id,
-	'link'		=> $link,
 	'breadcrumb'=> $breadcrumb,	
 	'bread'		=> $bread,
 	'subCats'	=>$subCats,
+	'cat_thumb'	=>$cat_thumb,	
 	'page_title'=> PAGE_TITLE,
 	'all_cats'=>$all_cats,	
 	'catWidth'=> $catWidth,
