@@ -60,7 +60,7 @@ $sql = 'CREATE TABLE `'.TABLE_PREFIX .'mod_foldergallery_jq_files` ( '
 	.'`parent_id` INT NOT NULL DEFAULT \'0\','
 	.'`file_name` VARCHAR(255) NOT NULL DEFAULT \'\','
 	.'`position` INT NOT NULL DEFAULT \'0\', '
-	.'`caption` TEXT NOT NULL DEFAULT \'\');';
+	.'`caption` TEXT NOT NULL);';
 $database->query($sql);
 
 $sql = 'CREATE TABLE `'.TABLE_PREFIX.'mod_foldergallery_jq_categories` ( '
